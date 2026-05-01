@@ -1,0 +1,403 @@
+@forward "../../public/assets/css/bootstrap.css";
+@forward "../../public/assets/css/spacing.css";
+@forward "../../public/assets/css/animate.css";
+@forward "../../public/assets/scss/main.scss";
+@forward "../../public/assets/css/font-awesome-pro.css";
+
+.logo-icon-white {
+  font-size: 24px;
+  font-weight: 400;
+  color: #fff;
+  padding-left: 3px;
+}
+.logo-icon-black {
+  font-size: 24px;
+  font-weight: 400;
+  color: #003b5c;
+  padding-left: 3px;
+}
+.tp-hero-tab-input {
+  margin-right: 0px !important;
+  margin-bottom: 20px;
+}
+.logo-header {
+  width: 50px;
+  height: 50px;
+  margin-bottom: 12px;
+}
+.tp-header-1-menu nav > ul {
+  text-align: start;
+  padding: 4px;
+  border-radius: 60px;
+  display: inline-block;
+  border: none;
+}
+.gsrch {
+  //background: #fff;
+  //margin-right: 0px;
+  padding-top: 20px;
+  margin-bottom: 15px;
+  border-radius: 8px;
+}
+.tp-property-section-title {
+  font-size: 14px;
+  font-weight: 600;
+  letter-spacing: -0.84px;
+}
+.tp-rent-item:hover .tp-rent-thumb a img {
+  transform: none;
+  transition: none;
+}
+.tp-hero-tab-box {
+  border-radius: 0px 8px 8px 8px;
+}
+.tp-hero-tab-search button {
+  border-radius: 8px;
+}
+.tp-header-1-menu nav > ul > li > a {
+  border-radius: 8px !important;
+}
+.tp-btn {
+  border-radius: 8px;
+}
+.tp-hero-tab-select .nice-select {
+  border-radius: 8px !important;
+}
+.tp-hero-tab-filter .tp-hero-filter-btn span {
+  border-radius: 8px;
+}
+.tp-dashboard-profile-btn a {
+  border-radius: 8px;
+}
+.tp-dashboard-new-btn button {
+  border-radius: 8px;
+}
+.tp-feature-item {
+  border-radius: 8px;
+}
+.tp-section-title {
+  font-size: 30px;
+}
+.tp-dashboard-main {
+  padding: 15px;
+}
+.tp-main-menu ul li > a {
+  font-size: 16px;
+}
+.tp-dashboard-new-title {
+  font-size: 22px;
+}
+.tp-dashboard-new-input label {
+  font-size: 15px;
+  display: block;
+  margin-bottom: 6px;
+  font-weight: 500;
+}
+.tp-dashboard-new-input input,
+.tp-dashboard-new-input textarea {
+  width: 100%;
+}
+.tp-dashboard-new-input {
+  margin-bottom: 0;
+}
+
+.tp-dashboard-add-property-form .tp-dashboard-new-input {
+  margin-bottom: 18px;
+}
+.gap-20 {
+  gap: 20px;
+}
+.mt-10 {
+  margin-top: 10px;
+}
+.tp-dashboard-profile-top {
+  border-bottom: 1px solid #f0f0f0;
+  padding-bottom: 24px;
+  margin-bottom: 24px;
+}
+.tp-team-details-info-top {
+  border-radius: 8px 8px 8px 8px !important;
+}
+.tp-sign-in-register-box {
+  border-radius: 8px;
+}
+.tp-sign-in-register-title {
+  font-size: 34px;
+  font-weight: 600;
+  letter-spacing: -1.02px;
+}
+.tp-from-button button {
+  border-radius: 8px;
+}
+.rc-slider {
+  margin-top: 20px;
+}
+.input-range {
+  padding-left: 60px;
+}
+.padLR0 {
+  padding-left: 0px;
+  padding-right: 0px;
+}
+.srchUpdate {
+  width: 102%;
+  margin-bottom: 10px;
+  height: 50px;
+  padding-left: 15px;
+  border-radius: 8px;
+  border: "1px solid #000";
+}
+.bclp {
+  margin: 0px 0px 25px 0px;
+  font-size: 14px;
+}
+.tp-hero-tab-box {
+  width: 100%;
+  flex-wrap: wrap;
+  padding: 15px 15px 15px 0px;
+  background-color: var(--tp-common-white);
+}
+.d-show {
+  display: inline;
+}
+//header profile icon styles
+.profile-dropdown {
+  position: relative;
+  display: inline-block;
+}
+
+.profile-btn {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  background: transparent;
+  border: none;
+  cursor: pointer;
+}
+.Profile-btn-span {
+  position: relative;
+  display: inline-flex;
+  width: 36px;
+  height: 36px;
+  min-width: 36px;
+  max-width: 36px;
+  border-radius: 50%;
+  align-items: center;
+  justify-content: center;
+  background: rgba(212, 175, 55, 0.18);
+  border: 1px solid rgba(212, 175, 55, 0.75);
+  color: #d4af37;
+  flex-shrink: 0;
+}
+
+.profile-img {
+  border-radius: 50%;
+}
+
+.arrow {
+  font-size: 12px;
+  transition: transform 0.3s ease;
+}
+
+.arrow.rotate {
+  transform: rotate(180deg);
+}
+
+.profile-dropdown .sub-menu {
+  position: absolute;
+  top: 114%;
+  right: 0;
+  left: auto;
+  width: 220px;
+  z-index: 999;
+  opacity: 1;
+  visibility: visible;
+  padding: 15px 0 25px;
+  border-radius: 8px;
+  background: var(--tp-common-white);
+  transform: rotateX(0);
+  box-shadow: 0px 30px 70px 0px rgba(11, 6, 70, 0.08);
+}
+
+.profile-dropdown .sub-menu li {
+  display: block;
+  width: 100%;
+  margin: 0;
+  padding: 4px 30px;
+}
+
+.profile-dropdown .sub-menu li > a,
+.profile-dropdown .sub-menu li > button {
+  position: relative;
+  display: block;
+  width: 100%;
+  padding: 0;
+  border: none;
+  background: transparent;
+  text-align: left;
+  font-size: 15px;
+  color: var(--tp-theme-primary);
+  cursor: pointer;
+}
+
+.profile-dropdown .sub-menu li > a::before,
+.profile-dropdown .sub-menu li > button::before {
+  position: absolute;
+  content: "";
+  top: 12px;
+  left: 0px;
+  height: 2px;
+  width: 0;
+  background: var(--tp-theme-primary);
+  transition: all 0.3s ease-in-out;
+}
+
+.profile-dropdown .sub-menu li > a span,
+.profile-dropdown .sub-menu li > button span {
+  transition: all 0.3s ease-in-out;
+}
+
+.profile-dropdown .sub-menu li:hover > a,
+.profile-dropdown .sub-menu li:hover > button {
+  color: var(--tp-theme-primary);
+}
+
+.profile-dropdown .sub-menu li:hover > a span,
+.profile-dropdown .sub-menu li:hover > button span {
+  margin-left: 14px;
+}
+
+.profile-dropdown .sub-menu li:hover > a::before,
+.profile-dropdown .sub-menu li:hover > button::before {
+  width: 10px;
+}
+.tp-header-pinned .tp-header-1-main .tp-header-right-user-icon span {
+  color: var(--tp-common-white);
+}
+.tp-header-pinned .tp-header-1-main .hamburger-btn {
+  background: var(--tp-theme-primary);
+}
+.tp-header-right-user-icon span {
+  height: 40px !important;
+  width: 40px !important;
+  margin-top: -8px;
+}
+.filt {
+  padding-left: 0px;
+}
+
+/* Hide elements on mobile (tablets and phones) */
+.hide-mobile {
+  display: block;
+}
+
+/* Hide elements on desktop */
+.hide-desktop {
+  display: none;
+}
+.prop-det-dev {
+  padding-left: 0px;
+  padding-right: 0px;
+}
+@media only screen and (max-width: 767px) {
+  .filt {
+    padding-left: 15px;
+  }
+  .d-show {
+    display: none;
+  }
+  .marTop20 {
+    margin-top: 20px;
+  }
+  .tp-dashboard-main {
+    padding: 10px;
+  }
+  .tp-hero-tab-box {
+    width: 100%;
+    flex-wrap: wrap;
+    padding: 10px 10px 10px 0px;
+    background-color: var(--tp-common-white);
+  }
+  .tp-apartment-item {
+    margin-right: 0px;
+    transition: all 0.3s ease-out;
+    padding: 13px 48px 13px 20px;
+    background-color: var(--tp-theme-secondary);
+  }
+  .padLR0 {
+    padding-left: 15px;
+    padding-right: 0px;
+  }
+  .srchUpdate {
+    width: 104%;
+    margin-bottom: 10px;
+    height: 50px;
+    padding-left: 15px;
+    border-radius: 8px;
+    border: "1px solid #000";
+  }
+  .mlb {
+    margin-bottom: 0px !important;
+  }
+  .bclp {
+    margin: 0px 0px 0px 0px;
+    font-size: 14px;
+    padding-top: 10px;
+  }
+}
+@media only screen and (min-width: 1200px) and (max-width: 1399px) {
+}
+@media only screen and (min-width: 1200px) and (max-width: 1399px),
+  only screen and (min-width: 992px) and (max-width: 1199px),
+  only screen and (min-width: 768px) and (max-width: 991px) {
+}
+@media only screen and (min-width: 768px) and (max-width: 991px),
+  only screen and (max-width: 767px) {
+  .tp-property-ptb {
+    padding-top: 0px !important;
+    padding-bottom: 77px;
+  }
+  .hide-mobile {
+    display: none !important;
+  }
+  .hide-desktop {
+    display: block;
+  }
+  .logo-icon-white {
+    font-size: 18px;
+    padding-left: 3px;
+  }
+  .logo-icon-black {
+    font-size: 18px;
+    padding-left: 3px;
+  }
+  .logo-header {
+    width: 40px;
+    height: 40px;
+  }
+  .Profile-btn-span {
+    width: 30px;
+    height: 30px;
+    min-width: 30px;
+    max-width: 30px;
+  }
+  .tp-header-right-user-icon span {
+    height: 30px !important;
+    width: 30px !important;
+    margin-top: -3px;
+  }
+  .mb-icon {
+    margin-top: -15px;
+  }
+  .prop-det-dev {
+    padding-left: 0px;
+    padding-right: 0px;
+    margin-top: 20px;
+  }
+}
+@media (min-width: 768px) {
+  .d-md-block {
+    display: block !important;
+    margin-top: 8px;
+  }
+}
