@@ -14,20 +14,21 @@ export default function BasicDetails() {
 
   const [listingType, setListingType] = useState<string>("");
 
-  useEffect(() => {
-    const updateValue = () => {
-      const value = sessionStorage.getItem("listingType") || "";
-      setListingType(value);
-    };
+useEffect(() => {
+  const updateValue = () => {
+    const value = (sessionStorage.getItem("listingType") || "")
+      .trim()
+      .toLowerCase();
 
-    // initial load
-    updateValue();
+    setListingType(value);
+  };
 
-    // listen for updates
-    window.addEventListener("listingTypeChanged", updateValue);
+  updateValue();
+  window.addEventListener("listingTypeChanged", updateValue);
 
-    return () => window.removeEventListener("listingTypeChanged", updateValue);
-  }, []);
+  return () =>
+    window.removeEventListener("listingTypeChanged", updateValue);
+}, []);
 
   return (
     <div className="tp-dashboard-new-property mb-15">
