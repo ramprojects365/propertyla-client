@@ -6,6 +6,7 @@ import {
   LivingSvg,
   PropertyEditSvg,
 } from "@/components/SVG";
+import { deleteProperty } from "@/services/propertyService";
 import { IFeaturedPropertyDT } from "@/types/property-d-t";
 import Image from "next/image";
 import Link from "next/link";
@@ -15,6 +16,15 @@ interface IProps {
 }
 
 export default function DashboardPropertyItem({ property }: IProps) {
+const handleDelete = async (id: string | number) => {
+  try {
+    await deleteProperty(id);
+    alert("Property deleted successfully");
+  } catch (err: any) {
+    console.error(err);
+    alert(err?.response?.data?.message || "Delete failed");
+  }
+};
   return (
     <div
       style={{ border: "1px solid #DBE1EF", marginLeft: "0px" }}
@@ -105,7 +115,7 @@ export default function DashboardPropertyItem({ property }: IProps) {
             <div className="tp-action-btn">
               <button
                 className="click"
-                onClick={() => console.log("Delete property:", property.id)}
+                onClick={() => handleDelete(property.id)}
                 title="Delete Property"
               >
                 <DeleteIconSvg />
