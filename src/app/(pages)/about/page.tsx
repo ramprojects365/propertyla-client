@@ -8,7 +8,8 @@ import ContactArea from "@/components/Contact/ContactArea";
 import { Metadata } from "next";
 
 export const metadata: Metadata = {
-  title: "About - Property-La Real Estate React NextJs Template",
+  title: "About PropertyLA | Leading Real Estate Platform in Malaysia",
+  description: "Learn about PropertyLA, Malaysia's trusted real estate platform connecting buyers, sellers, and agents. Discover our mission to simplify property transactions across Kuala Lumpur, Selangor, Penang and beyond.",
 };
 
 export default function About() {

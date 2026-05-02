@@ -4,8 +4,8 @@ import Image from "next/image";
 import Link from "next/link";
 
 export const metadata: Metadata = {
-  title: "Not Found (404)",
-  description: "2 bedroom condo for rent Kuala Lumpur",
+  title: "Page Not Found (404) | PropertyLA Malaysia Real Estate",
+  description: "The property page you're looking for doesn't exist on PropertyLA. Search our extensive database of Malaysia properties or return to homepage.",
 };
 
 export default function NotFound() {

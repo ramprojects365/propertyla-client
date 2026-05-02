@@ -181,9 +181,7 @@ export default function PropertyDetailsOneArea({ id }: IdProps) {
           url,
         });
         return;
-      } catch {
-        // user cancelled or share failed; fall back
-      }
+      } catch {}
     }
 
     const copied = await copyToClipboard(url);
@@ -291,7 +289,8 @@ export default function PropertyDetailsOneArea({ id }: IdProps) {
                         fontSize: "14px",
                       }}
                     >
-                      · {apiProperty.furnishing === "Fully"
+                      ·{" "}
+                      {apiProperty.furnishing === "Fully"
                         ? "Fully Furnished"
                         : apiProperty.furnishing === "Partially"
                           ? "Partially Furnished"
@@ -302,7 +301,6 @@ export default function PropertyDetailsOneArea({ id }: IdProps) {
               </div>
             </div>
 
-            {/* Right — price / actions */}
             <div className="col-lg-4">
               <div className="tp-property-details-right-side text-lg-end mb-40">
                 <div className="tp-property-details-icon-box mb-3">
@@ -382,13 +380,10 @@ export default function PropertyDetailsOneArea({ id }: IdProps) {
           </div>
         </div>
 
-        {/* Image slider */}
         <div className="container">
           <PropertyDetailsSlider images={apiProperty.images} />
         </div>
       </section>
-
-      {/* Description / Overview / Amenities / Address */}
       <DetailsReusableArea property={apiProperty} />
     </>
   );
