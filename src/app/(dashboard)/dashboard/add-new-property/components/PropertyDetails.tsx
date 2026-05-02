@@ -14,22 +14,22 @@ export default function BasicDetails() {
 
   const [listingType, setListingType] = useState<string>("");
 
-useEffect(() => {
-  const updateValue = () => {
-    const value = (sessionStorage.getItem("listingType") || "")
-      .trim()
-      .toLowerCase();
+  useEffect(() => {
+    const updateValue = () => {
+      const value = (sessionStorage.getItem("listingType") || "")
+        .trim()
+        .toLowerCase();
 
-    setListingType(value);
-  };
+      setListingType(value);
+    };
 
-  updateValue();
-  window.addEventListener("listingTypeChanged", updateValue);
+    updateValue();
+    window.addEventListener("listingTypeChanged", updateValue);
 
-  return () =>
-    window.removeEventListener("listingTypeChanged", updateValue);
-}, []);
-
+    return () =>
+      window.removeEventListener("listingTypeChanged", updateValue);
+  }, []);
+  console.log(sessionStorage.getItem("listingType"))
   return (
     <div className="tp-dashboard-new-property mb-15">
       <h5 className="tp-dashboard-new-title">Property Details</h5>
@@ -37,8 +37,13 @@ useEffect(() => {
         <div className="row">
           <div className="col-lg-4">
             <div className="tp-dashboard-new-input">
-              {listingType === "rent" && <label>Monthly Rent</label>}
-              {listingType === "sale" && <label>Selling Price</label>}
+              {listingType === "rent" ? (
+                <label>Monthly Rent</label>
+              ) : listingType === "sale" ? (
+                <label>Selling Price</label>
+              ) : (
+                <label>Price</label>
+              )}
               <input
                 className="textBox"
                 type="text"
