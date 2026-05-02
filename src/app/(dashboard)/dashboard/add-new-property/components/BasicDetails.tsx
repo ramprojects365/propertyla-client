@@ -5,7 +5,7 @@ import { PropertyFormData } from "@/schemas/validationSchema";
 import ErrorMessage from "../../../../../components/Form/ErrorMassage";
 import "../property.css";
 
-export default function BasicDetails() {
+export default function BasicDetails({ listingType, setListingType }: { listingType: string; setListingType: (value: string) => void }) {
   const {
     register,
     formState: { errors },
@@ -52,11 +52,11 @@ export default function BasicDetails() {
                 <select
                   {...register("listingType")}
                   className="listDropDown"
-                  // onChange={(e) => {
-                  //   const value = e.target.value;
-                  //   sessionStorage.setItem("listingType", value);
-                  //   window.dispatchEvent(new Event("listingTypeChanged"));
-                  // }}
+                  onChange={(e) => {
+                    const value = e.target.value;
+                    sessionStorage.setItem("listingType", value);
+                    window.dispatchEvent(new Event("listingTypeChanged"));
+                  }}
                 >
                   <option value="">Select</option>
                   <option value="rent">Rent</option>
