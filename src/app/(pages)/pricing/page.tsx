@@ -6,7 +6,8 @@ import ProgressArea from "@/components/Progress/ProgressArea";
 import { Metadata } from "next";
 
 export const metadata: Metadata = {
-  title: "Pricing - Property-La Real Estate React NextJs Template",
+  title: "PropertyLA Pricing Plans | Real Estate Advertising Rates in Malaysia",
+  description: "View PropertyLA's affordable pricing plans for property listings and advertising in Malaysia. Choose the best package for selling, renting, or promoting your real estate properties.",
 };
 
 export default function Pricing() {
