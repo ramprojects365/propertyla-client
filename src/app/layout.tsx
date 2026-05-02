@@ -34,7 +34,7 @@ export const metadata: Metadata = {
   description:
     "Find the latest properties for sale and rent in Malaysia including houses, condos, apartments and commercial properties. Search properties in Kuala Lumpur, Selangor, Penang and across Malaysia.",
   openGraph: {
-    title: "Propertyl - Find Your Dream Property",
+    title: "Propertyla - Find Your Dream Property",
     description:
       "Search thousands of verified properties for sale or rent in Malaysia.",
     url: "https://propertyla.com.my",
