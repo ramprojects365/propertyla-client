@@ -170,7 +170,8 @@ export default function UserProfileForm() {
           profile.mobileNumber ||
           "";
         const phone = phoneRaw.replace(/\D/g, "");
-        const email = profile.email || profile.emailAddress || profile.mail || "";
+        const email =
+          profile.email || profile.emailAddress || profile.mail || "";
 
         const profileImage =
           profile.profileImage ||
@@ -387,9 +388,7 @@ export default function UserProfileForm() {
             <div className="row g-3">
               <div className="col-lg-12">
                 <div className="tp-dashboard-new-input">
-                  <label>
-                    Full Name <span style={{ color: "red" }}>*</span>
-                  </label>
+                  <label>Full Name</label>
                   <input
                     {...registerProfile("fullName")}
                     type="text"
@@ -525,9 +524,7 @@ export default function UserProfileForm() {
             <div className="row g-3">
               <div className="col-lg-4">
                 <div className="tp-dashboard-new-input">
-                  <label>
-                    Old Password <span style={{ color: "red" }}>*</span>
-                  </label>
+                  <label>Old Password</label>
                   <div style={{ position: "relative" }}>
                     <input
                       {...registerPassword("oldPassword")}
@@ -558,9 +555,7 @@ export default function UserProfileForm() {
 
               <div className="col-lg-4">
                 <div className="tp-dashboard-new-input">
-                  <label>
-                    New Password <span style={{ color: "red" }}>*</span>
-                  </label>
+                  <label>New Password</label>
                   <div style={{ position: "relative" }}>
                     <input
                       {...registerPassword("newPassword")}
@@ -591,9 +586,7 @@ export default function UserProfileForm() {
 
               <div className="col-lg-4">
                 <div className="tp-dashboard-new-input">
-                  <label>
-                    Confirm Password <span style={{ color: "red" }}>*</span>
-                  </label>
+                  <label>Confirm Password</label>
                   <div style={{ position: "relative" }}>
                     <input
                       {...registerPassword("confirmPassword")}

@@ -34,6 +34,7 @@ export default function SignUpForm() {
     formState: { errors },
   } = useForm<ISignUpFormData>({
     resolver: yupResolver(signUpSchema),
+    context: { showRen },
   });
 
   const styles: Record<string, CSSProperties> = {
@@ -301,6 +302,8 @@ export default function SignUpForm() {
                 <div className="tp-sign-in-input p-relative">
                   <input
                     type="text"
+                    inputMode="numeric"
+                    maxLength={6}
                     placeholder="Enter REN number"
                     {...register("renNumber")}
                   />
@@ -416,29 +419,6 @@ export default function SignUpForm() {
               Sign Up
             </button>
           </div>
-          {/* <div className="tp-sign-in-from-subtitle-heading">
-            <h5 className="tp-sign-in-from-subtitle">Or Sign In with</h5>
-          </div>
-          <div className="tp-sign-in-from-btn mb-30">
-            <Link href="https://google.com" target="_blank">
-              <span>
-                <AuthGoogleSvg />
-              </span>{" "}
-              Google
-            </Link>{" "}
-            <Link href="https://facebook.com" target="_blank">
-              <span>
-                <AuthFacebookSvg />
-              </span>{" "}
-              Facebook
-            </Link>{" "}
-            <Link href="https://apple.com" target="_blank">
-              <span>
-                <i className="fa-brands fa-apple"></i>
-              </span>{" "}
-              Apple
-            </Link>
-          </div> */}
           <div className="tp-sign-in-from-register">
             <p>
               Already have an account?{" "}
