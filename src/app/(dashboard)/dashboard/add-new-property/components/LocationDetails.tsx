@@ -30,9 +30,7 @@ export default function LocationDetails() {
         <div className="row">
           <div className="col-lg-6">
             <div className="tp-dashboard-new-input">
-              <label>
-                Property Name <span style={{ color: "red" }}>*</span>
-              </label>
+              <label>Property Name</label>
               <input
                 className="textBox"
                 type="text"
@@ -46,9 +44,7 @@ export default function LocationDetails() {
           </div>
           <div className="col-lg-6">
             <div className="tp-dashboard-new-input">
-              <label>
-                Property Location <span style={{ color: "red" }}>*</span>
-              </label>
+              <label>Property Location</label>
               <PlaceSearch
                 onSelect={handleSelect}
                 placeholder="Search property location"
@@ -72,9 +68,7 @@ export default function LocationDetails() {
         <div className="row">
           <div className="col-lg-6">
             <div className="tp-dashboard-new-input">
-              <label>
-                Street Name <span style={{ color: "red" }}>*</span>
-              </label>
+              <label>Street Name</label>
               <input
                 className="textBox"
                 type="text"
@@ -88,9 +82,7 @@ export default function LocationDetails() {
           </div>
           <div className="col-lg-6">
             <div className="tp-dashboard-new-input">
-              <label>
-                City Name <span style={{ color: "red" }}>*</span>
-              </label>
+              <label>City Name</label>
               <input
                 className="textBox"
                 type="text"
@@ -106,9 +98,7 @@ export default function LocationDetails() {
         <div className="row">
           <div className="col-lg-6">
             <div className="tp-dashboard-new-input">
-              <label>
-                State <span style={{ color: "red" }}>*</span>
-              </label>
+              <label>State</label>
               <div className="tp-property-tabs-select tp-select">
                 <select {...register("stateName")} className="listDropDown">
                   <option value="">Select</option>
@@ -150,9 +140,7 @@ export default function LocationDetails() {
         <div className="row">
           <div className="col-lg-6">
             <div className="tp-dashboard-new-input">
-              <label>
-                Pin Code <span style={{ color: "red" }}>*</span>
-              </label>
+              <label>Pin Code</label>
               <input
                 className="textBox"
                 type="text"
@@ -173,9 +161,7 @@ export default function LocationDetails() {
           </div>
           <div className="col-lg-6">
             <div className="tp-dashboard-new-input">
-              <label>
-                Landmark <span style={{ color: "red" }}>*</span>
-              </label>
+              <label>Landmark</label>
               <input
                 className="textBox"
                 type="text"

@@ -1,14 +1,9 @@
 "use client";
-import {
-  BathroomsSvg,
-  BedroomsSvg,
-  CartSvg,
-  LivingSvg,
-} from "../SVG";
+import { BathroomsSvg, BedroomsSvg, LivingSvg } from "../SVG";
 import { IFeatureListProps } from "@/types/custom-interface";
-import { IFeaturedPropertyDT } from "@/types/property-d-t";
-import { useDispatch } from "react-redux";
-import { cart_product } from "@/redux/slices/cartSlice";
+//import { IFeaturedPropertyDT } from "@/types/property-d-t";
+//import { useDispatch } from "react-redux";
+//import { cart_product } from "@/redux/slices/cartSlice";
 import { formatPrice } from "../Utils/formatPrice";
 import Image from "next/image";
 import Link from "next/link";
@@ -16,7 +11,7 @@ import { usePathname, useSearchParams } from "next/navigation";
 import { createCleanFromUrl } from "@/utils/urlEncoding";
 
 export default function PropertySingleCard({ item }: IFeatureListProps) {
-  const dispatch = useDispatch();
+  //const dispatch = useDispatch();
   const pathname = usePathname();
   const searchParams = useSearchParams();
 
@@ -27,11 +22,11 @@ export default function PropertySingleCard({ item }: IFeatureListProps) {
     : `/${item.linkUrl}/${item.id}`;
 
   //handle add to cart
-  const handleAddToCart = (product: IFeaturedPropertyDT) => {
-    if (product) {
-      dispatch(cart_product(product));
-    }
-  };
+  // const handleAddToCart = (product: IFeaturedPropertyDT) => {
+  //   if (product) {
+  //     dispatch(cart_product(product));
+  //   }
+  // };
 
   return (
     <div
@@ -67,13 +62,13 @@ export default function PropertySingleCard({ item }: IFeatureListProps) {
               <span>{item.userRole}</span>
             </div>
           </div>
-          <div className="tp-rent-option d-flex">
+          {/* <div className="tp-rent-option d-flex">
             <button onClick={() => handleAddToCart(item)}>
               <span>
                 <CartSvg />
               </span>
             </button>
-          </div>
+          </div> */}
         </div>
         {item.showTags && (
           <div className="tp-rent-tags">

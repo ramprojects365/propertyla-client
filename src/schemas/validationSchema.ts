@@ -4,11 +4,19 @@ export const signUpSchema = yup.object().shape({
   displayname: yup.string().required("Enter display name"),
   email: yup.string().required("Enter email").email("Invalid email format"),
   phone: yup.string().required("Phone number is required"),
-  renNumber: yup.string(),
+  renNumber: yup.string().when("$showRen", {
+    is: true,
+    then: (schema) =>
+      schema
+        .required("REN number is required")
+        .matches(/^[0-9]{5,6}$/, "REN number must be 5 or 6 digits"),
+    otherwise: (schema) => schema.optional(),
+  }),
   password: yup
     .string()
     .required("Enter password")
-    .min(6, "Password must be at least 6 characters"),
+    .min(6, "Password must be at least 6 characters")
+    .matches(/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)/, "Password must contain at least one uppercase letter, one lowercase letter, and one number"),
   confirmPassword: yup
     .string()
     .required("Please same password again")
