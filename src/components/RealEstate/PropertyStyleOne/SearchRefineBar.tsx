@@ -9,8 +9,9 @@ export default function SearchRefineBar() {
   const searchParams = useSearchParams();
 
   // Fall back to "address" param (sent by homepage search bar)
-  const [keyWord, setKeyWord] = useState(
-    searchParams.get("q") ||
+  const [keyword, setKeyword] = useState(
+    searchParams.get("keyword") ||
+      searchParams.get("q") ||
       searchParams.get("address") ||
       searchParams.get("keyWord") ||
       "",
@@ -27,7 +28,7 @@ export default function SearchRefineBar() {
   const handleSearch = (e: React.FormEvent) => {
     e.preventDefault();
     const params = new URLSearchParams();
-    if (keyWord.trim()) params.set("q", keyWord.trim());
+    if (keyword.trim()) params.set("q", keyword.trim());
     if (type) params.set("type", type);
     if (city.trim()) params.set("city", city.trim());
     if (propertyName.trim()) params.set("propertyName", propertyName.trim());
@@ -73,8 +74,8 @@ export default function SearchRefineBar() {
               type="text"
               style={inputStyle}
               placeholder="Ex. luxury, studio..."
-              value={keyWord}
-              onChange={(e) => setKeyWord(e.target.value)}
+              value={keyword}
+              onChange={(e) => setKeyword(e.target.value)}
             />
           </div>
 
