@@ -10,21 +10,35 @@ import { deleteProperty } from "@/services/propertyService";
 import { IFeaturedPropertyDT } from "@/types/property-d-t";
 import Image from "next/image";
 import Link from "next/link";
+import { useState } from "react";
+import { toast } from "sonner";
 
 interface IProps {
   property: IFeaturedPropertyDT;
+  onDelete: (id: string | number) => void;
 }
 
-export default function DashboardPropertyItem({ property }: IProps) {
-const handleDelete = async (id: string | number) => {
-  try {
-    await deleteProperty(id);
-    alert("Property deleted successfully");
-  } catch (err: any) {
-    console.error(err);
-    alert(err?.response?.data?.message || "Delete failed");
-  }
-};
+export default function DashboardPropertyItem({ property, onDelete }: IProps) {
+  const [loading, setLoading] = useState(false);
+  const handleDelete = async (id: string | number) => {
+    const confirmed = window.confirm(
+      "Are you sure you want to delete this property?"
+    );
+    if (!confirmed) return;
+
+    try {
+      setLoading(true);
+      await deleteProperty(id);
+      onDelete(id);
+      toast.success("Property deleted successfully");
+    } catch (err: any) {
+      console.error(err);
+      toast.error(err?.response?.data?.message || "Delete failed");
+    } finally {
+      setLoading(false);
+    }
+  };
+
   return (
     <div
       style={{ border: "1px solid #DBE1EF", marginLeft: "0px" }}
@@ -117,8 +131,10 @@ const handleDelete = async (id: string | number) => {
                 className="click"
                 onClick={() => handleDelete(property.id)}
                 title="Delete Property"
+                disabled={loading}
+                style={{ opacity: loading ? 0.6 : 1, cursor: loading ? "not-allowed" : "pointer" }}
               >
-                <DeleteIconSvg />
+                {loading ? "Deleting..." : <DeleteIconSvg />}
               </button>
             </div>
           </div>

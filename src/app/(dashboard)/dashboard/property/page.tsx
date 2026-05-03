@@ -6,6 +6,7 @@ import DiscountOfferCard from "@/components/Layout/subComponents/DiscountOfferCa
 import RecentlyViewedProperties from "@/components/RealEstate/PropertyDetailsOne/subComponents/RecentlyViewedItem";
 import { useEffect, useState } from "react";
 import { IFeaturedPropertyDT } from "@/types/property-d-t";
+import { deleteProperty } from "@/services/propertyService";
 
 // API Property interface
 interface ApiProperty {
@@ -29,6 +30,19 @@ export default function DashboardProperty() {
   const [properties, setProperties] = useState<IFeaturedPropertyDT[]>([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
+
+ const handleDelete = async (id: string | number) => {
+  try {
+    await deleteProperty(id);
+
+    setProperties((prev) =>
+      prev.filter((p) => p.id !== id)
+    );
+  } catch (err: any) {
+    console.error(err);
+    setError(err?.response?.data?.message || "Delete failed");
+  }
+};
 
   useEffect(() => {
     const fetchProperties = async () => {
@@ -120,7 +134,7 @@ export default function DashboardProperty() {
                 !error &&
                 properties.map((property) => (
                   <div className="col-12" key={property.id}>
-                    <DashboardPropertyItem property={property} />
+                    <DashboardPropertyItem property={property} onDelete={handleDelete} />
                   </div>
                 ))}
             </div>
