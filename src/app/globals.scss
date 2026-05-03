@@ -299,6 +299,10 @@
   padding-left: 0px;
   padding-right: 0px;
 }
+.list-img-sec {
+  padding-left: 15px;
+  padding-right: 15px;
+}
 @media only screen and (max-width: 767px) {
   .filt {
     padding-left: 15px;
@@ -353,6 +357,12 @@
 }
 @media only screen and (min-width: 768px) and (max-width: 991px),
   only screen and (max-width: 767px) {
+  .list-img-sec {
+    padding-left: 15px;
+    padding-right: 15px;
+    width: 100%;
+    margin-left: 0px;
+  }
   .tp-property-ptb {
     padding-top: 0px !important;
     padding-bottom: 77px;

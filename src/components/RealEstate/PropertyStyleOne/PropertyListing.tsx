@@ -230,7 +230,6 @@ export default function PropertyListing() {
         role="tabpanel"
         aria-labelledby="home-tab"
       >
-        {/* Active Filter Badges */}
         {activeFilters.length > 0 && (
           <div
             className="hide-mobile"
@@ -259,7 +258,6 @@ export default function PropertyListing() {
           </div>
         )}
 
-        {/* Loading */}
         {loading && (
           <div className="text-center py-5">
             <div
@@ -273,7 +271,6 @@ export default function PropertyListing() {
           </div>
         )}
 
-        {/* Error */}
         {!loading && error && (
           <div
             style={{
@@ -289,7 +286,6 @@ export default function PropertyListing() {
           </div>
         )}
 
-        {/* Result count banner */}
         {!loading && resultCount !== null && resultCount > 0 && (
           <div
             style={{
@@ -326,7 +322,6 @@ export default function PropertyListing() {
           </div>
         )}
 
-        {/* No results — shown when search/filter returned nothing */}
         {!loading && resultCount === 0 && !error && (
           <div className="text-center py-5">
             <p style={{ fontSize: "16px", color: "#555" }}>
@@ -338,12 +333,8 @@ export default function PropertyListing() {
           </div>
         )}
 
-        {/* Property cards */}
         {!loading && properties.length > 0 && (
-          <div
-            className="row"
-            style={{ paddingLeft: "15px", paddingRight: "15px" }}
-          >
+          <div className="row list-img-sec">
             {properties.map((item) => (
               <div
                 className="col-xl-12 col-sm-12"
