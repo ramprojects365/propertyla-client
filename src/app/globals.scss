@@ -362,6 +362,7 @@
     padding-right: 15px;
     width: 100%;
     margin-left: 0px;
+    padding-top: 10px;
   }
   .tp-property-ptb {
     padding-top: 0px !important;
@@ -409,5 +410,8 @@
   .d-md-block {
     display: block !important;
     margin-top: 8px;
+  }
+  .ml-list {
+    margin-left: -15px;
   }
 }
