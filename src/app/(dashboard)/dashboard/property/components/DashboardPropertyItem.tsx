@@ -134,7 +134,7 @@ export default function DashboardPropertyItem({ property, onDelete }: IProps) {
                 disabled={loading}
                 style={{ opacity: loading ? 0.6 : 1, cursor: loading ? "not-allowed" : "pointer" }}
               >
-                {loading ? "Deleting..." : <DeleteIconSvg />}
+                {loading ? <DeleteIconSvg /> : <DeleteIconSvg />}
               </button>
             </div>
           </div>
