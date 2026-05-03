@@ -30,33 +30,32 @@ export default function HomePropertiesByCity() {
             >
               {(() => {
                 const params = new URLSearchParams();
-                params.set("q", property.name);
-                params.set("city", property.name);
+                params.set("keyword", property.name);
                 const href = `/search?${params.toString()}`;
 
                 return (
-              <div className="tp-explore-item text-center mb-30">
-                <div className="tp-explore-thumb p-relative">
-                  <Link href={href}>
-                    <Image src={property.image} alt={property.name} />
-                  </Link>
-                  <div className="tp-explore-content">
-                    <h4 className="tp-explore-title">
-                      <Link className="textline" href={href}>
-                        {property.name}
+                  <div className="tp-explore-item text-center mb-30">
+                    <div className="tp-explore-thumb p-relative">
+                      <Link href={href}>
+                        <Image src={property.image} alt={property.name} />
                       </Link>
-                    </h4>
-                    <span>{property.count} Property</span>
+                      <div className="tp-explore-content">
+                        <h4 className="tp-explore-title">
+                          <Link className="textline" href={href}>
+                            {property.name}
+                          </Link>
+                        </h4>
+                        <span>{property.count} Property</span>
+                      </div>
+                      <div className="tp-explore-btn">
+                        <Link href={href}>
+                          <span>
+                            <NavigateArrowSvg />
+                          </span>
+                        </Link>
+                      </div>
+                    </div>
                   </div>
-                  <div className="tp-explore-btn">
-                    <Link href={href}>
-                      <span>
-                        <NavigateArrowSvg />
-                      </span>
-                    </Link>
-                  </div>
-                </div>
-              </div>
                 );
               })()}
             </div>

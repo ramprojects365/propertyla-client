@@ -100,7 +100,9 @@ export default function PropertyListing() {
   const propertyName = searchParams.get("propertyName") || "";
   // Homepage sends "address" — treat it as keyword fallback
   const address = searchParams.get("address") || "";
-  const keyword = q || address;
+  // Direct keyword parameter from neighborhood clicks
+  const keywordParam = searchParams.get("keyword") || "";
+  const keyword = keywordParam || q || address;
 
   // ── Sidebar filter params (PropertyFilterWidget) ─────────────────
   const propertyType = searchParams.get("propertyType") || "All";
