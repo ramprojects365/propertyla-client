@@ -36,7 +36,7 @@ export default function PropertyLayout({ children }: { children: ReactNode }) {
         style={{ backgroundImage: `url(${propertyBg.src})` }}
       >
         <div className="container">
-          <div style={{ marginLeft: "-15px" }}>
+          <div className="ml-list">
             <Breadcrumb
               items={[{ label: "Home", href: "/" }, { label: breadcrumbLabel }]}
             />

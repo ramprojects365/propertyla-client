@@ -227,7 +227,7 @@ export default function PropertyDetailsOneArea({ id }: IdProps) {
               { label: "Details" },
             ]}
           />
-          <div className="row">
+          <div className="row" style={{ paddingTop: "10px" }}>
             <div className="col-lg-8">
               <div className="tp-property-details-heading mb-40">
                 <div className="mb-2 d-flex gap-2 flex-wrap">
