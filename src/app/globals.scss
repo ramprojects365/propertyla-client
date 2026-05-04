@@ -303,6 +303,9 @@
   padding-left: 15px;
   padding-right: 15px;
 }
+.tp-blog-item-title {
+  border-bottom: none !important;
+}
 @media only screen and (max-width: 767px) {
   .filt {
     padding-left: 15px;
@@ -398,6 +401,9 @@
     margin-top: -3px;
   }
   .mb-icon {
+    margin-top: -15px;
+  }
+  .mb-profile-icon {
     margin-top: -5px;
   }
   .prop-det-dev {

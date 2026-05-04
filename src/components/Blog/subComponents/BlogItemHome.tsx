@@ -9,8 +9,7 @@ export default function BlogItemHome({
   category,
   title,
   readTime,
-  authorName,
-  authorRole,
+  slug,
 }: IBlogDT) {
   return (
     <div className="col-lg-4 col-md-6" key={id}>
@@ -20,7 +19,7 @@ export default function BlogItemHome({
         data-wow-delay={delay}
       >
         <div className="tp-blog-item-thumb">
-          <Link href={`/blog-details/${id}`}>
+          <Link href={`/blog/${slug || id}`}>
             <Image src={image} alt={title} />
           </Link>
         </div>
@@ -32,16 +31,8 @@ export default function BlogItemHome({
             <span>{readTime}</span>
           </div>
           <h5 className="tp-blog-item-title">
-            <Link className="textline" href={`/blog-details/${id}`}>
-              {title}
-            </Link>
+            <Link href={`/blog/${slug || id}`}>{title}</Link>
           </h5>
-          <div className="tp-blog-user d-flex align-items-center">
-            <div className="tp-blog-user-content">
-              <h6>{authorName}</h6>
-              <p>{authorRole}</p>
-            </div>
-          </div>
         </div>
       </div>
     </div>

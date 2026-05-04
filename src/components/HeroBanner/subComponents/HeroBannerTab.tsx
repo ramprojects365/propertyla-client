@@ -8,6 +8,7 @@ type SearchItem = {
   displayText: string;
   displayType: string;
   displayDescription: string;
+  cityName?: string;
 };
 
 export default function HeroBannerTabContent({
@@ -22,12 +23,15 @@ export default function HeroBannerTabContent({
   const [loading, setLoading] = useState(false);
   const wrapperRef = useRef<HTMLDivElement>(null);
 
-  const runSearch = (value: string) => {
+  const runSearch = (value: string, city?: string) => {
     if (!value.trim()) return;
     const params = new URLSearchParams({
       q: value.trim(),
       type: id || "rent",
     });
+    if (city?.trim()) {
+      params.append("city", city.trim());
+    }
     router.push(`/search?${params}`);
   };
 
@@ -81,6 +85,7 @@ export default function HeroBannerTabContent({
             displayDescription: [p.streetName, p.cityName]
               .filter(Boolean)
               .join(", "),
+            cityName: p.cityName,
           }),
         );
         setSuggestions(items);
@@ -225,7 +230,7 @@ export default function HeroBannerTabContent({
                     onClick={() => {
                       setQuery(item.displayText);
                       setOpen(false);
-                      runSearch(item.displayText);
+                      runSearch(item.displayText, item.cityName);
                     }}
                     style={{
                       display: "flex",
