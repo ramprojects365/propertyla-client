@@ -203,7 +203,10 @@ export default function PropertyAgentPage() {
                 </div>
 
                 {/* About Section */}
-                <div className="tp-agent-profile-section">
+                <div
+                  className="tp-agent-profile-section"
+                  style={{ paddingTop: "10px" }}
+                >
                   <h3 className="tp-agent-profile-section-title">
                     About {agent.fullName || agent.username}
                   </h3>
