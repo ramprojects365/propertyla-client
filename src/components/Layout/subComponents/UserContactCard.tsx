@@ -30,17 +30,33 @@ export default function UserContactCard({ user }: UserContactCardProps) {
   const agentName = user?.fullName || user?.username || "David Hussy";
   const agentPhone = user?.phoneNumber || "+601126368426";
   const agentEmail = user?.email || "agent@propertyla.com.my";
-  const agentImage = user?.profileImage || "/assets/img/team/team-details/user.png";
+  const agentImage =
+    user?.profileImage || "/assets/img/team/team-details/user.png";
   const agentProperties = 25; // This would come from API in real implementation
 
   const handleWhatsAppClick = () => {
     const url = window.location.href;
-    const message = encodeURIComponent(`Hi ${agentName}, I'm interested in this property and would like to know more.`);
+    const message = encodeURIComponent(
+      `Hi ${agentName}, I'm interested in this property and would like to know more.`,
+    );
     window.open(
-      `https://wa.me/${agentPhone.replace(/\D/g, '')}?text=${message}`,
+      `https://wa.me/${agentPhone.replace(/\D/g, "")}?text=${message}`,
       "_blank",
       "noopener,noreferrer",
     );
+  };
+
+  // Create clean agent profile URL
+  const getAgentProfileUrl = () => {
+    if (!user) return `/property-agent/david-hussy-2987852`;
+
+    // Use user ID or create a slug from name
+    const slug = user.fullName || user.username;
+    const cleanSlug = slug
+      .toLowerCase()
+      .replace(/\s+/g, "-")
+      .replace(/[^a-z0-9-]/g, "");
+    return `/property-agent/${cleanSlug}`;
   };
 
   return (
@@ -50,10 +66,18 @@ export default function UserContactCard({ user }: UserContactCardProps) {
           <div className="tp-team-details-info-top">
             <div className="tp-team-details-info-user d-flex align-items-center">
               <div className="tp-team-details-info-user-thumb">
-                <Image src={agentImage} alt={agentName} width={50} height={50} />
+                <Image
+                  src={agentImage}
+                  alt={agentName}
+                  width={50}
+                  height={50}
+                />
               </div>
               <div className="tp-team-details-info-user-content">
-                <Link href={`/property-agent/${user?.id || agentName.toLowerCase().replace(/\s+/g, '-')}/#Agent-RightSideProfile`} style={{ textDecoration: "underline", color: "#003B5C" }}>
+                <Link
+                  href={getAgentProfileUrl()}
+                  style={{ textDecoration: "underline", color: "#003B5C" }}
+                >
                   <h4 style={{ margin: 0, cursor: "pointer" }}>{agentName}</h4>
                 </Link>
                 <p>{agentProperties} Property</p>

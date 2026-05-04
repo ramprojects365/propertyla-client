@@ -8,24 +8,6 @@ import Breadcrumb from "@/components/Breadcrumb/Breadcrumb";
 import { CallThreeSvg, TeamEmailSvg, MessageSvgTwo } from "@/components/SVG";
 import userImg from "../../../../../public/assets/img/team/team-details/user.png";
 
-// Function to fetch agent data from API by ID
-const fetchAgentById = async (agentId: string) => {
-  try {
-    const base = process.env.NEXT_PUBLIC_API_BASE ?? "http://159.223.92.101:3008";
-    const response = await fetch(`${base}/api/users/${agentId}`);
-    
-    if (!response.ok) {
-      throw new Error(`HTTP ${response.status}`);
-    }
-    
-    const data = await response.json();
-    return data.data || data; // Handle different response formats
-  } catch (error) {
-    console.error('Error fetching agent data:', error);
-    return null;
-  }
-};
-
 // Define the agent interface to match API response
 interface AgentData {
   id: string;
@@ -44,6 +26,42 @@ interface AgentData {
   updatedAt: string;
 }
 
+// Function to fetch agent data from API by slug
+const fetchAgentBySlug = async (slug: string) => {
+  try {
+    const base = process.env.NEXT_PUBLIC_API_BASE ?? "http://159.223.92.101:3008";
+    const response = await fetch(`${base}/api/users/slug/${slug}`);
+    
+    if (!response.ok) {
+      throw new Error(`HTTP ${response.status}`);
+    }
+    
+    const data = await response.json();
+    return data.data || data; // Handle different response formats
+  } catch (error) {
+    console.error('Error fetching agent data:', error);
+    return null;
+  }
+};
+
+// Function to fetch agent data by ID as fallback
+const fetchAgentById = async (agentId: string) => {
+  try {
+    const base = process.env.NEXT_PUBLIC_API_BASE ?? "http://159.223.92.101:3008";
+    const response = await fetch(`${base}/api/users/${agentId}`);
+    
+    if (!response.ok) {
+      throw new Error(`HTTP ${response.status}`);
+    }
+    
+    const data = await response.json();
+    return data.data || data; // Handle different response formats
+  } catch (error) {
+    console.error('Error fetching agent data:', error);
+    return null;
+  }
+};
+
 export default function PropertyAgentPage({ params }: { params: { slug: string } }) {
   const [agent, setAgent] = useState<AgentData | null>(null);
   const [loading, setLoading] = useState(true);
@@ -51,14 +69,19 @@ export default function PropertyAgentPage({ params }: { params: { slug: string }
   useEffect(() => {
     const loadAgent = async () => {
       const resolvedParams = await params;
-      const agentId = resolvedParams.slug;
+      const slug = resolvedParams.slug;
       
-      if (!agentId) {
+      if (!slug) {
         notFound();
         return;
       }
       
-      const agentData = await fetchAgentById(agentId);
+      let agentData = await fetchAgentBySlug(slug);
+      
+      // If slug doesn't work, try as ID
+      if (!agentData) {
+        agentData = await fetchAgentById(slug);
+      }
       
       if (!agentData) {
         notFound();
