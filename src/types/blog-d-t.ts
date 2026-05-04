@@ -6,6 +6,7 @@ export interface IBlogDT {
   category: string;
   readTime?: string;
   title: string;
+  slug?: string;
   authorImage?: StaticImageData;
   authorName?: string;
   authorRole?: string;

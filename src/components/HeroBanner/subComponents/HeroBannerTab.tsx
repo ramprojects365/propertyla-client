@@ -30,7 +30,7 @@ export default function HeroBannerTabContent({
       type: id || "rent",
     });
     if (city?.trim()) {
-      params.append('city', city.trim());
+      params.append("city", city.trim());
     }
     router.push(`/search?${params}`);
   };
