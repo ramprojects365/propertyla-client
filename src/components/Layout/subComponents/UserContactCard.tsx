@@ -61,8 +61,8 @@ export default function UserContactCard() {
                 style={{ background: "rgb(37, 211, 102)" }}
               >
                 <span className="btn-wrap">
-                  <b className="text-1">Contact on Whatsapp</b>
-                  <b className="text-2">Contact on Whatsapp</b>
+                  <b className="text-1">Enquiry on Whatsapp</b>
+                  <b className="text-2">Enquiry on Whatsapp</b>
                 </span>
               </button>
             </div>
