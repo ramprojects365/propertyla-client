@@ -31,32 +31,45 @@ export default function DashboardProperty() {
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
 
- const handleDelete = async (id: string | number) => {
-  try {
-    await deleteProperty(id);
+  const handleDelete = async (id: string | number) => {
+    try {
+      await deleteProperty(id);
 
-    setProperties((prev) =>
-      prev.filter((p) => p.id !== id)
-    );
-  } catch (err: any) {
-    console.error(err);
-    setError(err?.response?.data?.message || "Delete failed");
-  }
-};
+      setProperties((prev) =>
+        prev.filter((p) => p.id !== id)
+      );
+    } catch (err: any) {
+      console.error(err);
+      setError(err?.response?.data?.message || "Delete failed");
+    }
+  };
 
   useEffect(() => {
     const fetchProperties = async () => {
       try {
-        const API_BASE =
-          process.env.NEXT_PUBLIC_API_BASE ?? "http://159.223.92.101:3008";
-        const res = await fetch(`${API_BASE}/api/properties`);
+        // const API_BASE =
+        //   process.env.NEXT_PUBLIC_API_BASE ?? "http://159.223.92.101:3008";
+        // const res = await fetch(`${API_BASE}/api/properties`);
+        // if (!res.ok) {
+        //   throw new Error(`Failed to fetch properties: ${res.status}`);
+        // }
+        // const data = await res.json();
+        // const apiProperties: ApiProperty[] = data?.data || [];
+
+        const token = localStorage.getItem("authToken");
+        const base = process.env.NEXT_PUBLIC_API_BASE;
+        const res = await fetch(`${base}/api/properties/my-properties`, {
+          headers: {
+            Authorization: `Bearer ${token}`
+          }
+        });
 
         if (!res.ok) {
           throw new Error(`Failed to fetch properties: ${res.status}`);
         }
 
-        const data = await res.json();
-        const apiProperties: ApiProperty[] = data?.data || [];
+        const json = await res.json();
+        const apiProperties: ApiProperty[] = json?.data ?? []; // Array of user's properties
 
         // Transform API data to match IFeaturedPropertyDT interface
         const transformedProperties: IFeaturedPropertyDT[] = apiProperties.map(
