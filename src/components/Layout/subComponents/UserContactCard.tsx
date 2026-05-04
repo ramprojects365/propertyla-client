@@ -33,9 +33,12 @@ export default function UserContactCard({ user }: UserContactCardProps) {
   // Create agent profile URL with user data as parameters
   const getAgentProfileUrl = () => {
     if (!user) return `/property-agent/ram-gollapalli`;
-    
+
     const userData = btoa(JSON.stringify(user)); // Encode user data
-    return `/property-agent/${agentName.toLowerCase().replace(/\s+/g, '-').replace(/[^a-z0-9-]/g, '')}?data=${userData}`;
+    return `/property-agent/${agentName
+      .toLowerCase()
+      .replace(/\s+/g, "-")
+      .replace(/[^a-z0-9-]/g, "")}?data=${userData}`;
   };
 
   return (
@@ -78,7 +81,14 @@ export default function UserContactCard({ user }: UserContactCardProps) {
                   href={getAgentProfileUrl()}
                   style={{ textDecoration: "underline", color: "#003B5C" }}
                 >
-                  <span style={{ margin: 0, cursor: "pointer" }}>
+                  <span
+                    style={{
+                      margin: 0,
+                      cursor: "pointer",
+                      color: "#fff",
+                      textDecoration: "underline",
+                    }}
+                  >
                     {agentName}
                   </span>
                 </Link>
