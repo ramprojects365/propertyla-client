@@ -43,11 +43,7 @@ const parseUserDataFromUrl = (): AgentData | null => {
   }
 };
 
-export default function PropertyAgentPage({
-  params,
-}: {
-  params: { slug: string };
-}) {
+export default function PropertyAgentPage() {
   const [agent, setAgent] = useState<AgentData | null>(null);
   const [loading, setLoading] = useState(true);
 
