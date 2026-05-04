@@ -1,6 +1,5 @@
 "use client";
 
-import userImg from "../../../../public/assets/img/team/team-details/user.png";
 import { SocialLinksThree } from "@/components/UI/SocialLinks";
 import { CallThreeSvg, TeamEmailSvg } from "@/components/SVG";
 import Image from "next/image";
@@ -16,8 +15,8 @@ interface UserContactCardProps {
 }
 
 export default function UserContactCard({ user }: UserContactCardProps) {
-  const agentName = user?.username ?? "David Hussy";
-  const agentEmail = user?.email ?? "hi@gmail.com";
+  const agentName = user?.username ?? "Ram Gollapalli";
+  const agentEmail = user?.email ?? "ramgollapalli88@gmail.com";
   const agentWhatsAppNumberLabel = user?.phoneNumber ?? "+601126368426";
   const agentWhatsAppNumber = agentWhatsAppNumberLabel.replace(/\D/g, "");
   const agentImage = user?.profileImage?.trim() || null;
@@ -29,6 +28,14 @@ export default function UserContactCard({ user }: UserContactCardProps) {
       "_blank",
       "noopener,noreferrer",
     );
+  };
+
+  // Create agent profile URL with user data as parameters
+  const getAgentProfileUrl = () => {
+    if (!user) return `/property-agent/ram-gollapalli`;
+    
+    const userData = btoa(JSON.stringify(user)); // Encode user data
+    return `/property-agent/${agentName.toLowerCase().replace(/\s+/g, '-').replace(/[^a-z0-9-]/g, '')}?data=${userData}`;
   };
 
   return (
@@ -67,7 +74,14 @@ export default function UserContactCard({ user }: UserContactCardProps) {
                 )}
               </div>
               <div className="tp-team-details-info-user-content">
-                <h4>{agentName}</h4>
+                <Link
+                  href={getAgentProfileUrl()}
+                  style={{ textDecoration: "underline", color: "#003B5C" }}
+                >
+                  <span style={{ margin: 0, cursor: "pointer" }}>
+                    {agentName}
+                  </span>
+                </Link>
                 <p>{user?.email ? "Property Agent" : "25 Property"}</p>
               </div>
             </div>

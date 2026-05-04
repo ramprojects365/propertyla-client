@@ -35,7 +35,10 @@ export default function CostlyMistakesBlog() {
                 <Breadcrumb
                   items={[
                     { label: "Home", href: "/" },
-                    { label: "Costly Mistakes Malaysians Make When Buying Property" }
+                    {
+                      label:
+                        "Costly Mistakes Malaysians Make When Buying Property",
+                    },
                   ]}
                 />
               </div>
@@ -60,14 +63,14 @@ export default function CostlyMistakesBlog() {
                     <p className="mb-30">
                       Buying a property in Malaysia is one of the biggest
                       financial decisions most people will ever make. Whether
-                      you're a first-time homebuyer or an investor, small
+                      you are a first-time homebuyer or an investor, small
                       mistakes can lead to long-term financial stress.
                     </p>
 
                     <p className="mb-30">
-                      In this article, we'll walk through three common mistakes
-                      Malaysians make when buying property—and more importantly,
-                      how you can avoid them.
+                      In this article, we will walk through three common
+                      mistakes Malaysians make when buying property—and more
+                      importantly, how you can avoid them.
                     </p>
 
                     <h3 className="tp-blog-details-subtitle mb-20">
@@ -211,8 +214,8 @@ export default function CostlyMistakesBlog() {
                         <li>Research upcoming infrastructure projects</li>
                         <li>Prioritize areas with strong growth potential</li>
                         <li>
-                          Think long-term: "Will this location still be
-                          desirable in 5–10 years?"
+                          Think long-term: Will this location still be desirable
+                          in 5–10 years?
                         </li>
                       </ul>
                     </div>
@@ -300,8 +303,8 @@ export default function CostlyMistakesBlog() {
                     </h3>
 
                     <p className="mb-20">
-                      Buying a property is not just about finding the right
-                      home—it's about making a smart financial decision.
+                      Buying a property is not just about finding the right home
+                      its about making a smart financial decision.
                     </p>
 
                     <p className="mb-30">
@@ -339,7 +342,7 @@ export default function CostlyMistakesBlog() {
                     </div>
 
                     <p className="mb-20">
-                      If you're planning to buy property in Malaysia, take your
+                      If you are planning to buy property in Malaysia, take your
                       time, do your research, and make decisions that align with
                       your long-term goals.
                     </p>
@@ -366,7 +369,6 @@ export default function CostlyMistakesBlog() {
             <div className="col-lg-4">
               {/* Sidebar */}
               <div className="tp-blog-sidebar">
-
                 {/* Category Widget */}
                 <div className="tp-blog-widget mb-40">
                   <h4 className="tp-blog-widget-title">Categories</h4>
