@@ -33,6 +33,21 @@ type ApiProperty = {
     facilities?: string[];
     security?: string[];
   };
+  user?: {
+    id?: string;
+    username?: string;
+    email?: string;
+    phoneNumber?: string;
+    profileImage?: string;
+    fullName?: string | null;
+    bio?: string | null;
+    companyName?: string | null;
+    designation?: string | null;
+    experienceYears?: number | null;
+    emailVerified?: boolean;
+    createdAt?: string;
+    updatedAt?: string;
+  };
   furnishing?: string;
   availability?: string;
   negotiable?: boolean;
