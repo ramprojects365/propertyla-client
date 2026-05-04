@@ -38,6 +38,23 @@ type ApiProperty = {
   negotiable?: boolean;
   yearOfBuild?: number;
   tenure?: string;
+  // Agent information from API user object
+  user?: {
+    id: string;
+    username: string;
+    email: string;
+    phoneNumber: string;
+    profileImage?: string;
+    fullName?: string;
+    bio?: string;
+    companyName?: string;
+    icPassport?: string;
+    designation?: string;
+    experienceYears?: number;
+    emailVerified: boolean;
+    createdAt: string;
+    updatedAt: string;
+  };
 };
 
 function mapToDisplay(item: ApiProperty): IFeaturedPropertyDT {

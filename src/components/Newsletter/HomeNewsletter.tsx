@@ -32,7 +32,7 @@ export default function HomeNewsletter() {
                 <button className="tp-btn">Get Started</button>
               </div>
               <span>
-                By clicking Sign Up {`you're`} confirming that you agree with
+                By clicking Sign Up {`you are`} confirming that you agree with
                 our <br />
                 <Link href="#"> Terms and Conditions.</Link>
               </span>

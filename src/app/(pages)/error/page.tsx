@@ -6,7 +6,8 @@ import Link from "next/link";
 
 export const metadata: Metadata = {
   title: "Page Not Found | PropertyLA Malaysia Real Estate",
-  description: "The page you're looking for doesn't exist on PropertyLA. Return to our homepage to continue searching for properties, agents, and real estate services in Malaysia.",
+  description:
+    "The page you are looking for doesn't exist on PropertyLA. Return to our homepage to continue searching for properties, agents, and real estate services in Malaysia.",
 };
 
 export default function Error() {

@@ -13,7 +13,8 @@ export const metadata: Metadata = {
     "foreign investors Malaysia, Malaysia property investment 2026, MM2H program, Kuala Lumpur property, Penang real estate, foreign buyer Malaysia",
   openGraph: {
     title: "Foreign Investors Still Interested in Malaysian Property (2026)",
-    description: "Why international buyers continue investing in Malaysia property market despite global uncertainty.",
+    description:
+      "Why international buyers continue investing in Malaysia property market despite global uncertainty.",
     images: ["/assets/img/blog/blog-thumb-2.jpg"],
     type: "article",
   },
@@ -34,7 +35,10 @@ export default function ForeignInvestorsBlog() {
                 <Breadcrumb
                   items={[
                     { label: "Home", href: "/" },
-                    { label: "Foreign Investors Still Interested in Malaysian Property" }
+                    {
+                      label:
+                        "Foreign Investors Still Interested in Malaysian Property",
+                    },
                   ]}
                 />
               </div>
@@ -52,16 +56,17 @@ export default function ForeignInvestorsBlog() {
                 <div className="tp-blog-details-content">
                   <div className="tp-blog-details-text">
                     <h3 className="tp-blog-details-title mb-30">
-                      Foreign Investors Still Interested in Malaysian Property (2026)
+                      Foreign Investors Still Interested in Malaysian Property
+                      (2026)
                     </h3>
 
                     <p className="mb-30">
-                      Despite global economic uncertainty, rising interest rates,
-                      and currency fluctuations, Malaysia continues to attract
-                      strong interest from foreign property investors in 2026. From
-                      Kuala Lumpur's skyline to coastal developments in Penang
-                      and Johor, international buyers still see Malaysia as a
-                      land of opportunity.
+                      Despite global economic uncertainty, rising interest
+                      rates, and currency fluctuations, Malaysia continues to
+                      attract strong interest from foreign property investors in
+                      2026. From Kuala Lumpur's skyline to coastal developments
+                      in Penang and Johor, international buyers still see
+                      Malaysia as a land of opportunity.
                     </p>
 
                     <p className="mb-30">
@@ -94,10 +99,21 @@ export default function ForeignInvestorsBlog() {
                       </li>
                     </ul>
 
-                    <div className="tp-blog-details-alert mb-30" style={{ backgroundColor: "#e7f3ff", border: "1px solid #b3d9ff", padding: "15px", borderRadius: "8px" }}>
-                      <h5 style={{ color: "#0066cc", marginBottom: "10px" }}>👉 Key Insight:</h5>
+                    <div
+                      className="tp-blog-details-alert mb-30"
+                      style={{
+                        backgroundColor: "#e7f3ff",
+                        border: "1px solid #b3d9ff",
+                        padding: "15px",
+                        borderRadius: "8px",
+                      }}
+                    >
+                      <h5 style={{ color: "#0066cc", marginBottom: "10px" }}>
+                        👉 Key Insight:
+                      </h5>
                       <p style={{ color: "#0066cc", margin: 0 }}>
-                        This stability gives foreign investors confidence to invest long-term.
+                        This stability gives foreign investors confidence to
+                        invest long-term.
                       </p>
                     </div>
 
@@ -110,9 +126,7 @@ export default function ForeignInvestorsBlog() {
                       interested is affordability.
                     </p>
 
-                    <p className="mb-20">
-                      Compared to cities like:
-                    </p>
+                    <p className="mb-20">Compared to cities like:</p>
 
                     <ul className="tp-blog-details-list mb-30">
                       <li>Singapore</li>
@@ -120,10 +134,21 @@ export default function ForeignInvestorsBlog() {
                       <li>Australia</li>
                     </ul>
 
-                    <div className="tp-blog-details-alert mb-30" style={{ backgroundColor: "#d4edda", border: "1px solid #c3e6cb", padding: "15px", borderRadius: "8px" }}>
-                      <h5 style={{ color: "#155724", marginBottom: "10px" }}>👉 Advantage:</h5>
+                    <div
+                      className="tp-blog-details-alert mb-30"
+                      style={{
+                        backgroundColor: "#d4edda",
+                        border: "1px solid #c3e6cb",
+                        padding: "15px",
+                        borderRadius: "8px",
+                      }}
+                    >
+                      <h5 style={{ color: "#155724", marginBottom: "10px" }}>
+                        👉 Advantage:
+                      </h5>
                       <p style={{ color: "#155724", margin: 0 }}>
-                        Malaysia offers much lower property prices with good returns
+                        Malaysia offers much lower property prices with good
+                        returns
                       </p>
                     </div>
 
@@ -132,13 +157,16 @@ export default function ForeignInvestorsBlog() {
                     </p>
 
                     <ul className="tp-blog-details-list mb-30">
-                      <li>Strong purchasing power (especially Singaporean buyers)</li>
+                      <li>
+                        Strong purchasing power (especially Singaporean buyers)
+                      </li>
                       <li>Lower entry prices for quality properties</li>
                       <li>Competitive rental yields</li>
                     </ul>
 
                     <p className="mb-30">
-                      This "value for money" factor keeps Malaysia highly attractive.
+                      This "value for money" factor keeps Malaysia highly
+                      attractive.
                     </p>
 
                     <h3 className="tp-blog-details-subtitle mb-20">
@@ -146,22 +174,34 @@ export default function ForeignInvestorsBlog() {
                     </h3>
 
                     <p className="mb-20">
-                      Foreign investors are not buying randomly—they focus on key
-                      growth areas such as:
+                      Foreign investors are not buying randomly—they focus on
+                      key growth areas such as:
                     </p>
 
-                    <div className="tp-blog-details-locations mb-30" style={{ backgroundColor: "#f8f9fa", border: "1px solid #dee2e6", padding: "20px", borderRadius: "8px" }}>
+                    <div
+                      className="tp-blog-details-locations mb-30"
+                      style={{
+                        backgroundColor: "#f8f9fa",
+                        border: "1px solid #dee2e6",
+                        padding: "20px",
+                        borderRadius: "8px",
+                      }}
+                    >
                       <div style={{ marginBottom: "15px" }}>
-                        <strong>Kuala Lumpur →</strong> Urban lifestyle, business hub
+                        <strong>Kuala Lumpur →</strong> Urban lifestyle,
+                        business hub
                       </div>
                       <div style={{ marginBottom: "15px" }}>
-                        <strong>Selangor →</strong> Industrial growth and connectivity
+                        <strong>Selangor →</strong> Industrial growth and
+                        connectivity
                       </div>
                       <div style={{ marginBottom: "15px" }}>
-                        <strong>Penang →</strong> Lifestyle, retirement, healthcare appeal
+                        <strong>Penang →</strong> Lifestyle, retirement,
+                        healthcare appeal
                       </div>
                       <div>
-                        <strong>Johor Bahru →</strong> Cross-border demand (Singapore influence)
+                        <strong>Johor Bahru →</strong> Cross-border demand
+                        (Singapore influence)
                       </div>
                     </div>
 
@@ -183,7 +223,9 @@ export default function ForeignInvestorsBlog() {
                       <li>
                         Over 700 property purchases recorded under MM2H recently
                       </li>
-                      <li>Thousands more applicants actively searching for homes</li>
+                      <li>
+                        Thousands more applicants actively searching for homes
+                      </li>
                     </ul>
 
                     <p className="mb-20">Top buyers include:</p>
@@ -194,10 +236,21 @@ export default function ForeignInvestorsBlog() {
                       <li>Singapore</li>
                     </ul>
 
-                    <div className="tp-blog-details-alert mb-30" style={{ backgroundColor: "#e7f3ff", border: "1px solid #b3d9ff", padding: "15px", borderRadius: "8px" }}>
-                      <h5 style={{ color: "#0066cc", marginBottom: "10px" }}>👉 Trend:</h5>
+                    <div
+                      className="tp-blog-details-alert mb-30"
+                      style={{
+                        backgroundColor: "#e7f3ff",
+                        border: "1px solid #b3d9ff",
+                        padding: "15px",
+                        borderRadius: "8px",
+                      }}
+                    >
+                      <h5 style={{ color: "#0066cc", marginBottom: "10px" }}>
+                        👉 Trend:
+                      </h5>
                       <p style={{ color: "#0066cc", margin: 0 }}>
-                        This shows sustained foreign interest, especially from Asia.
+                        This shows sustained foreign interest, especially from
+                        Asia.
                       </p>
                     </div>
 
@@ -211,9 +264,7 @@ export default function ForeignInvestorsBlog() {
                     </p>
 
                     <ul className="tp-blog-details-list mb-30">
-                      <li>
-                        Property transactions may exceed RM250 billion
-                      </li>
+                      <li>Property transactions may exceed RM250 billion</li>
                       <li>Prices expected to grow 2.5% to 5%</li>
                       <li>
                         Demand supported by urbanisation and infrastructure
@@ -255,12 +306,22 @@ export default function ForeignInvestorsBlog() {
                       Here's a quick summary of why Malaysia remains attractive:
                     </p>
 
-                    <div className="tp-blog-details-reasons mb-30" style={{ backgroundColor: "#f8f9fa", border: "1px solid #dee2e6", padding: "20px", borderRadius: "8px" }}>
+                    <div
+                      className="tp-blog-details-reasons mb-30"
+                      style={{
+                        backgroundColor: "#f8f9fa",
+                        border: "1px solid #dee2e6",
+                        padding: "20px",
+                        borderRadius: "8px",
+                      }}
+                    >
                       <ul style={{ marginBottom: 0, paddingLeft: "20px" }}>
                         <li>✔️ Affordable property prices</li>
                         <li>✔️ Strong infrastructure and development</li>
                         <li>✔️ Stable economy and investment growth</li>
-                        <li>✔️ Lifestyle appeal (weather, culture, cost of living)</li>
+                        <li>
+                          ✔️ Lifestyle appeal (weather, culture, cost of living)
+                        </li>
                         <li>✔️ Government programs like MM2H</li>
                       </ul>
                     </div>
@@ -281,8 +342,18 @@ export default function ForeignInvestorsBlog() {
 
                     <p className="mb-20">However, it also means:</p>
 
-                    <div className="tp-blog-details-alert mb-30" style={{ backgroundColor: "#fff3cd", border: "1px solid #ffeaa7", padding: "15px", borderRadius: "8px" }}>
-                      <h5 style={{ color: "#856404", marginBottom: "10px" }}>👉 Challenge:</h5>
+                    <div
+                      className="tp-blog-details-alert mb-30"
+                      style={{
+                        backgroundColor: "#fff3cd",
+                        border: "1px solid #ffeaa7",
+                        padding: "15px",
+                        borderRadius: "8px",
+                      }}
+                    >
+                      <h5 style={{ color: "#856404", marginBottom: "10px" }}>
+                        👉 Challenge:
+                      </h5>
                       <p style={{ color: "#856404", margin: 0 }}>
                         Local buyers need to be more strategic and informed
                       </p>
@@ -303,19 +374,32 @@ export default function ForeignInvestorsBlog() {
                       investment destination in Southeast Asia.
                     </p>
 
-                    <div className="tp-blog-details-quote mb-30" style={{ backgroundColor: "#f8f9fa", border: "1px solid #dee2e6", padding: "20px", borderRadius: "8px", borderLeft: "4px solid #003B5C" }}>
-                      <h3 style={{ color: "#003B5C", marginBottom: "15px" }}>🏠 Pro Tip</h3>
+                    <div
+                      className="tp-blog-details-quote mb-30"
+                      style={{
+                        backgroundColor: "#f8f9fa",
+                        border: "1px solid #dee2e6",
+                        padding: "20px",
+                        borderRadius: "8px",
+                        borderLeft: "4px solid #003B5C",
+                      }}
+                    >
+                      <h3 style={{ color: "#003B5C", marginBottom: "15px" }}>
+                        🏠 Pro Tip
+                      </h3>
                       <p style={{ margin: 0 }}>
-                        If you're a local buyer or developer:
+                        If you are a local buyer or developer:
                       </p>
                       <p style={{ margin: "10px 0", fontWeight: "bold" }}>
-                        👉 "Don't compete with foreign investors—learn from where they are investing."
+                        👉 "Don't compete with foreign investors—learn from
+                        where they are investing."
                       </p>
                       <p style={{ margin: "10px 0 0 0" }}>
                         That's where future growth is likely to happen.
                       </p>
                       <p style={{ margin: "10px 0 0 0" }}>
-                        Stay tuned for more insights on Malaysia property trends and smart investment strategies!
+                        Stay tuned for more insights on Malaysia property trends
+                        and smart investment strategies!
                       </p>
                     </div>
                   </div>
@@ -342,7 +426,6 @@ export default function ForeignInvestorsBlog() {
             <div className="col-lg-4">
               {/* Sidebar */}
               <div className="tp-blog-sidebar">
-
                 {/* Category Widget */}
                 <div className="tp-blog-widget mb-40">
                   <h4 className="tp-blog-widget-title">Categories</h4>
@@ -388,7 +471,8 @@ export default function ForeignInvestorsBlog() {
                       <div className="tp-blog-widget-recent-post-content">
                         <h6>
                           <Link href="/blog/foreign-investors-still-interested-in-malaysian-property">
-                            Foreign Investors Still Interested in Malaysian Property
+                            Foreign Investors Still Interested in Malaysian
+                            Property
                           </Link>
                         </h6>
                         <span>3 min read</span>

@@ -1,19 +1,43 @@
 "use client";
 
-import userImg from "../../../../public/assets/img/team/team-details/user.png";
 import { SocialLinksThree } from "@/components/UI/SocialLinks";
 import { CallThreeSvg, TeamEmailSvg } from "@/components/SVG";
 import Image from "next/image";
 import Link from "next/link";
 
-export default function UserContactCard() {
-  const agentWhatsAppNumberLabel = "+601126368426";
-  const agentWhatsAppNumber = agentWhatsAppNumberLabel.replace(/\D/g, "");
+// Define the user interface to match API response
+interface UserContactCardProps {
+  user?: {
+    id: string;
+    username: string;
+    email: string;
+    phoneNumber: string;
+    profileImage?: string;
+    fullName?: string;
+    bio?: string;
+    companyName?: string;
+    icPassport?: string;
+    designation?: string;
+    experienceYears?: number;
+    emailVerified: boolean;
+    createdAt: string;
+    updatedAt: string;
+  };
+}
+
+export default function UserContactCard({ user }: UserContactCardProps) {
+  // Use dynamic data if available, otherwise fallback to default
+  const agentName = user?.fullName || user?.username || "David Hussy";
+  const agentPhone = user?.phoneNumber || "+601126368426";
+  const agentEmail = user?.email || "agent@propertyla.com.my";
+  const agentImage = user?.profileImage || "/assets/img/team/team-details/user.png";
+  const agentProperties = 25; // This would come from API in real implementation
 
   const handleWhatsAppClick = () => {
     const url = window.location.href;
+    const message = encodeURIComponent(`Hi ${agentName}, I'm interested in this property and would like to know more.`);
     window.open(
-      `https://wa.me/${agentWhatsAppNumber}?text=${encodeURIComponent(url)}`,
+      `https://wa.me/${agentPhone.replace(/\D/g, '')}?text=${message}`,
       "_blank",
       "noopener,noreferrer",
     );
@@ -26,11 +50,13 @@ export default function UserContactCard() {
           <div className="tp-team-details-info-top">
             <div className="tp-team-details-info-user d-flex align-items-center">
               <div className="tp-team-details-info-user-thumb">
-                <Image src={userImg} alt="user image" />
+                <Image src={agentImage} alt={agentName} width={50} height={50} />
               </div>
               <div className="tp-team-details-info-user-content">
-                <h4>David Hussy</h4>
-                <p>25 Property</p>
+                <Link href={`/property-agent/${user?.id || agentName.toLowerCase().replace(/\s+/g, '-')}/#Agent-RightSideProfile`} style={{ textDecoration: "underline", color: "#003B5C" }}>
+                  <h4 style={{ margin: 0, cursor: "pointer" }}>{agentName}</h4>
+                </Link>
+                <p>{agentProperties} Property</p>
               </div>
             </div>
             <div className="tp-team-details-info-user-social text-center">
@@ -39,18 +65,18 @@ export default function UserContactCard() {
           </div>
           <div className="tp-team-details-info-content text-center">
             <div className="tp-team-details-info-contact">
-              <Link href={`tel:${agentWhatsAppNumberLabel}`}>
+              <Link href={`tel:${agentPhone}`}>
                 {" "}
                 <span>
                   <CallThreeSvg width="16" height="16" />
                 </span>
-                {agentWhatsAppNumberLabel}
+                {agentPhone}
               </Link>
-              <Link href="mailto:hi@gmail.com">
+              <Link href={`mailto:${agentEmail}`}>
                 <span>
                   <TeamEmailSvg />
                 </span>
-                agent@gmail.com
+                {agentEmail}
               </Link>
             </div>
             <div className="tp-header-dashboard-btn d-md-block">
