@@ -38,11 +38,13 @@ export default function UserContactCard({ user }: UserContactCardProps) {
           <div className="tp-team-details-info-top">
             <div className="tp-team-details-info-user d-flex align-items-center">
               <div className="tp-team-details-info-user-thumb">
-                {agentImage ? (
-                  <img src={agentImage} alt={agentName} />
-                ) : (
-                  <Image src={userImg} alt={agentName} />
-                )}
+                <Image
+                  src={agentImage || userImg}
+                  alt={agentName}
+                  width={60}
+                  height={60}
+                  style={{ borderRadius: "50%", objectFit: "cover" }}
+                />
               </div>
               <div className="tp-team-details-info-user-content">
                 <h4>{agentName}</h4>
