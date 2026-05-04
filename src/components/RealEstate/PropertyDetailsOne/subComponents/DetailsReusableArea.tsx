@@ -27,6 +27,12 @@ interface ApiProperty {
     facilities?: string[];
     security?: string[];
   };
+  user?: {
+    username?: string;
+    email?: string;
+    phoneNumber?: string;
+    profileImage?: string;
+  };
 }
 
 interface IProps {
@@ -115,7 +121,7 @@ export default function DetailsReusableArea({
           {/* ── Right sidebar ─────────────────────────────────── */}
           <div className="col-lg-4">
             <div className="tp-property-details-right">
-              <UserContactCard />
+              <UserContactCard user={property?.user} />
               <SidebarPropertyItem />
               <RecentlyViewedProperties />
               <DiscountOfferCard wrapperCls="tp-property-filter-wrap" />

@@ -6,9 +6,21 @@ import { CallThreeSvg, TeamEmailSvg } from "@/components/SVG";
 import Image from "next/image";
 import Link from "next/link";
 
-export default function UserContactCard() {
-  const agentWhatsAppNumberLabel = "+601126368426";
+interface UserContactCardProps {
+  user?: {
+    username?: string;
+    email?: string;
+    phoneNumber?: string;
+    profileImage?: string;
+  };
+}
+
+export default function UserContactCard({ user }: UserContactCardProps) {
+  const agentName = user?.username ?? "David Hussy";
+  const agentEmail = user?.email ?? "hi@gmail.com";
+  const agentWhatsAppNumberLabel = user?.phoneNumber ?? "+601126368426";
   const agentWhatsAppNumber = agentWhatsAppNumberLabel.replace(/\D/g, "");
+  const agentImage = user?.profileImage ?? null;
 
   const handleWhatsAppClick = () => {
     const url = window.location.href;
@@ -26,11 +38,15 @@ export default function UserContactCard() {
           <div className="tp-team-details-info-top">
             <div className="tp-team-details-info-user d-flex align-items-center">
               <div className="tp-team-details-info-user-thumb">
-                <Image src={userImg} alt="user image" />
+                {typeof agentImage === "string" ? (
+                  <img src={agentImage} alt={agentName} />
+                ) : (
+                  <Image src={userImg} alt={agentName} />
+                )}
               </div>
               <div className="tp-team-details-info-user-content">
-                <h4>David Hussy</h4>
-                <p>25 Property</p>
+                <h4>{agentName}</h4>
+                <p>{user?.email ? "Property Agent" : "25 Property"}</p>
               </div>
             </div>
             <div className="tp-team-details-info-user-social text-center">
@@ -40,17 +56,16 @@ export default function UserContactCard() {
           <div className="tp-team-details-info-content text-center">
             <div className="tp-team-details-info-contact">
               <Link href={`tel:${agentWhatsAppNumberLabel}`}>
-                {" "}
                 <span>
                   <CallThreeSvg width="16" height="16" />
                 </span>
                 {agentWhatsAppNumberLabel}
               </Link>
-              <Link href="mailto:hi@gmail.com">
+              <Link href={`mailto:${agentEmail}`}>
                 <span>
                   <TeamEmailSvg />
                 </span>
-                agent@gmail.com
+                {agentEmail}
               </Link>
             </div>
             <div className="tp-header-dashboard-btn d-md-block">
