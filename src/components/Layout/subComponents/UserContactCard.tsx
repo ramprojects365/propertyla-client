@@ -20,7 +20,7 @@ export default function UserContactCard({ user }: UserContactCardProps) {
   const agentEmail = user?.email ?? "hi@gmail.com";
   const agentWhatsAppNumberLabel = user?.phoneNumber ?? "+601126368426";
   const agentWhatsAppNumber = agentWhatsAppNumberLabel.replace(/\D/g, "");
-  const agentImage = user?.profileImage ?? null;
+  const agentImage = user?.profileImage?.trim() || null;
 
   const handleWhatsAppClick = () => {
     const url = window.location.href;
@@ -38,7 +38,7 @@ export default function UserContactCard({ user }: UserContactCardProps) {
           <div className="tp-team-details-info-top">
             <div className="tp-team-details-info-user d-flex align-items-center">
               <div className="tp-team-details-info-user-thumb">
-                {typeof agentImage === "string" ? (
+                {agentImage ? (
                   <img src={agentImage} alt={agentName} />
                 ) : (
                   <Image src={userImg} alt={agentName} />
