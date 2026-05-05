@@ -303,8 +303,8 @@ export default function SignUpForm() {
                   <input
                     type="text"
                     inputMode="numeric"
-                    maxLength={6}
-                    placeholder="Enter REN number"
+                    maxLength={10}
+                    placeholder="Enter REN / PEA number"
                     {...register("renNumber")}
                   />
                   <i>

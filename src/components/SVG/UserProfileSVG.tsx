@@ -1,4 +1,4 @@
-export default function UserSvg() {
+export default function UserProfileSvg() {
   return (
     <svg
       xmlns="http://www.w3.org/2000/svg"
