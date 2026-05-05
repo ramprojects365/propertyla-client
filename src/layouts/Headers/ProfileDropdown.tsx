@@ -3,7 +3,7 @@
 import { useState, useRef, useEffect } from "react";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
-import UserSvg from "@/components/SVG/UserSvg";
+import UserProfileSVG from "@/components/SVG/UserProfileSVG";
 
 const ProfileDropdown = () => {
   const [open, setOpen] = useState(false);
@@ -48,7 +48,7 @@ const ProfileDropdown = () => {
     <div className="profile-dropdown" ref={dropdownRef}>
       <button type="button" className="profile-btn" onClick={handleToggle}>
         <span className="Profile-btn-span" aria-label="Logged in user">
-          <UserSvg />
+          <UserProfileSVG />
           <span
             style={{
               position: "absolute",
