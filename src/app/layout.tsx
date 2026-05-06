@@ -1,11 +1,12 @@
+"use client";
+
 import { Geist, Geist_Mono, Plus_Jakarta_Sans } from "next/font/google";
-import React from "react";
+import React, { useEffect } from "react";
 import GlobalVideoModal from "@/components/Popup/GlobalVideoModal";
 import { VideoProvider } from "@/provider/VideoProvider";
 import AppProvider from "@/provider/AppProvider";
 import ReduxProvider from "@/redux/provider";
 import "slick-carousel/slick/slick.css";
-import type { Metadata } from "next";
 import { Toaster } from "sonner";
 import "swiper/css/bundle";
 import GoogleMapsProvider from "../components/HeroBanner/subComponents/GoogleMapsProvider";
@@ -29,32 +30,28 @@ const geistMono = Geist_Mono({
   subsets: ["latin"],
 });
 
-export const metadata: Metadata = {
-  title: "Property for Sale & Rent in Malaysia | Houses, Condos & Apartments",
-  description:
-    "Find the latest properties for sale and rent in Malaysia including houses, condos, apartments and commercial properties. Search properties in Kuala Lumpur, Selangor, Penang and across Malaysia.",
-  openGraph: {
-    title: "Propertyla - Find Your Dream Property",
-    description:
-      "Search thousands of verified properties for sale or rent in Malaysia.",
-    url: "https://propertyla.com.my",
-    siteName: "Propertyla",
-    images: [
-      {
-        url: "https://propertyla.com.my/_next/static/media/home-bg.8927b835.jpg",
-        width: 1200,
-        height: 800,
-      },
-    ],
-    locale: "en_US",
-    type: "website",
-  },
-};
 export default function RootLayout({
   children,
 }: Readonly<{
   children: React.ReactNode;
 }>) {
+  // Add scroll detection for profile icon styling
+  useEffect(() => {
+    const handleScroll = () => {
+      if (window.scrollY > 50) {
+        document.body.classList.add("scrolled");
+      } else {
+        document.body.classList.remove("scrolled");
+      }
+    };
+
+    window.addEventListener("scroll", handleScroll);
+
+    return () => {
+      window.removeEventListener("scroll", handleScroll);
+    };
+  }, []);
+
   // If children is a plain object (e.g. an error object) stringify it so React doesn't try to render it directly.
   const sanitizedChildren =
     typeof children === "object" &&
