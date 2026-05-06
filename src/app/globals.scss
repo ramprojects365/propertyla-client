@@ -196,7 +196,15 @@
   flex-shrink: 0;
   transition: all 0.3s ease;
 }
-
+.tp-header-5-ptb {
+  background-color: #d4af37;
+}
+.tp-header-dashboard-ptb {
+  background-color: #d4af37;
+}
+.container-fluid {
+  background-color: #d4af37;
+}
 /* When page is scrolled, change to dark theme */
 body.scrolled .Profile-btn-span {
   background: transparent;
