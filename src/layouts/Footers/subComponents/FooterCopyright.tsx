@@ -6,10 +6,7 @@ export default function FooterCopyright() {
       <div className="row">
         <div className="col-lg-12">
           <div className="tp-footer-copyright text-center">
-            <p>
-              © {getCurrentYear()} Property-La. All images are for demo
-              purposes.
-            </p>
+            <p>© {getCurrentYear()} Property La. All rights reserved.</p>
           </div>
         </div>
       </div>
