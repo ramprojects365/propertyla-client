@@ -196,15 +196,49 @@
   flex-shrink: 0;
   transition: all 0.3s ease;
 }
-.tp-header-5-ptb {
-  background-color: #d4af37;
+
+/* Dashboard header - black icon and name on #d4af37 background */
+.tp-header-dashboard-ptb .Profile-btn-span {
+  border: 1px solid #000;
+  color: #000;
 }
-.tp-header-dashboard-ptb {
-  background-color: #d4af37;
+
+.tp-header-dashboard-ptb .tp-header-right-user-content p {
+  color: #000 !important;
 }
-.container-fluid {
-  background-color: #d4af37;
+
+.tp-header-dashboard-ptb .arrow i {
+  color: #000 !important;
 }
+
+/* Property pages - black icon on white background */
+.tp-header-5-ptb:not(.tp-header-dashboard-ptb) .Profile-btn-span {
+  border: 1px solid #000;
+  color: #000;
+}
+
+.tp-header-5-ptb:not(.tp-header-dashboard-ptb) .tp-header-right-user-content p {
+  color: #000 !important;
+}
+
+.tp-header-5-ptb:not(.tp-header-dashboard-ptb) .arrow i {
+  color: #000 !important;
+}
+
+/* Homepage header - white icon on blue background (exclude property pages) */
+.tp-header-5-ptb.tp-header-5-main .Profile-btn-span {
+  border: 1px solid #fff;
+  color: #fff;
+}
+
+.tp-header-5-ptb.tp-header-5-main .tp-header-right-user-content p {
+  color: #fff !important;
+}
+
+.tp-header-5-ptb.tp-header-5-main .arrow i {
+  color: #fff !important;
+}
+
 /* When page is scrolled, change to dark theme */
 body.scrolled .Profile-btn-span {
   background: transparent;
