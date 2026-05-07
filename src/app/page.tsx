@@ -7,9 +7,9 @@ import { Metadata } from "next";
 
 export const metadata: Metadata = {
   title:
-    "Properties for Sale in Malaysia | Houses, Condos & Apartments Listings",
+    "Property for Sale & Rent in Malaysia | Apartments, Condos, Houses & Bungalows",
   description:
-    "Browse thousands of properties for sale in Malaysia. Discover houses, condos, apartments and new developments across Kuala Lumpur, Selangor, Penang and Johor.",
+    "Find your perfect property in Malaysia. Browse apartments for rent, houses for sale, condos, landed properties, and bungalows in Kuala Lumpur, Selangor, Penang, Johor, Cheras, and other major areas. Competing with iProperty and PropertyGuru for the best Malaysian real estate listings.",
 };
 
 const Home = () => {

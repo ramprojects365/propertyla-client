@@ -32,7 +32,7 @@ export async function generateMetadata(
     const title = item.propertyName || item.title || `Property Details - ${id}`;
     const description =
       item.description?.trim() ||
-      "Find the latest property details in Malaysia including houses, condos, apartments and commercial properties.";
+        "View detailed property information in Malaysia. Find apartments for rent, houses for sale, condos, landed properties, and bungalows in Kuala Lumpur, Selangor, Penang, Johor and other major areas.";
     const imageUrl = item.images?.[0];
     const canonicalUrl = `https://propertyla.com.my/property-details/${id}`;
 

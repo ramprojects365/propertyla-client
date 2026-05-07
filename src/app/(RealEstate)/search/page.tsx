@@ -3,9 +3,9 @@ import PropertyListing from "@/components/RealEstate/PropertyStyleOne/PropertyLi
 import { Metadata } from "next";
 
 export const metadata: Metadata = {
-  title: "www.propertyla.com.my - Property La Real Estate website in Malaysia",
+  title: "Property Search Malaysia | Apartments for Rent, Houses for Sale, Condos & Landed Properties",
   description:
-    "Search thousands of properties for sale and rent in Malaysia. Find condos, houses, apartments & investment opportunities with PropertyKL",
+    "Search properties for sale and rent in Malaysia. Find apartments, condos, landed houses, bungalows in Kuala Lumpur, Selangor, Penang, Johor, Cheras and more. Your trusted alternative to iProperty and PropertyGuru for Malaysian real estate.",
 };
 
 export default function PropertyOne() {

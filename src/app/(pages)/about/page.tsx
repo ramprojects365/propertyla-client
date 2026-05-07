@@ -8,8 +8,8 @@ import ContactArea from "@/components/Contact/ContactArea";
 import { Metadata } from "next";
 
 export const metadata: Metadata = {
-  title: "About PropertyLA | Leading Real Estate Platform in Malaysia",
-  description: "Learn about PropertyLA, Malaysia's trusted real estate platform connecting buyers, sellers, and agents. Discover our mission to simplify property transactions across Kuala Lumpur, Selangor, Penang and beyond.",
+  title: "About PropertyLA | Malaysia's Premier Real Estate Platform for Rentals & Sales",
+  description: "Discover PropertyLA, Malaysia's leading real estate platform for apartments, condos, landed houses, and bungalows. We serve Kuala Lumpur, Selangor, Penang, Johor, Cheras and nationwide. Your trusted alternative to iProperty and PropertyGuru for Malaysian property market.",
 };
 
 export default function About() {
