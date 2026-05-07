@@ -67,7 +67,7 @@ function groupAmenities(flat: string[] = []) {
 export default function AddPropertyPage() {
   const methods = useForm<PropertyFormData>({
     resolver: yupResolver(propertySchema),
-    mode: "onSubmit",
+    mode: "onChange",
   });
 
   const { handleSubmit } = methods;
@@ -196,6 +196,7 @@ export default function AddPropertyPage() {
           console.error("API error:", err);
           toast.error(
             "Failed to add property: " + (err.message || res.statusText),
+            { duration: 5000 }
           );
           return;
         }
@@ -203,14 +204,14 @@ export default function AddPropertyPage() {
         const result = await res.json();
         console.log("Property created:", result);
         methods.reset();
-        toast.success("Property added successfully.");
+        toast.success("Property added successfully.", { duration: 5000 });
         if (typeof window !== "undefined") {
           // Redirect to home page (replace so user can't go back to the form)
           window.location.replace("/");
         }
       } catch (error) {
         console.error("Network error:", error);
-        toast.error("Network error while submitting the form.");
+        toast.error("Network error while submitting the form.", { duration: 5000 });
       }
     })();
   };

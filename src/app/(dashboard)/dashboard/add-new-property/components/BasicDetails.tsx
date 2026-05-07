@@ -77,13 +77,15 @@ export default function BasicDetails() {
                 <select {...register("propertyType")} className="listDropDown">
                   <option value="">Select</option>
                   <option value="Apartment">Apartment</option>
-                  <option value="Condominium">Condominium</option>
-                  <option value="Landed House">Landed House</option>
                   <option value="Landed House">Bungalow</option>
-                  <option value="Landed House">Serviced Residence</option>
-                  <option value="Landed House">Office</option>
-                  <option value="Landed House">Shop Lot</option>
+                  <option value="Condominium">Condominium</option>
                   <option value="Landed House">Land</option>
+                  <option value="Factory">Factory</option>
+                  <option value="Landed House">Landed House</option>
+                  <option value="Landed House">Office</option>
+                  <option value="Landed House">Serviced Residence</option>
+                  <option value="Landed House">Shop Lot</option>
+                  <option value="Warehouse">Warehouse</option>
                 </select>
               </div>
               <div>

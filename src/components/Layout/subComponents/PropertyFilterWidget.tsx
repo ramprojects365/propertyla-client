@@ -63,11 +63,15 @@ export default function PropertyFilterWidget() {
             options={[
               { value: "All", label: "All Residential" },
               { value: "Apartment", label: "Apartment" },
+              { value: "Bungalow", label: "Bungalow" },
               { value: "Condominium", label: "Condominium" },
               { value: "Landed House", label: "Landed House" },
-              { value: "Bungalow", label: "Bungalow" },
-              { value: "Shop", label: "Shop" },
               { value: "Office", label: "Office" },
+              { value: "Serviced Residence", label: "Serviced Residence" },
+              { value: "Factory", label: "Factory" },
+              { value: "Warehouse", label: "Warehouse" },
+              { value: "Land", label: "Land" },
+              { value: "Shop Lot", label: "Shop Lot" },
             ]}
             defaultCurrent={0}
             onChange={(option) => setPropertyType(option.value as string)}
