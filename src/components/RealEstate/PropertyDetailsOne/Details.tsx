@@ -87,8 +87,9 @@ function mapToDisplay(item: ApiProperty): IFeaturedPropertyDT {
     bathrooms: baths > 0 ? String(baths) : "0",
     livingArea,
     price: parseFloat(String(item.price ?? 0)) || 0,
+    user: item.user, // Add user field to display data
     description: item.description,
-    quantity: 0,
+    quantity: 0
   };
 }
 

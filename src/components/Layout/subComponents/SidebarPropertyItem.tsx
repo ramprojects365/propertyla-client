@@ -118,7 +118,7 @@ export default function SidebarPropertyItem({
         className={`${wrapperCls ? wrapperCls : "tp-team-details-widget"} mb-40`}
       >
         <div className={customClass ? customClass : ""}>
-          <h4 className="tp-team-details-item-title">Bungalow for Sale</h4>
+          <h4 className="tp-team-details-item-title">Recent Properties</h4>
           {latest ? (
             <>
               <div className="tp-rent-thumb p-relative">
