@@ -5,17 +5,19 @@ import { useState } from "react";
 
 export default function UploadMedia() {
   const [uploadedUrls, setUploadedUrls] = useState<string[]>([]);
+  const [isLoading, setIsLoading] = useState(false);
 
   const handleUpload = async (e: React.ChangeEvent<HTMLInputElement>) => {
     const input = e.target;
     const files = Array.from(input.files || []);
     if (!files.length) return;
 
+    setIsLoading(true);
     const newUrls: string[] = [];
 
     for (const file of files) {
       try {
-        let token = localStorage.getItem("authToken");
+        let token: string | null = localStorage.getItem("authToken");
 
         if (!token) {
           const cookieMatch = document.cookie
@@ -26,11 +28,11 @@ export default function UploadMedia() {
           token = cookieMatch ? cookieMatch.split("=")[1] : null;
         }
 
-        const headers: Record<string, string> = {};
-        if (token) headers.Authorization = `Bearer ${token}`;
-
         const formData = new FormData();
         formData.append("images", file, file.name);
+
+        const headers: Record<string, string> = {};
+        if (token) headers.Authorization = `Bearer ${token}`;
 
         const API_BASE =
           process.env.NEXT_PUBLIC_API_BASE ?? "http://159.223.92.101:3008";
@@ -42,7 +44,8 @@ export default function UploadMedia() {
         });
 
         if (!res.ok) {
-          console.error("Upload failed:", await res.text());
+          const errorText = await res.text().catch(() => "");
+          console.error("Upload failed:", errorText);
           continue;
         }
 
@@ -57,7 +60,7 @@ export default function UploadMedia() {
           json?.url ??
           null;
 
-        if (finalUrl) {
+        if (finalUrl && typeof finalUrl === "string") {
           newUrls.push(finalUrl);
         }
       } catch (err) {
@@ -66,7 +69,9 @@ export default function UploadMedia() {
     }
 
     setUploadedUrls((prev) => [...prev, ...newUrls]);
-    input.value = "";
+    setIsLoading(false);
+
+    e.target.value = "";
   };
 
   const removeImage = (url: string) => {
@@ -86,10 +91,11 @@ export default function UploadMedia() {
               accept="image/png, image/jpeg"
               multiple
               onChange={handleUpload}
+              disabled={isLoading}
             />
 
             <label htmlFor="tp-dashboard-new-um-file-input">
-              Add Photos
+              {isLoading ? "Uploading..." : "Add Photos"}
             </label>
           </span>
 
