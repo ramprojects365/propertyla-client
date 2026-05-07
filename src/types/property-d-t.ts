@@ -26,6 +26,21 @@ export interface IFeaturedPropertyDT {
   spacing?: boolean;
   price: number;
   quantity: number;
+  user?: {
+    id?: string;
+    username?: string;
+    email?: string;
+    phoneNumber?: string;
+    profileImage?: string;
+    fullName?: string | null;
+    bio?: string | null;
+    companyName?: string | null;
+    designation?: string | null;
+    experienceYears?: number | null;
+    emailVerified?: boolean;
+    createdAt?: string;
+    updatedAt?: string;
+  };
 }
 
 // Interface for neighbourhood properties, including city name, property count, and image.

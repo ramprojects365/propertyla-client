@@ -1,131 +1,114 @@
 "use client";
 
+import { SocialLinksThree } from "@/components/UI/SocialLinks";
+import { CallThreeSvg, TeamEmailSvg } from "@/components/SVG";
 import Image from "next/image";
-import { useState } from "react";
+import Link from "next/link";
 
-export default function UploadMedia() {
-  const [uploadedUrls, setUploadedUrls] = useState<string[]>([]);
+interface UserContactCardProps {
+  user?: {
+    username?: string;
+    email?: string;
+    phoneNumber?: string;
+    profileImage?: string;
+  };
+}
 
-  const handleUpload = async (e: React.ChangeEvent<HTMLInputElement>) => {
-    const files = Array.from(e.target.files || []);
-    if (!files.length) return;
+export default function UserContactCard({ user }: UserContactCardProps) {
+  // Use dynamic data if available, otherwise fallback to default
+  const agentName = user?.username || "David Hussy";
+  const agentPhone = user?.phoneNumber || "+601126368426";
+  const agentEmail = user?.email || "agent@propertyla.com.my";
+  const agentImage =
+    user?.profileImage || "/assets/img/team/team-details/user.png";
+  const agentWhatsAppNumberLabel = user?.phoneNumber ?? "+601126368426";
+  const agentWhatsAppNumber = agentWhatsAppNumberLabel.replace(/\D/g, "");
+  const agentProperties = 25; // This would come from API in real implementation
 
-    const newUrls: string[] = [];
-
-    for (const file of files) {
-      try {
-        let token: string | null = localStorage.getItem("authToken");
-
-        if (!token) {
-          const cookieMatch = document.cookie
-            .split(";")
-            .map((c) => c.trim())
-            .find((c) => c.startsWith("token="));
-
-          token = cookieMatch ? cookieMatch.split("=")[1] : null;
-        }
-
-        const formData = new FormData();
-        formData.append("images", file, file.name);
-
-        const headers: Record<string, string> = {};
-        if (token) headers.Authorization = `Bearer ${token}`;
-
-        const API_BASE =
-          process.env.NEXT_PUBLIC_API_BASE ?? "http://159.223.92.101:3008";
-
-        const res = await fetch(`${API_BASE}/api/images/upload-single`, {
-          method: "POST",
-          headers,
-          body: formData,
-        });
-
-        if (!res.ok) {
-          const errorText = await res.text().catch(() => "");
-          console.error("Upload failed:", errorText);
-          continue;
-        }
-
-        const json = await res.json();
-
-        const finalUrl =
-          json?.data?.publicUrl ??
-          json?.data?.public_url ??
-          json?.data?.imageUrl ??
-          json?.data?.image_url ??
-          json?.data?.url ??
-          json?.url ??
-          null;
-
-        if (finalUrl && typeof finalUrl === "string") {
-          newUrls.push(finalUrl);
-        }
-      } catch (err) {
-        console.error("Image upload error:", err);
-      }
-    }
-
-    setUploadedUrls((prev) => [...prev, ...newUrls]);
-
-    e.target.value = "";
+  const handleWhatsAppClick = () => {
+    const url = window.location.href;
+    const message = encodeURIComponent(
+      `Hi, I'm interested in this property and would like to know more ${url}`,
+    );
+    window.open(
+      `https://wa.me/${agentPhone.replace(/\D/g, "")}?text=${message}`,
+      "_blank",
+      "noopener,noreferrer",
+    );
   };
 
-  const handleRemove = (url: string) => {
-    setUploadedUrls((prev) => prev.filter((item) => item !== url));
+  // Create clean agent profile URL
+  const getAgentProfileUrl = () => {
+    if (!user) return `/property-agent/david-hussy-2987852`;
+
+    // Use user ID or create a slug from name
+    const slug: string = user.username || "";
+    const cleanSlug = slug
+      .toLowerCase()
+      .replace(/\s+/g, "-")
+      .replace(/[^a-z0-9-]/g, "");
+    return `/property-agent/${cleanSlug}`;
   };
 
   return (
-    <div className="tp-dashboard-new-property mb-15">
-      <h5 className="tp-dashboard-new-title">Upload Media</h5>
-
-      <div className="tp-dashboard-new-um">
-        <div className="tp-dashboard-new-um-content">
-          <span className="upload-btn">
-            <input
-              id="tp-dashboard-new-um-file-input"
-              type="file"
-              accept="image/png, image/jpeg"
-              multiple
-              onChange={handleUpload}
-            />
-
-            <label htmlFor="tp-dashboard-new-um-file-input">
-              Add Photos
-            </label>
-          </span>
-
-          <p>
-            Add photos to get 5X more responses.
-            <br /> 90% tenants contact on properties with photos.
-          </p>
-        </div>
-
-        <input
-          type="hidden"
-          id="uploaded-images-input"
-          name="uploadedImages"
-          value={JSON.stringify(uploadedUrls)}
-          readOnly
-        />
-
-        <div className="tp-dashboard-new-um-img-box d-flex">
-          {uploadedUrls.map((img, index) => (
-            <div key={img} className="tp-dashboard-new-um-img">
-              <Image
-                src={img}
-                alt={`uploaded-image-${index + 1}`}
-                unoptimized
-                width={800}
-                height={600}
-              />
-
-              <button type="button" onClick={() => handleRemove(img)}>
-                <i className="fal fa-trash-alt"></i>
+    <>
+      <div className="tp-team-details-widget mb-40">
+        <div className="tp-team-details-info-box">
+          <div className="tp-team-details-info-top">
+            <div className="tp-team-details-info-user d-flex align-items-center">
+              <div className="tp-team-details-info-user-thumb">
+                <Image
+                  src={agentImage}
+                  alt={agentName}
+                  width={50}
+                  height={50}
+                />
+              </div>
+              <div className="tp-team-details-info-user-content">
+                <Link
+                  href={getAgentProfileUrl()}
+                  style={{ textDecoration: "underline", color: "#003B5C" }}
+                >
+                  <h4 style={{ margin: 0, cursor: "pointer" }}>{agentName}</h4>
+                </Link>
+                <p>{agentProperties} Property</p>
+              </div>
+            </div>
+            <div className="tp-team-details-info-user-social text-center">
+              <SocialLinksThree />
+            </div>
+          </div>
+          <div className="tp-team-details-info-content text-center">
+            <div className="tp-team-details-info-contact">
+              <Link href={`tel:${agentWhatsAppNumber}`}>
+                <span>
+                  <CallThreeSvg width="16" height="16" />
+                </span>
+                {agentPhone}
+              </Link>
+              <Link href={`mailto:${agentEmail}`}>
+                <span>
+                  <TeamEmailSvg />
+                </span>
+                {agentEmail}
+              </Link>
+            </div>
+            <div className="tp-header-dashboard-btn d-md-block">
+              <button
+                type="button"
+                className="tp-btn"
+                onClick={handleWhatsAppClick}
+                style={{ background: "rgb(37, 211, 102)" }}
+              >
+                <span className="btn-wrap">
+                  <b className="text-1">Enquiry on Whatsapp</b>
+                  <b className="text-2">Enquiry on Whatsapp</b>
+                </span>
               </button>
             </div>
-          ))}
+          </div>
         </div>
       </div>
-    </div>
+    </>
   );
 }

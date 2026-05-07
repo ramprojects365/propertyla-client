@@ -5,7 +5,7 @@ import { PropertyFormData } from "@/schemas/validationSchema";
 import ErrorMessage from "../../../../../components/Form/ErrorMassage";
 import "../property.css";
 
-export default function BasicDetails({ listingType, setListingType }: { listingType: string; setListingType: (value: string) => void }) {
+export default function BasicDetails() {
   const {
     register,
     formState: { errors },
