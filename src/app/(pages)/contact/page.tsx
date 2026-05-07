@@ -5,8 +5,8 @@ import MapArea from "@/components/Contact/MapArea";
 import { Metadata } from "next";
 
 export const metadata: Metadata = {
-  title: "Contact PropertyLA | Get in Touch with Real Estate Experts",
-  description: "Contact PropertyLA for all your real estate needs in Malaysia. Reach out to our team for property inquiries, agent partnerships, or support. Find our office locations and contact information.",
+  title: "Contact PropertyLA | Malaysia Real Estate Agents & Property Services",
+  description: "Get in touch with PropertyLA experts for Malaysian real estate. Contact our agents for apartments, condos, landed houses, and bungalows in Kuala Lumpur, Selangor, Penang, Johor and nationwide. Your trusted alternative to iProperty and PropertyGuru.",
 };
 
 export default function Contact() {
