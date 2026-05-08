@@ -67,9 +67,16 @@ export default function UserContactCard({ user }: UserContactCardProps) {
               <div className="tp-team-details-info-user-content">
                 <Link
                   href={getAgentProfileUrl()}
-                  style={{ textDecoration: "underline", color: "#003B5C" }}
+                  style={{ 
+                    textDecoration: "underline", 
+                    textUnderlineOffset: "3px",
+                    color: "#fff",
+                    fontSize: "14px",
+                    fontWeight: 500,
+                    cursor: "pointer"
+                  }}
                 >
-                  <h4 style={{ margin: 0, cursor: "pointer" }}>{agentName}</h4>
+                  {agentName}
                 </Link>
                 <p>{agentProperties} Property</p>
               </div>

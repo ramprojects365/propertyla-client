@@ -22,7 +22,7 @@ if (IS_DEVELOPMENT) {
       return config;
     },
     (error) => {
-      console.error('❌ API Request Error:', error);
+      console.error('API Request Error:', error);
       return Promise.reject(error);
     }
   );
@@ -67,7 +67,7 @@ if (IS_DEVELOPMENT) {
       return response;
     },
     (error) => {
-      console.error('❌ API Response Error:', {
+      console.error('API Response Error:', {
         status: error.response?.status,
         data: error.response?.data,
         message: error.message,

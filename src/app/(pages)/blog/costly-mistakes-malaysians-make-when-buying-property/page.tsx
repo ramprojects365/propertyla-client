@@ -74,7 +74,7 @@ export default function CostlyMistakesBlog() {
                     </p>
 
                     <h3 className="tp-blog-details-subtitle mb-20">
-                      ❌ 1. Overestimating Affordability
+                      1. Overestimating Affordability
                     </h3>
 
                     <p className="mb-20">
@@ -146,7 +146,7 @@ export default function CostlyMistakesBlog() {
                     </div>
 
                     <h3 className="tp-blog-details-subtitle mb-20">
-                      ❌ 2. Choosing the Wrong Location
+                      2. Choosing the Wrong Location
                     </h3>
 
                     <p className="mb-20">
@@ -221,7 +221,7 @@ export default function CostlyMistakesBlog() {
                     </div>
 
                     <h3 className="tp-blog-details-subtitle mb-20">
-                      ❌ 3. Not Understanding Loan & Legal Terms
+                      3. Not Understanding Loan & Legal Terms
                     </h3>
 
                     <p className="mb-20">

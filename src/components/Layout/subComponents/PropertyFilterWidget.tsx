@@ -8,7 +8,7 @@ export default function PropertyFilterWidget() {
   const router = useRouter();
   const searchParams = useSearchParams();
 
-  const [sizeRange, setSizeRange] = useState<[number, number]>([50, 800]);
+  const [sizeRange, setSizeRange] = useState<[number, number]>([100, 3000]);
   const [propertyType, setPropertyType] = useState("All");
   const [minPrice, setMinPrice] = useState("Any");
   const [maxPrice, setMaxPrice] = useState("Any");
@@ -151,7 +151,7 @@ export default function PropertyFilterWidget() {
                 <div className="tp-property-filter-item-2">
                   <div className="tp-property-widget-filter p-relative">
                     <span className="tp-property-widget-filter-title">
-                      Built-up Size (sq. ft.)
+                      Built-up Size
                     </span>
                     <span className="input-range">
                       <input
