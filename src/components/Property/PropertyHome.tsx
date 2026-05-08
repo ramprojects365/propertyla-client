@@ -65,7 +65,7 @@ export default function PropertyHome() {
           return 0;
         });
 
-        const top = sorted.slice(0, 20);
+        const top = sorted.slice(0, 8);
         const mapped: IFeaturedPropertyDT[] = top.map((p, idx) => {
           const address = [p.streetName, p.cityName, p.state]
             .filter(Boolean)

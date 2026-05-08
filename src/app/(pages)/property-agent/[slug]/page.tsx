@@ -1,10 +1,9 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import React, { useEffect, useState } from "react";
 import Image from "next/image";
 import Link from "next/link";
 import { notFound } from "next/navigation";
-import Breadcrumb from "@/components/Breadcrumb/Breadcrumb";
 import { CallThreeSvg, TeamEmailSvg, MessageSvgTwo } from "@/components/SVG";
 
 // Define the agent interface to match API response
@@ -44,26 +43,37 @@ const parseUserDataFromUrl = (): AgentData | null => {
 };
 
 export default function PropertyAgentPage() {
-  const [agent, setAgent] = useState<AgentData | null>(null);
-  const [loading, setLoading] = useState(true);
-
-  useEffect(() => {
-    const loadAgent = () => {
-      const agentData = parseUserDataFromUrl();
-
-      if (!agentData) {
-        notFound();
-        return;
-      }
-
-      setAgent(agentData);
-      setLoading(false);
-    };
-
-    loadAgent();
+  // Get slug from URL for client-side routing
+  const [slug, setSlug] = React.useState<string>("");
+  
+  React.useEffect(() => {
+    // Extract slug from URL path
+    const pathParts = window.location.pathname.split('/');
+    const slugFromPath = pathParts[pathParts.length - 1];
+    if (slugFromPath) {
+      setSlug(slugFromPath);
+    }
   }, []);
 
-  if (loading || !agent) {
+  // For now, create a simple agent data structure
+  // In real implementation, this would fetch from API using the slug
+  const agent: AgentData = {
+    id: slug,
+    username: slug,
+    email: "agent@propertyla.com.my",
+    phoneNumber: "+601126368426",
+    fullName: slug.replace(/-/g, ' ').replace(/\b\w/g, (l: string) => l.toUpperCase()),
+    designation: "Real Estate Agent",
+    experienceYears: 5,
+    bio: "Professional real estate agent specializing in Malaysian properties.",
+    emailVerified: true,
+    createdAt: new Date().toISOString(),
+    updatedAt: new Date().toISOString(),
+  };
+  
+  // For now, create a simple agent data structure
+
+  if (!agent) {
     return (
       <div className="container text-center py-5">
         <div
@@ -99,13 +109,21 @@ export default function PropertyAgentPage() {
           <div className="row">
             <div className="col-lg-12">
               <div className="tp-breadcrumb">
-                <Breadcrumb
-                  items={[
-                    { label: "Home", href: "/" },
-                    { label: "Property Agent", href: "/property-agent" },
-                    { label: agent.fullName || agent.username },
-                  ]}
-                />
+                <nav>
+                  <Link 
+                    href="/"
+                    style={{ 
+                      position: "relative", 
+                      display: "inline-block",
+                      textDecoration: "underline",
+                      color: "#003B5C"
+                    }}
+                  >
+                    Home
+                  </Link>
+                  {" / "}
+                  <span style={{ color: "#666" }}>{agent.fullName || agent.username}</span>
+                </nav>
               </div>
             </div>
           </div>
