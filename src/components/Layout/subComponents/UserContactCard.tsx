@@ -7,23 +7,31 @@ import Link from "next/link";
 
 interface UserContactCardProps {
   user?: {
+    id?: string;
     username?: string;
     email?: string;
     phoneNumber?: string;
     profileImage?: string;
+    fullName?: string;
+    bio?: string;
+    companyName?: string;
+    designation?: string;
+    experienceYears?: number;
+    emailVerified?: boolean;
+    createdAt?: string;
+    updatedAt?: string;
   };
 }
 
 export default function UserContactCard({ user }: UserContactCardProps) {
   // Use dynamic data if available, otherwise fallback to default
-  const agentName = user?.username || "David Hussy";
-  const agentPhone = user?.phoneNumber || "+601126368426";
+  const agentName = user?.username || "";
+  const agentPhone = user?.phoneNumber || "";
   const agentEmail = user?.email || "agent@propertyla.com.my";
   const agentImage =
     user?.profileImage || "/assets/img/team/team-details/user.png";
-  const agentWhatsAppNumberLabel = user?.phoneNumber ?? "+601126368426";
+  const agentWhatsAppNumberLabel = user?.phoneNumber || "";
   const agentWhatsAppNumber = agentWhatsAppNumberLabel.replace(/\D/g, "");
-  const agentProperties = 25; // This would come from API in real implementation
 
   const handleWhatsAppClick = () => {
     const url = window.location.href;
@@ -37,7 +45,7 @@ export default function UserContactCard({ user }: UserContactCardProps) {
     );
   };
 
-  // Create clean agent profile URL
+  // Create clean agent profile URL with full user data
   const getAgentProfileUrl = () => {
     if (!user) return `/property-agent/david-hussy-2987852`;
 
@@ -47,7 +55,29 @@ export default function UserContactCard({ user }: UserContactCardProps) {
       .toLowerCase()
       .replace(/\s+/g, "-")
       .replace(/[^a-z0-9-]/g, "");
-    return `/property-agent/${cleanSlug}`;
+
+    // Serialize user data to pass to agent page
+    // Use actual API data if available, otherwise use defaults
+    const userData = {
+      id: user.id || cleanSlug,
+      username: user.username || "",
+      email: user.email || "",
+      phoneNumber: user.phoneNumber || "",
+      profileImage: user.profileImage || "",
+      fullName: user.fullName || user.username || "",
+      designation: user.designation || "Real Estate Agent",
+      experienceYears: user.experienceYears || 5,
+      bio:
+        user.bio ||
+        "Professional real estate agent specializing in Malaysian properties.",
+      companyName: user.companyName || "",
+      emailVerified: user.emailVerified ?? true,
+      createdAt: user.createdAt || new Date().toISOString(),
+      updatedAt: user.updatedAt || new Date().toISOString(),
+    };
+
+    const encodedData = btoa(JSON.stringify(userData));
+    return `/property-agent/${cleanSlug}?data=${encodedData}`;
   };
 
   return (
@@ -67,18 +97,18 @@ export default function UserContactCard({ user }: UserContactCardProps) {
               <div className="tp-team-details-info-user-content">
                 <Link
                   href={getAgentProfileUrl()}
-                  style={{ 
-                    textDecoration: "underline", 
+                  style={{
+                    textDecoration: "underline",
                     textUnderlineOffset: "3px",
                     color: "#fff",
                     fontSize: "14px",
                     fontWeight: 500,
-                    cursor: "pointer"
+                    cursor: "pointer",
                   }}
                 >
                   {agentName}
                 </Link>
-                <p>{agentProperties} Property</p>
+                <p>Property Consultant</p>
               </div>
             </div>
             <div className="tp-team-details-info-user-social text-center">

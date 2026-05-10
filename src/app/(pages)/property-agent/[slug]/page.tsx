@@ -1,9 +1,8 @@
 "use client";
 
-import React, { useEffect, useState } from "react";
+import React from "react";
 import Image from "next/image";
 import Link from "next/link";
-import { notFound } from "next/navigation";
 import { CallThreeSvg, TeamEmailSvg, MessageSvgTwo } from "@/components/SVG";
 
 // Define the agent interface to match API response
@@ -19,9 +18,9 @@ interface AgentData {
   icPassport?: string;
   designation?: string;
   experienceYears?: number;
-  emailVerified: boolean;
-  createdAt: string;
-  updatedAt: string;
+  emailVerified?: boolean;
+  createdAt?: string;
+  updatedAt?: string;
 }
 
 // Function to parse user data from URL parameters
@@ -43,35 +42,57 @@ const parseUserDataFromUrl = (): AgentData | null => {
 };
 
 export default function PropertyAgentPage() {
-  // Get slug from URL for client-side routing
-  const [slug, setSlug] = React.useState<string>("");
-  
+  // Get agent data from URL query params
+  const [agent, setAgent] = React.useState<AgentData | null>(null);
+  const [loading, setLoading] = React.useState(true);
+
   React.useEffect(() => {
-    // Extract slug from URL path
-    const pathParts = window.location.pathname.split('/');
-    const slugFromPath = pathParts[pathParts.length - 1];
-    if (slugFromPath) {
-      setSlug(slugFromPath);
+    // Try to parse agent data from URL
+    const agentData = parseUserDataFromUrl();
+
+    if (agentData) {
+      setAgent(agentData);
+    } else {
+      // Fallback: create basic agent data from slug
+      const pathParts = window.location.pathname.split("/");
+      const slugFromPath = pathParts[pathParts.length - 1];
+
+      if (slugFromPath) {
+        const fallbackAgent: AgentData = {
+          id: slugFromPath,
+          username: slugFromPath,
+          email: "agent@propertyla.com.my",
+          phoneNumber: "+601126368426",
+          fullName: slugFromPath
+            .replace(/-/g, " ")
+            .replace(/\b\w/g, (l: string) => l.toUpperCase()),
+          designation: "Real Estate Agent",
+          experienceYears: 5,
+          bio: "Professional real estate agent specializing in Malaysian properties.",
+          emailVerified: true,
+          createdAt: new Date().toISOString(),
+          updatedAt: new Date().toISOString(),
+        };
+        setAgent(fallbackAgent);
+      }
     }
+    setLoading(false);
   }, []);
 
-  // For now, create a simple agent data structure
-  // In real implementation, this would fetch from API using the slug
-  const agent: AgentData = {
-    id: slug,
-    username: slug,
-    email: "agent@propertyla.com.my",
-    phoneNumber: "+601126368426",
-    fullName: slug.replace(/-/g, ' ').replace(/\b\w/g, (l: string) => l.toUpperCase()),
-    designation: "Real Estate Agent",
-    experienceYears: 5,
-    bio: "Professional real estate agent specializing in Malaysian properties.",
-    emailVerified: true,
-    createdAt: new Date().toISOString(),
-    updatedAt: new Date().toISOString(),
-  };
-  
-  // For now, create a simple agent data structure
+  if (loading) {
+    return (
+      <div className="container text-center py-5">
+        <div
+          className="spinner-border"
+          role="status"
+          style={{ color: "#003B5C" }}
+        >
+          <span className="visually-hidden">Loading...</span>
+        </div>
+        <p className="mt-3">Loading agent profile...</p>
+      </div>
+    );
+  }
 
   if (!agent) {
     return (
@@ -110,19 +131,21 @@ export default function PropertyAgentPage() {
             <div className="col-lg-12">
               <div className="tp-breadcrumb">
                 <nav>
-                  <Link 
+                  <Link
                     href="/"
-                    style={{ 
-                      position: "relative", 
+                    style={{
+                      position: "relative",
                       display: "inline-block",
                       textDecoration: "underline",
-                      color: "#003B5C"
+                      color: "#003B5C",
                     }}
                   >
                     Home
                   </Link>
                   {" / "}
-                  <span style={{ color: "#666" }}>{agent.fullName || agent.username}</span>
+                  <span style={{ color: "#666" }}>
+                    {agent.fullName || agent.username}
+                  </span>
                 </nav>
               </div>
             </div>
@@ -159,8 +182,8 @@ export default function PropertyAgentPage() {
                     </p>
                     <div className="tp-agent-profile-stats">
                       <div className="stat-item">
-                        <span className="stat-number">25</span>
-                        <span className="stat-label">Properties</span>
+                        {/* <span className="stat-number">25</span> */}
+                        <span className="stat-label">Property Consultant</span>
                       </div>
                       <div className="stat-item">
                         <span className="stat-number">
