@@ -2,6 +2,7 @@
 
 import { SocialLinksThree } from "@/components/UI/SocialLinks";
 import { CallThreeSvg, TeamEmailSvg } from "@/components/SVG";
+import UserSvg from "@/components/SVG/UserSvg";
 import Image from "next/image";
 import Link from "next/link";
 
@@ -24,13 +25,10 @@ interface UserContactCardProps {
 }
 
 export default function UserContactCard({ user }: UserContactCardProps) {
-  console.log("agent details passed ", user);
   // Use dynamic data if available, otherwise fallback to default
   const agentName = user?.username || "";
   const agentPhone = user?.phoneNumber || "";
   const agentEmail = user?.email || "";
-  const agentImage =
-    user?.profileImage || "/assets/img/team/team-details/user.png";
   const agentWhatsAppNumberLabel = user?.phoneNumber || "";
   const agentWhatsAppNumber = agentWhatsAppNumberLabel.replace(/\D/g, "");
 
@@ -79,8 +77,6 @@ export default function UserContactCard({ user }: UserContactCardProps) {
 
     const encodedData = btoa(JSON.stringify(userData));
     const finalUrl = `/property-agent/${cleanSlug}?data=${encodedData}`;
-    console.log("🔗 Generated agent URL:", finalUrl);
-    console.log("📦 User data being sent:", userData);
     return finalUrl;
   };
 
@@ -91,12 +87,30 @@ export default function UserContactCard({ user }: UserContactCardProps) {
           <div className="tp-team-details-info-top">
             <div className="tp-team-details-info-user d-flex align-items-center">
               <div className="tp-team-details-info-user-thumb">
-                <Image
-                  src={agentImage}
-                  alt={agentName}
-                  width={50}
-                  height={50}
-                />
+                {user?.profileImage ? (
+                  <Image
+                    src={user.profileImage}
+                    alt={agentName}
+                    width={50}
+                    height={50}
+                    style={{ borderRadius: "50%", objectFit: "cover" }}
+                  />
+                ) : (
+                  <div
+                    style={{
+                      width: 50,
+                      height: 50,
+                      borderRadius: "50%",
+                      backgroundColor: "#003B5C",
+                      display: "flex",
+                      alignItems: "center",
+                      justifyContent: "center",
+                      color: "#fff",
+                    }}
+                  >
+                    <UserSvg />
+                  </div>
+                )}
               </div>
               <div className="tp-team-details-info-user-content">
                 <Link

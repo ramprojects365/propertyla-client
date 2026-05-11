@@ -4,6 +4,7 @@ import React from "react";
 import Image from "next/image";
 import Link from "next/link";
 import { CallThreeSvg, TeamEmailSvg, MessageSvgTwo } from "@/components/SVG";
+import UserSvg from "@/components/SVG/UserSvg";
 
 // Define the agent interface to match API response
 interface AgentData {
@@ -30,16 +31,11 @@ const parseUserDataFromUrl = (): AgentData | null => {
   const urlParams = new URLSearchParams(window.location.search);
   const userDataParam = urlParams.get("data");
 
-  console.log("🔍 URL data param found:", userDataParam ? "YES" : "NO");
-  console.log("🔍 Full URL:", window.location.href);
-
   if (!userDataParam) return null;
 
   try {
     const decoded = atob(userDataParam);
-    console.log("🔍 Decoded data:", decoded);
     const userData = JSON.parse(decoded);
-    console.log("🔍 Parsed user data:", userData);
     return userData;
   } catch (error) {
     console.error("Error parsing user data from URL:", error);
@@ -57,10 +53,8 @@ export default function PropertyAgentPage() {
     const agentData = parseUserDataFromUrl();
 
     if (agentData) {
-      console.log("✅ Using parsed agent data from URL:", agentData);
       setAgent(agentData);
     } else {
-      console.log("⚠️ No URL data found, using fallback");
       // Fallback: create basic agent data from slug
       const pathParts = window.location.pathname.split("/");
       const slugFromPath = pathParts[pathParts.length - 1];
@@ -170,16 +164,33 @@ export default function PropertyAgentPage() {
               <div className="tp-agent-profile-card">
                 <div className="tp-agent-profile-header">
                   <div className="tp-agent-profile-image">
-                    <Image
-                      src={
-                        agent.profileImage ||
-                        "/assets/img/team/team-details/user.png"
-                      }
-                      alt={agent.fullName || agent.username}
-                      width={200}
-                      height={200}
-                      style={{ borderRadius: "50%", objectFit: "cover" }}
-                    />
+                    {agent.profileImage ? (
+                      <Image
+                        src={agent.profileImage}
+                        alt={agent.fullName || agent.username}
+                        width={200}
+                        height={200}
+                        style={{ borderRadius: "50%", objectFit: "cover" }}
+                      />
+                    ) : (
+                      <div
+                        style={{
+                          width: 200,
+                          height: 200,
+                          borderRadius: "50%",
+                          backgroundColor: "#f0f0f0",
+                          display: "flex",
+                          alignItems: "center",
+                          justifyContent: "center",
+                          color: "#003B5C",
+                          border: "3px solid #003B5C",
+                        }}
+                      >
+                        <div style={{ transform: "scale(6)" }}>
+                          <UserSvg />
+                        </div>
+                      </div>
+                    )}
                   </div>
                   <div className="tp-agent-profile-basic-info">
                     <h2 className="tp-agent-profile-name">
