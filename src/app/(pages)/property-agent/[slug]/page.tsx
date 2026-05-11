@@ -4,7 +4,6 @@ import React from "react";
 import Image from "next/image";
 import Link from "next/link";
 import { CallThreeSvg, TeamEmailSvg, MessageSvgTwo } from "@/components/SVG";
-import UserSvg from "@/components/SVG/UserSvg";
 
 // Define the agent interface to match API response
 interface AgentData {
@@ -164,33 +163,16 @@ export default function PropertyAgentPage() {
               <div className="tp-agent-profile-card">
                 <div className="tp-agent-profile-header">
                   <div className="tp-agent-profile-image">
-                    {agent.profileImage ? (
-                      <Image
-                        src={agent.profileImage}
-                        alt={agent.fullName || agent.username}
-                        width={200}
-                        height={200}
-                        style={{ borderRadius: "50%", objectFit: "cover" }}
-                      />
-                    ) : (
-                      <div
-                        style={{
-                          width: 200,
-                          height: 200,
-                          borderRadius: "50%",
-                          backgroundColor: "#f0f0f0",
-                          display: "flex",
-                          alignItems: "center",
-                          justifyContent: "center",
-                          color: "#003B5C",
-                          border: "3px solid #003B5C",
-                        }}
-                      >
-                        <div style={{ transform: "scale(6)" }}>
-                          <UserSvg />
-                        </div>
-                      </div>
-                    )}
+                    <Image
+                      src={
+                        agent.profileImage ||
+                        "/assets/img/team/team-details/user.png"
+                      }
+                      alt={agent.fullName || agent.username}
+                      width={200}
+                      height={200}
+                      style={{ borderRadius: "50%", objectFit: "cover" }}
+                    />
                   </div>
                   <div className="tp-agent-profile-basic-info">
                     <h2 className="tp-agent-profile-name">
