@@ -99,7 +99,7 @@ export default function AddPropertyPage() {
     mode: "onChange",
   });
 
-  const { handleSubmit, reset } = methods;
+  const { handleSubmit, reset, setValue } = methods;
   const searchParams = useSearchParams();
   const editPropertyId = searchParams.get("edit");
   const [isEditMode, setIsEditMode] = useState(false);
@@ -114,8 +114,10 @@ export default function AddPropertyPage() {
       const fetchProperty = async () => {
         try {
           const propertyData = await getPropertyById(editPropertyId);
+          console.log("📦 Raw API Response:", propertyData);
 
           // Map API data to form structure
+          // Note: API uses snake_case or different field names than the form
           const formData: Partial<PropertyFormData> = {
             // Basic Details
             listingType: propertyData.listingType || "",
@@ -131,6 +133,7 @@ export default function AddPropertyPage() {
             longitude: propertyData.longitude,
             streetName: propertyData.streetName || "",
             cityName: propertyData.cityName || "",
+            // API returns 'state', 'county', 'pincode' - map to form field names
             stateName: propertyData.state || "",
             countryName: propertyData.county || "",
             pinCode: propertyData.pincode || "",
@@ -138,24 +141,41 @@ export default function AddPropertyPage() {
 
             // Property Details
             price: String(propertyData.price || ""),
+            // API returns 'buildupArea' (lowercase 'u') - map to form 'builtUpArea'
             builtUpArea: String(propertyData.buildupArea || ""),
             furnishing: propertyData.furnishing || "",
+            // API returns 'bedrooms' - map to form 'bedRooms'
             bedRooms: String(propertyData.bedrooms || ""),
+            // API returns 'bathrooms' - map to form 'bathRooms'
             bathRooms: String(propertyData.bathrooms || ""),
             availability: propertyData.availability || "",
             negotiable: propertyData.negotiable ? "Yes" : "No",
-            floorLevel: propertyData.floorLevel || "",
+            floorLevel: String(propertyData.floorLevel || ""),
             propertyAge: getAgeRangeFromYear(propertyData.yearOfBuild),
 
             // Amenities - flatten grouped amenities
             amenities: flattenAmenities(propertyData.amenities),
           };
 
-          // Reset form with the fetched data
-          reset(formData as PropertyFormData);
+          console.log("📝 Form data being set:", formData);
+
+          // Use setValue for each field to ensure proper population
+          // This is more reliable than reset() for complex forms
+          Object.entries(formData).forEach(([key, value]) => {
+            if (value !== undefined && value !== null) {
+              setValue(key as keyof PropertyFormData, value, {
+                shouldValidate: false,
+                shouldDirty: false,
+                shouldTouch: false,
+              });
+            }
+          });
+
+          console.log("✅ Form values set via setValue");
 
           // Set images in the hidden input for UploadMedia component
           if (propertyData.images && Array.isArray(propertyData.images)) {
+            console.log("🖼️ Setting images:", propertyData.images);
             const hiddenInput = document.getElementById(
               "uploaded-images-input"
             ) as HTMLInputElement | null;
