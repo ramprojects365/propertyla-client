@@ -33,7 +33,7 @@ const parseUserDataFromUrl = (): AgentData | null => {
   if (!userDataParam) return null;
 
   try {
-    const decoded = atob(userDataParam);
+    const decoded = decodeURIComponent(atob(userDataParam));
     const userData = JSON.parse(decoded);
     return userData;
   } catch (error) {

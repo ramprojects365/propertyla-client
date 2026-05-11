@@ -76,7 +76,9 @@ export default function UserContactCard({ user }: UserContactCardProps) {
       updatedAt: user.updatedAt || new Date().toISOString(),
     };
 
-    const encodedData = btoa(JSON.stringify(userData));
+    // Encode with Unicode support using encodeURIComponent + btoa
+    const jsonString = JSON.stringify(userData);
+    const encodedData = btoa(encodeURIComponent(jsonString));
     const finalUrl = `/property-agent/${cleanSlug}?data=${encodedData}`;
     return finalUrl;
   };
