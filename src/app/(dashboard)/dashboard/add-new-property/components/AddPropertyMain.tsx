@@ -9,6 +9,9 @@ import PropertyDetails from "./PropertyDetails";
 import AmenitiesDetails from "./AmenitiesDetails";
 import UploadMedia from "./UploadMedia";
 import { toast } from "sonner";
+import { useEffect, useState } from "react";
+import { getPropertyById } from "@/services/propertyService";
+import { useSearchParams } from "next/navigation";
 
 // Amenity groupings — mirror the FE display groups for categorising on submit
 const AMENITY_GROUPS = {
@@ -64,17 +67,124 @@ function groupAmenities(flat: string[] = []) {
   return result;
 }
 
+/** Convert yearOfBuild to property age range for the form */
+const getAgeRangeFromYear = (yearOfBuild?: number): number => {
+  if (!yearOfBuild) return 1;
+  const currentYear = new Date().getFullYear();
+  const age = currentYear - yearOfBuild;
+
+  if (age <= 3) return 1; // 1 to 3 years
+  if (age <= 5) return 2; // 3 to 5 years
+  if (age <= 10) return 3; // 5 to 10 years
+  return 4; // More than 10 years
+};
+
+/** Flatten grouped amenities from API to a flat array for the form */
+const flattenAmenities = (amenities?: {
+  lifestyle?: string[];
+  facilities?: string[];
+  security?: string[];
+}): string[] => {
+  if (!amenities) return [];
+  return [
+    ...(amenities.lifestyle || []),
+    ...(amenities.facilities || []),
+    ...(amenities.security || []),
+  ];
+};
+
 export default function AddPropertyPage() {
   const methods = useForm<PropertyFormData>({
     resolver: yupResolver(propertySchema),
     mode: "onChange",
   });
 
-  const { handleSubmit } = methods;
+  const { handleSubmit, reset } = methods;
+  const searchParams = useSearchParams();
+  const editPropertyId = searchParams.get("edit");
+  const [isEditMode, setIsEditMode] = useState(false);
+  const [isLoading, setIsLoading] = useState(false);
+
+  // Fetch and populate property data when in edit mode
+  useEffect(() => {
+    if (editPropertyId) {
+      setIsEditMode(true);
+      setIsLoading(true);
+
+      const fetchProperty = async () => {
+        try {
+          const propertyData = await getPropertyById(editPropertyId);
+
+          // Map API data to form structure
+          const formData: Partial<PropertyFormData> = {
+            // Basic Details
+            listingType: propertyData.listingType || "",
+            propertyType: propertyData.propertyType || "",
+            propertyName: propertyData.propertyName || "",
+            tenure: propertyData.tenure || "",
+            title: propertyData.title || "",
+            description: propertyData.description || "",
+
+            // Location Details
+            location: propertyData.location || "",
+            latitude: propertyData.latitude,
+            longitude: propertyData.longitude,
+            streetName: propertyData.streetName || "",
+            cityName: propertyData.cityName || "",
+            stateName: propertyData.state || "",
+            countryName: propertyData.county || "",
+            pinCode: propertyData.pincode || "",
+            landmark: propertyData.landmark || "",
+
+            // Property Details
+            price: String(propertyData.price || ""),
+            builtUpArea: String(propertyData.buildupArea || ""),
+            furnishing: propertyData.furnishing || "",
+            bedRooms: String(propertyData.bedrooms || ""),
+            bathRooms: String(propertyData.bathrooms || ""),
+            availability: propertyData.availability || "",
+            negotiable: propertyData.negotiable ? "Yes" : "No",
+            floorLevel: propertyData.floorLevel || "",
+            propertyAge: getAgeRangeFromYear(propertyData.yearOfBuild),
+
+            // Amenities - flatten grouped amenities
+            amenities: flattenAmenities(propertyData.amenities),
+          };
+
+          // Reset form with the fetched data
+          reset(formData as PropertyFormData);
+
+          // Set images in the hidden input for UploadMedia component
+          if (propertyData.images && Array.isArray(propertyData.images)) {
+            const hiddenInput = document.getElementById(
+              "uploaded-images-input"
+            ) as HTMLInputElement | null;
+            if (hiddenInput) {
+              hiddenInput.value = JSON.stringify(propertyData.images);
+            }
+          }
+
+          toast.success("Property data loaded for editing");
+        } catch (error) {
+          console.error("Error fetching property:", error);
+          toast.error("Failed to load property data");
+        } finally {
+          setIsLoading(false);
+        }
+      };
+
+      fetchProperty();
+    }
+  }, [editPropertyId, reset]);
 
   const onSubmit: SubmitHandler<PropertyFormData> = (data) => {
     (async () => {
       try {
+        // Prevent submission while loading
+        if (isLoading) {
+          toast.error("Please wait while property data is loading...");
+          return;
+        }
         // UploadMedia already uploaded the files and stored their public URLs
         // in the hidden DOM input "#uploaded-images-input" — just read from it.
         let imageUrls: string[] = [];
@@ -179,9 +289,11 @@ export default function AddPropertyPage() {
         const authHeader = `Bearer ${rawToken ?? ""}`;
         const API_BASE2 =
           process.env.NEXT_PUBLIC_API_BASE ?? "http://159.223.92.101:3008";
-        const propertyUrl = `${API_BASE2}/api/properties`;
+        const propertyUrl = isEditMode && editPropertyId
+          ? `${API_BASE2}/api/properties/${editPropertyId}`
+          : `${API_BASE2}/api/properties`;
         const res = await fetch(propertyUrl, {
-          method: "POST",
+          method: isEditMode ? "PUT" : "POST",
           headers: {
             "Content-Type": "application/json",
             Authorization: authHeader,
@@ -194,20 +306,24 @@ export default function AddPropertyPage() {
             .json()
             .catch(() => ({ message: res.statusText }));
           console.error("API error:", err);
+          const action = isEditMode ? "update" : "add";
           toast.error(
-            "Failed to add property: " + (err.message || res.statusText),
+            `Failed to ${action} property: ` + (err.message || res.statusText),
             { duration: 5000 }
           );
           return;
         }
 
         const result = await res.json();
-        console.log("Property created:", result);
+        console.log(isEditMode ? "Property updated:" : "Property created:", result);
         methods.reset();
-        toast.success("Property added successfully.", { duration: 5000 });
+        const successMessage = isEditMode
+          ? "Property updated successfully."
+          : "Property added successfully.";
+        toast.success(successMessage, { duration: 5000 });
         if (typeof window !== "undefined") {
-          // Redirect to home page (replace so user can't go back to the form)
-          window.location.replace("/");
+          // Redirect to dashboard property list
+          window.location.replace("/dashboard/property");
         }
       } catch (error) {
         console.error("Network error:", error);
@@ -218,6 +334,14 @@ export default function AddPropertyPage() {
 
   return (
     <FormProvider {...methods}>
+      {isLoading && (
+        <div className="text-center py-4">
+          <div className="spinner-border" role="status">
+            <span className="visually-hidden">Loading...</span>
+          </div>
+          <p className="mt-2">Loading property data...</p>
+        </div>
+      )}
       <form
         className="tp-dashboard-add-property-form"
         onSubmit={handleSubmit(onSubmit)}
@@ -228,8 +352,8 @@ export default function AddPropertyPage() {
         <AmenitiesDetails />
         <UploadMedia />
         <div className="tp-dashboard-new-btn">
-          <button type="submit" className="add">
-            Add Property
+          <button type="submit" className="add" disabled={isLoading}>
+            {isEditMode ? "Update Property" : "Add Property"}
           </button>
         </div>
       </form>
