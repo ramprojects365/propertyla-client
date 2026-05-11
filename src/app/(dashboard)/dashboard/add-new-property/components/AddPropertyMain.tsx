@@ -113,11 +113,14 @@ export default function AddPropertyPage() {
 
       const fetchProperty = async () => {
         try {
-          const propertyData = await getPropertyById(editPropertyId);
-          console.log("📦 Raw API Response:", propertyData);
+          const response = await getPropertyById(editPropertyId);
+          console.log("📦 Raw API Response:", response);
+
+          // API returns { success: true, data: { ...property fields... } }
+          const propertyData = response.data || response;
+          console.log("📦 Extracted property data:", propertyData);
 
           // Map API data to form structure
-          // Note: API uses snake_case or different field names than the form
           const formData: Partial<PropertyFormData> = {
             // Basic Details
             listingType: propertyData.listingType || "",
@@ -133,7 +136,6 @@ export default function AddPropertyPage() {
             longitude: propertyData.longitude,
             streetName: propertyData.streetName || "",
             cityName: propertyData.cityName || "",
-            // API returns 'state', 'county', 'pincode' - map to form field names
             stateName: propertyData.state || "",
             countryName: propertyData.county || "",
             pinCode: propertyData.pincode || "",
@@ -141,19 +143,16 @@ export default function AddPropertyPage() {
 
             // Property Details
             price: String(propertyData.price || ""),
-            // API returns 'buildupArea' (lowercase 'u') - map to form 'builtUpArea'
             builtUpArea: String(propertyData.buildupArea || ""),
             furnishing: propertyData.furnishing || "",
-            // API returns 'bedrooms' - map to form 'bedRooms'
             bedRooms: String(propertyData.bedrooms || ""),
-            // API returns 'bathrooms' - map to form 'bathRooms'
             bathRooms: String(propertyData.bathrooms || ""),
             availability: propertyData.availability || "",
             negotiable: propertyData.negotiable ? "Yes" : "No",
             floorLevel: String(propertyData.floorLevel || ""),
             propertyAge: getAgeRangeFromYear(propertyData.yearOfBuild),
 
-            // Amenities - flatten grouped amenities
+            // Amenities
             amenities: flattenAmenities(propertyData.amenities),
           };
 
@@ -182,6 +181,10 @@ export default function AddPropertyPage() {
             if (hiddenInput) {
               hiddenInput.value = JSON.stringify(propertyData.images);
             }
+            // Also update UploadMedia component state via custom event
+            window.dispatchEvent(new CustomEvent('property-images-loaded', {
+              detail: { images: propertyData.images }
+            }));
           }
 
           toast.success("Property data loaded for editing");
