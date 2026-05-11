@@ -24,10 +24,11 @@ interface UserContactCardProps {
 }
 
 export default function UserContactCard({ user }: UserContactCardProps) {
+  console.log("agent details passed ", user);
   // Use dynamic data if available, otherwise fallback to default
   const agentName = user?.username || "";
   const agentPhone = user?.phoneNumber || "";
-  const agentEmail = user?.email || "agent@propertyla.com.my";
+  const agentEmail = user?.email || "";
   const agentImage =
     user?.profileImage || "/assets/img/team/team-details/user.png";
   const agentWhatsAppNumberLabel = user?.phoneNumber || "";
@@ -36,7 +37,7 @@ export default function UserContactCard({ user }: UserContactCardProps) {
   const handleWhatsAppClick = () => {
     const url = window.location.href;
     const message = encodeURIComponent(
-      `Hi, I'm interested in this property and would like to know more ${url}`,
+      `Hi, I am interested in this property and would like to know more ${url}`,
     );
     window.open(
       `https://wa.me/${agentPhone.replace(/\D/g, "")}?text=${message}`,
@@ -77,7 +78,10 @@ export default function UserContactCard({ user }: UserContactCardProps) {
     };
 
     const encodedData = btoa(JSON.stringify(userData));
-    return `/property-agent/${cleanSlug}?data=${encodedData}`;
+    const finalUrl = `/property-agent/${cleanSlug}?data=${encodedData}`;
+    console.log("🔗 Generated agent URL:", finalUrl);
+    console.log("📦 User data being sent:", userData);
+    return finalUrl;
   };
 
   return (

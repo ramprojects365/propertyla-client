@@ -30,10 +30,16 @@ const parseUserDataFromUrl = (): AgentData | null => {
   const urlParams = new URLSearchParams(window.location.search);
   const userDataParam = urlParams.get("data");
 
+  console.log("🔍 URL data param found:", userDataParam ? "YES" : "NO");
+  console.log("🔍 Full URL:", window.location.href);
+
   if (!userDataParam) return null;
 
   try {
-    const userData = JSON.parse(atob(userDataParam));
+    const decoded = atob(userDataParam);
+    console.log("🔍 Decoded data:", decoded);
+    const userData = JSON.parse(decoded);
+    console.log("🔍 Parsed user data:", userData);
     return userData;
   } catch (error) {
     console.error("Error parsing user data from URL:", error);
@@ -51,8 +57,10 @@ export default function PropertyAgentPage() {
     const agentData = parseUserDataFromUrl();
 
     if (agentData) {
+      console.log("✅ Using parsed agent data from URL:", agentData);
       setAgent(agentData);
     } else {
+      console.log("⚠️ No URL data found, using fallback");
       // Fallback: create basic agent data from slug
       const pathParts = window.location.pathname.split("/");
       const slugFromPath = pathParts[pathParts.length - 1];
