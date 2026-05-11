@@ -9,18 +9,38 @@ export default function UploadMedia() {
 
   // Load existing images from hidden input on mount (for edit mode)
   useEffect(() => {
-    const hiddenInput = document.getElementById("uploaded-images-input") as HTMLInputElement | null;
-    if (hiddenInput?.value) {
-      try {
-        const parsed = JSON.parse(hiddenInput.value);
-        if (Array.isArray(parsed) && parsed.length > 0) {
-          console.log("📸 UploadMedia loaded existing images:", parsed);
-          setUploadedUrls(parsed);
+    const loadImages = () => {
+      const hiddenInput = document.getElementById("uploaded-images-input") as HTMLInputElement | null;
+      if (hiddenInput?.value) {
+        try {
+          const parsed = JSON.parse(hiddenInput.value);
+          if (Array.isArray(parsed) && parsed.length > 0) {
+            console.log("📸 UploadMedia loaded existing images:", parsed);
+            setUploadedUrls(parsed);
+          }
+        } catch (e) {
+          console.error("Failed to parse existing images:", e);
         }
-      } catch (e) {
-        console.error("Failed to parse existing images:", e);
       }
-    }
+    };
+
+    // Load on mount
+    loadImages();
+
+    // Also listen for custom event when images are loaded dynamically
+    const handleImagesLoaded = (event: CustomEvent) => {
+      const images = event.detail?.images;
+      if (Array.isArray(images) && images.length > 0) {
+        console.log("📸 UploadMedia received images via event:", images);
+        setUploadedUrls(images);
+      }
+    };
+
+    window.addEventListener('property-images-loaded', handleImagesLoaded as EventListener);
+
+    return () => {
+      window.removeEventListener('property-images-loaded', handleImagesLoaded as EventListener);
+    };
   }, []);
 
   const handleUpload = async (e: React.ChangeEvent<HTMLInputElement>) => {
