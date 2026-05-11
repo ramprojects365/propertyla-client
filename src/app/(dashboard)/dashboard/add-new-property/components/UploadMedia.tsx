@@ -1,11 +1,27 @@
 "use client";
 
 import Image from "next/image";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 
 export default function UploadMedia() {
   const [uploadedUrls, setUploadedUrls] = useState<string[]>([]);
   const [isLoading, setIsLoading] = useState(false);
+
+  // Load existing images from hidden input on mount (for edit mode)
+  useEffect(() => {
+    const hiddenInput = document.getElementById("uploaded-images-input") as HTMLInputElement | null;
+    if (hiddenInput?.value) {
+      try {
+        const parsed = JSON.parse(hiddenInput.value);
+        if (Array.isArray(parsed) && parsed.length > 0) {
+          console.log("📸 UploadMedia loaded existing images:", parsed);
+          setUploadedUrls(parsed);
+        }
+      } catch (e) {
+        console.error("Failed to parse existing images:", e);
+      }
+    }
+  }, []);
 
   const handleUpload = async (e: React.ChangeEvent<HTMLInputElement>) => {
     const input = e.target;
