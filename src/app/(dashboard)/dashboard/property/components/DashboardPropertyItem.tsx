@@ -122,7 +122,10 @@ export default function DashboardPropertyItem({ property, onDelete }: IProps) {
           </div>
           <div className="tp-rent-action-btn d-flex">
             <div className="tp-action-btn mr-10">
-              <Link href="#" title="Edit Property">
+              <Link 
+                href={`/dashboard/add-new-property?edit=${property.id}`} 
+                title="Edit Property"
+              >
                 <PropertyEditSvg />
               </Link>
             </div>
