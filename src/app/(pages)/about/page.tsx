@@ -10,7 +10,7 @@ export const metadata: Metadata = {
   title:
     "About PropertyLA | Malaysia's Premier Real Estate Platform for Rentals & Sales",
   description:
-    "Discover PropertyLA, Malaysia's leading real estate platform for apartments, condos, landed houses, and bungalows. We serve Kuala Lumpur, Selangor, Penang, Johor, Cheras and nationwide. Your trusted alternative to iProperty and PropertyGuru for Malaysian property market.",
+    "Discover PropertyLA, Malaysia's leading real estate platform for apartments, condos, landed houses, and bungalows. We serve Kuala Lumpur, Selangor, Penang, Johor, Cheras and nationwide. Explore new-property-malaysia listings and investment-property-malaysia opportunities. Your trusted alternative to iProperty and PropertyGuru for Malaysian property market.",
 };
 
 export default function About() {
