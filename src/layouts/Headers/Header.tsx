@@ -28,7 +28,7 @@ export default function HeaderOne() {
     <div className="container container-large">
       <div className="row align-items-center">
         <div className="col-xl-2 col-lg-4 col-md-3 col-8">
-          <div className="tp-header-logo" style={{ paddingTop: "10px" }}>
+          <div className="tp-header-logo1" style={{ paddingTop: "10px" }}>
             <Link href="/">
               {sticky ? (
                 <>

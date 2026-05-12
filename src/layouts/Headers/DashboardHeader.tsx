@@ -19,7 +19,7 @@ export default function DashboardHeader() {
     <div className="container-fluid">
       <div className="row align-items-center">
         <div className="col-xl-2 col-lg-4 col-md-3 col-6">
-          <div className="tp-header-logo" style={{ paddingTop: "10px" }}>
+          <div className="tp-header-logo1" style={{ paddingTop: "10px" }}>
             <Link href="/">
               {sticky ? (
                 <>

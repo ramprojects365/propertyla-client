@@ -8,9 +8,6 @@ export default function BreadcrumbArea({ title }: { title: string }) {
         className="tp-breadcrumb__bg"
         style={{ backgroundImage: `url(${breadcrumbBg.src})` }}
       ></div>
-      <div className="tp-breadcrumb__text">
-        <h3 className="tp-breadcrumb__text-title">Property-La</h3>
-      </div>
       <div className="container">
         <div className="row align-items-center">
           <div className="col-sm-12">
