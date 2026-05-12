@@ -487,7 +487,13 @@ export default function AddPropertyPage() {
       )}
       <form
         className="tp-dashboard-add-property-form"
-        onSubmit={handleSubmit(onSubmit)}
+        onSubmit={handleSubmit(
+          onSubmit,
+          (errors) => {
+            console.log("❌ FORM VALIDATION ERRORS:", errors);
+            toast.error("Please fix required fields before updating.");
+          }
+        )}
       >
         <BasicDetails />
         <LocationDetails />
