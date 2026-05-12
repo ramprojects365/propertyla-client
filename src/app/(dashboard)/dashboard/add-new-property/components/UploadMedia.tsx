@@ -2,6 +2,7 @@
 
 import Image from "next/image";
 import { useState, useEffect } from "react";
+import { API_BASE_URL } from "@/config/constants";
 
 export default function UploadMedia() {
   const [uploadedUrls, setUploadedUrls] = useState<string[]>([]);
@@ -70,10 +71,7 @@ export default function UploadMedia() {
         const headers: Record<string, string> = {};
         if (token) headers.Authorization = `Bearer ${token}`;
 
-        const API_BASE =
-          process.env.NEXT_PUBLIC_API_BASE ?? "http://159.223.92.101:3008";
-
-        const res = await fetch(`${API_BASE}/api/images/upload-single`, {
+        const res = await fetch(`${API_BASE_URL}/images/upload-single`, {
           method: "POST",
           headers,
           body: formData,

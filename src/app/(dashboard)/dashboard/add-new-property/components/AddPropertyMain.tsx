@@ -67,7 +67,33 @@ function groupAmenities(flat: string[] = []) {
   }
   return result;
 }
+const getValue = (...values: any[]) => {
+  return values.find(
+    (value) => value !== undefined && value !== null && value !== ""
+  );
+};
 
+const normalizeImages = (propertyData: any): string[] => {
+  const rawImages = getValue(
+    propertyData.images,
+    propertyData.imageUrls,
+    propertyData.imageUrl,
+    propertyData.image,
+    []
+  );
+
+  const arr = Array.isArray(rawImages) ? rawImages : [rawImages];
+
+  return arr
+    .map((img) => {
+      if (typeof img === "string") return img;
+      if (img?.url) return img.url;
+      if (img?.imageUrl) return img.imageUrl;
+      if (img?.src) return img.src;
+      return "";
+    })
+    .filter(Boolean);
+};
 /** Convert yearOfBuild to property age range for the form */
 const getAgeRangeFromYear = (yearOfBuild?: number): number => {
   if (!yearOfBuild) return 1;
@@ -147,9 +173,9 @@ export default function AddPropertyPage() {
             // Basic Details
             listingType: propertyData.listingType || "",
             propertyType: propertyData.propertyType || "",
-            propertyName: propertyData.propertyName || "",
+            propertyName: propertyData.propertyName || propertyData.title || "",
             tenure: propertyData.tenure || "",
-            title: propertyData.title || "",
+            title: propertyData.title || propertyData.propertyName || "",
             description: propertyData.description || "",
 
             // Location Details
@@ -157,25 +183,31 @@ export default function AddPropertyPage() {
             latitude: propertyData.latitude,
             longitude: propertyData.longitude,
             streetName: propertyData.streetName || "",
-            cityName: propertyData.cityName || "",
-            stateName: propertyData.state || "",
-            countryName: propertyData.county || "",
-            pinCode: propertyData.pincode || "",
+            cityName: propertyData.cityName || propertyData.city || "",
+            stateName: propertyData.state || propertyData.stateName || "",
+            countryName: propertyData.county || propertyData.countryName || "",
+            pinCode: propertyData.pincode || propertyData.pinCode || "",
             landmark: propertyData.landmark || "",
 
             // Property Details
-            price: formatWholeNumberInput(propertyData.price),
-            builtUpArea: formatWholeNumberInput(propertyData.buildupArea),
+
+            price: formatWholeNumberInput(propertyData.price || propertyData.monthlyRent),
+            builtUpArea: formatWholeNumberInput(
+              propertyData.buildupArea || propertyData.builtUpArea || propertyData.livingArea
+            ),
+
             furnishing: propertyData.furnishing || "",
-            bedRooms: String(propertyData.bedrooms || ""),
-            bathRooms: String(propertyData.bathrooms || ""),
+            bedRooms: String(propertyData.bedrooms || propertyData.bedRooms || ""),
+            bathRooms: String(propertyData.bathrooms || propertyData.bathRooms || ""),
             availability: propertyData.availability || "",
             negotiable: propertyData.negotiable ? "Yes" : "No",
             floorLevel: String(propertyData.floorLevel || ""),
             propertyAge: getAgeRangeFromYear(propertyData.yearOfBuild),
 
             // Amenities
-            amenities: flattenAmenities(propertyData.amenities),
+            amenities: Array.isArray(propertyData.amenities)
+              ? propertyData.amenities
+              : flattenAmenities(propertyData.amenities),
           };
 
           console.log("📝 Form data being set:", formData);
@@ -195,18 +227,24 @@ export default function AddPropertyPage() {
           console.log("✅ Form values set via setValue");
 
           // Set images in the hidden input for UploadMedia component
-          if (propertyData.images && Array.isArray(propertyData.images)) {
-            console.log("🖼️ Setting images:", propertyData.images);
+          const normalizedImages = normalizeImages(propertyData);
+
+          if (normalizedImages.length > 0) {
+            console.log("🖼️ Setting images:", normalizedImages);
+
             const hiddenInput = document.getElementById(
               "uploaded-images-input"
             ) as HTMLInputElement | null;
+
             if (hiddenInput) {
-              hiddenInput.value = JSON.stringify(propertyData.images);
+              hiddenInput.value = JSON.stringify(normalizedImages);
             }
-            // Also update UploadMedia component state via custom event
-            window.dispatchEvent(new CustomEvent('property-images-loaded', {
-              detail: { images: propertyData.images }
-            }));
+
+            window.dispatchEvent(
+              new CustomEvent("property-images-loaded", {
+                detail: { images: normalizedImages },
+              })
+            );
           }
 
           toast.success("Property data loaded for editing");
@@ -244,13 +282,14 @@ export default function AddPropertyPage() {
                 imageUrls = parsed.filter(
                   (u): u is string => typeof u === "string",
                 );
-            } catch {}
+            } catch { }
           }
         }
 
         if (imageUrls.length < 5) {
-          toast.error("Please upload minimum 5 images for better results.");
-          return;
+          toast.warning("Add at least 5 images for better results.", {
+            duration: 4000,
+          });
         }
 
         // ---------------------------------------------------------------
