@@ -44,7 +44,69 @@ const AMENITY_GROUPS = {
     "Emergency Exit",
   ],
 };
+const normalizeListingType = (value: any): string => {
+  const v = String(value || "").trim().toLowerCase();
 
+  if (v.includes("rent")) return "rent";
+  if (v.includes("sale") || v.includes("sell")) return "sale";
+
+  return "";
+};
+
+const normalizeFurnishing = (value: any): string => {
+  const v = String(value || "").trim().toLowerCase();
+
+  if (v.includes("full")) return "Fully";
+  if (v.includes("partial")) return "Partially";
+  if (v.includes("unfurnished") || v.includes("un furnished")) return "Unfurnished";
+
+  return "Unfurnished";
+};
+
+const normalizeAvailability = (value: any): string => {
+  const v = String(value || "").trim().toLowerCase();
+
+  if (v.includes("immediate")) return "Immediate";
+  if (v.includes("next")) return "Next month";
+  if (v.includes("construction")) return "Under Construction";
+
+  return "Immediate";
+};
+
+const normalizeFloorLevel = (value: any): string => {
+  if (value === undefined || value === null || value === "") return "";
+
+  const raw = String(value).trim();
+
+  if (["1-5", "6-10", "11-15", "16-20", "21-25", "Above25"].includes(raw)) {
+    return raw;
+  }
+
+  const floor = parseInt(raw, 10);
+
+  if (!Number.isFinite(floor)) return "";
+  if (floor <= 5) return "1-5";
+  if (floor <= 10) return "6-10";
+  if (floor <= 15) return "11-15";
+  if (floor <= 20) return "16-20";
+  if (floor <= 25) return "21-25";
+
+  return "Above25";
+};
+
+const normalizeBedrooms = (value: any): string => {
+  const n = parseInt(String(value || ""), 10);
+  if (!Number.isFinite(n)) return "";
+  if (n >= 6) return "6";
+  return String(n);
+};
+
+const normalizeBathrooms = (value: any): string => {
+  const n = parseInt(String(value || ""), 10);
+  if (!Number.isFinite(n)) return "";
+  if (n >= 6) return "6";
+  return String(n);
+};
 /** Map a flat amenities array to the grouped structure the BE expects */
 function groupAmenities(flat: string[] = []) {
   const result: {
@@ -135,15 +197,14 @@ export default function AddPropertyPage() {
   const buildLocationFallback = (propertyData: any): string => {
     return [
       propertyData.streetName,
-      propertyData.cityName,
-      propertyData.state,
-      propertyData.county,
-      propertyData.pincode,
+      propertyData.cityName || propertyData.city,
+      propertyData.state || propertyData.stateName,
+      propertyData.county || propertyData.countryName,
+      propertyData.pincode || propertyData.pinCode,
     ]
       .filter((part) => typeof part === "string" && part.trim().length > 0)
       .join(", ");
   };
-
   const formatWholeNumberInput = (value: unknown): string => {
     if (value === undefined || value === null || value === "") return "";
 
@@ -170,15 +231,13 @@ export default function AddPropertyPage() {
 
           // Map API data to form structure
           const formData: Partial<PropertyFormData> = {
-            // Basic Details
-            listingType: propertyData.listingType || "",
+            listingType: normalizeListingType(propertyData.listingType),
             propertyType: propertyData.propertyType || "",
             propertyName: propertyData.propertyName || propertyData.title || "",
             tenure: propertyData.tenure || "",
             title: propertyData.title || propertyData.propertyName || "",
             description: propertyData.description || "",
 
-            // Location Details
             location: propertyData.location || buildLocationFallback(propertyData),
             latitude: propertyData.latitude,
             longitude: propertyData.longitude,
@@ -189,27 +248,23 @@ export default function AddPropertyPage() {
             pinCode: propertyData.pincode || propertyData.pinCode || "",
             landmark: propertyData.landmark || "",
 
-            // Property Details
-
             price: formatWholeNumberInput(propertyData.price || propertyData.monthlyRent),
             builtUpArea: formatWholeNumberInput(
               propertyData.buildupArea || propertyData.builtUpArea || propertyData.livingArea
             ),
 
-            furnishing: propertyData.furnishing || "",
-            bedRooms: String(propertyData.bedrooms || propertyData.bedRooms || ""),
-            bathRooms: String(propertyData.bathrooms || propertyData.bathRooms || ""),
-            availability: propertyData.availability || "",
+            furnishing: normalizeFurnishing(propertyData.furnishing),
+            bedRooms: normalizeBedrooms(propertyData.bedrooms || propertyData.bedRooms),
+            bathRooms: normalizeBathrooms(propertyData.bathrooms || propertyData.bathRooms),
+            availability: normalizeAvailability(propertyData.availability),
             negotiable: propertyData.negotiable ? "Yes" : "No",
-            floorLevel: String(propertyData.floorLevel || ""),
+            floorLevel: normalizeFloorLevel(propertyData.floorLevel),
             propertyAge: getAgeRangeFromYear(propertyData.yearOfBuild),
 
-            // Amenities
             amenities: Array.isArray(propertyData.amenities)
               ? propertyData.amenities
               : flattenAmenities(propertyData.amenities),
           };
-
           console.log("📝 Form data being set:", formData);
 
           // Use setValue for each field to ensure proper population
@@ -279,9 +334,15 @@ export default function AddPropertyPage() {
             try {
               const parsed = JSON.parse(hiddenEl.value);
               if (Array.isArray(parsed))
-                imageUrls = parsed.filter(
-                  (u): u is string => typeof u === "string",
-                );
+                imageUrls = parsed
+                  .map((img) => {
+                    if (typeof img === "string") return img;
+                    if (img?.url) return img.url;
+                    if (img?.imageUrl) return img.imageUrl;
+                    if (img?.src) return img.src;
+                    return "";
+                  })
+                  .filter(Boolean);
             } catch { }
           }
         }
