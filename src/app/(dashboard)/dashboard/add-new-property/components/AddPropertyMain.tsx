@@ -118,6 +118,15 @@ export default function AddPropertyPage() {
       .join(", ");
   };
 
+  const formatWholeNumberInput = (value: unknown): string => {
+    if (value === undefined || value === null || value === "") return "";
+
+    const numericValue = Number(value);
+    if (!Number.isFinite(numericValue)) return "";
+
+    return String(Math.trunc(numericValue));
+  };
+
   // Fetch and populate property data when in edit mode
   useEffect(() => {
     if (editPropertyId) {
@@ -155,8 +164,8 @@ export default function AddPropertyPage() {
             landmark: propertyData.landmark || "",
 
             // Property Details
-            price: String(propertyData.price || ""),
-            builtUpArea: String(propertyData.buildupArea || ""),
+            price: formatWholeNumberInput(propertyData.price),
+            builtUpArea: formatWholeNumberInput(propertyData.buildupArea),
             furnishing: propertyData.furnishing || "",
             bedRooms: String(propertyData.bedrooms || ""),
             bathRooms: String(propertyData.bathrooms || ""),
