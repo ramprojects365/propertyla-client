@@ -5,7 +5,7 @@ interface IFooterLinkDT {
 
 export const quickLinks: IFooterLinkDT[] = [
   { label: "About", href: "/about" },
-  { label: "Blog", href: "/blog" },
+  { label: "Blog", href: "/blog/costly-mistakes-malaysians-make-when-buying-property" },
   { label: "Pricing", href: "/pricing" },
   { label: "Our FAQ", href: "/faq" },
 ];

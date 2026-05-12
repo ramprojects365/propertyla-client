@@ -412,6 +412,17 @@ body.scrolled .Profile-btn-span {
   }
 }
 @media only screen and (min-width: 1200px) and (max-width: 1399px) {
+  .logo-header {
+    width: 35px;
+    height: 35px;
+    margin-bottom: 12px;
+  }
+  .logo-icon-white {
+    font-size: 22px;
+    font-weight: 400;
+    color: #fff;
+    padding-left: 3px;
+  }
 }
 @media only screen and (min-width: 1200px) and (max-width: 1399px),
   only screen and (min-width: 992px) and (max-width: 1199px),
