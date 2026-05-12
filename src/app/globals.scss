@@ -9,6 +9,14 @@
   font-weight: 400;
   color: #fff;
   padding-left: 3px;
+  text-shadow: rgba(0, 0, 0, 0.8) 2px 2px 4px;
+}
+
+/* Hide pagination dots on mobile view */
+@media (max-width: 767px) {
+  .tp-rent-slider-dot {
+    display: none !important;
+  }
 }
 .logo-icon-black {
   font-size: 24px;
@@ -422,6 +430,7 @@ body.scrolled .Profile-btn-span {
     font-weight: 400;
     color: #fff;
     padding-left: 3px;
+    text-shadow: rgba(0, 0, 0, 0.8) 2px 2px 4px;
   }
 }
 @media only screen and (min-width: 1200px) and (max-width: 1399px),
@@ -450,6 +459,7 @@ body.scrolled .Profile-btn-span {
   .logo-icon-white {
     font-size: 18px;
     padding-left: 3px;
+    text-shadow: rgba(0, 0, 0, 0.8) 2px 2px 4px;
   }
   .logo-icon-black {
     font-size: 18px;
