@@ -8,7 +8,7 @@ export const metadata: Metadata = {
   title:
     "Foreign Investors Still Interested in Malaysian Property (2026) | PropertyLA Malaysia",
   description:
-    "Discover why foreign investors continue to choose Malaysia property in 2026. Learn about market trends, MM2H program, investment hotspots, and growth opportunities.",
+    "Discover why foreign investors continue to choose Malaysia property in 2026. Learn about market trends, MM2H program, investment hotspots, and growth opportunities. Browse investment-property-malaysia, property-for-sale/klang-valley, and new-property-malaysia listings.",
   keywords:
     "foreign investors Malaysia, Malaysia property investment 2026, MM2H program, Kuala Lumpur property, Penang real estate, foreign buyer Malaysia",
   openGraph: {
