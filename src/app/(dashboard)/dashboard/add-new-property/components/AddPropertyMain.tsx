@@ -12,6 +12,7 @@ import { toast } from "sonner";
 import { useEffect, useState } from "react";
 import { getPropertyById } from "@/services/propertyService";
 import { useSearchParams } from "next/navigation";
+import { API_BASE_URL } from "@/config/constants";
 
 // Amenity groupings — mirror the FE display groups for categorising on submit
 const AMENITY_GROUPS = {
@@ -105,6 +106,18 @@ export default function AddPropertyPage() {
   const [isEditMode, setIsEditMode] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
 
+  const buildLocationFallback = (propertyData: any): string => {
+    return [
+      propertyData.streetName,
+      propertyData.cityName,
+      propertyData.state,
+      propertyData.county,
+      propertyData.pincode,
+    ]
+      .filter((part) => typeof part === "string" && part.trim().length > 0)
+      .join(", ");
+  };
+
   // Fetch and populate property data when in edit mode
   useEffect(() => {
     if (editPropertyId) {
@@ -131,7 +144,7 @@ export default function AddPropertyPage() {
             description: propertyData.description || "",
 
             // Location Details
-            location: propertyData.location || "",
+            location: propertyData.location || buildLocationFallback(propertyData),
             latitude: propertyData.latitude,
             longitude: propertyData.longitude,
             streetName: propertyData.streetName || "",
@@ -198,7 +211,7 @@ export default function AddPropertyPage() {
 
       fetchProperty();
     }
-  }, [editPropertyId, reset]);
+  }, [editPropertyId, setValue]);
 
   const onSubmit: SubmitHandler<PropertyFormData> = (data) => {
     (async () => {
@@ -310,11 +323,9 @@ export default function AddPropertyPage() {
 
         console.log(localStorage.getItem("authToken"));
         const authHeader = `Bearer ${rawToken ?? ""}`;
-        const API_BASE2 =
-          process.env.NEXT_PUBLIC_API_BASE ?? "http://159.223.92.101:3008";
         const propertyUrl = isEditMode && editPropertyId
-          ? `${API_BASE2}/api/properties/${editPropertyId}`
-          : `${API_BASE2}/api/properties`;
+          ? `${API_BASE_URL}/properties/${editPropertyId}`
+          : `${API_BASE_URL}/properties`;
         const res = await fetch(propertyUrl, {
           method: isEditMode ? "PUT" : "POST",
           headers: {
