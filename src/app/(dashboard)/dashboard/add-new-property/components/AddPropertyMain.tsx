@@ -239,8 +239,8 @@ export default function AddPropertyPage() {
             description: propertyData.description || "",
 
             location: propertyData.location || buildLocationFallback(propertyData),
-            latitude: propertyData.latitude,
-            longitude: propertyData.longitude,
+            latitude: propertyData.latitude ?? null,
+            longitude: propertyData.longitude ?? null,
             streetName: propertyData.streetName || "",
             cityName: propertyData.cityName || propertyData.city || "",
             stateName: propertyData.state || propertyData.stateName || "",
@@ -391,8 +391,15 @@ export default function AddPropertyPage() {
           title: data.title,
           description: data.description,
           location: data.location,
-          latitude: data.latitude,
-          longitude: data.longitude,
+          latitude:
+            data.latitude === undefined || data.latitude === null || Number.isNaN(data.latitude)
+              ? null
+              : data.latitude,
+
+          longitude:
+            data.longitude === undefined || data.longitude === null || Number.isNaN(data.longitude)
+              ? null
+              : data.longitude,
           streetName: data.streetName,
           cityName: data.cityName,
           landmark: data.landmark,
