@@ -45,12 +45,28 @@ export default function BannerSlider() {
           z-index: 0;
         }
 
+        /* Darken photos slightly so white hero text stays readable */
+        .banner-slider::after {
+          content: "";
+          position: absolute;
+          inset: 0;
+          z-index: 1;
+          pointer-events: none;
+          background: linear-gradient(
+            to bottom,
+            rgba(0, 0, 0, 0.45) 0%,
+            rgba(0, 0, 0, 0.28) 45%,
+            rgba(0, 0, 0, 0.38) 100%
+          );
+        }
+
         .banner-slide {
           position: absolute;
           top: 0;
           left: 0;
           width: 100%;
           height: 100%;
+          z-index: 0;
           opacity: 0;
           transition: opacity 1s ease-in-out;
         }
