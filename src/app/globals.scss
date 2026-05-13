@@ -513,3 +513,11 @@ body.scrolled .Profile-btn-span {
     margin-left: -15px;
   }
 }
+
+/* Classic vertical scrollbar (typical on Windows) narrows the layout vs macOS overlay scrollbars.
+   Full-width rows + negative margins (theme sliders) can then exceed the client width by a few
+   pixels and cause horizontal scroll / “wiggle”. Clip document-level overflow without affecting
+   vertical scroll. */
+html {
+  overflow-x: clip;
+}
