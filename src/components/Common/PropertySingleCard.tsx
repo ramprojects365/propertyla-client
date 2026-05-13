@@ -127,7 +127,7 @@ export default function PropertySingleCard({ item }: IFeatureListProps) {
             </Link>
           </div>
           <div className="tp-rent-price">
-            <span>{formatPrice(item.price, true)}</span>
+            <span>{formatPrice(item.price, false)}</span>
           </div>
         </div>
       </div>

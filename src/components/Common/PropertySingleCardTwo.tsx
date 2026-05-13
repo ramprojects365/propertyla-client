@@ -94,7 +94,7 @@ export default function PropertySingleCardTwo({ item }: propertyProps) {
               </Link>
             </div>
             <div className="tp-rent-price">
-              <span>{formatPrice(item.price, true)}</span>
+              <span>{formatPrice(item.price, false)}</span>
             </div>
           </div>
         </div>
