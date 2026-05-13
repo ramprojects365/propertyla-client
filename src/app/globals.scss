@@ -444,6 +444,9 @@ body.scrolled .Profile-btn-span {
   .d-xxl-block {
     display: block !important;
   }
+  .tp-header-1-menu nav > ul > li > a {
+    padding: 4px 9px;
+  }
 }
 @media only screen and (min-width: 1200px) and (max-width: 1399px),
   only screen and (min-width: 992px) and (max-width: 1199px),
