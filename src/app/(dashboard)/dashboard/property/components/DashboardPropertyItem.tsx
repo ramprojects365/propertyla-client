@@ -6,6 +6,7 @@ import {
   LivingSvg,
   PropertyEditSvg,
 } from "@/components/SVG";
+import { formatPrice } from "@/components/Utils/formatPrice";
 import { deleteProperty } from "@/services/propertyService";
 import { IFeaturedPropertyDT } from "@/types/property-d-t";
 import Image from "next/image";
@@ -142,7 +143,9 @@ export default function DashboardPropertyItem({ property, onDelete }: IProps) {
             </div>
           </div>
           <div className="tp-rent-price">
-            <span>{`$${property.price}.000`}</span>
+            <span>
+              {formatPrice(Number(property.price) || 0, false)}
+            </span>
           </div>
         </div>
       </div>

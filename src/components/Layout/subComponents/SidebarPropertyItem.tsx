@@ -148,7 +148,7 @@ export default function SidebarPropertyItem({
                       <h5 className="tp-rent-user-content-title">
                         <Link href={detailsHref}>{latest.title}</Link>
                       </h5>
-                      <span>{formatPrice(latest.price, true)}</span>
+                      <span>{formatPrice(latest.price, false)}</span>
                     </div>
                   </div>
                 </div>

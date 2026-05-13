@@ -1,5 +1,6 @@
 "use client";
 import { useEffect, useState } from "react";
+import { formatPrice } from "@/components/Utils/formatPrice";
 import { IRecentlyViewedItem } from "@/types/custom-interface";
 import Image from "next/image";
 import Link from "next/link";
@@ -47,7 +48,8 @@ export default function RecentlyViewedProperties() {
         const transformedProperties: IRecentlyViewedItem[] =
           limitedProperties.map((property) => {
             const title = property.propertyName || property.title || "Property";
-            const price = property.monthlyRent || property.price || 0;
+            const priceNum =
+              Number(property.monthlyRent || property.price || 0) || 0;
             const image =
               property.imageUrl ||
               property.images?.[0] ||
@@ -62,11 +64,14 @@ export default function RecentlyViewedProperties() {
               ? `/property-details/${property.id}?from=${createCleanFromUrl(fromUrl)}`
               : `/property-details/${property.id}`;
 
+            const rentSuffix =
+              property.listingType === "rent" ? "/mo" : "";
+
             return {
               image,
               link,
               title,
-              price: `RM${price.toLocaleString()}/mo`,
+              price: `${formatPrice(priceNum, false)}${rentSuffix}`,
             };
           });
 

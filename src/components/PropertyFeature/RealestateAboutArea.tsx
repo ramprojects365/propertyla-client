@@ -68,7 +68,7 @@ export default function RealestateAboutArea() {
                       </Link>
                     </div>
                     <div className="tp-rent-price">
-                      <span>{formatPrice(8500, true)}</span>
+                      <span>{formatPrice(8500, false)}</span>
                     </div>
                   </div>
                 </div>
