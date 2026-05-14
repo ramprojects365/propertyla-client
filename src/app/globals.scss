@@ -11,13 +11,13 @@
   padding-left: 3px;
   text-shadow: rgba(0, 0, 0, 0.8) 2px 2px 4px;
 }
-
-/* Hide pagination dots on mobile view */
-@media (max-width: 767px) {
-  .tp-rent-slider-dot {
-    display: none !important;
-  }
+.tp-rent-btn .tp-btn {
+  padding: 13px 24px;
+  color: var(--tp-theme-primary);
+  background-color: var(--tp-theme-secondary);
+  border: 1px solid #003b5c;
 }
+
 .logo-icon-black {
   font-size: 24px;
   font-weight: 400;
@@ -516,7 +516,12 @@ body.scrolled .Profile-btn-span {
     margin-left: -15px;
   }
 }
-
+/* Hide pagination dots on mobile view */
+@media (max-width: 767px) {
+  .tp-rent-slider-dot {
+    display: none !important;
+  }
+}
 /* Classic vertical scrollbar (typical on Windows) narrows the layout vs macOS overlay scrollbars.
    Full-width rows + negative margins (theme sliders) can then exceed the client width by a few
    pixels and cause horizontal scroll / “wiggle”. Clip document-level overflow without affecting

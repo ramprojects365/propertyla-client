@@ -78,8 +78,8 @@ export default function HeaderOne() {
               }}
             >
               <span className="btn-wrap">
-                <b className="text-1">Post Property</b>
-                <b className="text-2">Post Property</b>
+                <b className="text-1">Post Property FREE</b>
+                <b className="text-2">Post Property FREE</b>
               </span>
             </button>
           </div>
