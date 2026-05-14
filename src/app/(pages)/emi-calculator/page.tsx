@@ -1,4 +1,5 @@
 import HomeLoanCalculator from "@/components/Tools/HomeLoanCalculator";
+import BreadcrumbArea from "@/components/Breadcrumb/BreadcrumbArea";
 import { Metadata } from "next";
 
 export const metadata: Metadata = {
@@ -8,5 +9,10 @@ export const metadata: Metadata = {
 };
 
 export default function EmiCalculatorPage() {
-  return <HomeLoanCalculator />;
+  return (
+    <>
+      <BreadcrumbArea title="EMI Calculator" showBackground={false} />
+      <HomeLoanCalculator />
+    </>
+  );
 }

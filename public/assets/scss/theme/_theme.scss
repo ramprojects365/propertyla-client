@@ -105,8 +105,8 @@
 	typography css start
 ---------------------------------*/
 body {
-  font-size: 14px;
-  line-height: 24px;
+  font-size: 16px;
+  line-height: 28px;
   font-weight: normal;
   color: var(--tp-text-body);
   font-family: var(--tp-ff-body);
@@ -147,11 +147,11 @@ h4 {
 }
 
 h5 {
-  font-size: 14px;
+  font-size: 18px;
 }
 
 h6 {
-  font-size: 14px;
+  font-size: 16px;
 }
 
 ul {
@@ -161,9 +161,9 @@ ul {
 
 p {
   font-family: var(--tp-ff-p);
-  font-size: 14px;
+  font-size: 16px;
   font-weight: 400;
-  line-height: 30px;
+  line-height: 28px;
   margin-bottom: 0px;
   color: var(--tp-text-body);
 }

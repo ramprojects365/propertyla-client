@@ -1,7 +1,7 @@
 import { Metadata } from "next";
 import Image from "next/image";
 import Link from "next/link";
-import Breadcrumb from "@/components/Breadcrumb/Breadcrumb";
+import BreadcrumbArea from "@/components/Breadcrumb/BreadcrumbArea";
 // Using direct paths for public directory images
 
 export const metadata: Metadata = {
@@ -23,27 +23,8 @@ export default function StampDutyBlog() {
   return (
     <>
       {/* Breadcrumb Area Start */}
-      <section
-        className="tp-breadcrumb-area pt-25 pb-10"
-        style={{ backgroundColor: "#f8f9ff" }}
-      >
-        <div className="container">
-          <div className="row">
-            <div className="col-lg-12">
-              <div className="tp-breadcrumb">
-                <Breadcrumb
-                  items={[
-                    { label: "Home", href: "/" },
-                    { label: "Stamp Duty in Malaysia Property" }
-                  ]}
-                />
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      {/* Blog Details Area Start */}
+      <BreadcrumbArea title="Stamp Duty in Malaysia Property" />
+      {/* Breadcrumb Area End */}
       <section className="tp-blog-details-area pt-40 pb-40">
         <div className="container">
           <div className="row">

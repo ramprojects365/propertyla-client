@@ -110,7 +110,7 @@ export default function PropertyHome() {
   }, [localImagePool]);
 
   return (
-    <section className="tp-rent-area p-relative pt-80 pb-60">
+    <section className="tp-rent-area p-relative pt-80 pb-10">
       <div className="container">
         <div className="row">
           <div className="col-lg-12">
@@ -126,7 +126,7 @@ export default function PropertyHome() {
           <div className="tp-rent-slider">
             <div className="tp-rent-slider-active pb-rent-slider swiper">
               <div
-                className="pb-110 wow fadeInUp"
+                className="pb-60 wow fadeInUp"
                 data-wow-duration="1s"
                 data-wow-delay=".7s"
               >

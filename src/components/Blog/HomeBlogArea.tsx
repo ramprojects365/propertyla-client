@@ -5,7 +5,6 @@ export default function HomeBlogArea({ wrapClass }: { wrapClass?: string }) {
   return (
     <section
       className={`pt-50 pb-50 ${wrapClass ? wrapClass : "tp-blog-area"}`}
-      style={{ backgroundColor: "#F0F4FD" }}
     >
       <div className="container">
         <div className="row">

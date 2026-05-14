@@ -5,7 +5,7 @@ import Link from "next/link";
 
 export default function HomePropertiesByCity() {
   return (
-    <section className="tp-explore-area pb-100">
+    <section className="tp-explore-area pb-100" style={{ paddingTop: "50px" }}>
       <div className="container">
         <div className="row">
           <div className="col-lg-12">
