@@ -11,6 +11,8 @@ export const quickLinks: IFooterLinkDT[] = [
 ];
 
 export const serviceLinks: IFooterLinkDT[] = [
+  { label: "EMI Calculator", href: "/emi-calculator" },
+  { label: "Interior Design", href: "/interior-design" },
   { label: "Terms & Conditions", href: "#" },
   { label: "Contact", href: "/contact" },
 ];
