@@ -55,6 +55,11 @@ const Sidebar = () => {
         icon: <IdentityDockSvg />,
       },
       {
+        href: "/dashboard/update-password",
+        label: "Update Password",
+        icon: <IdentityDockSvg />,
+      },
+      {
         href: "/sign-in",
         label: "Logout",
         icon: <LogoutSvg />,

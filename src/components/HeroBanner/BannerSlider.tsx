@@ -5,8 +5,6 @@ const bannerImages = [
   "/assets/img/banner/bg-1.jpg",
   "/assets/img/banner/bg-2.jpg",
   "/assets/img/banner/bg-3.jpg",
-  "/assets/img/banner/bg-4.jpg",
-  "/assets/img/banner/bg-5.jpg",
 ];
 
 export default function BannerSlider() {
@@ -45,7 +43,7 @@ export default function BannerSlider() {
           z-index: 0;
         }
 
-        /* Darken photos slightly so white hero text stays readable */
+        /* Darken photos more so white hero text stays readable */
         .banner-slider::after {
           content: "";
           position: absolute;
@@ -54,9 +52,9 @@ export default function BannerSlider() {
           pointer-events: none;
           background: linear-gradient(
             to bottom,
-            rgba(0, 0, 0, 0.45) 0%,
-            rgba(0, 0, 0, 0.28) 45%,
-            rgba(0, 0, 0, 0.38) 100%
+            rgba(0, 0, 0, 0.65) 0%,
+            rgba(0, 0, 0, 0.55) 45%,
+            rgba(0, 0, 0, 0.65) 100%
           );
         }
 

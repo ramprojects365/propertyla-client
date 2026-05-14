@@ -1,5 +1,5 @@
 import errorThumb from "../../../../public/assets/img/others/error-thumb.png";
-import BreadcrumbTwo from "@/components/Breadcrumb/BreadcrumbTwo";
+import BreadcrumbArea from "@/components/Breadcrumb/BreadcrumbArea";
 import { Metadata } from "next";
 import Image from "next/image";
 import Link from "next/link";
@@ -13,7 +13,7 @@ export default function Error() {
   return (
     <>
       {/* breadcrumb area */}
-      <BreadcrumbTwo title="Error page" subTitle="Error" />
+      <BreadcrumbArea title="Error page" />
       {/* breadcrumb area end */}
 
       {/* error area start */}

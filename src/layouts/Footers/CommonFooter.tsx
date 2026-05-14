@@ -1,5 +1,9 @@
 import React from "react";
-import { quickLinks, serviceLinks } from "@/data/footerLinks";
+import {
+  quickLinks,
+  locationLinks,
+  propertyTypeLinks,
+} from "@/data/footerLinks";
 import FooterContact from "./subComponents/FooterContact";
 import FooterColumn from "./subComponents/FooterColumn";
 import FooterNewsletter from "./subComponents/FooterNewsletter";
@@ -14,9 +18,15 @@ export default function CommonFooter({ className = "pt-50" }) {
         <div className="tp-footer-widget-border">
           <div className="row">
             <FooterContact />
-            <FooterColumn title="Quick Link" links={quickLinks} />
-            <FooterColumn footerCol={3} title="Services" links={serviceLinks} />
-            <FooterNewsletter />
+            <div className="col-xl-3 col-lg-4 col-md-6 col-sm-6 col-12">
+              <FooterColumn title="Quick Link" links={quickLinks} />
+            </div>
+            <div className="col-xl-3 col-lg-4 col-md-6 col-sm-6 col-12">
+              <FooterColumn title="Locations" links={locationLinks} />
+            </div>
+            <div className="col-xl-3 col-lg-4 col-md-6 col-sm-6 col-12">
+              <FooterColumn title="Property Types" links={propertyTypeLinks} />
+            </div>
           </div>
         </div>
         <FooterCopyright />

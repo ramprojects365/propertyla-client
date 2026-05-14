@@ -1,5 +1,6 @@
 "use client";
 import React, { useState } from "react";
+import Link from "next/link";
 import HeroBannerTabContent from "./subComponents/HeroBannerTab";
 //import BannerFromFilter from "../Form/BannerFromFilter";
 //import SearchAutocomplete from "./subComponents/SearchAutocomplete";
@@ -18,7 +19,7 @@ export default function HeroBannerOne() {
       <section
         className="tp-hero-ptb tp-hero-hight pt-325 p-relative"
         style={{
-          padding: "154px 0 258px",
+          padding: "100px 0 200px",
           overflow: "hidden",
         }}
       >
@@ -28,6 +29,30 @@ export default function HeroBannerOne() {
             <div className="col-lg-2"></div>
             <div className="col-lg-8">
               <div className="tp-hero-content" style={{ marginTop: "15%" }}>
+                {/* Welcome Text Section */}
+                <div className="text-center mb-4">
+                  <h1
+                    style={{
+                      fontSize: "42px",
+                      fontWeight: 700,
+                      color: "#fff",
+                      marginBottom: "15px",
+                      textShadow: "2px 2px 8px rgba(0, 0, 0, 0.8)",
+                    }}
+                  >
+                    Find Properties for Sale & Rent in Malaysia
+                  </h1>
+                  <p
+                    style={{
+                      fontSize: "18px",
+                      color: "#fff",
+                      marginBottom: "30px",
+                      textShadow: "2px 2px 6px rgba(0, 0, 0, 0.8)",
+                    }}
+                  >
+                    Search houses, condos, apartments, and land easily
+                  </p>
+                </div>
                 <div
                   className="tp-hero-tab p-relative wow fadeInUp"
                   data-wow-duration="1s"
@@ -86,6 +111,38 @@ export default function HeroBannerOne() {
                   >
                     {/* <BannerFromFilter /> */}
                   </section>
+                </div>
+                {/* CTA Button */}
+                <div className="text-center mt-4">
+                  <Link
+                    href="/search"
+                    style={{
+                      display: "inline-block",
+                      padding: "14px 32px",
+                      backgroundColor: "#003B5C",
+                      color: "#fff",
+                      borderRadius: "8px",
+                      fontSize: "16px",
+                      fontWeight: 600,
+                      textDecoration: "none",
+                      transition: "all 0.3s ease",
+                      boxShadow: "0 4px 15px rgba(0, 59, 92, 0.3)",
+                    }}
+                    onMouseEnter={(e: React.MouseEvent<HTMLAnchorElement>) => {
+                      e.currentTarget.style.backgroundColor = "#0056b3";
+                      e.currentTarget.style.transform = "translateY(-2px)";
+                      e.currentTarget.style.boxShadow =
+                        "0 6px 20px rgba(0, 59, 92, 0.4)";
+                    }}
+                    onMouseLeave={(e: React.MouseEvent<HTMLAnchorElement>) => {
+                      e.currentTarget.style.backgroundColor = "#003B5C";
+                      e.currentTarget.style.transform = "translateY(0)";
+                      e.currentTarget.style.boxShadow =
+                        "0 4px 15px rgba(0, 59, 92, 0.3)";
+                    }}
+                  >
+                    Browse Properties
+                  </Link>
                 </div>
                 <SocialLinks />
               </div>

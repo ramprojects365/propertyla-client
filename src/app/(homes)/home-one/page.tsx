@@ -11,6 +11,8 @@ import HomePropertiesByCity from "@/components/Neighborhood/HomePropertiesByCity
 import PropertyHome from "@/components/Property/PropertyHome";
 //import HomeTestimonialArea from "@/components/Testimonial/HomeTestimonialArea";
 //import TextSlide from "@/components/Features/TextSlide";
+import TrustBadges from "@/components/UI/TrustBadges";
+import TrustedAgents from "@/components/TrustedAgents/TrustedAgents";
 import React from "react";
 
 export default function HomeOnePage() {
@@ -18,7 +20,9 @@ export default function HomeOnePage() {
     <>
       {/* hero banner  */}
       <HeroBannerOne />
-      <PropertyHome />
+      <div style={{ backgroundColor: "#fff" }}>
+        <PropertyHome />
+      </div>
       {/* hero banner end */}
       {/*feature area*/}
       {/* <FeatureShowcaseCategory /> */}
@@ -40,7 +44,9 @@ export default function HomeOnePage() {
       {/* rent area end */}
 
       {/* explore area */}
-      <HomePropertiesByCity />
+      <div style={{ backgroundColor: "rgb(240, 244, 253)" }}>
+        <HomePropertiesByCity />
+      </div>
       {/* explore area end */}
       {/* counter area */}
       {/* <HomeApproachCounter /> */}
@@ -58,8 +64,32 @@ export default function HomeOnePage() {
       {/* barnd area end */}
       {/* blog area */}
       {/* blog area end */}
-      <HomeApartmentArea />
-      <HomeBlogArea />
+      {/* <HomeApartmentArea /> */}
+      <div style={{ backgroundColor: "#fff" }}>
+        <TrustedAgents />
+      </div>
+      <div style={{ backgroundColor: "rgb(240, 244, 253)" }}>
+        <HomeBlogArea />
+      </div>
+      {/* Trusted Agents Section */}
+
+      {/* Trust Badges Section */}
+      <section style={{ padding: "40px 0", backgroundColor: "#fff" }}>
+        <div className="container">
+          <div style={{ textAlign: "center" }}>
+            <h3
+              style={{
+                fontSize: "24px",
+                marginBottom: "30px",
+                color: "#003B5C",
+              }}
+            >
+              Why Choose PropertyLA?
+            </h3>
+            <TrustBadges />
+          </div>
+        </div>
+      </section>
     </>
   );
 }

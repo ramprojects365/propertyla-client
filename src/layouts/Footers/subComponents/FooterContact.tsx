@@ -18,9 +18,12 @@ export default function FooterContact() {
           </Link>
         </div>
         <div className="tp-footer-widget-content">
-          <p>The home and elements needed to create beautiful products.</p>
+          <p>
+            Malaysia's premier real estate platform for KL, Selangor, Cheras,
+            Puchong & Klang Valley. Find your perfect property with PropertyLA.
+          </p>
           <div className="tp-footer-widget-contact">
-            <Link href="tel:555-0111">
+            <Link href="tel:+601126368426">
               <span>
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
@@ -39,9 +42,6 @@ export default function FooterContact() {
             </Link>
             <p>support@propertyla.com.my</p>
           </div>
-        </div>
-        <div className="tp-footer-widget-social">
-          <FooterSocialLinks />
         </div>
       </div>
     </div>

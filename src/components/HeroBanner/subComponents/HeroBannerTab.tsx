@@ -162,7 +162,7 @@ export default function HeroBannerTabContent({
               style={{
                 width: "100%",
                 height: "52px",
-                background: "var(--tp-theme-primary)",
+                background: "#003B5C",
                 color: "#fff",
                 border: "none",
                 borderRadius: "8px 8px 8px 8px",
@@ -170,6 +170,18 @@ export default function HeroBannerTabContent({
                 fontWeight: 600,
                 cursor: "pointer",
                 whiteSpace: "nowrap",
+                boxShadow: "0 4px 15px rgba(0, 59, 92, 0.3)",
+                transition: "all 0.3s ease",
+              }}
+              onMouseEnter={(e: React.MouseEvent<HTMLButtonElement>) => {
+                e.currentTarget.style.background = "#0056b3";
+                e.currentTarget.style.transform = "translateY(-2px)";
+                e.currentTarget.style.boxShadow = "0 6px 20px rgba(0, 59, 92, 0.4)";
+              }}
+              onMouseLeave={(e: React.MouseEvent<HTMLButtonElement>) => {
+                e.currentTarget.style.background = "#003B5C";
+                e.currentTarget.style.transform = "translateY(0)";
+                e.currentTarget.style.boxShadow = "0 4px 15px rgba(0, 59, 92, 0.3)";
               }}
             >
               Search

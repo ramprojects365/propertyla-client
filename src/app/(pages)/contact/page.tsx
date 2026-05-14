@@ -1,4 +1,4 @@
-import BreadcrumbTwo from "@/components/Breadcrumb/BreadcrumbTwo";
+import BreadcrumbArea from "@/components/Breadcrumb/BreadcrumbArea";
 import ContactAreaTwo from "@/components/Contact/ContactAreaTwo";
 import ContactFormTwo from "@/components/Form/ContactFormTwo";
 import MapArea from "@/components/Contact/MapArea";
@@ -13,7 +13,7 @@ export default function Contact() {
   return (
     <>
       {/* breadcrumb area start */}
-      <BreadcrumbTwo title="Contact us" subTitle="Contact us" />
+      <BreadcrumbArea title="Contact us" />
       {/* breadcrumb area end */}
 
       {/* contact area start */}
