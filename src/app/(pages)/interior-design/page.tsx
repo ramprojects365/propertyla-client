@@ -1,5 +1,4 @@
 import InteriorPartnersSlider from "@/components/InteriorDesign/InteriorPartnersSlider";
-import BreadcrumbArea from "@/components/Breadcrumb/BreadcrumbArea";
 import { Metadata } from "next";
 
 export const metadata: Metadata = {
@@ -11,15 +10,18 @@ export const metadata: Metadata = {
 export default function InteriorDesignPage() {
   return (
     <>
-      <BreadcrumbArea title="Interior Design" showBackground={false} />
       <section className="pt-80 pb-120">
         <div className="container">
           <div className="text-center mb-50">
             <span className="tp-section-title-pre">Partners</span>
             <h2 className="tp-section-title">Our trusted interior partners</h2>
-            <p className="text-muted mx-auto mb-0" style={{ maxWidth: "620px" }}>
-              Scroll sideways to explore designers. Each card opens a dedicated profile with portfolio imagery,
-              service highlights, and quick share options.
+            <p
+              className="text-muted mx-auto mb-0"
+              style={{ maxWidth: "620px" }}
+            >
+              Scroll sideways to explore designers. Each card opens a dedicated
+              profile with portfolio imagery, service highlights, and quick
+              share options.
             </p>
           </div>
           <InteriorPartnersSlider />
