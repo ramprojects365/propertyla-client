@@ -111,8 +111,8 @@ const menu_data_one = [
     url: "#",
     submenu: [
       { id: 1, label: "Home loan", url: "/error" },
-      { id: 4, label: "EMI calculator", url: "/error" },
-      { id: 5, label: "Interior design", url: "/error" },
+      { id: 4, label: "EMI calculator", url: "/emi-calculator" },
+      { id: 5, label: "Interior design", url: "/interior-design" },
     ],
   },
   {
