@@ -1,7 +1,6 @@
 import { Metadata } from "next";
-import Image from "next/image";
 import Link from "next/link";
-import BreadcrumbArea from "@/components/Breadcrumb/BreadcrumbArea";
+import RecentPosts from "@/components/Blog/RecentPosts";
 // Using direct paths for public directory images
 
 export const metadata: Metadata = {
@@ -23,9 +22,6 @@ export const metadata: Metadata = {
 export default function CostlyMistakesBlog() {
   return (
     <>
-      {/* Breadcrumb Area Start */}
-      <BreadcrumbArea title="Costly Mistakes Malaysians Make When Buying Property" />
-      {/* Breadcrumb Area End */}
       <section className="tp-blog-details-area pt-40 pb-40">
         <div className="container">
           <div className="row">
@@ -377,29 +373,7 @@ export default function CostlyMistakesBlog() {
                 </div>
 
                 {/* Recent Posts */}
-                <div className="tp-blog-widget mb-40">
-                  <h4 className="tp-blog-widget-title">Recent Posts</h4>
-                  <div className="tp-blog-widget-recent-post">
-                    <div className="tp-blog-widget-recent-post-item">
-                      <div className="tp-blog-widget-recent-post-thumb">
-                        <Image
-                          src="/assets/img/blog/blog-thumb-1.jpg"
-                          alt="Recent post"
-                          width={80}
-                          height={60}
-                        />
-                      </div>
-                      <div className="tp-blog-widget-recent-post-content">
-                        <h6>
-                          <Link href="/blog/costly-mistakes-malaysians-make-when-buying-property">
-                            Costly Mistakes Malaysians Make When Buying Property
-                          </Link>
-                        </h6>
-                        <span>2 min read</span>
-                      </div>
-                    </div>
-                  </div>
-                </div>
+                <RecentPosts currentSlug="/blog/costly-mistakes-malaysians-make-when-buying-property" />
               </div>
             </div>
           </div>

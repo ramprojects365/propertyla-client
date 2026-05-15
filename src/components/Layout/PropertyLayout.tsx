@@ -1,6 +1,5 @@
 "use client";
 import { ReactNode } from "react";
-import propertyBg from "../../../public/assets/img/rent/property-bg.jpg";
 import PropertyFilterWidget from "./subComponents/PropertyFilterWidget";
 import SidebarPropertyItem from "./subComponents/SidebarPropertyItem";
 import DiscountOfferCard from "./subComponents/DiscountOfferCard";
@@ -31,10 +30,7 @@ export default function PropertyLayout({ children }: { children: ReactNode }) {
 
   return (
     <>
-      <section
-        className="tp-property-ptb pt-20 pb-120"
-        style={{ backgroundImage: `url(${propertyBg.src})` }}
-      >
+      <section className="tp-property-ptb pt-20 pb-120">
         <div className="container">
           <div className="ml-list">
             <Breadcrumb

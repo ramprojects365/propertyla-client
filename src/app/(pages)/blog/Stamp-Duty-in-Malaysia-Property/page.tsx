@@ -1,7 +1,6 @@
 import { Metadata } from "next";
-import Image from "next/image";
 import Link from "next/link";
-import BreadcrumbArea from "@/components/Breadcrumb/BreadcrumbArea";
+import RecentPosts from "@/components/Blog/RecentPosts";
 // Using direct paths for public directory images
 
 export const metadata: Metadata = {
@@ -13,7 +12,8 @@ export const metadata: Metadata = {
     "stamp duty Malaysia, property tax Malaysia, 2026 stamp duty rates, foreign buyer stamp duty, first time buyer exemption, Malaysia property purchase",
   openGraph: {
     title: "Stamp Duty in Malaysia Property (2026): A Complete Guide",
-    description: "Complete guide to Malaysia property stamp duty in 2026. Learn about rates, exemptions, and calculation tips.",
+    description:
+      "Complete guide to Malaysia property stamp duty in 2026. Learn about rates, exemptions, and calculation tips.",
     images: ["/assets/img/blog/blog-thumb-3.jpg"],
     type: "article",
   },
@@ -22,9 +22,6 @@ export const metadata: Metadata = {
 export default function StampDutyBlog() {
   return (
     <>
-      {/* Breadcrumb Area Start */}
-      <BreadcrumbArea title="Stamp Duty in Malaysia Property" />
-      {/* Breadcrumb Area End */}
       <section className="tp-blog-details-area pt-40 pb-40">
         <div className="container">
           <div className="row">
@@ -33,15 +30,15 @@ export default function StampDutyBlog() {
                 <div className="tp-blog-details-content">
                   <div className="tp-blog-details-text">
                     <h3 className="tp-blog-details-title mb-30">
-                      Stamp Duty in Malaysia Property (2026): A Complete Guide for
-                      Home Buyers
+                      Stamp Duty in Malaysia Property (2026): A Complete Guide
+                      for Home Buyers
                     </h3>
 
                     <p className="mb-30">
                       Buying a property in Malaysia involves more than just the
                       purchase price. One of the most important costs you must
-                      understand is stamp duty—a legal tax that can significantly
-                      impact your overall budget.
+                      understand is stamp duty—a legal tax that can
+                      significantly impact your overall budget.
                     </p>
 
                     <p className="mb-30">
@@ -79,39 +76,137 @@ export default function StampDutyBlog() {
                       is calculated using a progressive (tiered) rate:
                     </p>
 
-                    <div className="tp-blog-details-table mb-30" style={{ backgroundColor: "#f8f9fa", border: "1px solid #dee2e6", padding: "20px", borderRadius: "8px" }}>
-                      <table style={{ width: "100%", borderCollapse: "collapse" }}>
+                    <div
+                      className="tp-blog-details-table mb-30"
+                      style={{
+                        backgroundColor: "#f8f9fa",
+                        border: "1px solid #dee2e6",
+                        padding: "20px",
+                        borderRadius: "8px",
+                      }}
+                    >
+                      <table
+                        style={{ width: "100%", borderCollapse: "collapse" }}
+                      >
                         <thead>
-                          <tr style={{ backgroundColor: "#003B5C", color: "#fff" }}>
-                            <th style={{ padding: "12px", textAlign: "left", border: "1px solid #dee2e6" }}>Property Price</th>
-                            <th style={{ padding: "12px", textAlign: "left", border: "1px solid #dee2e6" }}>Stamp Duty Rate</th>
+                          <tr
+                            style={{
+                              backgroundColor: "#003B5C",
+                              color: "#fff",
+                            }}
+                          >
+                            <th
+                              style={{
+                                padding: "12px",
+                                textAlign: "left",
+                                border: "1px solid #dee2e6",
+                              }}
+                            >
+                              Property Price
+                            </th>
+                            <th
+                              style={{
+                                padding: "12px",
+                                textAlign: "left",
+                                border: "1px solid #dee2e6",
+                              }}
+                            >
+                              Stamp Duty Rate
+                            </th>
                           </tr>
                         </thead>
                         <tbody>
                           <tr>
-                            <td style={{ padding: "12px", border: "1px solid #dee2e6" }}>First RM100,000</td>
-                            <td style={{ padding: "12px", border: "1px solid #dee2e6" }}>1%</td>
+                            <td
+                              style={{
+                                padding: "12px",
+                                border: "1px solid #dee2e6",
+                              }}
+                            >
+                              First RM100,000
+                            </td>
+                            <td
+                              style={{
+                                padding: "12px",
+                                border: "1px solid #dee2e6",
+                              }}
+                            >
+                              1%
+                            </td>
                           </tr>
                           <tr>
-                            <td style={{ padding: "12px", border: "1px solid #dee2e6" }}>Next RM400,000</td>
-                            <td style={{ padding: "12px", border: "1px solid #dee2e6" }}>2%</td>
+                            <td
+                              style={{
+                                padding: "12px",
+                                border: "1px solid #dee2e6",
+                              }}
+                            >
+                              Next RM400,000
+                            </td>
+                            <td
+                              style={{
+                                padding: "12px",
+                                border: "1px solid #dee2e6",
+                              }}
+                            >
+                              2%
+                            </td>
                           </tr>
                           <tr>
-                            <td style={{ padding: "12px", border: "1px solid #dee2e6" }}>Next RM500,000</td>
-                            <td style={{ padding: "12px", border: "1px solid #dee2e6" }}>3%</td>
+                            <td
+                              style={{
+                                padding: "12px",
+                                border: "1px solid #dee2e6",
+                              }}
+                            >
+                              Next RM500,000
+                            </td>
+                            <td
+                              style={{
+                                padding: "12px",
+                                border: "1px solid #dee2e6",
+                              }}
+                            >
+                              3%
+                            </td>
                           </tr>
                           <tr>
-                            <td style={{ padding: "12px", border: "1px solid #dee2e6" }}>Above RM1,000,000</td>
-                            <td style={{ padding: "12px", border: "1px solid #dee2e6" }}>4%</td>
+                            <td
+                              style={{
+                                padding: "12px",
+                                border: "1px solid #dee2e6",
+                              }}
+                            >
+                              Above RM1,000,000
+                            </td>
+                            <td
+                              style={{
+                                padding: "12px",
+                                border: "1px solid #dee2e6",
+                              }}
+                            >
+                              4%
+                            </td>
                           </tr>
                         </tbody>
                       </table>
                     </div>
 
-                    <div className="tp-blog-details-alert mb-30" style={{ backgroundColor: "#e7f3ff", border: "1px solid #b3d9ff", padding: "15px", borderRadius: "8px" }}>
-                      <h5 style={{ color: "#0066cc", marginBottom: "10px" }}>👉 Important Note:</h5>
+                    <div
+                      className="tp-blog-details-alert mb-30"
+                      style={{
+                        backgroundColor: "#e7f3ff",
+                        border: "1px solid #b3d9ff",
+                        padding: "15px",
+                        borderRadius: "8px",
+                      }}
+                    >
+                      <h5 style={{ color: "#0066cc", marginBottom: "10px" }}>
+                        👉 Important Note:
+                      </h5>
                       <p style={{ color: "#0066cc", margin: 0 }}>
-                        This means higher-value properties pay more tax proportionally.
+                        This means higher-value properties pay more tax
+                        proportionally.
                       </p>
                     </div>
 
@@ -122,14 +217,28 @@ export default function StampDutyBlog() {
                     <p className="mb-20">A major update in 2026:</p>
 
                     <ul className="tp-blog-details-list mb-30">
-                      <li>Foreign buyers now pay a flat 8% stamp duty on residential property</li>
+                      <li>
+                        Foreign buyers now pay a flat 8% stamp duty on
+                        residential property
+                      </li>
                       <li>Previously it was only 4%</li>
                     </ul>
 
-                    <div className="tp-blog-details-alert mb-30" style={{ backgroundColor: "#fff3cd", border: "1px solid #ffeaa7", padding: "15px", borderRadius: "8px" }}>
-                      <h5 style={{ color: "#856404", marginBottom: "10px" }}>👉 Impact:</h5>
+                    <div
+                      className="tp-blog-details-alert mb-30"
+                      style={{
+                        backgroundColor: "#fff3cd",
+                        border: "1px solid #ffeaa7",
+                        padding: "15px",
+                        borderRadius: "8px",
+                      }}
+                    >
+                      <h5 style={{ color: "#856404", marginBottom: "10px" }}>
+                        👉 Impact:
+                      </h5>
                       <p style={{ color: "#856404", margin: 0 }}>
-                        This change aims to control foreign ownership and support local buyers.
+                        This change aims to control foreign ownership and
+                        support local buyers.
                       </p>
                     </div>
 
@@ -144,15 +253,21 @@ export default function StampDutyBlog() {
                     <div className="tp-blog-details-list mb-30">
                       <div style={{ marginBottom: "15px" }}>
                         <strong>1. Transfer (MOT / DOA)</strong>
-                        <p style={{ margin: "5px 0 0 20px", color: "#666" }}>Based on property price (1%–4%)</p>
+                        <p style={{ margin: "5px 0 0 20px", color: "#666" }}>
+                          Based on property price (1%–4%)
+                        </p>
                       </div>
                       <div style={{ marginBottom: "15px" }}>
                         <strong>2. Loan Agreement</strong>
-                        <p style={{ margin: "5px 0 0 20px", color: "#666" }}>0.5% of loan amount</p>
+                        <p style={{ margin: "5px 0 0 20px", color: "#666" }}>
+                          0.5% of loan amount
+                        </p>
                       </div>
                       <div style={{ marginBottom: "15px" }}>
                         <strong>3. Sale & Purchase Agreement (SPA)</strong>
-                        <p style={{ margin: "5px 0 0 20px", color: "#666" }}>Fixed RM10 per copy</p>
+                        <p style={{ margin: "5px 0 0 20px", color: "#666" }}>
+                          Fixed RM10 per copy
+                        </p>
                       </div>
                     </div>
 
@@ -160,9 +275,25 @@ export default function StampDutyBlog() {
                       🎁 Exemptions & Reliefs (Good News for Buyers)
                     </h3>
 
-                    <div className="tp-blog-details-success mb-30" style={{ backgroundColor: "#d4edda", border: "1px solid #c3e6cb", padding: "15px", borderRadius: "8px" }}>
-                      <h5 style={{ color: "#155724", marginBottom: "10px" }}>🟢 First-Time Home Buyers</h5>
-                      <ul style={{ color: "#155724", marginBottom: 0, paddingLeft: "20px" }}>
+                    <div
+                      className="tp-blog-details-success mb-30"
+                      style={{
+                        backgroundColor: "#d4edda",
+                        border: "1px solid #c3e6cb",
+                        padding: "15px",
+                        borderRadius: "8px",
+                      }}
+                    >
+                      <h5 style={{ color: "#155724", marginBottom: "10px" }}>
+                        🟢 First-Time Home Buyers
+                      </h5>
+                      <ul
+                        style={{
+                          color: "#155724",
+                          marginBottom: 0,
+                          paddingLeft: "20px",
+                        }}
+                      >
                         <li>100% exemption on:</li>
                         <li>Transfer stamp duty</li>
                         <li>Loan agreement stamp duty</li>
@@ -171,9 +302,25 @@ export default function StampDutyBlog() {
                       </ul>
                     </div>
 
-                    <div className="tp-blog-details-success mb-30" style={{ backgroundColor: "#d4edda", border: "1px solid #c3e6cb", padding: "15px", borderRadius: "8px" }}>
-                      <h5 style={{ color: "#155724", marginBottom: "10px" }}>🟢 Family Transfers</h5>
-                      <ul style={{ color: "#155724", marginBottom: 0, paddingLeft: "20px" }}>
+                    <div
+                      className="tp-blog-details-success mb-30"
+                      style={{
+                        backgroundColor: "#d4edda",
+                        border: "1px solid #c3e6cb",
+                        padding: "15px",
+                        borderRadius: "8px",
+                      }}
+                    >
+                      <h5 style={{ color: "#155724", marginBottom: "10px" }}>
+                        🟢 Family Transfers
+                      </h5>
+                      <ul
+                        style={{
+                          color: "#155724",
+                          marginBottom: 0,
+                          paddingLeft: "20px",
+                        }}
+                      >
                         <li>Between spouses → Fully exempt</li>
                         <li>Parent ↔ child → Partial exemption (50%)</li>
                       </ul>
@@ -190,10 +337,21 @@ export default function StampDutyBlog() {
                       <li>RM100 or 20% (after 3 months)</li>
                     </div>
 
-                    <div className="tp-blog-details-alert mb-30" style={{ backgroundColor: "#fff3cd", border: "1px solid #ffeaa7", padding: "15px", borderRadius: "8px" }}>
-                      <h5 style={{ color: "#856404", marginBottom: "10px" }}>👉 Warning:</h5>
+                    <div
+                      className="tp-blog-details-alert mb-30"
+                      style={{
+                        backgroundColor: "#fff3cd",
+                        border: "1px solid #ffeaa7",
+                        padding: "15px",
+                        borderRadius: "8px",
+                      }}
+                    >
+                      <h5 style={{ color: "#856404", marginBottom: "10px" }}>
+                        👉 Warning:
+                      </h5>
                       <p style={{ color: "#856404", margin: 0 }}>
-                        Late payment can increase your cost significantly—always plan early.
+                        Late payment can increase your cost significantly—always
+                        plan early.
                       </p>
                     </div>
 
@@ -206,15 +364,28 @@ export default function StampDutyBlog() {
                     </p>
 
                     <ul className="tp-blog-details-list mb-30">
-                      <li>Buyers (or lawyers) must calculate stamp duty themselves</li>
+                      <li>
+                        Buyers (or lawyers) must calculate stamp duty themselves
+                      </li>
                       <li>Responsibility is now on the taxpayer</li>
                       <li>Errors can lead to penalties in the future</li>
                     </ul>
 
-                    <div className="tp-blog-details-alert mb-30" style={{ backgroundColor: "#e7f3ff", border: "1px solid #b3d9ff", padding: "15px", borderRadius: "8px" }}>
-                      <h5 style={{ color: "#0066cc", marginBottom: "10px" }}>👉 Important:</h5>
+                    <div
+                      className="tp-blog-details-alert mb-30"
+                      style={{
+                        backgroundColor: "#e7f3ff",
+                        border: "1px solid #b3d9ff",
+                        padding: "15px",
+                        borderRadius: "8px",
+                      }}
+                    >
+                      <h5 style={{ color: "#0066cc", marginBottom: "10px" }}>
+                        👉 Important:
+                      </h5>
                       <p style={{ color: "#0066cc", margin: 0 }}>
-                        This means accuracy and proper documentation are more important than ever.
+                        This means accuracy and proper documentation are more
+                        important than ever.
                       </p>
                     </div>
 
@@ -226,7 +397,15 @@ export default function StampDutyBlog() {
                       Let's say you buy a property worth RM750,000:
                     </p>
 
-                    <div className="tp-blog-details-calculation mb-30" style={{ backgroundColor: "#f8f9fa", border: "1px solid #dee2e6", padding: "20px", borderRadius: "8px" }}>
+                    <div
+                      className="tp-blog-details-calculation mb-30"
+                      style={{
+                        backgroundColor: "#f8f9fa",
+                        border: "1px solid #dee2e6",
+                        padding: "20px",
+                        borderRadius: "8px",
+                      }}
+                    >
                       <div style={{ marginBottom: "10px" }}>
                         <strong>First RM100,000 → 1% = RM1,000</strong>
                       </div>
@@ -236,9 +415,21 @@ export default function StampDutyBlog() {
                       <div style={{ marginBottom: "10px" }}>
                         <strong>Remaining RM250,000 → 3% = RM7,500</strong>
                       </div>
-                      <div style={{ marginTop: "15px", paddingTop: "15px", borderTop: "1px solid #dee2e6" }}>
+                      <div
+                        style={{
+                          marginTop: "15px",
+                          paddingTop: "15px",
+                          borderTop: "1px solid #dee2e6",
+                        }}
+                      >
                         <strong>👉 Total Stamp Duty = RM16,500</strong>
-                        <p style={{ margin: "5px 0 0 0", color: "#666", fontSize: "14px" }}>
+                        <p
+                          style={{
+                            margin: "5px 0 0 0",
+                            color: "#666",
+                            fontSize: "14px",
+                          }}
+                        >
                           (Excludes loan and SPA duty)
                         </p>
                       </div>
@@ -250,8 +441,12 @@ export default function StampDutyBlog() {
 
                     <ul className="tp-blog-details-list mb-30">
                       <li>✔️ Always budget for stamp duty early</li>
-                      <li>✔️ Check if you qualify for first-time buyer exemption</li>
-                      <li>✔️ Compare total cost (price + legal + stamp duty)</li>
+                      <li>
+                        ✔️ Check if you qualify for first-time buyer exemption
+                      </li>
+                      <li>
+                        ✔️ Compare total cost (price + legal + stamp duty)
+                      </li>
                       <li>✔️ Consult a lawyer for accurate calculation</li>
                       <li>✔️ Avoid late stamping penalties</li>
                     </ul>
@@ -261,10 +456,11 @@ export default function StampDutyBlog() {
                     </h3>
 
                     <p className="mb-20">
-                      Stamp duty is a mandatory and significant cost in any property
-                      transaction in Malaysia. With the 2026 updates—especially the
-                      higher rate for foreign buyers and the shift to
-                      self-assessment—buyers must be more informed than ever.
+                      Stamp duty is a mandatory and significant cost in any
+                      property transaction in Malaysia. With the 2026
+                      updates—especially the higher rate for foreign buyers and
+                      the shift to self-assessment—buyers must be more informed
+                      than ever.
                     </p>
 
                     <p className="mb-30">
@@ -277,22 +473,32 @@ export default function StampDutyBlog() {
                       <li>Make smarter property decisions</li>
                     </ul>
 
-                    <div className="tp-blog-details-quote mb-30" style={{ backgroundColor: "#f8f9fa", border: "1px solid #dee2e6", padding: "20px", borderRadius: "8px", borderLeft: "4px solid #003B5C" }}>
-                      <h3 style={{ color: "#003B5C", marginBottom: "15px" }}>🏠 Pro Tip</h3>
+                    <div
+                      className="tp-blog-details-quote mb-30"
+                      style={{
+                        backgroundColor: "#f8f9fa",
+                        border: "1px solid #dee2e6",
+                        padding: "20px",
+                        borderRadius: "8px",
+                        borderLeft: "4px solid #003B5C",
+                      }}
+                    >
+                      <h3 style={{ color: "#003B5C", marginBottom: "15px" }}>
+                        🏠 Pro Tip
+                      </h3>
                       <p style={{ margin: 0 }}>
                         When buying a property, don't just ask:
                       </p>
                       <p style={{ margin: "10px 0", fontWeight: "bold" }}>
                         👉 "Can I afford the house?"
                       </p>
-                      <p style={{ margin: 0 }}>
-                        Ask:
-                      </p>
+                      <p style={{ margin: 0 }}>Ask:</p>
                       <p style={{ margin: "10px 0", fontWeight: "bold" }}>
                         👉 "Can I afford the total cost including stamp duty?"
                       </p>
                       <p style={{ margin: "10px 0 0 0" }}>
-                        Stay informed, plan wisely, and make confident property decisions in Malaysia!
+                        Stay informed, plan wisely, and make confident property
+                        decisions in Malaysia!
                       </p>
                     </div>
                   </div>
@@ -319,7 +525,6 @@ export default function StampDutyBlog() {
             <div className="col-lg-4">
               {/* Sidebar */}
               <div className="tp-blog-sidebar">
-
                 {/* Category Widget */}
                 <div className="tp-blog-widget mb-40">
                   <h4 className="tp-blog-widget-title">Categories</h4>
@@ -350,29 +555,7 @@ export default function StampDutyBlog() {
                 </div>
 
                 {/* Recent Posts */}
-                <div className="tp-blog-widget mb-40">
-                  <h4 className="tp-blog-widget-title">Recent Posts</h4>
-                  <div className="tp-blog-widget-recent-post">
-                    <div className="tp-blog-widget-recent-post-item">
-                      <div className="tp-blog-widget-recent-post-thumb">
-                        <Image
-                          src="/assets/img/blog/blog-thumb-3.jpg"
-                          alt="Recent post"
-                          width={80}
-                          height={60}
-                        />
-                      </div>
-                      <div className="tp-blog-widget-recent-post-content">
-                        <h6>
-                          <Link href="/blog/Stamp-Duty-in-Malaysia-Property">
-                            Stamp Duty in Malaysia Property
-                          </Link>
-                        </h6>
-                        <span>6 min read</span>
-                      </div>
-                    </div>
-                  </div>
-                </div>
+                <RecentPosts currentSlug="/blog/Stamp-Duty-in-Malaysia-Property" />
               </div>
             </div>
           </div>
