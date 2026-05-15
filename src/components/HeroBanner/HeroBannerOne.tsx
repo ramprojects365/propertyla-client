@@ -118,10 +118,11 @@ export default function HeroBannerOne() {
                     href="/search"
                     style={{
                       display: "inline-block",
-                      padding: "14px 32px",
+                      padding: "12px 24px",
                       backgroundColor: "#003B5C",
                       color: "#fff",
                       borderRadius: "8px",
+                      minHeight: "48px",
                       fontSize: "16px",
                       fontWeight: 600,
                       textDecoration: "none",

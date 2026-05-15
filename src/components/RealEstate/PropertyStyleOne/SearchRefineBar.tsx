@@ -131,10 +131,11 @@ export default function SearchRefineBar() {
                 color: "#fff",
                 border: "none",
                 borderRadius: "8px",
-                padding: "11px 16px",
-                fontSize: "14px",
+                padding: "12px 24px",
+                fontSize: "16px",
                 fontWeight: 600,
                 cursor: "pointer",
+                minHeight: "48px",
                 letterSpacing: "0.3px",
               }}
             >

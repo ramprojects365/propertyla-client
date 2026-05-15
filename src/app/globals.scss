@@ -422,11 +422,16 @@ body.scrolled .Profile-btn-span {
   .tp-btn,
   button,
   a {
-    min-height: 44px;
-    min-width: 44px;
+    min-height: 48px;
+    min-width: 48px;
     display: inline-flex;
     align-items: center;
     justify-content: center;
+  }
+  
+  .tp-btn {
+    padding: 14px 20px;
+    font-size: 16px;
   }
   .tp-hero-tab-input input,
   .tp-hero-tab-select select {
@@ -495,7 +500,7 @@ body.scrolled .Profile-btn-span {
   }
 }
 
-/* Global button styling - consistent with Browse Properties button */
+/* Global button styling - consistent with market standards */
 .tp-btn {
   background-color: #003b5c !important;
   color: #fff !important;
@@ -503,6 +508,14 @@ body.scrolled .Profile-btn-span {
   box-shadow: 0 4px 15px rgba(0, 59, 92, 0.3) !important;
   transition: all 0.3s ease !important;
   border: none !important;
+  min-height: 48px;
+  padding: 12px 24px;
+  font-size: 16px;
+  font-weight: 600;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
 }
 
 .tp-btn:hover {
@@ -525,6 +538,50 @@ body.scrolled .Profile-btn-span {
   color: #fff !important;
   border-color: #003b5c !important;
 }
+
+/* Post Property button specific styling - white background with navy border */
+.tp-header-dashboard-btn .tp-btn {
+  background-color: #fff !important;
+  color: #000 !important;
+  border: 1px solid #003b5c !important;
+  box-shadow: none !important;
+}
+
+.tp-header-dashboard-btn .tp-btn:hover {
+  background-color: #fff !important;
+  color: #000 !important;
+}
+
+/* Header Post Property button specific styling */
+.header-post-property-btn {
+  background-color: #fff !important;
+  color: #000 !important;
+  border: 1px solid #003b5c !important;
+  box-shadow: none !important;
+  display: inline-flex !important;
+  align-items: center !important;
+  gap: 4px !important;
+}
+
+.header-post-property-btn:hover {
+  background-color: #fff !important;
+  color: #000 !important;
+}
+
+.header-post-property-text {
+  color: #000 !important;
+  font-weight: 600 !important;
+}
+
+.header-post-property-free {
+  background-color: #25D366 !important;
+  color: #fff !important;
+  padding: 2px 8px !important;
+  border-radius: 4px !important;
+  font-weight: 600 !important;
+  font-size: 14px !important;
+}
+
 @media only screen and (min-width: 1200px) and (max-width: 1399px) {
   .logo-header {
     width: 35px;
@@ -560,6 +617,17 @@ body.scrolled .Profile-btn-span {
 }
 @media only screen and (min-width: 768px) and (max-width: 991px),
   only screen and (max-width: 767px) {
+  /* Tablet and mobile button adjustments */
+  .tp-btn {
+    min-height: 48px;
+    padding: 12px 20px;
+    font-size: 15px;
+  }
+  
+  .tp-rent-btn .tp-btn {
+    padding: 12px 20px;
+  }
+  
   .list-img-sec {
     padding-left: 15px;
     padding-right: 15px;
@@ -574,6 +642,8 @@ body.scrolled .Profile-btn-span {
   .hide-mobile {
     display: none !important;
   }
+}
+@media only screen and (max-width: 767px) {
   .hide-desktop {
     display: block;
   }
