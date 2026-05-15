@@ -8,6 +8,10 @@ import { toast } from "sonner";
 import apiClient from "@/config/axios";
 import UserSvg from "@/components/SVG/UserSvg";
 
+const PROFILE_IMAGE_ACCEPTED_TYPES = ["image/jpeg", "image/png", "image/webp"];
+const PROFILE_IMAGE_ACCEPT = PROFILE_IMAGE_ACCEPTED_TYPES.join(",");
+const PROFILE_IMAGE_MAX_BYTES = 5 * 1024 * 1024;
+
 interface ProfileFormData {
   fullName: string;
   aboutYou?: string;
@@ -57,12 +61,42 @@ interface UserProfile {
   mobileNumber?: string;
 }
 
+const extractProfileImage = (value: unknown): string | null => {
+  const isRecord = (v: unknown): v is Record<string, unknown> =>
+    typeof v === "object" && v !== null;
+
+  if (!isRecord(value)) return null;
+
+  const candidates = [
+    value,
+    isRecord(value.data) ? value.data : null,
+    isRecord(value.data) && isRecord(value.data.user) ? value.data.user : null,
+    isRecord(value.data) && isRecord(value.data.data) ? value.data.data : null,
+  ].filter(Boolean) as Record<string, unknown>[];
+
+  for (const candidate of candidates) {
+    const image =
+      candidate.profileImage ||
+      candidate.profileImageUrl ||
+      candidate.avatar ||
+      candidate.avatarUrl ||
+      candidate.imageUrl;
+
+    if (typeof image === "string" && image.trim()) {
+      return image;
+    }
+  }
+
+  return null;
+};
+
 export default function UserProfileForm() {
   const [profileImageUrl, setProfileImageUrl] = useState<string | null>(null);
   const [uploadingImage, setUploadingImage] = useState(false);
   const [loading, setLoading] = useState(true);
   const [displayName, setDisplayName] = useState("My Profile");
   const fileInputRef = useRef<HTMLInputElement>(null);
+  const previewObjectUrlRef = useRef<string | null>(null);
 
   const {
     register: registerProfile,
@@ -84,6 +118,14 @@ export default function UserProfileForm() {
   };
 
   // ── GET /api/users/profile — fetch and bind data on mount ──
+  useEffect(() => {
+    return () => {
+      if (previewObjectUrlRef.current) {
+        URL.revokeObjectURL(previewObjectUrlRef.current);
+      }
+    };
+  }, []);
+
   useEffect(() => {
     const fetchProfile = async () => {
       try {
@@ -198,19 +240,64 @@ export default function UserProfileForm() {
   const handleImageChange = async (e: ChangeEvent<HTMLInputElement>) => {
     const file = e.target.files?.[0];
     if (!file) return;
-    setProfileImageUrl(URL.createObjectURL(file));
+
+    if (!PROFILE_IMAGE_ACCEPTED_TYPES.includes(file.type)) {
+      toast.error("Please choose a JPG, PNG, or WebP image.");
+      e.target.value = "";
+      return;
+    }
+
+    if (file.size > PROFILE_IMAGE_MAX_BYTES) {
+      toast.error("Profile image must be 5MB or smaller.");
+      e.target.value = "";
+      return;
+    }
+
+    const previousImageUrl = profileImageUrl;
+    const previewUrl = URL.createObjectURL(file);
+
+    if (previewObjectUrlRef.current) {
+      URL.revokeObjectURL(previewObjectUrlRef.current);
+    }
+
+    previewObjectUrlRef.current = previewUrl;
+    setProfileImageUrl(previewUrl);
     setUploadingImage(true);
+
     try {
       const formData = new FormData();
       formData.append("profileImage", file);
-      await apiClient.post("/users/profile/image", formData, {
+
+      const response = await apiClient.post<unknown>("/users/profile/image", formData, {
         headers: { "Content-Type": "multipart/form-data" },
       });
+
+      const uploadedImageUrl = extractProfileImage(response.data);
+      if (uploadedImageUrl) {
+        URL.revokeObjectURL(previewUrl);
+        previewObjectUrlRef.current = null;
+        setProfileImageUrl(uploadedImageUrl);
+      }
+
       toast.success("Profile image updated!");
-    } catch {
-      toast.error("Failed to upload image.");
+    } catch (err: unknown) {
+      URL.revokeObjectURL(previewUrl);
+      previewObjectUrlRef.current = null;
+      setProfileImageUrl(previousImageUrl);
+
+      const error = err as {
+        response?: { data?: { message?: string } };
+        message?: string;
+      };
+
+      toast.error(
+        error?.response?.data?.message ||
+          error?.message ||
+          "Failed to upload image.",
+      );
     } finally {
       setUploadingImage(false);
+      e.target.value = "";
     }
   };
 
@@ -298,6 +385,8 @@ export default function UserProfileForm() {
           <button
             type="button"
             onClick={() => fileInputRef.current?.click()}
+            disabled={uploadingImage}
+            aria-label="Change profile photo"
             style={{
               position: "absolute",
               bottom: 0,
@@ -311,8 +400,9 @@ export default function UserProfileForm() {
               alignItems: "center",
               justifyContent: "center",
               boxShadow: "0 2px 6px rgba(0,0,0,0.18)",
-              cursor: "pointer",
+              cursor: uploadingImage ? "wait" : "pointer",
               padding: 0,
+              opacity: uploadingImage ? 0.75 : 1,
             }}
           >
             {uploadingImage ? (
@@ -324,7 +414,7 @@ export default function UserProfileForm() {
           <input
             ref={fileInputRef}
             type="file"
-            accept="image/*"
+            accept={PROFILE_IMAGE_ACCEPT}
             style={{ display: "none" }}
             onChange={handleImageChange}
           />
@@ -334,6 +424,24 @@ export default function UserProfileForm() {
           <p style={{ margin: 0, color: "#888", fontSize: 14 }}>
             Update your personal details below
           </p>
+          <button
+            type="button"
+            onClick={() => fileInputRef.current?.click()}
+            disabled={uploadingImage}
+            style={{
+              marginTop: 10,
+              border: "1px solid #d8d8d8",
+              background: "#fff",
+              borderRadius: 6,
+              padding: "7px 12px",
+              fontSize: 13,
+              fontWeight: 600,
+              lineHeight: 1,
+              cursor: uploadingImage ? "wait" : "pointer",
+            }}
+          >
+            {uploadingImage ? "Uploading..." : "Change photo"}
+          </button>
         </div>
       </div>
 
