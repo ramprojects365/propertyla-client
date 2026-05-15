@@ -275,7 +275,7 @@ export default function SignUpForm() {
                 type="text"
                 inputMode="numeric"
                 maxLength={12}
-                placeholder="Enter Phone Number"
+                placeholder="Enter phone number"
                 onInput={(e: React.FormEvent<HTMLInputElement>) => {
                   const target = e.currentTarget;
                   target.value = target.value.replace(/\D/g, "");

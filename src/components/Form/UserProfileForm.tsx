@@ -345,7 +345,7 @@ export default function UserProfileForm() {
             <div className="row g-3">
               <div className="col-lg-12">
                 <div className="tp-dashboard-new-input">
-                  <label>Full Name</label>
+                  <label>Display Name</label>
                   <input
                     {...registerProfile("fullName")}
                     type="text"
