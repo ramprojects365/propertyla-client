@@ -69,18 +69,13 @@ export default function HeaderOne() {
             style={{ marginTop: "0px" }}
           >
             <button
-              className="tp-btn"
+              className="tp-btn header-post-property-btn"
               onClick={handlePostPropertyClick}
-              style={{
-                padding: "12px 16px 7px",
-                whiteSpace: "nowrap",
-                minWidth: "auto",
-              }}
             >
-              <span className="btn-wrap">
-                <b className="text-1">Post Property FREE</b>
-                <b className="text-2">Post Property FREE</b>
+              <span className="header-post-property-text">
+                Post property
               </span>
+              <span className="header-post-property-free">FREE</span>
             </button>
           </div>
         </div>

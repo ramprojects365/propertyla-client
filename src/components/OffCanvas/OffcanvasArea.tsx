@@ -74,14 +74,26 @@ export default function OffcanvasArea() {
                 className="tp-btn"
                 onClick={handlePostPropertyClick}
                 style={{
-                  padding: "12px 16px 7px",
+                  padding: "12px 16px",
                   whiteSpace: "nowrap",
                   minWidth: "auto",
+                  minHeight: "48px",
                 }}
               >
-                <span className="btn-wrap">
-                  <b className="text-1">Post Property FREE</b>
-                  <b className="text-2">Post Property FREE</b>
+                <span style={{ color: "#000", fontWeight: 600 }}>
+                  Post property
+                </span>
+                <span
+                  style={{
+                    backgroundColor: "#25D366",
+                    color: "#fff",
+                    padding: "2px 8px",
+                    borderRadius: "4px",
+                    fontWeight: 600,
+                    fontSize: "14px",
+                  }}
+                >
+                  FREE
                 </span>
               </button>
             </div>
