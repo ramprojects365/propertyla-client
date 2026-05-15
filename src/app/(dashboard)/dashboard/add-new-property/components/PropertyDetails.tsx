@@ -26,10 +26,9 @@ export default function BasicDetails() {
     updateValue();
     window.addEventListener("listingTypeChanged", updateValue);
 
-    return () =>
-      window.removeEventListener("listingTypeChanged", updateValue);
+    return () => window.removeEventListener("listingTypeChanged", updateValue);
   }, []);
-  console.log(sessionStorage.getItem("listingType"))
+  console.log(sessionStorage.getItem("listingType"));
   return (
     <div className="tp-dashboard-new-property mb-15">
       <h5 className="tp-dashboard-new-title">Property Details</h5>
@@ -173,12 +172,10 @@ export default function BasicDetails() {
               <div className="tp-property-tabs-select tp-select">
                 <select {...register("floorLevel")} className="listDropDown">
                   <option value="">Select floor</option>
-                  <option value="1-5">1-5</option>
-                  <option value="6-10">6-10</option>
-                  <option value="11-15">11-15</option>
-                  <option value="16-20">16-20</option>
-                  <option value="21-25">21-25</option>
-                  <option value="Above25">Above 25</option>
+                  <option value="Ground">Ground</option>
+                  <option value="Low">Low</option>
+                  <option value="Medium">Medium</option>
+                  <option value="High">High</option>
                 </select>
               </div>
               <div>
