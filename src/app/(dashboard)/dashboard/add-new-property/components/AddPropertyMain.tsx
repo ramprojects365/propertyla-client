@@ -136,7 +136,7 @@ const getValue = (...values: any[]) => {
   );
 };
 
-const normalizeImages = (propertyData: any): string[] => {
+const normalizeImages = (propertyData: any): any[] => {
   const rawImages = getValue(
     propertyData.images,
     propertyData.imageUrls,
@@ -147,15 +147,10 @@ const normalizeImages = (propertyData: any): string[] => {
 
   const arr = Array.isArray(rawImages) ? rawImages : [rawImages];
 
-  return arr
-    .map((img) => {
-      if (typeof img === "string") return img;
-      if (img?.url) return img.url;
-      if (img?.imageUrl) return img.imageUrl;
-      if (img?.src) return img.src;
-      return "";
-    })
-    .filter(Boolean);
+  return arr.filter((img) => {
+    if (typeof img === "string") return img.trim();
+    return Boolean(img?.url || img?.imageUrl || img?.src);
+  });
 };
 /** Convert yearOfBuild to property age range for the form */
 const getAgeRangeFromYear = (yearOfBuild?: number): number => {
@@ -409,7 +404,7 @@ export default function AddPropertyPage() {
         console.log("✅ Form validation passed");
         // UploadMedia already uploaded the files and stored their public URLs
         // in the hidden DOM input "#uploaded-images-input" — just read from it.
-        let imageUrls: string[] = [];
+        let propertyImages: any[] = [];
         if (typeof document !== "undefined") {
           const hiddenEl = document.getElementById(
             "uploaded-images-input",
@@ -422,23 +417,42 @@ export default function AddPropertyPage() {
               const parsed = JSON.parse(hiddenEl.value);
               console.log("🔍 Parsed hidden input value:", parsed);
               if (Array.isArray(parsed))
-                imageUrls = parsed
+                propertyImages = parsed
                   .map((img) => {
                     if (typeof img === "string") return img;
-                    if (img?.url) return img.url;
-                    if (img?.imageUrl) return img.imageUrl;
-                    if (img?.src) return img.src;
-                    return "";
+                    const url = img?.url || img?.imageUrl || img?.src;
+                    if (!url) return null;
+
+                    return {
+                      url,
+                      fileName: img.fileName || "",
+                      order: img.order,
+                      category: img.category || "other",
+                      customPlaceName: img.customPlaceName || "",
+                      displayPlace: img.displayPlace || img.customPlaceName || img.category || "Other",
+                      caption: img.caption || img.displayPlace || img.customPlaceName || "",
+                      isCover: Boolean(img.isCover),
+                    };
                   })
                   .filter(Boolean);
             } catch { }
           }
         }
 
-        console.log("📸 Image URLs:", imageUrls);
-        console.log("📸 Image count:", imageUrls.length);
+        const hasLocalPreviewImages = propertyImages.some(
+          (image) =>
+            typeof image === "object" &&
+            typeof image?.url === "string" &&
+            image.url.startsWith("blob:"),
+        );
 
-        if (imageUrls.length < 5) {
+        if (hasLocalPreviewImages) {
+          toast.warning("Local preview images are not saved to the backend.", {
+            duration: 5000,
+          });
+        }
+
+        if (propertyImages.length < 5) {
           toast.warning("Add at least 5 images for better results.", {
             duration: 4000,
           });
@@ -552,7 +566,7 @@ export default function AddPropertyPage() {
           amenities: groupAmenities(flatAmenities),
 
           // Images from upload
-          images: imageUrls,
+          images: propertyImages,
         };
 
         const rawToken =

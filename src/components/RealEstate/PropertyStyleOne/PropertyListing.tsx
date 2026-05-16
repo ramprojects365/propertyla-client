@@ -6,6 +6,7 @@ import { StaticImageData } from "next/image";
 import PropertySingleCard from "@/components/Common/PropertySingleCard";
 import { propertyData } from "@/data/propertyData";
 import { IFeaturedPropertyDT } from "@/types/property-d-t";
+import { getCoverImageUrl } from "@/utils/propertyImages";
 
 type Property = IFeaturedPropertyDT;
 
@@ -30,14 +31,15 @@ type ApiProperty = {
   buildupArea?: number | string;
   bedrooms?: number | string;
   bathrooms?: number | string;
-  images?: string[];
+  images?: unknown[];
   status?: string;
 };
 
 function mapApiProperty(item: ApiProperty, index: number): Property {
   let image: StaticImageData;
-  if (item.images && item.images.length > 0) {
-    image = item.images[0] as unknown as StaticImageData;
+  const coverImage = getCoverImageUrl(item.images);
+  if (coverImage) {
+    image = coverImage as unknown as StaticImageData;
   } else {
     image = localImagePool[index % localImagePool.length];
   }

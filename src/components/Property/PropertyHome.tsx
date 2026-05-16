@@ -4,6 +4,7 @@ import { propertyData } from "@/data/propertyData";
 import React, { useEffect, useMemo, useState } from "react";
 import { IFeaturedPropertyDT } from "@/types/property-d-t";
 import { StaticImageData } from "next/image";
+import { getCoverImageUrl } from "@/utils/propertyImages";
 
 // Import Swiper components and Pagination module
 import { Swiper, SwiperSlide } from "swiper/react";
@@ -22,7 +23,7 @@ type ApiProperty = {
   buildupArea?: number | string;
   bedrooms?: number | string;
   bathrooms?: number | string;
-  images?: string[];
+  images?: unknown[];
   createdAt?: string;
   updatedAt?: string;
 };
@@ -80,9 +81,7 @@ export default function PropertyHome() {
                 : `${area.toFixed(1)} Sq Ft`
               : "N/A";
           const image =
-            p.images && p.images.length > 0
-              ? p.images[0]
-              : localImagePool[idx % localImagePool.length];
+            getCoverImageUrl(p.images) || localImagePool[idx % localImagePool.length];
           return {
             id: p.id as unknown as number,
             title: p.propertyName || p.title || "Property",

@@ -6,6 +6,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { createCleanFromUrl } from "@/utils/urlEncoding";
 import { usePathname, useSearchParams } from "next/navigation";
+import { getCoverImageUrl } from "@/utils/propertyImages";
 
 interface Property {
   id: string;
@@ -13,7 +14,7 @@ interface Property {
   propertyName?: string;
   price?: number;
   monthlyRent?: number;
-  images?: string[];
+  images?: unknown[];
   imageUrl?: string;
   listingType?: string;
 }
@@ -52,7 +53,7 @@ export default function RecentlyViewedProperties() {
               Number(property.monthlyRent || property.price || 0) || 0;
             const image =
               property.imageUrl ||
-              property.images?.[0] ||
+              getCoverImageUrl(property.images) ||
               "/assets/img/rent/property/recent-1.jpg";
 
             // Create property details link with from parameter

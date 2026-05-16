@@ -7,6 +7,7 @@ import RecentlyViewedProperties from "@/components/RealEstate/PropertyDetailsOne
 import { useEffect, useState } from "react";
 import { IFeaturedPropertyDT } from "@/types/property-d-t";
 import { deleteProperty } from "@/services/propertyService";
+import { getCoverImageUrl } from "@/utils/propertyImages";
 
 // API Property interface
 interface ApiProperty {
@@ -15,7 +16,7 @@ interface ApiProperty {
   propertyName?: string;
   price?: number;
   monthlyRent?: number;
-  images?: string[];
+  images?: unknown[];
   imageUrl?: string;
   listingType?: string;
   address?: string;
@@ -78,7 +79,7 @@ export default function DashboardProperty() {
             const price = property.price || property.monthlyRent || 0;
             const image =
               property.imageUrl ||
-              property.images?.[0] ||
+              getCoverImageUrl(property.images) ||
               "/assets/img/rent/property/property-1.jpg";
 
             return {

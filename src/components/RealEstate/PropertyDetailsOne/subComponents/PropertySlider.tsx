@@ -2,6 +2,7 @@
 import { useMemo, useState } from "react";
 import { Swiper, SwiperSlide } from "swiper/react";
 import type { Swiper as SwiperClass } from "swiper";
+import { getPropertyImageUrls } from "@/utils/propertyImages";
 
 const fallbackImages = [
   "/assets/img/property/property-details/property-thumb-1.jpg",
@@ -10,7 +11,7 @@ const fallbackImages = [
 ];
 
 interface Props {
-  images?: string[];
+  images?: unknown[];
 }
 
 export default function PropertyDetailsSlider({ images }: Props) {
@@ -20,7 +21,7 @@ export default function PropertyDetailsSlider({ images }: Props) {
   const [navState, setNavState] = useState({ isBeginning: true, isEnd: false });
 
   const urls = useMemo(() => {
-    const list = images?.filter((u) => typeof u === "string" && u.trim()) ?? [];
+    const list = getPropertyImageUrls(images);
     return list.length > 0 ? list : fallbackImages;
   }, [images]);
 

@@ -7,6 +7,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { usePathname, useSearchParams } from "next/navigation";
 import { createCleanFromUrl } from "@/utils/urlEncoding";
+import { getCoverImageUrl } from "@/utils/propertyImages";
 
 interface IPropsWrapperCls {
   wrapperCls?: string;
@@ -57,7 +58,7 @@ export default function SidebarPropertyItem({
           bedrooms?: number | string;
           bathrooms?: number | string;
           buildupArea?: number | string;
-          images?: string[];
+          images?: unknown[];
           createdAt?: string;
           updatedAt?: string;
         }> = json?.data ?? json ?? [];
@@ -96,7 +97,7 @@ export default function SidebarPropertyItem({
           bedrooms: beds,
           bathrooms: baths,
           area,
-          imageUrl: item.images?.[0] ?? null,
+          imageUrl: getCoverImageUrl(item.images),
         });
       } catch {
         return;

@@ -1,13 +1,14 @@
 import PropertyDetailsOneArea from "@/components/RealEstate/PropertyDetailsOne/Details";
 import Wrapper from "@/layouts/Wrapper";
 import { PageParamsProps } from "@/types/custom-interface";
+import { getCoverImageUrl } from "@/utils/propertyImages";
 import type { Metadata } from "next";
 
 type ApiPropertyMeta = {
   title?: string;
   propertyName?: string;
   description?: string;
-  images?: string[];
+  images?: unknown[];
 };
 
 export async function generateMetadata(
@@ -33,7 +34,7 @@ export async function generateMetadata(
     const description =
       item.description?.trim() ||
         "View detailed property information in Malaysia. Find apartments for rent, houses for sale, condos, landed properties, and bungalows in Kuala Lumpur, Selangor, Penang, Johor and other major areas.";
-    const imageUrl = item.images?.[0];
+    const imageUrl = getCoverImageUrl(item.images);
     const canonicalUrl = `https://propertyla.com.my/property-details/${id}`;
 
     return {

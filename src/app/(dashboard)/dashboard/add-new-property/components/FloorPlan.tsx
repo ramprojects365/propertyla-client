@@ -4,6 +4,7 @@ import Image from "next/image";
 import { useState, useEffect } from "react";
 import { useFormContext } from "react-hook-form";
 import { PropertyFormData } from "@/schemas/validationSchema";
+import { API_BASE_URL } from "@/config/constants";
 
 export default function FloorPlan() {
   const { register, setValue } = useFormContext<PropertyFormData>();
@@ -55,10 +56,7 @@ export default function FloorPlan() {
       const headers: Record<string, string> = {};
       if (token) headers.Authorization = `Bearer ${token}`;
 
-      const API_BASE =
-        process.env.NEXT_PUBLIC_API_BASE ?? "http://159.223.92.101:3008";
-
-      const res = await fetch(`${API_BASE}/api/images/upload-single`, {
+      const res = await fetch(`${API_BASE_URL}/images/upload-single`, {
         method: "POST",
         headers,
         body: formData,
@@ -109,7 +107,7 @@ export default function FloorPlan() {
             <input
               id="tp-dashboard-new-floorplan-input"
               type="file"
-              accept="image/png, image/jpeg, application/pdf"
+              accept="image/png, image/jpeg, image/webp"
               onChange={handleUpload}
               disabled={isLoading}
               style={{ display: "none" }}
@@ -122,7 +120,7 @@ export default function FloorPlan() {
 
           <p>
             Upload floor plan to help buyers understand the layout.
-            <br /> Accepted formats: PNG, JPEG, PDF
+            <br /> Accepted formats: PNG, JPEG, WebP
           </p>
         </div>
 
