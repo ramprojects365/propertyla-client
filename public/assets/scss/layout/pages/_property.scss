@@ -748,9 +748,20 @@
     grid-template-columns: 1fr;
   }
 
+  .tp-pdg-five .tp-pdg-main,
+  .tp-pdg-three .tp-pdg-main {
+    aspect-ratio: 16 / 11;
+    min-height: 260px;
+  }
+
   .tp-pdg-three .tp-pdg-side,
   .tp-pdg-five .tp-pdg-side {
     grid-template-columns: repeat(2, 1fr);
+  }
+
+  .tp-pdg-three .tp-pdg-side .tp-pdg-tile,
+  .tp-pdg-five .tp-pdg-side .tp-pdg-tile {
+    aspect-ratio: 1 / 1;
   }
 
   .tp-pdg-label {
