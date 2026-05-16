@@ -10,6 +10,7 @@ export default function BasicDetails() {
   const {
     register,
     formState: { errors },
+    watch,
   } = useFormContext<PropertyFormData>();
 
   const [listingType, setListingType] = useState<string>("");
@@ -28,7 +29,9 @@ export default function BasicDetails() {
 
     return () => window.removeEventListener("listingTypeChanged", updateValue);
   }, []);
-  console.log(sessionStorage.getItem("listingType"));
+
+  const propertyType = watch("propertyType");
+
   return (
     <div className="tp-dashboard-new-property mb-15">
       <h5 className="tp-dashboard-new-title">Property Details</h5>
@@ -82,6 +85,34 @@ export default function BasicDetails() {
               )}
             </div>
           </div>
+          {propertyType !== "Apartment" &&
+            propertyType !== "Condominium" &&
+            propertyType !== "Serviced Residence" &&
+            propertyType !== "Shop Lot" && (
+              <div className="col-lg-4">
+                <div className="tp-dashboard-new-input">
+                  <label>Land Size (sq.ft)</label>
+                  <input
+                    className="textBox"
+                    type="text"
+                    inputMode="numeric"
+                    placeholder="Enter land size"
+                    {...register("landSize")}
+                    onInput={(e) => {
+                      e.currentTarget.value = e.currentTarget.value.replace(
+                        /\D/g,
+                        "",
+                      );
+                    }}
+                  />
+                  {errors?.landSize && (
+                    <ErrorMessage message={errors?.landSize?.message || ""} />
+                  )}
+                </div>
+              </div>
+            )}
+        </div>
+        <div className="row">
           <div className="col-lg-4">
             <div className="tp-dashboard-new-input">
               <label>Furnishing</label>
@@ -99,8 +130,6 @@ export default function BasicDetails() {
               </div>
             </div>
           </div>
-        </div>
-        <div className="row">
           <div className="col-lg-4">
             <div className="tp-dashboard-new-input">
               <label>Bed Rooms</label>
@@ -147,6 +176,8 @@ export default function BasicDetails() {
               </div>
             </div>
           </div>
+        </div>
+        <div className="row">
           <div className="col-lg-4">
             <div className="tp-dashboard-new-input">
               <label>Availability</label>
@@ -164,8 +195,6 @@ export default function BasicDetails() {
               </div>
             </div>
           </div>
-        </div>
-        <div className="row">
           <div className="col-lg-4">
             <div className="tp-dashboard-new-input">
               <label>Floor</label>
@@ -204,23 +233,339 @@ export default function BasicDetails() {
               </div>
             </div>
           </div>
+        </div>
+        <div className="row">
           <div className="col-lg-4">
             <div className="tp-dashboard-new-input">
-              <label>Negotiable</label>
-              <div className="tp-property-tabs-select tp-select">
-                <select {...register("negotiable")} className="listDropDown">
-                  <option value="Yes">Yes</option>
-                  <option value="No">No</option>
-                </select>
+              <label>Year of Completion</label>
+              <input
+                className="textBox"
+                type="text"
+                inputMode="numeric"
+                placeholder="Enter year (e.g., 2020)"
+                {...register("yearOfCompletion")}
+                onInput={(e) => {
+                  e.currentTarget.value = e.currentTarget.value.replace(
+                    /\D/g,
+                    "",
+                  );
+                }}
+              />
+              {errors?.yearOfCompletion && (
+                <ErrorMessage
+                  message={errors?.yearOfCompletion?.message || ""}
+                />
+              )}
+            </div>
+          </div>
+          {listingType === "sale" && (
+            <div className="col-lg-4">
+              <div className="tp-dashboard-new-input">
+                <label>Car Park Allocation</label>
+                <div className="tp-property-tabs-select tp-select">
+                  <select
+                    {...register("carParkAllocation")}
+                    className="listDropDown"
+                  >
+                    <option value="">Select</option>
+                    <option value="1">1</option>
+                    <option value="2">2</option>
+                    <option value="3">3</option>
+                    <option value="4">4</option>
+                    <option value="None">None</option>
+                  </select>
+                </div>
+                <div>
+                  {errors?.carParkAllocation && (
+                    <ErrorMessage
+                      message={errors?.carParkAllocation?.message || ""}
+                    />
+                  )}
+                </div>
               </div>
-              <div>
-                {errors?.negotiable && (
-                  <ErrorMessage message={errors?.negotiable?.message || ""} />
-                )}
+            </div>
+          )}
+          {listingType === "sale" && (
+            <div className="col-lg-4">
+              <div className="tp-dashboard-new-input">
+                <label>Facing Direction</label>
+                <div className="tp-property-tabs-select tp-select">
+                  <select
+                    {...register("facingDirection")}
+                    className="listDropDown"
+                  >
+                    <option value="">Select</option>
+                    <option value="North">North</option>
+                    <option value="South">South</option>
+                    <option value="East">East</option>
+                    <option value="West">West</option>
+                    <option value="North East">North East</option>
+                    <option value="North West">North West</option>
+                    <option value="South East">South East</option>
+                    <option value="South West">South West</option>
+                  </select>
+                </div>
+                <div>
+                  {errors?.facingDirection && (
+                    <ErrorMessage
+                      message={errors?.facingDirection?.message || ""}
+                    />
+                  )}
+                </div>
+              </div>
+            </div>
+          )}
+        </div>
+        {listingType === "rent" && (
+          <div className="row">
+            <div className="col-lg-4">
+              <div className="tp-dashboard-new-input">
+                <label>Car Park Allocation</label>
+                <div className="tp-property-tabs-select tp-select">
+                  <select
+                    {...register("carParkAllocation")}
+                    className="listDropDown"
+                  >
+                    <option value="">Select</option>
+                    <option value="1">1</option>
+                    <option value="2">2</option>
+                    <option value="3">3</option>
+                    <option value="4">4</option>
+                    <option value="None">None</option>
+                  </select>
+                </div>
+                <div>
+                  {errors?.carParkAllocation && (
+                    <ErrorMessage
+                      message={errors?.carParkAllocation?.message || ""}
+                    />
+                  )}
+                </div>
               </div>
             </div>
           </div>
-        </div>
+        )}
+        {listingType === "sale" && (
+          <div className="row">
+            <div className="col-lg-4">
+              <div className="tp-dashboard-new-input">
+                <label>Renovation Status</label>
+                <div className="tp-property-tabs-select tp-select">
+                  <select
+                    {...register("renovationStatus")}
+                    className="listDropDown"
+                  >
+                    <option value="">Select</option>
+                    <option value="Fully Renovated">Fully Renovated</option>
+                    <option value="Partially Renovated">
+                      Partially Renovated
+                    </option>
+                    <option value="Original Condition">Original Condition</option>
+                  </select>
+                </div>
+                <div>
+                  {errors?.renovationStatus && (
+                    <ErrorMessage
+                      message={errors?.renovationStatus?.message || ""}
+                    />
+                  )}
+                </div>
+              </div>
+            </div>
+            <div className="col-lg-4">
+              <div className="tp-dashboard-new-input">
+                <label>Negotiable</label>
+                <div className="tp-property-tabs-select tp-select">
+                  <select {...register("negotiable")} className="listDropDown">
+                    <option value="Yes">Yes</option>
+                    <option value="No">No</option>
+                  </select>
+                </div>
+                <div>
+                  {errors?.negotiable && (
+                    <ErrorMessage message={errors?.negotiable?.message || ""} />
+                  )}
+                </div>
+              </div>
+            </div>
+            <div className="col-lg-4">
+              <div className="tp-dashboard-new-input">
+                <label>Bumi Lot Status</label>
+                <div className="tp-property-tabs-select tp-select">
+                  <select
+                    {...register("bumiLotStatus")}
+                    className="listDropDown"
+                  >
+                    <option value="">Select</option>
+                    <option value="Yes">Yes</option>
+                    <option value="No">No</option>
+                  </select>
+                </div>
+                <div>
+                  {errors?.bumiLotStatus && (
+                    <ErrorMessage
+                      message={errors?.bumiLotStatus?.message || ""}
+                    />
+                  )}
+                </div>
+              </div>
+            </div>
+          </div>
+        )}
+        {listingType === "rent" && (
+          <>
+            <div className="row">
+              <div className="col-lg-4">
+                <div className="tp-dashboard-new-input">
+                  <label>Deposit Amount (RM)</label>
+                  <input
+                    className="textBox"
+                    type="text"
+                    inputMode="numeric"
+                    placeholder="Enter deposit amount"
+                    {...register("depositAmount")}
+                    onInput={(e) => {
+                      e.currentTarget.value = e.currentTarget.value.replace(
+                        /\D/g,
+                        "",
+                      );
+                    }}
+                  />
+                  {errors?.depositAmount && (
+                    <ErrorMessage
+                      message={errors?.depositAmount?.message || ""}
+                    />
+                  )}
+                </div>
+              </div>
+              <div className="col-lg-4">
+                <div className="tp-dashboard-new-input">
+                  <label>Minimum Rental Period</label>
+                  <div className="tp-property-tabs-select tp-select">
+                    <select
+                      {...register("minimumRentalPeriod")}
+                      className="listDropDown"
+                    >
+                      <option value="">Select</option>
+                      <option value="6 months">6 months</option>
+                      <option value="12 months">12 months</option>
+                      <option value="24 months">24 months</option>
+                      <option value="36 months">36 months</option>
+                    </select>
+                  </div>
+                  <div>
+                    {errors?.minimumRentalPeriod && (
+                      <ErrorMessage
+                        message={errors?.minimumRentalPeriod?.message || ""}
+                      />
+                    )}
+                  </div>
+                </div>
+              </div>
+              <div className="col-lg-4">
+                <div className="tp-dashboard-new-input">
+                  <label>Pet Policy</label>
+                  <div className="tp-property-tabs-select tp-select">
+                    <select {...register("petPolicy")} className="listDropDown">
+                      <option value="">Select</option>
+                      <option value="Allowed">Allowed</option>
+                      <option value="Not Allowed">Not Allowed</option>
+                    </select>
+                  </div>
+                  <div>
+                    {errors?.petPolicy && (
+                      <ErrorMessage
+                        message={errors?.petPolicy?.message || ""}
+                      />
+                    )}
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div className="row">
+              <div className="col-lg-4">
+                <div className="tp-dashboard-new-input">
+                  <label>Preferred Tenant Type</label>
+                  <div className="tp-property-tabs-select tp-select">
+                    <select
+                      {...register("preferredTenantType")}
+                      className="listDropDown"
+                    >
+                      <option value="">Select</option>
+                      <option value="Family">Family</option>
+                      <option value="Single">Single</option>
+                      <option value="Students">Students</option>
+                      <option value="Company">Company</option>
+                      <option value="Any">Any</option>
+                    </select>
+                  </div>
+                  <div>
+                    {errors?.preferredTenantType && (
+                      <ErrorMessage
+                        message={errors?.preferredTenantType?.message || ""}
+                      />
+                    )}
+                  </div>
+                </div>
+              </div>
+            </div>
+          </>
+        )}
+        {(propertyType === "Condominium" ||
+          propertyType === "Apartment" ||
+          propertyType === "Serviced Residence" ||
+          propertyType === "Office" ||
+          propertyType === "Shop Lot") &&
+          listingType === "sale" && (
+            <div className="row">
+              <div className="col-lg-4">
+                <div className="tp-dashboard-new-input">
+                  <label>Maintenance Fee (RM/month)</label>
+                  <input
+                    className="textBox"
+                    type="text"
+                    inputMode="numeric"
+                    placeholder="Enter maintenance fee"
+                    {...register("maintenanceFee")}
+                    onInput={(e) => {
+                      e.currentTarget.value = e.currentTarget.value.replace(
+                        /\D/g,
+                        "",
+                      );
+                    }}
+                  />
+                  {errors?.maintenanceFee && (
+                    <ErrorMessage
+                      message={errors?.maintenanceFee?.message || ""}
+                    />
+                  )}
+                </div>
+              </div>
+              <div className="col-lg-4">
+                <div className="tp-dashboard-new-input">
+                  <label>Sinking Fund (RM/month)</label>
+                  <input
+                    className="textBox"
+                    type="text"
+                    inputMode="numeric"
+                    placeholder="Enter sinking fund"
+                    {...register("sinkingFund")}
+                    onInput={(e) => {
+                      e.currentTarget.value = e.currentTarget.value.replace(
+                        /\D/g,
+                        "",
+                      );
+                    }}
+                  />
+                  {errors?.sinkingFund && (
+                    <ErrorMessage
+                      message={errors?.sinkingFund?.message || ""}
+                    />
+                  )}
+                </div>
+              </div>
+            </div>
+          )}
       </div>
     </div>
   );

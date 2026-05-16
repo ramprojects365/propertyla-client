@@ -74,7 +74,7 @@ export const propertySchema = yup.object({
   listingType: yup.string().required("Listing type is required"),
   propertyName: yup.string().required("Property name is required"),
   propertyType: yup.string().required("Property type is required"),
-  tenure: yup.string().required("Tenureis required"),
+  tenure: yup.string().required("Tenure is required"),
   title: yup.string().required("Title is required"),
   description: yup.string().required("Description is required"),
   location: yup.string().required("Property location is required"),
@@ -87,12 +87,7 @@ export const propertySchema = yup.object({
   pinCode: yup
     .string()
     .required("Pin Code is required")
-    .matches(/^[0-9]+$/, "Only numbers are allowed")
-    .test(
-      "not-zero",
-      "Pin Code must be greater than 4 digits",
-      (value) => Number(value) > 4,
-    ),
+    .matches(/^[0-9]{5}$/, "Pin Code must be exactly 5 digits"),
   landmark: yup.string().required("Land mark is required"),
   price: yup
     .string()
@@ -105,29 +100,61 @@ export const propertySchema = yup.object({
     ),
   builtUpArea: yup
     .string()
-    .required("Built Up Area is required")
-    .matches(/^[0-9]+$/, "Only numbers are allowed")
+    .optional()
+    .test(
+      "only-numbers",
+      "Only numbers are allowed",
+      (value) => !value || /^[0-9]+$/.test(value)
+    )
     .test(
       "not-zero",
       "Built Up Area must be greater than 0",
-      (value) => Number(value) > 0,
+      (value) => !value || Number(value) > 0,
+    ),
+  landSize: yup
+    .string()
+    .optional()
+    .test(
+      "only-numbers",
+      "Only numbers are allowed",
+      (value) => !value || /^[0-9]+$/.test(value)
+    )
+    .test(
+      "not-zero",
+      "Land Size must be greater than 0",
+      (value) => !value || Number(value) > 0,
     ),
   furnishing: yup.string().required("Furnishing type is required"),
   bedRooms: yup.string().required("Bed rooms are required"),
   bathRooms: yup.string().required("Bath rooms are required"),
   availability: yup.string().required("Availability is required"),
-  negotiable: yup.string().required("Negotiable is required"),
+  negotiable: yup.string().optional(),
   floorLevel: yup.string().required("Floor Number is required"),
   propertyAge: yup
     .number()
     .typeError("Year of build must be a number")
     .positive("Year of build must be greater than zero")
-    .required("Year of build is required"),
+    .optional(),
+  yearOfCompletion: yup
+    .number()
+    .typeError("Year of completion must be a number")
+    .positive("Year of completion must be greater than zero")
+    .required("Year of completion is required"),
+  carParkAllocation: yup.string().optional(),
+  facingDirection: yup.string().optional(),
+  depositAmount: yup.string().optional(),
+  minimumRentalPeriod: yup.string().optional(),
+  petPolicy: yup.string().optional(),
+  preferredTenantType: yup.string().optional(),
+  maintenanceFee: yup.string().optional(),
+  sinkingFund: yup.string().optional(),
+  bumiLotStatus: yup.string().optional(),
+  renovationStatus: yup.string().optional(),
+  floorPlan: yup.string().optional(),
   amenities: yup
     .array()
     .of(yup.string())
-    .min(1, "Please select at least one amenity.")
-    .required("Please select at least one amenity."),
+    .optional(),
 });
 
 export type PropertyFormData = yup.InferType<typeof propertySchema>;

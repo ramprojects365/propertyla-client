@@ -9,7 +9,10 @@ export default function BasicDetails() {
   const {
     register,
     formState: { errors },
+    watch,
   } = useFormContext<PropertyFormData>();
+
+  const listingType = watch("listingType");
 
   return (
     <div className="tp-dashboard-new-property mb-15">
