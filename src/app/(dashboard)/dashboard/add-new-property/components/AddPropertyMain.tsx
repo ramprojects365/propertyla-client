@@ -8,6 +8,7 @@ import LocationDetails from "./LocationDetails";
 import PropertyDetails from "./PropertyDetails";
 import AmenitiesDetails from "./AmenitiesDetails";
 import UploadMedia from "./UploadMedia";
+import FloorPlan from "./FloorPlan";
 import { toast } from "sonner";
 import { useEffect, useState } from "react";
 import { getPropertyById } from "@/services/propertyService";
@@ -185,10 +186,56 @@ const flattenAmenities = (amenities?: {
 export default function AddPropertyPage() {
   const methods = useForm<PropertyFormData>({
     resolver: yupResolver(propertySchema),
-    mode: "onChange",
+    defaultValues: {
+      listingType: "",
+      propertyType: "",
+      propertyName: "",
+      tenure: "",
+      title: "",
+      description: "",
+      location: "",
+      latitude: undefined,
+      longitude: undefined,
+      streetName: "",
+      cityName: "",
+      stateName: "",
+      countryName: "Malaysia",
+      pinCode: "",
+      landmark: "",
+      price: "",
+      builtUpArea: "",
+      landSize: "",
+      furnishing: "",
+      bedRooms: "",
+      bathRooms: "",
+      availability: "",
+      negotiable: "",
+      floorLevel: "",
+      propertyAge: undefined,
+      yearOfCompletion: undefined,
+      carParkAllocation: "",
+      facingDirection: "",
+      renovationStatus: "",
+      depositAmount: "",
+      minimumRentalPeriod: "",
+      petPolicy: "",
+      preferredTenantType: "",
+      maintenanceFee: "",
+      sinkingFund: "",
+      bumiLotStatus: "",
+      floorPlan: "",
+      amenities: [],
+    },
+    mode: "onSubmit",
   });
 
-  const { handleSubmit, reset, setValue } = methods;
+  const {
+    handleSubmit,
+    reset,
+    setValue,
+    setError,
+    formState: { errors },
+  } = methods;
   const searchParams = useSearchParams();
   const editPropertyId = searchParams.get("edit");
   const [isEditMode, setIsEditMode] = useState(false);
@@ -260,6 +307,32 @@ export default function AddPropertyPage() {
             negotiable: propertyData.negotiable ? "Yes" : "No",
             floorLevel: normalizeFloorLevel(propertyData.floorLevel),
             propertyAge: getAgeRangeFromYear(propertyData.yearOfBuild),
+            yearOfCompletion: propertyData.yearOfCompletion,
+            carParkAllocation: propertyData.carParkAllocation || "",
+            facingDirection: propertyData.facingDirection || "",
+            renovationStatus: propertyData.renovationStatus || "",
+
+            // RENT-specific fields
+            depositAmount: propertyData.depositAmount
+              ? String(propertyData.depositAmount)
+              : "",
+            minimumRentalPeriod: propertyData.minimumRentalPeriod || "",
+            petPolicy: propertyData.petPolicy || "",
+            preferredTenantType: propertyData.preferredTenantType || "",
+
+            // Strata property fields
+            maintenanceFee: propertyData.maintenanceFee
+              ? String(propertyData.maintenanceFee)
+              : "",
+            sinkingFund: propertyData.sinkingFund
+              ? String(propertyData.sinkingFund)
+              : "",
+
+            // Malaysian market fields
+            bumiLotStatus: propertyData.bumiLotStatus || "",
+
+            // Floor Plan
+            floorPlan: propertyData.floorPlan || "",
 
             amenities: Array.isArray(propertyData.amenities)
               ? propertyData.amenities
@@ -288,7 +361,7 @@ export default function AddPropertyPage() {
             console.log("🖼️ Setting images:", normalizedImages);
 
             const hiddenInput = document.getElementById(
-              "uploaded-images-input"
+              "uploaded-images-input",
             ) as HTMLInputElement | null;
 
             if (hiddenInput) {
@@ -316,13 +389,24 @@ export default function AddPropertyPage() {
   }, [editPropertyId, setValue]);
 
   const onSubmit: SubmitHandler<PropertyFormData> = (data) => {
+    console.log("🚀 Submit called with data:", data);
+    console.log("🚀 Form errors:", errors);
     (async () => {
       try {
         // Prevent submission while loading
         if (isLoading) {
+          console.log("⏳ Submission blocked - isLoading is true");
           toast.error("Please wait while property data is loading...");
           return;
         }
+        console.log("✅ isLoading check passed");
+
+        // Check if form has any validation errors
+        if (Object.keys(errors).length > 0) {
+          console.log("❌ Form has validation errors:", errors);
+          return;
+        }
+        console.log("✅ Form validation passed");
         // UploadMedia already uploaded the files and stored their public URLs
         // in the hidden DOM input "#uploaded-images-input" — just read from it.
         let imageUrls: string[] = [];
@@ -330,9 +414,13 @@ export default function AddPropertyPage() {
           const hiddenEl = document.getElementById(
             "uploaded-images-input",
           ) as HTMLInputElement | null;
+          console.log("🔍 Hidden input element:", hiddenEl);
+          console.log("🔍 Hidden input value:", hiddenEl?.value);
+
           if (hiddenEl?.value) {
             try {
               const parsed = JSON.parse(hiddenEl.value);
+              console.log("🔍 Parsed hidden input value:", parsed);
               if (Array.isArray(parsed))
                 imageUrls = parsed
                   .map((img) => {
@@ -347,11 +435,19 @@ export default function AddPropertyPage() {
           }
         }
 
+        console.log("📸 Image URLs:", imageUrls);
+        console.log("📸 Image count:", imageUrls.length);
+
         if (imageUrls.length < 5) {
           toast.warning("Add at least 5 images for better results.", {
             duration: 4000,
           });
         }
+
+        console.log("✅ Image count check passed");
+        console.log("📋 Form data:", data);
+        console.log("📋 isEditMode:", isEditMode);
+        console.log("📋 editPropertyId:", editPropertyId);
 
         // ---------------------------------------------------------------
         // Remap FE field names → BE field names before sending to the API
@@ -410,12 +506,14 @@ export default function AddPropertyPage() {
 
           // Remapped numeric fields (FE stores as string from input/select)
           price: parseFloat(data.price),
-          buildupArea: data.builtUpArea
-            ? parseFloat(data.builtUpArea)
-            : undefined,
-          bedrooms: data.bedRooms ? parseInt(data.bedRooms, 10) : undefined,
-          bathrooms: data.bathRooms ? parseInt(data.bathRooms, 10) : undefined,
-          yearOfBuild: getYearFromAgeRange(data.propertyAge),
+          buildupArea: data.builtUpArea ? parseFloat(data.builtUpArea) : null,
+          landSize: data.landSize ? parseFloat(data.landSize) : null,
+          bedrooms: data.bedRooms ? parseInt(data.bedRooms, 10) : null,
+          bathrooms: data.bathRooms ? parseInt(data.bathRooms, 10) : null,
+          yearOfBuild: getYearFromAgeRange(data.propertyAge) || null,
+          yearOfCompletion: data.yearOfCompletion
+            ? parseInt(String(data.yearOfCompletion), 10)
+            : null,
 
           // Remapped name fields
           state: data.stateName,
@@ -424,6 +522,31 @@ export default function AddPropertyPage() {
 
           // Convert "Yes"/"No" negotiable to boolean
           negotiable: data.negotiable === "Yes",
+
+          // General fields
+          carParkAllocation: data.carParkAllocation || "",
+          facingDirection: data.facingDirection || "",
+          renovationStatus: data.renovationStatus || "",
+
+          // RENT-specific fields
+          depositAmount: data.depositAmount
+            ? parseFloat(data.depositAmount)
+            : null,
+          minimumRentalPeriod: data.minimumRentalPeriod || "",
+          petPolicy: data.petPolicy || "",
+          preferredTenantType: data.preferredTenantType || "",
+
+          // Strata property fields
+          maintenanceFee: data.maintenanceFee
+            ? parseFloat(data.maintenanceFee)
+            : null,
+          sinkingFund: data.sinkingFund ? parseFloat(data.sinkingFund) : null,
+
+          // Malaysian market fields
+          bumiLotStatus: data.bumiLotStatus || "",
+
+          // Floor Plan
+          floorPlan: data.floorPlan || "",
 
           // Group flat amenities array into {lifestyle, facilities, security}
           amenities: groupAmenities(flatAmenities),
@@ -451,6 +574,9 @@ export default function AddPropertyPage() {
           body: JSON.stringify(payload),
         });
 
+        console.log("📡 Response status:", res.status);
+        console.log("📡 Response ok:", res.ok);
+
         if (!res.ok) {
           const err = await res
             .json()
@@ -459,13 +585,16 @@ export default function AddPropertyPage() {
           const action = isEditMode ? "update" : "add";
           toast.error(
             `Failed to ${action} property: ` + (err.message || res.statusText),
-            { duration: 5000 }
+            { duration: 5000 },
           );
           return;
         }
 
         const result = await res.json();
-        console.log(isEditMode ? "Property updated:" : "Property created:", result);
+        console.log(
+          isEditMode ? "Property updated:" : "Property created:",
+          result,
+        );
         methods.reset();
         const successMessage = isEditMode
           ? "Property updated successfully."
@@ -477,7 +606,9 @@ export default function AddPropertyPage() {
         }
       } catch (error) {
         console.error("Network error:", error);
-        toast.error("Network error while submitting the form.", { duration: 5000 });
+        toast.error("Network error while submitting the form.", {
+          duration: 5000,
+        });
       }
     })();
   };
@@ -502,13 +633,37 @@ export default function AddPropertyPage() {
           }
         )}
       >
+        {errors.root && (
+          <div
+            className="alert alert-danger mb-3"
+            style={{
+              color: "#dc3545",
+              padding: "10px",
+              borderRadius: "5px",
+              backgroundColor: "#f8d7da",
+              border: "1px solid #f5c6cb",
+            }}
+          >
+            {errors.root.message}
+          </div>
+        )}
         <BasicDetails />
         <LocationDetails />
         <PropertyDetails />
         <AmenitiesDetails />
         <UploadMedia />
+        <FloorPlan />
         <div className="tp-dashboard-new-btn">
-          <button type="submit" className="add" disabled={isLoading}>
+          <button
+            type="submit"
+            className="add"
+            disabled={isLoading}
+            onClick={(e) => {
+              console.log("🔘 Button clicked");
+              console.log("🔘 isLoading:", isLoading);
+              console.log("🔘 Button disabled:", isLoading);
+            }}
+          >
             {isEditMode ? "Update Property" : "Add Property"}
           </button>
         </div>

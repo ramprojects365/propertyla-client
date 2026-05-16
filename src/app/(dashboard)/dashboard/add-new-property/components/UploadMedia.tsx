@@ -112,6 +112,15 @@ export default function UploadMedia() {
     setUploadedUrls((prev) => prev.filter((img) => img !== url));
   };
 
+  // Update hidden input whenever uploadedUrls changes
+  useEffect(() => {
+    const hiddenInput = document.getElementById("uploaded-images-input") as HTMLInputElement | null;
+    if (hiddenInput) {
+      hiddenInput.value = JSON.stringify(uploadedUrls);
+      console.log("📸 Hidden input updated with:", uploadedUrls);
+    }
+  }, [uploadedUrls]);
+
   return (
     <div className="tp-dashboard-new-property mb-15">
       <h5 className="tp-dashboard-new-title">Upload Media</h5>

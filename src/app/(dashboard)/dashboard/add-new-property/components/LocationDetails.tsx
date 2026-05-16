@@ -152,6 +152,9 @@ export default function LocationDetails() {
                     /\D/g,
                     "",
                   );
+                  if (e.currentTarget.value.length > 5) {
+                    e.currentTarget.value = e.currentTarget.value.slice(0, 5);
+                  }
                 }}
               />
               {errors?.pinCode && (
