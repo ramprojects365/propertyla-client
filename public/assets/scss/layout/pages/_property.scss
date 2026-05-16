@@ -601,6 +601,24 @@
   font-weight: 600;
 }
 
+.tp-pdg-label {
+  position: absolute;
+  left: 12px;
+  bottom: 12px;
+  max-width: calc(100% - 24px);
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  border-radius: 999px;
+  background: rgba(0, 0, 0, 0.72);
+  color: var(--tp-common-white);
+  padding: 6px 10px;
+  font-size: 12px;
+  font-weight: 700;
+  line-height: 1;
+  z-index: 2;
+}
+
 .tp-pdg-modal {
   position: fixed;
   inset: 0;
@@ -618,17 +636,43 @@
 }
 
 .tp-pdg-modal-slide {
+  position: relative;
   width: 100%;
   height: min(80vh, 720px);
   display: flex;
   align-items: center;
   justify-content: center;
+  padding-bottom: 54px;
 }
 
 .tp-pdg-modal-slide img {
   max-width: 100%;
-  max-height: 100%;
+  max-height: calc(100% - 54px);
   object-fit: contain;
+}
+
+.tp-pdg-modal-caption {
+  position: absolute;
+  left: 50%;
+  bottom: 0;
+  transform: translateX(-50%);
+  width: min(720px, calc(100% - 32px));
+  text-align: center;
+}
+
+.tp-pdg-modal-caption span {
+  display: inline-flex;
+  max-width: 100%;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.14);
+  border: 1px solid rgba(255, 255, 255, 0.24);
+  color: #fff;
+  padding: 9px 14px;
+  font-size: 14px;
+  font-weight: 700;
 }
 
 .tp-pdg-close {
@@ -707,5 +751,13 @@
   .tp-pdg-three .tp-pdg-side,
   .tp-pdg-five .tp-pdg-side {
     grid-template-columns: repeat(2, 1fr);
+  }
+
+  .tp-pdg-label {
+    left: 8px;
+    bottom: 8px;
+    max-width: calc(100% - 16px);
+    padding: 5px 8px;
+    font-size: 11px;
   }
 }

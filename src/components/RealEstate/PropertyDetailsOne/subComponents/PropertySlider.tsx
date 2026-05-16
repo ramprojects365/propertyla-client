@@ -2,7 +2,10 @@
 import { useMemo, useState } from "react";
 import { Swiper, SwiperSlide } from "swiper/react";
 import type { Swiper as SwiperClass } from "swiper";
-import { getPropertyImageUrls } from "@/utils/propertyImages";
+import {
+  getPropertyImageItems,
+  type PropertyImageDisplayItem,
+} from "@/utils/propertyImages";
 
 const fallbackImages = [
   "/assets/img/property/property-details/property-thumb-1.jpg",
@@ -14,22 +17,27 @@ interface Props {
   images?: unknown[];
 }
 
+const fallbackItems: PropertyImageDisplayItem[] = fallbackImages.map((url) => ({ url }));
+
+const getImageLabel = (image: PropertyImageDisplayItem) =>
+  image.caption || image.displayPlace || "";
+
 export default function PropertyDetailsSlider({ images }: Props) {
   const [isOpen, setIsOpen] = useState(false);
   const [startIndex, setStartIndex] = useState(0);
   const [swiper, setSwiper] = useState<SwiperClass | null>(null);
   const [navState, setNavState] = useState({ isBeginning: true, isEnd: false });
 
-  const urls = useMemo(() => {
-    const list = getPropertyImageUrls(images);
-    return list.length > 0 ? list : fallbackImages;
+  const imageItems = useMemo(() => {
+    const list = getPropertyImageItems(images);
+    return list.length > 0 ? list : fallbackItems;
   }, [images]);
 
-  const extraCount = urls.length > 5 ? urls.length - 5 : 0;
-  const modalUrls = useMemo(() => {
-    if (urls.length >= 5) return urls;
-    return [...urls, ...fallbackImages, ...fallbackImages].slice(0, 5);
-  }, [urls]);
+  const extraCount = imageItems.length > 5 ? imageItems.length - 5 : 0;
+  const modalItems = useMemo(() => {
+    if (imageItems.length >= 5) return imageItems;
+    return [...imageItems, ...fallbackItems, ...fallbackItems].slice(0, 5);
+  }, [imageItems]);
 
   const openAt = (index: number) => {
     setStartIndex(index);
@@ -44,20 +52,25 @@ export default function PropertyDetailsSlider({ images }: Props) {
           className="tp-pdg-tile tp-pdg-main"
           onClick={() => openAt(0)}
         >
-          <img src={modalUrls[0]} alt="property-image-1" />
+          <img src={modalItems[0].url} alt={getImageLabel(modalItems[0]) || "property-image-1"} />
+          {getImageLabel(modalItems[0]) ? (
+            <span className="tp-pdg-label">{getImageLabel(modalItems[0])}</span>
+          ) : null}
         </button>
         <div className="tp-pdg-side">
-          {modalUrls.slice(1, 5).map((u, idx) => {
+          {modalItems.slice(1, 5).map((item, idx) => {
             const absoluteIndex = idx + 1;
             const isLastVisible = idx === 3;
+            const label = getImageLabel(item);
             return (
               <button
-                key={`${u}-${idx}`}
+                key={`${item.url}-${idx}`}
                 type="button"
                 className="tp-pdg-tile"
                 onClick={() => openAt(absoluteIndex)}
               >
-                <img src={u} alt={`property-image-${absoluteIndex + 1}`} />
+                <img src={item.url} alt={label || `property-image-${absoluteIndex + 1}`} />
+                {label ? <span className="tp-pdg-label">{label}</span> : null}
                 {isLastVisible && extraCount > 0 && (
                   <span className="tp-pdg-more">{`+ ${extraCount} more images`}</span>
                 )}
@@ -98,10 +111,15 @@ export default function PropertyDetailsSlider({ images }: Props) {
                 })
               }
             >
-              {modalUrls.map((u, i) => (
-                <SwiperSlide key={`${u}-${i}`}>
+              {modalItems.map((item, i) => (
+                <SwiperSlide key={`${item.url}-${i}`}>
                   <div className="tp-pdg-modal-slide">
-                    <img src={u} alt={`property-image-${i + 1}`} />
+                    <img src={item.url} alt={getImageLabel(item) || `property-image-${i + 1}`} />
+                    {getImageLabel(item) ? (
+                      <div className="tp-pdg-modal-caption">
+                        <span>{getImageLabel(item)}</span>
+                      </div>
+                    ) : null}
                   </div>
                 </SwiperSlide>
               ))}
@@ -112,7 +130,7 @@ export default function PropertyDetailsSlider({ images }: Props) {
             className="tp-pdg-nav tp-pdg-prev"
             onClick={() => swiper?.slidePrev()}
             aria-label="Previous"
-            disabled={modalUrls.length <= 1 || navState.isBeginning}
+            disabled={modalItems.length <= 1 || navState.isBeginning}
           >
             ‹
           </button>
@@ -121,7 +139,7 @@ export default function PropertyDetailsSlider({ images }: Props) {
             className="tp-pdg-nav tp-pdg-next"
             onClick={() => swiper?.slideNext()}
             aria-label="Next"
-            disabled={modalUrls.length <= 1 || navState.isEnd}
+            disabled={modalItems.length <= 1 || navState.isEnd}
           >
             ›
           </button>
