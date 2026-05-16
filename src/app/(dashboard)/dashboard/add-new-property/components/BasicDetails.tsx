@@ -9,10 +9,12 @@ export default function BasicDetails() {
   const {
     register,
     formState: { errors },
+    setValue,
     watch,
   } = useFormContext<PropertyFormData>();
 
   const listingType = watch("listingType");
+  const listingTypeRegister = register("listingType");
 
   return (
     <div className="tp-dashboard-new-property mb-15">
@@ -53,12 +55,25 @@ export default function BasicDetails() {
               <label> Listing Type </label>
               <div className="tp-property-tabs-select tp-select">
                 <select
-                  {...register("listingType")}
+                  {...listingTypeRegister}
                   className="listDropDown"
                   onChange={(e) => {
                     const value = e.target.value;
+                    listingTypeRegister.onChange(e);
+                    setValue("listingType", value, { shouldValidate: true });
                     sessionStorage.setItem("listingType", value);
                     window.dispatchEvent(new Event("listingTypeChanged"));
+
+                    if (value !== "sale") {
+                      setValue("tenure", "", { shouldValidate: false });
+                      setValue("yearOfCompletion", null, { shouldValidate: false });
+                      setValue("facingDirection", "", { shouldValidate: false });
+                      setValue("renovationStatus", "", { shouldValidate: false });
+                      setValue("maintenanceFee", "", { shouldValidate: false });
+                      setValue("sinkingFund", "", { shouldValidate: false });
+                      setValue("bumiLotStatus", "", { shouldValidate: false });
+                      setValue("floorPlan", "", { shouldValidate: false });
+                    }
                   }}
                 >
                   <option value="">Select</option>
@@ -98,23 +113,25 @@ export default function BasicDetails() {
               </div>
             </div>
           </div>
-          <div className="col-lg-4">
-            <div className="tp-dashboard-new-input">
-              <label>Tenure</label>
-              <div className="tp-property-tabs-select tp-select">
-                <select {...register("tenure")} className="listDropDown">
-                  <option value="">Select</option>
-                  <option value="freehold">Freehold</option>
-                  <option value="leasehold">Leasehold</option>
-                </select>
-              </div>
-              <div>
-                {errors?.tenure && (
-                  <ErrorMessage message={errors?.tenure?.message || ""} />
-                )}
+          {listingType === "sale" && (
+            <div className="col-lg-4">
+              <div className="tp-dashboard-new-input">
+                <label>Tenure</label>
+                <div className="tp-property-tabs-select tp-select">
+                  <select {...register("tenure")} className="listDropDown">
+                    <option value="">Select</option>
+                    <option value="freehold">Freehold</option>
+                    <option value="leasehold">Leasehold</option>
+                  </select>
+                </div>
+                <div>
+                  {errors?.tenure && (
+                    <ErrorMessage message={errors?.tenure?.message || ""} />
+                  )}
+                </div>
               </div>
             </div>
-          </div>
+          )}
         </div>
       </div>
     </div>

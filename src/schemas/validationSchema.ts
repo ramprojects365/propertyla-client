@@ -74,7 +74,11 @@ export const propertySchema = yup.object({
   listingType: yup.string().required("Listing type is required"),
   propertyName: yup.string().required("Property name is required"),
   propertyType: yup.string().required("Property type is required"),
-  tenure: yup.string().required("Tenure is required"),
+  tenure: yup.string().when("listingType", {
+    is: "sale",
+    then: (schema) => schema.optional(),
+    otherwise: (schema) => schema.optional(),
+  }),
   title: yup.string().required("Title is required"),
   description: yup.string().required("Description is required"),
   location: yup.string().required("Property location is required"),
@@ -154,9 +158,13 @@ export const propertySchema = yup.object({
     .optional(),
   yearOfCompletion: yup
     .number()
-    .typeError("Year of completion must be a number")
-    .positive("Year of completion must be greater than zero")
-    .required("Year of completion is required"),
+    .nullable()
+    .transform((value, originalValue) => {
+      return originalValue === "" || originalValue === null || Number.isNaN(value)
+        ? null
+        : value;
+    })
+    .optional(),
   carParkAllocation: yup.string().optional(),
   facingDirection: yup.string().optional(),
   depositAmount: yup.string().optional(),

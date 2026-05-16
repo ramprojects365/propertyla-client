@@ -1,6 +1,5 @@
 "use client";
 
-import { useEffect, useState } from "react";
 import { useFormContext } from "react-hook-form";
 import { PropertyFormData } from "@/schemas/validationSchema";
 import ErrorMessage from "../../../../../components/Form/ErrorMassage";
@@ -13,24 +12,8 @@ export default function BasicDetails() {
     watch,
   } = useFormContext<PropertyFormData>();
 
-  const [listingType, setListingType] = useState<string>("");
-
-  useEffect(() => {
-    const updateValue = () => {
-      const value = (sessionStorage.getItem("listingType") || "")
-        .trim()
-        .toLowerCase();
-
-      setListingType(value);
-    };
-
-    updateValue();
-    window.addEventListener("listingTypeChanged", updateValue);
-
-    return () => window.removeEventListener("listingTypeChanged", updateValue);
-  }, []);
-
   const propertyType = watch("propertyType");
+  const listingType = (watch("listingType") || "").trim().toLowerCase();
 
   return (
     <div className="tp-dashboard-new-property mb-15">
@@ -235,29 +218,31 @@ export default function BasicDetails() {
           </div>
         </div>
         <div className="row">
-          <div className="col-lg-4">
-            <div className="tp-dashboard-new-input">
-              <label>Year of Completion</label>
-              <input
-                className="textBox"
-                type="text"
-                inputMode="numeric"
-                placeholder="Enter year (e.g., 2020)"
-                {...register("yearOfCompletion")}
-                onInput={(e) => {
-                  e.currentTarget.value = e.currentTarget.value.replace(
-                    /\D/g,
-                    "",
-                  );
-                }}
-              />
-              {errors?.yearOfCompletion && (
-                <ErrorMessage
-                  message={errors?.yearOfCompletion?.message || ""}
+          {listingType === "sale" && (
+            <div className="col-lg-4">
+              <div className="tp-dashboard-new-input">
+                <label>Year of Completion</label>
+                <input
+                  className="textBox"
+                  type="text"
+                  inputMode="numeric"
+                  placeholder="Enter year (e.g., 2020)"
+                  {...register("yearOfCompletion")}
+                  onInput={(e) => {
+                    e.currentTarget.value = e.currentTarget.value.replace(
+                      /\D/g,
+                      "",
+                    );
+                  }}
                 />
-              )}
+                {errors?.yearOfCompletion && (
+                  <ErrorMessage
+                    message={errors?.yearOfCompletion?.message || ""}
+                  />
+                )}
+              </div>
             </div>
-          </div>
+          )}
           {listingType === "sale" && (
             <div className="col-lg-4">
               <div className="tp-dashboard-new-input">

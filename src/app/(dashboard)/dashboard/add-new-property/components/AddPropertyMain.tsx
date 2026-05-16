@@ -229,8 +229,10 @@ export default function AddPropertyPage() {
     reset,
     setValue,
     setError,
+    watch,
     formState: { errors },
   } = methods;
+  const currentListingType = watch("listingType");
   const searchParams = useSearchParams();
   const editPropertyId = searchParams.get("edit");
   const [isEditMode, setIsEditMode] = useState(false);
@@ -469,6 +471,8 @@ export default function AddPropertyPage() {
         const flatAmenities = (data.amenities ?? []).filter(
           (a): a is string => typeof a === "string",
         );
+        const isSaleListing = data.listingType === "sale";
+        const isRentListing = data.listingType === "rent";
 
         // Convert property age range to actual year of build
         const getYearFromAgeRange = (
@@ -497,7 +501,7 @@ export default function AddPropertyPage() {
           listingType: data.listingType,
           propertyType: data.propertyType,
           propertyName: data.propertyName,
-          tenure: data.tenure,
+          tenure: isSaleListing ? data.tenure || "" : "",
           title: data.title,
           description: data.description,
           location: data.location,
@@ -525,7 +529,7 @@ export default function AddPropertyPage() {
           bedrooms: data.bedRooms ? parseInt(data.bedRooms, 10) : null,
           bathrooms: data.bathRooms ? parseInt(data.bathRooms, 10) : null,
           yearOfBuild: getYearFromAgeRange(data.propertyAge) || null,
-          yearOfCompletion: data.yearOfCompletion
+          yearOfCompletion: isSaleListing && data.yearOfCompletion
             ? parseInt(String(data.yearOfCompletion), 10)
             : null,
 
@@ -539,28 +543,28 @@ export default function AddPropertyPage() {
 
           // General fields
           carParkAllocation: data.carParkAllocation || "",
-          facingDirection: data.facingDirection || "",
-          renovationStatus: data.renovationStatus || "",
+          facingDirection: isSaleListing ? data.facingDirection || "" : "",
+          renovationStatus: isSaleListing ? data.renovationStatus || "" : "",
 
           // RENT-specific fields
-          depositAmount: data.depositAmount
+          depositAmount: isRentListing && data.depositAmount
             ? parseFloat(data.depositAmount)
             : null,
-          minimumRentalPeriod: data.minimumRentalPeriod || "",
-          petPolicy: data.petPolicy || "",
-          preferredTenantType: data.preferredTenantType || "",
+          minimumRentalPeriod: isRentListing ? data.minimumRentalPeriod || "" : "",
+          petPolicy: isRentListing ? data.petPolicy || "" : "",
+          preferredTenantType: isRentListing ? data.preferredTenantType || "" : "",
 
           // Strata property fields
-          maintenanceFee: data.maintenanceFee
+          maintenanceFee: isSaleListing && data.maintenanceFee
             ? parseFloat(data.maintenanceFee)
             : null,
-          sinkingFund: data.sinkingFund ? parseFloat(data.sinkingFund) : null,
+          sinkingFund: isSaleListing && data.sinkingFund ? parseFloat(data.sinkingFund) : null,
 
           // Malaysian market fields
-          bumiLotStatus: data.bumiLotStatus || "",
+          bumiLotStatus: isSaleListing ? data.bumiLotStatus || "" : "",
 
           // Floor Plan
-          floorPlan: data.floorPlan || "",
+          floorPlan: isSaleListing ? data.floorPlan || "" : "",
 
           // Group flat amenities array into {lifestyle, facilities, security}
           amenities: groupAmenities(flatAmenities),
@@ -666,7 +670,7 @@ export default function AddPropertyPage() {
         <PropertyDetails />
         <AmenitiesDetails />
         <UploadMedia />
-        <FloorPlan />
+        {currentListingType === "sale" && <FloorPlan />}
         <div className="tp-dashboard-new-btn">
           <button
             type="submit"
