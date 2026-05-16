@@ -78,8 +78,25 @@ export const propertySchema = yup.object({
   title: yup.string().required("Title is required"),
   description: yup.string().required("Description is required"),
   location: yup.string().required("Property location is required"),
-  latitude: yup.number().optional(),
-  longitude: yup.number().optional(),
+  latitude: yup
+    .number()
+    .nullable()
+    .transform((value, originalValue) => {
+      return originalValue === "" || originalValue === null || Number.isNaN(value)
+        ? null
+        : value;
+    })
+    .optional(),
+
+  longitude: yup
+    .number()
+    .nullable()
+    .transform((value, originalValue) => {
+      return originalValue === "" || originalValue === null || Number.isNaN(value)
+        ? null
+        : value;
+    })
+    .optional(),
   streetName: yup.string().required("Street name is required"),
   cityName: yup.string().required("City name is required"),
   stateName: yup.string().required("State is required"),

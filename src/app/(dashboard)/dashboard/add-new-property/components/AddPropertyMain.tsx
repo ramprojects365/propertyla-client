@@ -13,6 +13,7 @@ import { toast } from "sonner";
 import { useEffect, useState } from "react";
 import { getPropertyById } from "@/services/propertyService";
 import { useSearchParams } from "next/navigation";
+import { API_BASE_URL } from "@/config/constants";
 
 // Amenity groupings — mirror the FE display groups for categorising on submit
 const AMENITY_GROUPS = {
@@ -44,7 +45,69 @@ const AMENITY_GROUPS = {
     "Emergency Exit",
   ],
 };
+const normalizeListingType = (value: any): string => {
+  const v = String(value || "").trim().toLowerCase();
 
+  if (v.includes("rent")) return "rent";
+  if (v.includes("sale") || v.includes("sell")) return "sale";
+
+  return "";
+};
+
+const normalizeFurnishing = (value: any): string => {
+  const v = String(value || "").trim().toLowerCase();
+
+  if (v.includes("full")) return "Fully";
+  if (v.includes("partial")) return "Partially";
+  if (v.includes("unfurnished") || v.includes("un furnished")) return "Unfurnished";
+
+  return "Unfurnished";
+};
+
+const normalizeAvailability = (value: any): string => {
+  const v = String(value || "").trim().toLowerCase();
+
+  if (v.includes("immediate")) return "Immediate";
+  if (v.includes("next")) return "Next month";
+  if (v.includes("construction")) return "Under Construction";
+
+  return "Immediate";
+};
+
+const normalizeFloorLevel = (value: any): string => {
+  if (value === undefined || value === null || value === "") return "";
+
+  const raw = String(value).trim();
+
+  if (["1-5", "6-10", "11-15", "16-20", "21-25", "Above25"].includes(raw)) {
+    return raw;
+  }
+
+  const floor = parseInt(raw, 10);
+
+  if (!Number.isFinite(floor)) return "";
+  if (floor <= 5) return "1-5";
+  if (floor <= 10) return "6-10";
+  if (floor <= 15) return "11-15";
+  if (floor <= 20) return "16-20";
+  if (floor <= 25) return "21-25";
+
+  return "Above25";
+};
+
+const normalizeBedrooms = (value: any): string => {
+  const n = parseInt(String(value || ""), 10);
+  if (!Number.isFinite(n)) return "";
+  if (n >= 6) return "6";
+  return String(n);
+};
+
+const normalizeBathrooms = (value: any): string => {
+  const n = parseInt(String(value || ""), 10);
+  if (!Number.isFinite(n)) return "";
+  if (n >= 6) return "6";
+  return String(n);
+};
 /** Map a flat amenities array to the grouped structure the BE expects */
 function groupAmenities(flat: string[] = []) {
   const result: {
@@ -67,7 +130,33 @@ function groupAmenities(flat: string[] = []) {
   }
   return result;
 }
+const getValue = (...values: any[]) => {
+  return values.find(
+    (value) => value !== undefined && value !== null && value !== ""
+  );
+};
 
+const normalizeImages = (propertyData: any): string[] => {
+  const rawImages = getValue(
+    propertyData.images,
+    propertyData.imageUrls,
+    propertyData.imageUrl,
+    propertyData.image,
+    []
+  );
+
+  const arr = Array.isArray(rawImages) ? rawImages : [rawImages];
+
+  return arr
+    .map((img) => {
+      if (typeof img === "string") return img;
+      if (img?.url) return img.url;
+      if (img?.imageUrl) return img.imageUrl;
+      if (img?.src) return img.src;
+      return "";
+    })
+    .filter(Boolean);
+};
 /** Convert yearOfBuild to property age range for the form */
 const getAgeRangeFromYear = (yearOfBuild?: number): number => {
   if (!yearOfBuild) return 1;
@@ -152,6 +241,26 @@ export default function AddPropertyPage() {
   const [isEditMode, setIsEditMode] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
 
+  const buildLocationFallback = (propertyData: any): string => {
+    return [
+      propertyData.streetName,
+      propertyData.cityName || propertyData.city,
+      propertyData.state || propertyData.stateName,
+      propertyData.county || propertyData.countryName,
+      propertyData.pincode || propertyData.pinCode,
+    ]
+      .filter((part) => typeof part === "string" && part.trim().length > 0)
+      .join(", ");
+  };
+  const formatWholeNumberInput = (value: unknown): string => {
+    if (value === undefined || value === null || value === "") return "";
+
+    const numericValue = Number(value);
+    if (!Number.isFinite(numericValue)) return "";
+
+    return String(Math.trunc(numericValue));
+  };
+
   // Fetch and populate property data when in edit mode
   useEffect(() => {
     if (editPropertyId) {
@@ -169,37 +278,34 @@ export default function AddPropertyPage() {
 
           // Map API data to form structure
           const formData: Partial<PropertyFormData> = {
-            // Basic Details
-            listingType: propertyData.listingType || "",
+            listingType: normalizeListingType(propertyData.listingType),
             propertyType: propertyData.propertyType || "",
-            propertyName: propertyData.propertyName || "",
+            propertyName: propertyData.propertyName || propertyData.title || "",
             tenure: propertyData.tenure || "",
-            title: propertyData.title || "",
+            title: propertyData.title || propertyData.propertyName || "",
             description: propertyData.description || "",
 
-            // Location Details
-            location: propertyData.location || "",
-            latitude: propertyData.latitude,
-            longitude: propertyData.longitude,
+            location: propertyData.location || buildLocationFallback(propertyData),
+            latitude: propertyData.latitude ?? null,
+            longitude: propertyData.longitude ?? null,
             streetName: propertyData.streetName || "",
-            cityName: propertyData.cityName || "",
-            stateName: propertyData.state || "",
-            countryName: propertyData.county || "",
-            pinCode: propertyData.pincode || "",
+            cityName: propertyData.cityName || propertyData.city || "",
+            stateName: propertyData.state || propertyData.stateName || "",
+            countryName: propertyData.county || propertyData.countryName || "",
+            pinCode: propertyData.pincode || propertyData.pinCode || "",
             landmark: propertyData.landmark || "",
 
-            // Property Details
-            price: String(propertyData.price || ""),
-            builtUpArea: String(propertyData.buildupArea || ""),
-            landSize: propertyData.landSize
-              ? String(propertyData.landSize)
-              : "",
-            furnishing: propertyData.furnishing || "",
-            bedRooms: String(propertyData.bedrooms || ""),
-            bathRooms: String(propertyData.bathrooms || ""),
-            availability: propertyData.availability || "",
+            price: formatWholeNumberInput(propertyData.price || propertyData.monthlyRent),
+            builtUpArea: formatWholeNumberInput(
+              propertyData.buildupArea || propertyData.builtUpArea || propertyData.livingArea
+            ),
+
+            furnishing: normalizeFurnishing(propertyData.furnishing),
+            bedRooms: normalizeBedrooms(propertyData.bedrooms || propertyData.bedRooms),
+            bathRooms: normalizeBathrooms(propertyData.bathrooms || propertyData.bathRooms),
+            availability: normalizeAvailability(propertyData.availability),
             negotiable: propertyData.negotiable ? "Yes" : "No",
-            floorLevel: String(propertyData.floorLevel || ""),
+            floorLevel: normalizeFloorLevel(propertyData.floorLevel),
             propertyAge: getAgeRangeFromYear(propertyData.yearOfBuild),
             yearOfCompletion: propertyData.yearOfCompletion,
             carParkAllocation: propertyData.carParkAllocation || "",
@@ -228,10 +334,10 @@ export default function AddPropertyPage() {
             // Floor Plan
             floorPlan: propertyData.floorPlan || "",
 
-            // Amenities
-            amenities: flattenAmenities(propertyData.amenities),
+            amenities: Array.isArray(propertyData.amenities)
+              ? propertyData.amenities
+              : flattenAmenities(propertyData.amenities),
           };
-
           console.log("📝 Form data being set:", formData);
 
           // Use setValue for each field to ensure proper population
@@ -249,19 +355,23 @@ export default function AddPropertyPage() {
           console.log("✅ Form values set via setValue");
 
           // Set images in the hidden input for UploadMedia component
-          if (propertyData.images && Array.isArray(propertyData.images)) {
-            console.log("🖼️ Setting images:", propertyData.images);
+          const normalizedImages = normalizeImages(propertyData);
+
+          if (normalizedImages.length > 0) {
+            console.log("🖼️ Setting images:", normalizedImages);
+
             const hiddenInput = document.getElementById(
               "uploaded-images-input",
             ) as HTMLInputElement | null;
+
             if (hiddenInput) {
-              hiddenInput.value = JSON.stringify(propertyData.images);
+              hiddenInput.value = JSON.stringify(normalizedImages);
             }
-            // Also update UploadMedia component state via custom event
+
             window.dispatchEvent(
               new CustomEvent("property-images-loaded", {
-                detail: { images: propertyData.images },
-              }),
+                detail: { images: normalizedImages },
+              })
             );
           }
 
@@ -276,7 +386,7 @@ export default function AddPropertyPage() {
 
       fetchProperty();
     }
-  }, [editPropertyId, reset]);
+  }, [editPropertyId, setValue]);
 
   const onSubmit: SubmitHandler<PropertyFormData> = (data) => {
     console.log("🚀 Submit called with data:", data);
@@ -312,12 +422,16 @@ export default function AddPropertyPage() {
               const parsed = JSON.parse(hiddenEl.value);
               console.log("🔍 Parsed hidden input value:", parsed);
               if (Array.isArray(parsed))
-                imageUrls = parsed.filter(
-                  (u): u is string => typeof u === "string",
-                );
-            } catch (e) {
-              console.error("❌ Error parsing hidden input value:", e);
-            }
+                imageUrls = parsed
+                  .map((img) => {
+                    if (typeof img === "string") return img;
+                    if (img?.url) return img.url;
+                    if (img?.imageUrl) return img.imageUrl;
+                    if (img?.src) return img.src;
+                    return "";
+                  })
+                  .filter(Boolean);
+            } catch { }
           }
         }
 
@@ -325,11 +439,9 @@ export default function AddPropertyPage() {
         console.log("📸 Image count:", imageUrls.length);
 
         if (imageUrls.length < 5) {
-          setError("root", {
-            type: "manual",
-            message: "Please upload minimum 5 images for better results.",
+          toast.warning("Add at least 5 images for better results.", {
+            duration: 4000,
           });
-          return;
         }
 
         console.log("✅ Image count check passed");
@@ -375,8 +487,15 @@ export default function AddPropertyPage() {
           title: data.title,
           description: data.description,
           location: data.location,
-          latitude: data.latitude,
-          longitude: data.longitude,
+          latitude:
+            data.latitude === undefined || data.latitude === null || Number.isNaN(data.latitude)
+              ? null
+              : data.latitude,
+
+          longitude:
+            data.longitude === undefined || data.longitude === null || Number.isNaN(data.longitude)
+              ? null
+              : data.longitude,
           streetName: data.streetName,
           cityName: data.cityName,
           landmark: data.landmark,
@@ -443,17 +562,9 @@ export default function AddPropertyPage() {
 
         console.log(localStorage.getItem("authToken"));
         const authHeader = `Bearer ${rawToken ?? ""}`;
-        const API_BASE2 =
-          process.env.NEXT_PUBLIC_API_BASE ?? "http://159.223.92.101:3008";
-        const propertyUrl =
-          isEditMode && editPropertyId
-            ? `${API_BASE2}/api/properties/${editPropertyId}`
-            : `${API_BASE2}/api/properties`;
-
-        console.log("🌐 API URL:", propertyUrl);
-        console.log("🔑 Auth header:", authHeader);
-        console.log("📦 Payload:", payload);
-
+        const propertyUrl = isEditMode && editPropertyId
+          ? `${API_BASE_URL}/properties/${editPropertyId}`
+          : `${API_BASE_URL}/properties`;
         const res = await fetch(propertyUrl, {
           method: isEditMode ? "PUT" : "POST",
           headers: {
@@ -514,16 +625,13 @@ export default function AddPropertyPage() {
       )}
       <form
         className="tp-dashboard-add-property-form"
-        onSubmit={(e) => {
-          console.log("📝 Form submit event triggered");
-          console.log("📝 isLoading:", isLoading);
-          console.log("📝 Button disabled:", isLoading);
-          console.log("📝 Current form errors:", errors);
-          handleSubmit(onSubmit, (errors) => {
-            console.log("❌ Form validation failed with errors:", errors);
-            e.preventDefault();
-          })(e);
-        }}
+        onSubmit={handleSubmit(
+          onSubmit,
+          (errors) => {
+            console.log("❌ FORM VALIDATION ERRORS:", errors);
+            toast.error("Please fix required fields before updating.");
+          }
+        )}
       >
         {errors.root && (
           <div

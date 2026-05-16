@@ -21,10 +21,10 @@ export const API_BASE_URL = (() => {
         ? `${process.env.NEXT_PUBLIC_API_BASE}/api`
         : "http://159.223.92.101:3008/api";
     case "development":
-      return "http://localhost:3008/api";
+      return "http://localhost:3000/api";
     case "local":
     default:
-      return "http://localhost:3008/api";
+      return "http://localhost:3000/api";
   }
 })();
 
