@@ -128,9 +128,33 @@ export default function UserContactCard({ user }: UserContactCardProps) {
                     cursor: "pointer",
                   }}
                 >
-                  {agentName}
+                  <span
+                    style={{
+                      display: "inline-flex",
+                      alignItems: "center",
+                      gap: 5,
+                    }}
+                  >
+                    <span>{agentName}</span>
+                    {renVerified ? (
+                      <BadgeCheck
+                        size={15}
+                        strokeWidth={2.7}
+                        color="#fff"
+                        fill="#0095F6"
+                        aria-label="Verified REN/PEA"
+                      />
+                    ) : (
+                      <BadgeAlert
+                        size={15}
+                        strokeWidth={2.5}
+                        color="#ffd77a"
+                        aria-label="REN/PEA not verified"
+                        title="REN/PEA not verified"
+                      />
+                    )}
+                  </span>
                 </Link>
-                <p>{contactRole}</p>
                 <div
                   style={{
                     display: "inline-flex",
@@ -150,6 +174,7 @@ export default function UserContactCard({ user }: UserContactCardProps) {
                   )}
                   <span>{renStatusLabel}</span>
                 </div>
+                <p>{contactRole}</p>
               </div>
             </div>
             <div className="tp-team-details-info-user-social text-center">
