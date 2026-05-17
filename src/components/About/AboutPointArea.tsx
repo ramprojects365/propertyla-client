@@ -7,23 +7,32 @@ interface AboutPoint {
     title: string;
 }
 const aboutPoints = [
-    { icon: <AboutSvgOne />, title: "Excellence" },
-    { icon: <AboutSvgTwo />, title: "Achievement" },
-    { icon: <AboutSvgThree />, title: "Quality" },
-    { icon: <AboutSvgFour />, title: "Transparency" },
+    { icon: <AboutSvgOne />, title: "Verified Agents" },
+    { icon: <AboutSvgTwo />, title: "Wide Coverage" },
+    { icon: <AboutSvgThree />, title: "Free Listings" },
+    { icon: <AboutSvgFour />, title: "Secure Platform" },
 ];
 
-const AboutPointItem = ({ icon, title }:AboutPoint) => (
-    <div className="tp-about-point-item d-flex">
-        <div className="tp-about-point-item-icon">
-            <span>{icon}</span>
+const AboutPointItem = ({ icon, title }:AboutPoint) => {
+    const descriptions: Record<string, string> = {
+        "Verified Agents": "Connect with licensed real estate negotiators verified by LPPEH Malaysia with valid REN numbers.",
+        "Wide Coverage": "Search properties across Kuala Lumpur, Selangor, Penang, Johor, and nationwide.",
+        "Free Listings": "Post property listings for free. No hidden fees for property owners and agents.",
+        "Secure Platform": "Safe and trusted platform with verified listings and secure communication channels.",
+    };
+
+    return (
+        <div className="tp-about-point-item d-flex">
+            <div className="tp-about-point-item-icon">
+                <span>{icon}</span>
+            </div>
+            <div className="tp-about-point-item-content">
+                <h4 className="tp-about-point-item-title">{title}</h4>
+                <p>{descriptions[title]}</p>
+            </div>
         </div>
-        <div className="tp-about-point-item-content">
-            <h4 className="tp-about-point-item-title">{title}</h4>
-            <p>Lorem ipsum dolor sit amet, consectetuer adipiscing modo ligula eget dolor. Aenean massa.</p>
-        </div>
-    </div>
-);
+    );
+};
 
 export default function AboutPointArea() {
     return (

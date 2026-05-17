@@ -3,7 +3,7 @@ import Link from "next/link";
 import RecentPosts from "@/components/Blog/RecentPosts";
 
 export const metadata: Metadata = {
-  title: "Best Places to Buy Property in Selangor (2026) | PropertyLA Malaysia",
+  title: "Best Places to Buy Property in Selangor (2026) | PropertyLa Malaysia",
   description:
     "Discover the best places to buy property in Selangor including Shah Alam, Petaling Jaya, Puchong, Cyberjaya, Klang, and Semenyih. Expert insights on property investment opportunities in Selangor.",
   keywords:

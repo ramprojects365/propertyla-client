@@ -84,7 +84,7 @@ export default function HomeOnePage() {
                 color: "#003B5C",
               }}
             >
-              Why Choose PropertyLA?
+              Why Choose PropertyLa?
             </h3>
             <TrustBadges />
           </div>

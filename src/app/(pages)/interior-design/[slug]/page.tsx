@@ -18,10 +18,10 @@ export async function generateMetadata(props: Props): Promise<Metadata> {
   const { slug } = await props.params;
   const d = getInteriorDesignerBySlug(slug);
   if (!d) {
-    return { title: "Interior designer | PropertyLA" };
+    return { title: "Interior designer | PropertyLa" };
   }
   return {
-    title: `${d.name} — ${d.companyName} | PropertyLA Interior`,
+    title: `${d.name} — ${d.companyName} | PropertyLa Interior`,
     description: d.tagline,
   };
 }
@@ -53,13 +53,23 @@ export default async function InteriorDesignerPage(props: Props) {
             aria-hidden
           />
         </div>
-        <div className="container position-relative py-5" style={{ zIndex: 1, paddingTop: "clamp(5rem, 14vw, 8rem)", paddingBottom: "clamp(3rem, 8vw, 4.5rem)" }}>
+        <div
+          className="container position-relative py-5"
+          style={{
+            zIndex: 1,
+            paddingTop: "clamp(5rem, 14vw, 8rem)",
+            paddingBottom: "clamp(3rem, 8vw, 4.5rem)",
+          }}
+        >
           <nav className="small mb-4" style={{ opacity: 0.9 }}>
             <Link href="/" className="text-white text-decoration-none">
               Home
             </Link>
             <span className="mx-2">/</span>
-            <Link href="/interior-design" className="text-white text-decoration-none">
+            <Link
+              href="/interior-design"
+              className="text-white text-decoration-none"
+            >
               Interior design
             </Link>
             <span className="mx-2">/</span>
@@ -67,13 +77,25 @@ export default async function InteriorDesignerPage(props: Props) {
           </nav>
           <div className="row align-items-end g-4">
             <div className="col-lg-8">
-              <p className="small text-uppercase mb-2" style={{ letterSpacing: "0.1em", opacity: 0.9 }}>
+              <p
+                className="small text-uppercase mb-2"
+                style={{ letterSpacing: "0.1em", opacity: 0.9 }}
+              >
                 {designer.companyName}
               </p>
-              <h1 className="text-white mb-2" style={{ fontWeight: 700, fontSize: "clamp(1.75rem, 4vw, 2.5rem)" }}>
+              <h1
+                className="text-white mb-2"
+                style={{
+                  fontWeight: 700,
+                  fontSize: "clamp(1.75rem, 4vw, 2.5rem)",
+                }}
+              >
                 {designer.name}
               </h1>
-              <p className="text-white mb-0" style={{ opacity: 0.95, maxWidth: "560px", lineHeight: 1.65 }}>
+              <p
+                className="text-white mb-0"
+                style={{ opacity: 0.95, maxWidth: "560px", lineHeight: 1.65 }}
+              >
                 {designer.tagline}
               </p>
             </div>

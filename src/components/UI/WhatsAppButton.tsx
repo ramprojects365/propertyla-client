@@ -10,7 +10,7 @@ interface WhatsAppButtonProps {
 
 export default function WhatsAppButton({
   phoneNumber = "601126368426",
-  message = "Hi, I'm interested in a property on PropertyLA",
+  message = "Hi, I'm interested in a property on PropertyLa",
   className = "",
   style = {},
 }: WhatsAppButtonProps) {

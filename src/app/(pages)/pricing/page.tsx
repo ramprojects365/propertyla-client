@@ -6,8 +6,9 @@ import ProgressArea from "@/components/Progress/ProgressArea";
 import { Metadata } from "next";
 
 export const metadata: Metadata = {
-  title: "PropertyLA Pricing Plans | Real Estate Advertising Rates in Malaysia",
-  description: "View PropertyLA's affordable pricing plans for property listings and advertising in Malaysia. Choose the best package for selling, renting, or promoting your real estate properties.",
+  title: "PropertyLa Pricing Plans | Real Estate Advertising Rates in Malaysia",
+  description:
+    "View PropertyLa's affordable pricing plans for property listings and advertising in Malaysia. Choose the best package for selling, renting, or promoting your real estate properties.",
 };
 
 export default function Pricing() {
