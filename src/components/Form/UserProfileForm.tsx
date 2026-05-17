@@ -7,6 +7,7 @@ import ErrorMessage from "./ErrorMassage";
 import { toast } from "sonner";
 import apiClient from "@/config/axios";
 import UserSvg from "@/components/SVG/UserSvg";
+import { BadgeAlert, BadgeCheck } from "lucide-react";
 
 const PROFILE_IMAGE_ACCEPTED_TYPES = ["image/jpeg", "image/png", "image/webp"];
 const PROFILE_IMAGE_ACCEPT = PROFILE_IMAGE_ACCEPTED_TYPES.join(",");
@@ -59,6 +60,10 @@ interface UserProfile {
   phoneNumber?: string;
   mobile?: string;
   mobileNumber?: string;
+  renNumber?: string | null;
+  renStatus?: string | null;
+  renVerified?: boolean;
+  renStatusLabel?: string;
 }
 
 const extractProfileImage = (value: unknown): string | null => {
@@ -95,6 +100,15 @@ export default function UserProfileForm() {
   const [uploadingImage, setUploadingImage] = useState(false);
   const [loading, setLoading] = useState(true);
   const [displayName, setDisplayName] = useState("My Profile");
+  const [renInfo, setRenInfo] = useState<{
+    number: string;
+    verified: boolean;
+    label: string;
+  }>({
+    number: "",
+    verified: false,
+    label: "Not verified",
+  });
   const fileInputRef = useRef<HTMLInputElement>(null);
   const previewObjectUrlRef = useRef<string | null>(null);
 
@@ -218,12 +232,24 @@ export default function UserProfileForm() {
         }
 
         // Set display name in header
-        setDisplayName(fullName || "My Profile");
+        const headerDisplayName = profile.fullName ?? fullName ?? profile.username ?? "";
+        setDisplayName(headerDisplayName || "My Profile");
+        if (typeof window !== "undefined") {
+          localStorage.setItem("loginUserDisplayName", headerDisplayName);
+        }
         if (profile.profileImage) {
           setProfileImageUrl(profile.profileImage);
         }
 
-        setDisplayName(profile.fullName ?? profile.username ?? "My Profile");
+        setDisplayName(headerDisplayName || "My Profile");
+        setRenInfo({
+          number: profile.renNumber || "",
+          verified:
+            profile.renVerified === true || profile.renStatus === "verified",
+          label:
+            profile.renStatusLabel ||
+            (profile.renStatus === "verified" ? "Verified" : "Not verified"),
+        });
       } catch (err: unknown) {
         const error = err as { response?: { status?: number } };
         if (error?.response?.status !== 401) {
@@ -314,6 +340,7 @@ export default function UserProfileForm() {
         phone: normalizedPhone,
       });
       setDisplayName(data.fullName);
+      localStorage.setItem("loginUserDisplayName", data.fullName);
       toast.success("Profile updated successfully!");
     } catch (err: unknown) {
       const error = err as {
@@ -420,7 +447,54 @@ export default function UserProfileForm() {
           />
         </div>
         <div>
-          <h4 style={{ margin: "0 0 4px" }}>{displayName}</h4>
+          <h4
+            style={{
+              display: "flex",
+              alignItems: "center",
+              gap: 7,
+              margin: "0 0 4px",
+            }}
+          >
+            <span>{displayName}</span>
+            {renInfo.number && renInfo.verified ? (
+              <BadgeCheck
+                size={19}
+                strokeWidth={2.8}
+                color="#fff"
+                fill="#0095F6"
+                aria-label="Verified REN/PEA"
+              />
+            ) : null}
+          </h4>
+          {renInfo.number ? (
+            <div
+              style={{
+                display: "inline-flex",
+                alignItems: "center",
+                gap: 8,
+                marginBottom: 6,
+                padding: "5px 9px",
+                borderRadius: 6,
+                border: renInfo.verified
+                  ? "1px solid rgba(0, 59, 92, 0.24)"
+                  : "1px solid rgba(160, 110, 20, 0.28)",
+                background: renInfo.verified
+                  ? "rgba(0, 59, 92, 0.08)"
+                  : "rgba(255, 193, 7, 0.12)",
+                color: renInfo.verified ? "#003B5C" : "#8a6116",
+                fontSize: 13,
+                fontWeight: 700,
+                lineHeight: 1,
+              }}
+            >
+              {!renInfo.verified ? (
+                <BadgeAlert size={15} strokeWidth={2.4} />
+              ) : null}
+              <span>
+                {renInfo.number}: {renInfo.label}
+              </span>
+            </div>
+          ) : null}
           <p style={{ margin: 0, color: "#888", fontSize: 14 }}>
             Update your personal details below
           </p>

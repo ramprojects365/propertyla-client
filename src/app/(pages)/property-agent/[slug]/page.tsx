@@ -4,6 +4,7 @@ import React from "react";
 import Image from "next/image";
 import Link from "next/link";
 import { CallThreeSvg, TeamEmailSvg, MessageSvgTwo } from "@/components/SVG";
+import { BadgeAlert, BadgeCheck } from "lucide-react";
 
 // Define the agent interface to match API response
 interface AgentData {
@@ -18,6 +19,10 @@ interface AgentData {
   icPassport?: string;
   designation?: string;
   experienceYears?: number;
+  renNumber?: string | null;
+  renStatus?: string | null;
+  renVerified?: boolean;
+  renStatusLabel?: string;
   emailVerified?: boolean;
   createdAt?: string;
   updatedAt?: string;
@@ -120,6 +125,10 @@ export default function PropertyAgentPage() {
     );
   };
 
+  const renVerified = agent.renVerified === true || agent.renStatus === "verified";
+  const renStatusLabel =
+    agent.renStatusLabel || (renVerified ? "Verified" : "Not verified");
+
   return (
     <>
       {/* Breadcrumb Area Start */}
@@ -176,11 +185,34 @@ export default function PropertyAgentPage() {
                   </div>
                   <div className="tp-agent-profile-basic-info">
                     <h2 className="tp-agent-profile-name">
-                      {agent.fullName || agent.username}
+                      <span>{agent.fullName || agent.username}</span>
+                      {agent.renNumber && renVerified ? (
+                        <BadgeCheck
+                          size={22}
+                          strokeWidth={2.8}
+                          color="#fff"
+                          fill="#0095F6"
+                          aria-label="Verified REN/PEA"
+                        />
+                      ) : null}
                     </h2>
                     <p className="tp-agent-profile-designation">
                       {agent.designation || "Real Estate Agent"}
                     </p>
+                    {agent.renNumber ? (
+                      <div
+                        className={`tp-agent-ren-badge ${
+                          renVerified ? "is-not-verified" : "is-verified"
+                        }`}
+                      >
+                        {!renVerified ? (
+                          <BadgeAlert size={16} strokeWidth={2.4} />
+                        ) : null}
+                        <span>
+                          {agent.renNumber}: {renStatusLabel}
+                        </span>
+                      </div>
+                    ) : null}
                     <div className="tp-agent-profile-stats">
                       <div className="stat-item">
                         {/* <span className="stat-number">25</span> */}
@@ -321,6 +353,18 @@ export default function PropertyAgentPage() {
                           {agent.icPassport || "N/A"}
                         </span>
                       </div>
+                      <div className="info-item">
+                        <span className="info-label">REN/PEA</span>
+                        <span className="info-value">
+                          {agent.renNumber || "N/A"}
+                        </span>
+                      </div>
+                      <div className="info-item">
+                        <span className="info-label">REN/PEA Status</span>
+                        <span className="info-value">
+                          {agent.renNumber ? renStatusLabel : "N/A"}
+                        </span>
+                      </div>
                     </div>
                   </div>
                 </div>
@@ -414,6 +458,10 @@ export default function PropertyAgentPage() {
           margin-bottom: 30px;
         }
         .tp-agent-profile-name {
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          gap: 8px;
           font-size: 28px;
           font-weight: 600;
           color: #003b5c;
@@ -428,6 +476,27 @@ export default function PropertyAgentPage() {
           justify-content: center;
           gap: 30px;
           margin-bottom: 20px;
+        }
+        .tp-agent-ren-badge {
+          display: inline-flex;
+          align-items: center;
+          gap: 8px;
+          margin: 0 0 18px;
+          padding: 7px 10px;
+          border-radius: 6px;
+          font-size: 13px;
+          font-weight: 700;
+          line-height: 1;
+        }
+        .tp-agent-ren-badge.is-verified {
+          color: #003b5c;
+          background: rgba(0, 59, 92, 0.08);
+          border: 1px solid rgba(0, 59, 92, 0.24);
+        }
+        .tp-agent-ren-badge.is-not-verified {
+          color: #8a6116;
+          background: rgba(255, 193, 7, 0.12);
+          border: 1px solid rgba(160, 110, 20, 0.28);
         }
         .stat-item {
           text-align: center;

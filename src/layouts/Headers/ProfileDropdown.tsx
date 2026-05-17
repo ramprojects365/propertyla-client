@@ -40,6 +40,7 @@ const ProfileDropdown = () => {
   const handleLogout = () => {
     localStorage.removeItem("authToken");
     localStorage.removeItem("loginUser");
+    localStorage.removeItem("loginUserDisplayName");
     setOpen(false);
     router.push("/sign-in");
   };
@@ -74,15 +75,16 @@ const ProfileDropdown = () => {
         >
           <div className="tp-header-right-user-content" style={{ margin: 0 }}>
             {(() => {
-              const username =
+              const displayName =
                 typeof window !== "undefined"
-                  ? localStorage.getItem("loginUser")
+                  ? localStorage.getItem("loginUserDisplayName") ||
+                    localStorage.getItem("loginUser")
                   : null;
 
-              return username ? (
+              return displayName ? (
                 <p
                   style={{ margin: 0 }}
-                >{`${truncateUsername(username, 10)}`}</p>
+                >{`${truncateUsername(displayName, 14)}`}</p>
               ) : (
                 <p style={{ margin: 0 }}></p>
               );

@@ -104,7 +104,7 @@ export default function SignUpForm() {
       username: data.displayname,
       email: data.email,
       phone_number: formatNum(data.phone),
-      renNumber: data.renNumber,
+      renNumber: data.renNumber?.trim().toUpperCase(),
       password: data.password,
       confirmPassword: data.confirmPassword,
       remember: data.remember,
@@ -131,6 +131,12 @@ export default function SignUpForm() {
           localStorage.setItem("registeredEmail", registeredEmail);
           localStorage.setItem("user_id", response?.data?.data?.userId);
           localStorage.setItem("username", response?.data?.data?.username);
+          localStorage.setItem(
+            "loginUserDisplayName",
+            response?.data?.data?.fullName ||
+              response?.data?.data?.username ||
+              data.displayname,
+          );
         }
       } catch (e) {
         // ignore localStorage errors in environments where it's unavailable
@@ -305,6 +311,10 @@ export default function SignUpForm() {
                     inputMode="numeric"
                     maxLength={10}
                     placeholder="Enter REN / PEA number"
+                    onInput={(e: React.FormEvent<HTMLInputElement>) => {
+                      const target = e.currentTarget;
+                      target.value = target.value.toUpperCase().replace(/\s/g, "");
+                    }}
                     {...register("renNumber")}
                   />
                   <i>

@@ -4,6 +4,7 @@ import { SocialLinksThree } from "@/components/UI/SocialLinks";
 import { CallThreeSvg, TeamEmailSvg } from "@/components/SVG";
 import Image from "next/image";
 import Link from "next/link";
+import { BadgeAlert, BadgeCheck } from "lucide-react";
 
 interface UserContactCardProps {
   user?: {
@@ -11,12 +12,17 @@ interface UserContactCardProps {
     username?: string;
     email?: string;
     phoneNumber?: string;
+    userType?: string | null;
     profileImage?: string;
     fullName?: string;
     bio?: string;
     companyName?: string;
     designation?: string;
     experienceYears?: number;
+    renNumber?: string | null;
+    renStatus?: string | null;
+    renVerified?: boolean;
+    renStatusLabel?: string;
     emailVerified?: boolean;
     createdAt?: string;
     updatedAt?: string;
@@ -32,6 +38,13 @@ export default function UserContactCard({ user }: UserContactCardProps) {
     user?.profileImage || "/assets/img/team/team-details/user.png";
   const agentWhatsAppNumberLabel = user?.phoneNumber || "";
   const agentWhatsAppNumber = agentWhatsAppNumberLabel.replace(/\D/g, "");
+  const renVerified = user?.renVerified === true || user?.renStatus === "verified";
+  const renStatusLabel =
+    user?.renStatusLabel || (renVerified ? "Verified" : "Not verified");
+  const contactRole =
+    user?.userType?.trim().toLowerCase() === "owner"
+      ? "Owner"
+      : "Property Consultant";
 
   const handleWhatsAppClick = () => {
     const url = window.location.href;
@@ -63,6 +76,7 @@ export default function UserContactCard({ user }: UserContactCardProps) {
       username: user.username || "",
       email: user.email || "",
       phoneNumber: user.phoneNumber || "",
+      userType: user.userType || "",
       profileImage: user.profileImage || "",
       fullName: user.fullName || user.username || "",
       designation: user.designation || "Real Estate Agent",
@@ -71,6 +85,10 @@ export default function UserContactCard({ user }: UserContactCardProps) {
         user.bio ||
         "Professional real estate agent specializing in Malaysian properties.",
       companyName: user.companyName || "",
+      renNumber: user.renNumber || "",
+      renStatus: user.renStatus || "not_verified",
+      renVerified,
+      renStatusLabel,
       emailVerified: user.emailVerified ?? true,
       createdAt: user.createdAt || new Date().toISOString(),
       updatedAt: user.updatedAt || new Date().toISOString(),
@@ -112,7 +130,28 @@ export default function UserContactCard({ user }: UserContactCardProps) {
                 >
                   {agentName}
                 </Link>
-                <p>Property Consultant</p>
+                <p>{contactRole}</p>
+                {user?.renNumber ? (
+                  <div
+                    style={{
+                      display: "inline-flex",
+                      alignItems: "center",
+                      gap: 5,
+                      marginTop: 3,
+                      color: renVerified ? "#8FD9FF" : "#ffd77a",
+                      fontSize: 11,
+                      fontWeight: 700,
+                      lineHeight: 1,
+                    }}
+                  >
+                    {renVerified ? (
+                      <BadgeCheck size={13} strokeWidth={2.5} />
+                    ) : (
+                      <BadgeAlert size={13} strokeWidth={2.5} />
+                    )}
+                    <span>{renStatusLabel}</span>
+                  </div>
+                ) : null}
               </div>
             </div>
             <div className="tp-team-details-info-user-social text-center">

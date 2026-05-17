@@ -38,6 +38,7 @@ type ApiProperty = {
     username?: string;
     email?: string;
     phoneNumber?: string;
+    userType?: string | null;
     profileImage?: string;
     fullName?: string | null;
     bio?: string | null;

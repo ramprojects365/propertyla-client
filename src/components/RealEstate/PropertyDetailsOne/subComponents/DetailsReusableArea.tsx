@@ -31,7 +31,17 @@ interface ApiProperty {
     username?: string;
     email?: string;
     phoneNumber?: string;
+    userType?: string | null;
     profileImage?: string;
+    fullName?: string | null;
+    bio?: string | null;
+    companyName?: string | null;
+    designation?: string | null;
+    experienceYears?: number | null;
+    renNumber?: string | null;
+    renStatus?: string | null;
+    renVerified?: boolean;
+    renStatusLabel?: string;
   };
 }
 

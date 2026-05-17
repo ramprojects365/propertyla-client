@@ -10,17 +10,9 @@ export const signUpSchema = yup.object().shape({
       schema
         .required("REN/PEA number is required")
         .matches(
-          /^(REN|PEA)\s?[0-9]{4,6}$/,
+          /^(REN|PEA)[0-9]{4,6}$/,
           "Must start with REN or PEA followed by 4-6 digits",
-        )
-        .test("valid-format", "Invalid REN/PEA format", (value) => {
-          if (!value) return false;
-          const digits = value.substring(3).replace(/\s/g, "");
-
-          return (
-            /^[0-9]+$/.test(digits) && digits.length >= 4 && digits.length <= 6
-          );
-        }),
+        ),
     otherwise: (schema) => schema.optional(),
   }),
   password: yup

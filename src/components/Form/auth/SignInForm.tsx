@@ -113,7 +113,11 @@ export default function SignInForm() {
       }
       console.log("token", token);
       console.log("login response", response);
-      localStorage.setItem("loginUser", response?.data?.data?.user?.username);
+      const user = response?.data?.data?.user;
+      const username = user?.username || "";
+      const displayName = user?.fullName || user?.username || "";
+      localStorage.setItem("loginUser", username);
+      localStorage.setItem("loginUserDisplayName", displayName);
       toast.success("Login successful!");
     } catch (error: any) {
       const errorMessage =
