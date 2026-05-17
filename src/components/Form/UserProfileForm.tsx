@@ -104,10 +104,12 @@ export default function UserProfileForm() {
     number: string;
     verified: boolean;
     label: string;
+    available: boolean;
   }>({
     number: "",
     verified: false,
     label: "Not verified",
+    available: false,
   });
   const fileInputRef = useRef<HTMLInputElement>(null);
   const previewObjectUrlRef = useRef<string | null>(null);
@@ -249,6 +251,7 @@ export default function UserProfileForm() {
           label:
             profile.renStatusLabel ||
             (profile.renStatus === "verified" ? "Verified" : "Not verified"),
+          available: profile.renStatus !== undefined || Boolean(profile.renNumber),
         });
       } catch (err: unknown) {
         const error = err as { response?: { status?: number } };
@@ -456,7 +459,7 @@ export default function UserProfileForm() {
             }}
           >
             <span>{displayName}</span>
-            {renInfo.number && renInfo.verified ? (
+            {renInfo.available && renInfo.verified ? (
               <BadgeCheck
                 size={19}
                 strokeWidth={2.8}
@@ -466,7 +469,7 @@ export default function UserProfileForm() {
               />
             ) : null}
           </h4>
-          {renInfo.number ? (
+          {renInfo.available ? (
             <div
               style={{
                 display: "inline-flex",
@@ -491,7 +494,9 @@ export default function UserProfileForm() {
                 <BadgeAlert size={15} strokeWidth={2.4} />
               ) : null}
               <span>
-                {renInfo.number}: {renInfo.label}
+                {renInfo.number
+                  ? `${renInfo.number}: ${renInfo.label}`
+                  : `REN/PEA status: ${renInfo.label}`}
               </span>
             </div>
           ) : null}
