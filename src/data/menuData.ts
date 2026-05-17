@@ -57,18 +57,6 @@ const menu_data_one = [
         url: "/search",
         img: "",
       },
-      {
-        id: 3,
-        label: "New Launch",
-        url: "/search",
-        img: "",
-      },
-      {
-        id: 4,
-        label: "Auction",
-        url: "/search",
-        img: "",
-      },
     ],
   },
   {
@@ -92,27 +80,14 @@ const menu_data_one = [
       },
     ],
   },
-  // {
-  //   id: 3,
-  //   label: "New Projects",
-  //   url: "/search",
-  //   submenu: [
-  //     { id: 1, label: "Property Style 1", url: "/search" },
-  //     { id: 2, label: "Property Style 2", url: "/search" },
-  //     { id: 3, label: "Property Style 3", url: "/property-style-3" },
-  //     { id: 4, label: "Property Details 1", url: "/property-details" },
-  //     { id: 5, label: "Property Details 2", url: "/property-details-2" },
-  //     { id: 6, label: "Property Details 3", url: "/property-details-3" },
-  //   ],
-  // },
   {
     id: 4,
     label: "Services",
     url: "#",
     submenu: [
       { id: 1, label: "Home loan", url: "/error" },
-      { id: 4, label: "EMI calculator", url: "/emi-calculator" },
-      { id: 5, label: "Interior design", url: "/interior-design" },
+      { id: 2, label: "EMI calculator", url: "/emi-calculator" },
+      { id: 3, label: "Interior design", url: "/interior-design" },
     ],
   },
   {
@@ -121,9 +96,9 @@ const menu_data_one = [
     url: "#",
     submenu: [
       { id: 1, label: "About", url: "/about" },
+      { id: 2, label: "Pricing", url: "/pricing" },
+      { id: 3, label: "Contact", url: "/contact" },
       { id: 4, label: "Faq", url: "/faq" },
-      { id: 5, label: "Pricing", url: "/pricing" },
-      { id: 13, label: "Contact", url: "/contact" },
     ],
   },
 ];

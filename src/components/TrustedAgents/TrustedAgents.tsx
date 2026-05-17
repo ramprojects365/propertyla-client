@@ -15,7 +15,7 @@ interface Agent {
 const trustedAgents: Agent[] = [
   {
     id: "david-hussy-2987852",
-    name: "David Hussy",
+    name: "David",
     agentId: "REN 1234",
     image: "/assets/img/team/team-details/user.jpg",
     rating: 4.8,
@@ -23,8 +23,8 @@ const trustedAgents: Agent[] = [
   },
   {
     id: "sarah-lim-2987853",
-    name: "Sarah Lim",
-    agentId: "REN 1234",
+    name: "Fara",
+    agentId: "PEA 3329",
     image: "/assets/img/team/team-details/fara.jpg",
     rating: 4.9,
     properties: 120,
