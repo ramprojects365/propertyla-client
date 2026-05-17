@@ -205,13 +205,9 @@ export default function PropertyAgentPage() {
                           strokeWidth={2.6}
                           color="#8a6116"
                           aria-label="REN/PEA not verified"
-                          title="REN/PEA not verified"
                         />
                       )}
                     </h2>
-                    <p className="tp-agent-profile-designation">
-                      {agent.designation || "Real Estate Agent"}
-                    </p>
                     <div
                       className={`tp-agent-ren-badge ${
                         renVerified ? "is-verified" : "is-not-verified"
@@ -223,6 +219,9 @@ export default function PropertyAgentPage() {
                           : `REN/PEA status: ${renStatusLabel}`}
                       </span>
                     </div>
+                    <p className="tp-agent-profile-designation">
+                      {agent.designation || "Real Estate Agent"}
+                    </p>
                     <div className="tp-agent-profile-stats">
                       <div className="stat-item">
                         {/* <span className="stat-number">25</span> */}
