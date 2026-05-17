@@ -12,6 +12,7 @@ interface AgentData {
   username: string;
   email: string;
   phoneNumber: string;
+  userType?: string | null;
   profileImage?: string;
   fullName?: string;
   bio?: string;
@@ -128,6 +129,10 @@ export default function PropertyAgentPage() {
   const renVerified = agent.renVerified === true || agent.renStatus === "verified";
   const renStatusLabel =
     agent.renStatusLabel || (renVerified ? "Verified" : "Not verified");
+  const profileRole =
+    agent.userType?.trim().toLowerCase() === "owner"
+      ? "Owner"
+      : "Property Consultant";
 
   return (
     <>
@@ -186,7 +191,7 @@ export default function PropertyAgentPage() {
                   <div className="tp-agent-profile-basic-info">
                     <h2 className="tp-agent-profile-name">
                       <span>{agent.fullName || agent.username}</span>
-                      {agent.renNumber && renVerified ? (
+                      {renVerified ? (
                         <BadgeCheck
                           size={22}
                           strokeWidth={2.8}
@@ -199,24 +204,24 @@ export default function PropertyAgentPage() {
                     <p className="tp-agent-profile-designation">
                       {agent.designation || "Real Estate Agent"}
                     </p>
-                    {agent.renNumber ? (
-                      <div
-                        className={`tp-agent-ren-badge ${
-                          renVerified ? "is-not-verified" : "is-verified"
-                        }`}
-                      >
-                        {!renVerified ? (
-                          <BadgeAlert size={16} strokeWidth={2.4} />
-                        ) : null}
-                        <span>
-                          {agent.renNumber}: {renStatusLabel}
-                        </span>
-                      </div>
-                    ) : null}
+                    <div
+                      className={`tp-agent-ren-badge ${
+                        renVerified ? "is-verified" : "is-not-verified"
+                      }`}
+                    >
+                      {!renVerified ? (
+                        <BadgeAlert size={16} strokeWidth={2.4} />
+                      ) : null}
+                      <span>
+                        {agent.renNumber
+                          ? `${agent.renNumber}: ${renStatusLabel}`
+                          : `REN/PEA status: ${renStatusLabel}`}
+                      </span>
+                    </div>
                     <div className="tp-agent-profile-stats">
                       <div className="stat-item">
                         {/* <span className="stat-number">25</span> */}
-                        <span className="stat-label">Property Consultant</span>
+                        <span className="stat-label">{profileRole}</span>
                       </div>
                       <div className="stat-item">
                         <span className="stat-number">
@@ -362,7 +367,7 @@ export default function PropertyAgentPage() {
                       <div className="info-item">
                         <span className="info-label">REN/PEA Status</span>
                         <span className="info-value">
-                          {agent.renNumber ? renStatusLabel : "N/A"}
+                          {renStatusLabel}
                         </span>
                       </div>
                     </div>

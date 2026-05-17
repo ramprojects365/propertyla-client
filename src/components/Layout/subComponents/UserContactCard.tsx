@@ -131,27 +131,25 @@ export default function UserContactCard({ user }: UserContactCardProps) {
                   {agentName}
                 </Link>
                 <p>{contactRole}</p>
-                {user?.renNumber ? (
-                  <div
-                    style={{
-                      display: "inline-flex",
-                      alignItems: "center",
-                      gap: 5,
-                      marginTop: 3,
-                      color: renVerified ? "#8FD9FF" : "#ffd77a",
-                      fontSize: 11,
-                      fontWeight: 700,
-                      lineHeight: 1,
-                    }}
-                  >
-                    {renVerified ? (
-                      <BadgeCheck size={13} strokeWidth={2.5} />
-                    ) : (
-                      <BadgeAlert size={13} strokeWidth={2.5} />
-                    )}
-                    <span>{renStatusLabel}</span>
-                  </div>
-                ) : null}
+                <div
+                  style={{
+                    display: "inline-flex",
+                    alignItems: "center",
+                    gap: 5,
+                    marginTop: 3,
+                    color: renVerified ? "#8FD9FF" : "#ffd77a",
+                    fontSize: 11,
+                    fontWeight: 700,
+                    lineHeight: 1,
+                  }}
+                >
+                  {renVerified ? (
+                    <BadgeCheck size={13} strokeWidth={2.5} />
+                  ) : (
+                    <BadgeAlert size={13} strokeWidth={2.5} />
+                  )}
+                  <span>{renStatusLabel}</span>
+                </div>
               </div>
             </div>
             <div className="tp-team-details-info-user-social text-center">
