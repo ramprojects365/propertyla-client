@@ -113,6 +113,7 @@ export default function UserProfileForm() {
   });
   const fileInputRef = useRef<HTMLInputElement>(null);
   const previewObjectUrlRef = useRef<string | null>(null);
+  const renNumberMissing = renInfo.available && !renInfo.number;
 
   const {
     register: registerProfile,
@@ -466,6 +467,15 @@ export default function UserProfileForm() {
                 color="#fff"
                 fill="#0095F6"
                 aria-label="Verified REN/PEA"
+                title="Verified REN/PEA"
+              />
+            ) : renNumberMissing ? (
+              <BadgeAlert
+                size={19}
+                strokeWidth={2.6}
+                color="#8a6116"
+                aria-label="Please add REN/PEA number"
+                title="Please add REN/PEA number"
               />
             ) : null}
           </h4>
@@ -496,7 +506,7 @@ export default function UserProfileForm() {
               <span>
                 {renInfo.number
                   ? `${renInfo.number}: ${renInfo.label}`
-                  : `REN/PEA status: ${renInfo.label}`}
+                  : "REN/PEA status: Please add REN/PEA number"}
               </span>
             </div>
           ) : null}
