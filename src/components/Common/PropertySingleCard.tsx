@@ -115,7 +115,7 @@ export default function PropertySingleCard({ item }: IFeatureListProps) {
               <span>
                 <LivingSvg />
               </span>
-              <p>{item.livingArea}</p>
+              <p>1</p>
             </div>
             <p>Living Area</p>
           </div>

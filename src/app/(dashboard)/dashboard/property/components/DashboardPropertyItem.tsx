@@ -23,7 +23,7 @@ export default function DashboardPropertyItem({ property, onDelete }: IProps) {
   const [loading, setLoading] = useState(false);
   const handleDelete = async (id: string | number) => {
     const confirmed = window.confirm(
-      "Are you sure you want to delete this property?"
+      "Are you sure you want to delete this property?",
     );
     if (!confirmed) return;
 
@@ -110,7 +110,7 @@ export default function DashboardPropertyItem({ property, onDelete }: IProps) {
               <span>
                 <LivingSvg />
               </span>
-              <p>{property.livingArea}</p>
+              <p>1</p>
             </div>
             <p>Living Area</p>
           </div>
@@ -123,8 +123,8 @@ export default function DashboardPropertyItem({ property, onDelete }: IProps) {
           </div>
           <div className="tp-rent-action-btn d-flex">
             <div className="tp-action-btn mr-10">
-              <Link 
-                href={`/dashboard/add-new-property?edit=${property.id}`} 
+              <Link
+                href={`/dashboard/add-new-property?edit=${property.id}`}
                 title="Edit Property"
               >
                 <PropertyEditSvg />
@@ -136,16 +136,17 @@ export default function DashboardPropertyItem({ property, onDelete }: IProps) {
                 onClick={() => handleDelete(property.id)}
                 title="Delete Property"
                 disabled={loading}
-                style={{ opacity: loading ? 0.6 : 1, cursor: loading ? "not-allowed" : "pointer" }}
+                style={{
+                  opacity: loading ? 0.6 : 1,
+                  cursor: loading ? "not-allowed" : "pointer",
+                }}
               >
                 {loading ? <DeleteIconSvg /> : <DeleteIconSvg />}
               </button>
             </div>
           </div>
           <div className="tp-rent-price">
-            <span>
-              {formatPrice(Number(property.price) || 0, false)}
-            </span>
+            <span>{formatPrice(Number(property.price) || 0, false)}</span>
           </div>
         </div>
       </div>

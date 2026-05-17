@@ -120,8 +120,11 @@ export default function BasicDetails() {
                 <select {...register("bedRooms")} className="listDropDown">
                   <option value="">Select bed rooms</option>
                   <option value="1">1</option>
+                  <option value="1.5">1.5</option>
                   <option value="2">2</option>
+                  <option value="2.5">2.5</option>
                   <option value="3">3</option>
+                  <option value="3.5">3.5</option>
                   <option value="4">4</option>
                   <option value="5">5</option>
                   <option value="6">6</option>
@@ -345,7 +348,9 @@ export default function BasicDetails() {
                     <option value="Partially Renovated">
                       Partially Renovated
                     </option>
-                    <option value="Original Condition">Original Condition</option>
+                    <option value="Original Condition">
+                      Original Condition
+                    </option>
                   </select>
                 </div>
                 <div>
