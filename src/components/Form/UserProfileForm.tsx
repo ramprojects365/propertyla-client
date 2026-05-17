@@ -519,15 +519,15 @@ setIsAgentProfile(isAgent);
                   ? "rgba(0, 59, 92, 0.08)"
                   : "rgba(255, 193, 7, 0.12)",
                 color: renInfo.verified ? "#003B5C" : "#8a6116",
-                fontSize: 13,
+                fontSize: 12,
                 fontWeight: 700,
                 lineHeight: 1,
               }}
             >
               <span>
                 {renInfo.number
-                  ? `REN/PEA status: ${renInfo.number}: ${renInfo.label}`
-                  : "REN/PEA status: Please add REN/PEA number"}
+                  ? `${renInfo.number}: ${renInfo.label}`
+                  : "Please add REN/PEA number"}
               </span>
             </div>
           ) : null}
