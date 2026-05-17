@@ -20,6 +20,7 @@ interface ProfileFormData {
   icPassport?: string;
   designation?: string;
   experience?: number;
+  renNumber?: string;
   phone: string;
   email?: string;
 }
@@ -56,6 +57,8 @@ interface UserProfile {
   email?: string;
   emailAddress?: string;
   mail?: string;
+  userType?: string | null;
+  user_type?: string | null;
   phone?: string;
   phoneNumber?: string;
   mobile?: string;
@@ -64,6 +67,8 @@ interface UserProfile {
   renStatus?: string | null;
   renVerified?: boolean;
   renStatusLabel?: string;
+  status?: string | null;
+  userStatus?: string | null;
 }
 
 const extractProfileImage = (value: unknown): string | null => {
@@ -100,6 +105,8 @@ export default function UserProfileForm() {
   const [uploadingImage, setUploadingImage] = useState(false);
   const [loading, setLoading] = useState(true);
   const [displayName, setDisplayName] = useState("My Profile");
+  const [accountStatusLabel, setAccountStatusLabel] = useState("Active");
+  const [isOwnerProfile, setIsOwnerProfile] = useState(false);
   const [renInfo, setRenInfo] = useState<{
     number: string;
     verified: boolean;
@@ -166,6 +173,12 @@ export default function UserProfileForm() {
         const raw = extractPayload(res.data) ?? {};
 
         const profile = raw as UserProfile;
+        const normalizedUserType = (profile.userType || profile.user_type || "")
+          .trim()
+          .toLowerCase();
+        const isOwner =
+          normalizedUserType === "owner" || normalizedUserType === "ownwer";
+        setIsOwnerProfile(isOwner);
 
         const fullName =
           profile.fullName ||
@@ -225,6 +238,7 @@ export default function UserProfileForm() {
           icPassport,
           designation,
           experience,
+          renNumber: profile.renNumber || "",
           phone,
           email,
         });
@@ -254,6 +268,14 @@ export default function UserProfileForm() {
             (profile.renStatus === "verified" ? "Verified" : "Not verified"),
           available: profile.renStatus !== undefined || Boolean(profile.renNumber),
         });
+        const accountStatus = (profile.status || profile.userStatus || "active")
+          .trim()
+          .toLowerCase();
+        setAccountStatusLabel(
+          accountStatus
+            ? accountStatus.charAt(0).toUpperCase() + accountStatus.slice(1)
+            : "Active",
+        );
       } catch (err: unknown) {
         const error = err as { response?: { status?: number } };
         if (error?.response?.status !== 401) {
@@ -334,15 +356,22 @@ export default function UserProfileForm() {
   const onProfileSubmit = async (data: ProfileFormData) => {
     try {
       const normalizedPhone = data.phone?.trim() ? formatNum(data.phone) : "";
-      await apiClient.patch("/users/profile", {
+      const payload = {
         fullName: data.fullName,
         aboutYou: data.aboutYou,
-        companyName: data.companyName,
-        icPassport: data.icPassport,
-        designation: data.designation,
-        experience: data.experience,
         phone: normalizedPhone,
-      });
+        ...(isOwnerProfile
+          ? {}
+          : {
+              companyName: data.companyName,
+              icPassport: data.icPassport,
+              designation: data.designation,
+              experience: data.experience,
+              renNumber: data.renNumber,
+            }),
+      };
+
+      await apiClient.patch("/users/profile", payload);
       setDisplayName(data.fullName);
       localStorage.setItem("loginUserDisplayName", data.fullName);
       toast.success("Profile updated successfully!");
@@ -460,6 +489,24 @@ export default function UserProfileForm() {
             }}
           >
             <span>{displayName}</span>
+            {accountStatusLabel === "Active" && (
+              <span
+                style={{
+                  display: "inline-flex",
+                  alignItems: "center",
+                  minHeight: 22,
+                  padding: "4px 8px",
+                  borderRadius: 6,
+                  background: "rgba(34, 197, 94, 0.12)",
+                  color: "#15803d",
+                  fontSize: 12,
+                  fontWeight: 700,
+                  lineHeight: 1,
+                }}
+              >
+                {accountStatusLabel}
+              </span>
+            )}
             {renInfo.available && renInfo.verified ? (
               <BadgeCheck
                 size={19}
@@ -467,7 +514,6 @@ export default function UserProfileForm() {
                 color="#fff"
                 fill="#0095F6"
                 aria-label="Verified REN/PEA"
-                title="Verified REN/PEA"
               />
             ) : renNumberMissing ? (
               <BadgeAlert
@@ -475,7 +521,6 @@ export default function UserProfileForm() {
                 strokeWidth={2.6}
                 color="#8a6116"
                 aria-label="Please add REN/PEA number"
-                title="Please add REN/PEA number"
               />
             ) : null}
           </h4>
@@ -502,14 +547,11 @@ export default function UserProfileForm() {
             >
               <span>
                 {renInfo.number
-                  ? `${renInfo.number}: ${renInfo.label}`
+                  ? `REN/PEA status: ${renInfo.number}: ${renInfo.label}`
                   : "REN/PEA status: Please add REN/PEA number"}
               </span>
             </div>
           ) : null}
-          <p style={{ margin: 0, color: "#888", fontSize: 14 }}>
-            Update your personal details below
-          </p>
           <button
             type="button"
             onClick={() => fileInputRef.current?.click()}
@@ -598,62 +640,85 @@ export default function UserProfileForm() {
                 </div>
               </div>
 
-              <div className="col-lg-6">
-                <div className="tp-dashboard-new-input">
-                  <label>Company Name</label>
-                  <input
-                    {...registerProfile("companyName")}
-                    type="text"
-                    placeholder="Enter your company name"
-                  />
-                  <ErrorMessage
-                    message={profileErrors.companyName?.message || ""}
-                  />
-                </div>
-              </div>
+              {!isOwnerProfile && (
+                <>
+                  <div className="col-lg-6">
+                    <div className="tp-dashboard-new-input">
+                      <label>REN / PEA Number</label>
+                      <input
+                        {...registerProfile("renNumber")}
+                        type="text"
+                        placeholder="REN12345 or PEA12345"
+                        style={{ textTransform: "uppercase" }}
+                        onInput={(e: React.FormEvent<HTMLInputElement>) => {
+                          const target = e.currentTarget;
+                          target.value = target.value.toUpperCase();
+                        }}
+                      />
+                      <ErrorMessage
+                        message={profileErrors.renNumber?.message || ""}
+                      />
+                    </div>
+                  </div>
 
-              <div className="col-lg-6">
-                <div className="tp-dashboard-new-input">
-                  <label>IC / Passport</label>
-                  <input
-                    {...registerProfile("icPassport")}
-                    type="text"
-                    placeholder="Enter your identification number"
-                  />
-                  <ErrorMessage
-                    message={profileErrors.icPassport?.message || ""}
-                  />
-                </div>
-              </div>
+                  <div className="col-lg-6">
+                    <div className="tp-dashboard-new-input">
+                      <label>Company Name</label>
+                      <input
+                        {...registerProfile("companyName")}
+                        type="text"
+                        placeholder="Enter your company name"
+                      />
+                      <ErrorMessage
+                        message={profileErrors.companyName?.message || ""}
+                      />
+                    </div>
+                  </div>
 
-              <div className="col-lg-6">
-                <div className="tp-dashboard-new-input">
-                  <label>Designation</label>
-                  <input
-                    {...registerProfile("designation")}
-                    type="text"
-                    placeholder="Enter your designation"
-                  />
-                  <ErrorMessage
-                    message={profileErrors.designation?.message || ""}
-                  />
-                </div>
-              </div>
+                  <div className="col-lg-6">
+                    <div className="tp-dashboard-new-input">
+                      <label>IC / Passport</label>
+                      <input
+                        {...registerProfile("icPassport")}
+                        type="text"
+                        placeholder="Enter your identification number"
+                      />
+                      <ErrorMessage
+                        message={profileErrors.icPassport?.message || ""}
+                      />
+                    </div>
+                  </div>
 
-              <div className="col-lg-6">
-                <div className="tp-dashboard-new-input">
-                  <label>Experience (years)</label>
-                  <input
-                    {...registerProfile("experience")}
-                    type="number"
-                    min={0}
-                    placeholder="Years of experience"
-                  />
-                  <ErrorMessage
-                    message={profileErrors.experience?.message || ""}
-                  />
-                </div>
-              </div>
+                  <div className="col-lg-6">
+                    <div className="tp-dashboard-new-input">
+                      <label>Designation</label>
+                      <input
+                        {...registerProfile("designation")}
+                        type="text"
+                        placeholder="Enter your designation"
+                      />
+                      <ErrorMessage
+                        message={profileErrors.designation?.message || ""}
+                      />
+                    </div>
+                  </div>
+
+                  <div className="col-lg-6">
+                    <div className="tp-dashboard-new-input">
+                      <label>Experience (years)</label>
+                      <input
+                        {...registerProfile("experience")}
+                        type="number"
+                        min={0}
+                        placeholder="Years of experience"
+                      />
+                      <ErrorMessage
+                        message={profileErrors.experience?.message || ""}
+                      />
+                    </div>
+                  </div>
+                </>
+              )}
 
               <div className="col-12">
                 <div className="tp-dashboard-new-btn" style={{ marginTop: 8 }}>

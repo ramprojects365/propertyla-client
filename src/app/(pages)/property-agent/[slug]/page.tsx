@@ -215,7 +215,7 @@ export default function PropertyAgentPage() {
                     >
                       <span>
                         {agent.renNumber
-                          ? `${agent.renNumber}: ${renStatusLabel}`
+                          ? `REN/PEA status: ${agent.renNumber}: ${renStatusLabel}`
                           : `REN/PEA status: ${renStatusLabel}`}
                       </span>
                     </div>
