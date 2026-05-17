@@ -2,8 +2,9 @@ import BreadcrumbArea from "@/components/Breadcrumb/BreadcrumbArea";
 import { Metadata } from "next";
 
 export const metadata: Metadata = {
-  title: "Real Estate Agent Details | PropertyLA Malaysia",
-  description: "View detailed profiles of real estate agents in Malaysia. Find experienced property agents specializing in residential, commercial, and investment properties across Kuala Lumpur, Selangor, Penang and more.",
+  title: "Real Estate Agent Details | PropertyLa Malaysia",
+  description:
+    "View detailed profiles of real estate agents in Malaysia. Find experienced property agents specializing in residential, commercial, and investment properties across Kuala Lumpur, Selangor, Penang and more.",
 };
 
 export default async function AgentDetails() {

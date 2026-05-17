@@ -256,7 +256,7 @@ export default function HomeLoanCalculator() {
                 style={{ lineHeight: 1.6 }}
               >
                 * This calculator is for illustration only. Results vary by bank
-                and product. PropertyLA does not guarantee accuracy or
+                and product. PropertyLa does not guarantee accuracy or
                 suitability for your circumstances — confirm figures with your
                 financial institution before committing.
               </p>

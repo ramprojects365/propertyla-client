@@ -3,9 +3,9 @@ import DashboardLayout from "@/layouts/DashboardLayout";
 import { Metadata } from "next";
 
 export const metadata: Metadata = {
-  title: "Update Password | PropertyLA Account Settings",
+  title: "Update Password | PropertyLa Account Settings",
   description:
-    "Update your PropertyLA account password securely. Change your password to keep your account protected.",
+    "Update your PropertyLa account password securely. Change your password to keep your account protected.",
 };
 
 export default function UpdatePassword() {

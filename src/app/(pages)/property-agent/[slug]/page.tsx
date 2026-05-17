@@ -118,7 +118,7 @@ export default function PropertyAgentPage() {
 
   const handleWhatsAppClick = () => {
     const message = encodeURIComponent(
-      `Hi ${agent.fullName || agent.username}, I found your profile on PropertyLA and would like to inquire about property services.`,
+      `Hi ${agent.fullName || agent.username}, I found your profile on PropertyLa and would like to inquire about property services.`,
     );
     window.open(
       `https://wa.me/${agent.phoneNumber.replace(/\D/g, "")}?text=${message}`,
@@ -126,7 +126,8 @@ export default function PropertyAgentPage() {
     );
   };
 
-  const renVerified = agent.renVerified === true || agent.renStatus === "verified";
+  const renVerified =
+    agent.renVerified === true || agent.renStatus === "verified";
   const renStatusLabel =
     agent.renStatusLabel || (renVerified ? "Verified" : "Not verified");
   const profileRole =
@@ -370,9 +371,7 @@ export default function PropertyAgentPage() {
                       </div>
                       <div className="info-item">
                         <span className="info-label">REN/PEA Status</span>
-                        <span className="info-value">
-                          {renStatusLabel}
-                        </span>
+                        <span className="info-value">{renStatusLabel}</span>
                       </div>
                     </div>
                   </div>

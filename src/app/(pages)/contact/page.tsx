@@ -5,8 +5,9 @@ import MapArea from "@/components/Contact/MapArea";
 import { Metadata } from "next";
 
 export const metadata: Metadata = {
-  title: "Contact PropertyLA | Malaysia Real Estate Agents & Property Services",
-  description: "Get in touch with PropertyLA experts for Malaysian real estate. Contact our agents for apartments, condos, landed houses, and bungalows in Kuala Lumpur, Selangor, Penang, Johor and nationwide. Browse property-for-sale/klang-valley and investment-property-malaysia listings. Your trusted alternative to iProperty and PropertyGuru.",
+  title: "Contact PropertyLa | Malaysia Real Estate Agents & Property Services",
+  description:
+    "Get in touch with PropertyLa experts for Malaysian real estate. Contact our agents for apartments, condos, landed houses, and bungalows in Kuala Lumpur, Selangor, Penang, Johor and nationwide. Browse property-for-sale/klang-valley and investment-property-malaysia listings. Your trusted alternative to iProperty and PropertyGuru.",
 };
 
 export default function Contact() {

@@ -5,7 +5,7 @@ import RecentPosts from "@/components/Blog/RecentPosts";
 
 export const metadata: Metadata = {
   title:
-    "Stamp Duty in Malaysia Property (2026): Complete Guide | PropertyLA Malaysia",
+    "Stamp Duty in Malaysia Property (2026): Complete Guide | PropertyLa Malaysia",
   description:
     "Complete guide to Malaysia property stamp duty in 2026. Learn about rates, exemptions, foreign buyer rules, and calculation tips for home buyers.",
   keywords:

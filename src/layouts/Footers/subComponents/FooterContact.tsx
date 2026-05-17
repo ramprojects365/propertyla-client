@@ -20,7 +20,7 @@ export default function FooterContact() {
         <div className="tp-footer-widget-content">
           <p>
             Malaysia's premier real estate platform for KL, Selangor, Cheras,
-            Puchong & Klang Valley. Find your perfect property with PropertyLA.
+            Puchong & Klang Valley. Find your perfect property with PropertyLa.
           </p>
           <div className="tp-footer-widget-contact">
             <Link href="tel:+601126368426">

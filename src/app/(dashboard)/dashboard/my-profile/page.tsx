@@ -3,8 +3,9 @@ import DashboardLayout from "@/layouts/DashboardLayout";
 import { Metadata } from "next";
 
 export const metadata: Metadata = {
-  title: "My Profile | PropertyLA Account Settings",
-  description: "Manage your PropertyLA profile and account settings. Update personal information, contact details, and preferences for your Malaysia real estate account.",
+  title: "My Profile | PropertyLa Account Settings",
+  description:
+    "Manage your PropertyLa profile and account settings. Update personal information, contact details, and preferences for your Malaysia real estate account.",
 };
 
 export default function MyProfile() {

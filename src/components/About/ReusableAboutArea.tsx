@@ -34,16 +34,22 @@ export default function ReusableAboutArea() {
             >
               <div className="tp-about-5-heading mb-50">
                 <span className="tp-section-title-pre">
-                  THE REASON FOR LOVE Property-La
+                  Why Choose PropertyLa
                 </span>
                 <h3 className="tp-section-title">
-                  Accurate to 99% of a property details.
+                  Malaysia's Trusted Real Estate Platform
                 </h3>
               </div>
               <div className="tp-about-5-item-box mb-55">
                 {[
-                  { icon: aboutIcon1, title: "Affordable price" },
-                  { icon: aboutIcon2, title: "Experienced agents" },
+                  {
+                    icon: aboutIcon1,
+                    title: "Free Property Search",
+                  },
+                  {
+                    icon: aboutIcon2,
+                    title: "Verified REN Agents",
+                  },
                 ].map((item, index) => (
                   <div className="tp-about-5-item d-flex mb-30" key={index}>
                     <div className="tp-about-5-item-icon mr-30">
@@ -52,8 +58,9 @@ export default function ReusableAboutArea() {
                     <div className="tp-about-5-item-content">
                       <h4 className="tp-about-5-title">{item.title}</h4>
                       <p>
-                        Lorem ipsum dolor sit amet, consectetuer adipiscing{" "}
-                        <br /> modo ligula eget dolor. Aenean massa. Cum
+                        {item.title === "Free Property Search"
+                          ? "Search thousands of properties for free across Kuala Lumpur, Selangor, Penang, and Johor. No hidden fees for property seekers."
+                          : "Connect with licensed real estate negotiators verified by LPPEH Malaysia. Trustworthy agents with valid REN numbers."}
                       </p>
                     </div>
                   </div>

@@ -13,7 +13,10 @@ export default function FooterCopyright() {
         </div>
         <div className="col-lg-6">
           <div className="tp-footer-copyright d-flex justify-content-end align-items-center gap-3">
-            <WhatsAppButton phoneNumber="601126368426" message="Hi, I'm interested in a property on PropertyLA" />
+            <WhatsAppButton
+              phoneNumber="601126368426"
+              message="Hi, I'm interested in a property on PropertyLa"
+            />
             <FooterSocialLinks />
           </div>
         </div>
