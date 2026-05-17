@@ -106,6 +106,7 @@ export default function UserProfileForm() {
   const [loading, setLoading] = useState(true);
   const [displayName, setDisplayName] = useState("My Profile");
   const [isOwnerProfile, setIsOwnerProfile] = useState(false);
+  const [isAgentProfile, setIsAgentProfile] = useState(false);
   const [renInfo, setRenInfo] = useState<{
     number: string;
     verified: boolean;
@@ -175,6 +176,8 @@ export default function UserProfileForm() {
         const normalizedUserType = (profile.userType || profile.user_type || "")
           .trim()
           .toLowerCase();
+          const isAgent = normalizedUserType === "agent";
+setIsAgentProfile(isAgent);
         const isOwner =
           normalizedUserType === "owner" || normalizedUserType === "ownwer";
         setIsOwnerProfile(isOwner);
@@ -484,7 +487,7 @@ export default function UserProfileForm() {
             }}
           >
             <span>{displayName}</span>
-            {renInfo.available && renInfo.verified ? (
+            {isAgentProfile && renInfo.available && renInfo.verified ? (
               <BadgeCheck
                 size={19}
                 strokeWidth={2.8}
@@ -492,7 +495,7 @@ export default function UserProfileForm() {
                 fill="#0095F6"
                 aria-label="Verified REN/PEA"
               />
-            ) : renNumberMissing ? (
+            ) : isAgentProfile && renNumberMissing ? (
               <BadgeAlert
                 size={19}
                 strokeWidth={2.6}
@@ -501,7 +504,7 @@ export default function UserProfileForm() {
               />
             ) : null}
           </h4>
-          {renInfo.available ? (
+          {isAgentProfile && renInfo.available ? (
             <div
               style={{
                 alignItems: "center",
@@ -616,7 +619,7 @@ export default function UserProfileForm() {
                 </div>
               </div>
 
-              {!isOwnerProfile && (
+              {isAgentProfile  && (
                 <>
                   <div className="col-lg-6">
                     <div className="tp-dashboard-new-input">
