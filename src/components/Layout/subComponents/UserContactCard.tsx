@@ -150,7 +150,6 @@ export default function UserContactCard({ user }: UserContactCardProps) {
                         strokeWidth={2.5}
                         color="#ffd77a"
                         aria-label="REN/PEA not verified"
-                        title="REN/PEA not verified"
                       />
                     )}
                   </span>

@@ -500,9 +500,6 @@ export default function UserProfileForm() {
                 lineHeight: 1,
               }}
             >
-              {!renInfo.verified ? (
-                <BadgeAlert size={15} strokeWidth={2.4} />
-              ) : null}
               <span>
                 {renInfo.number
                   ? `${renInfo.number}: ${renInfo.label}`

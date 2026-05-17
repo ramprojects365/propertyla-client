@@ -217,9 +217,6 @@ export default function PropertyAgentPage() {
                         renVerified ? "is-verified" : "is-not-verified"
                       }`}
                     >
-                      {!renVerified ? (
-                        <BadgeAlert size={16} strokeWidth={2.4} />
-                      ) : null}
                       <span>
                         {agent.renNumber
                           ? `${agent.renNumber}: ${renStatusLabel}`
