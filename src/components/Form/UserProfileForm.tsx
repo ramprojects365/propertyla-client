@@ -394,86 +394,160 @@ export default function UserProfileForm() {
   return (
     <>
       {/* Profile Image + Name */}
-   <div
-  style={{
-    display: "flex",
-    flexDirection: "column",
-    alignItems: "flex-start",
-  }}
->
-  <h4
-    style={{
-      display: "flex",
-      alignItems: "center",
-      gap: 7,
-      margin: "0 0 6px",
-    }}
-  >
-    <span>{displayName}</span>
-    {renInfo.available && renInfo.verified ? (
-      <BadgeCheck
-        size={19}
-        strokeWidth={2.8}
-        color="#fff"
-        fill="#0095F6"
-        aria-label="Verified REN/PEA"
-      />
-    ) : renNumberMissing ? (
-      <BadgeAlert
-        size={19}
-        strokeWidth={2.6}
-        color="#8a6116"
-        aria-label="Please add REN/PEA number"
-      />
-    ) : null}
-  </h4>
-  {renInfo.available ? (
-    <div
-      style={{
-        display: "inline-flex",
-        alignItems: "center",
-        gap: 8,
-        marginBottom: 10,
-        padding: "5px 9px",
-        borderRadius: 6,
-        border: renInfo.verified
-          ? "1px solid rgba(0, 59, 92, 0.24)"
-          : "1px solid rgba(160, 110, 20, 0.28)",
-        background: renInfo.verified
-          ? "rgba(0, 59, 92, 0.08)"
-          : "rgba(255, 193, 7, 0.12)",
-        color: renInfo.verified ? "#003B5C" : "#8a6116",
-        fontSize: 13,
-        fontWeight: 700,
-        lineHeight: 1,
-      }}
-    >
-      <span>
-        {renInfo.number
-          ? `REN/PEA status: ${renInfo.number}: ${renInfo.label}`
-          : "REN/PEA status: Please add REN/PEA number"}
-      </span>
-    </div>
-  ) : null}
-
-  <button
-    type="button"
-    onClick={() => fileInputRef.current?.click()}
-    disabled={uploadingImage}
-    style={{
-      border: "1px solid #d8d8d8",
-      background: "#fff",
-      borderRadius: 6,
-      padding: "7px 12px",
-      fontSize: 13,
-      fontWeight: 600,
-      lineHeight: 1,
-      cursor: uploadingImage ? "wait" : "pointer",
-    }}
-  >
-    {uploadingImage ? "Uploading..." : "Change photo"}
-  </button>
-</div>
+  <div
+        style={{
+          display: "flex",
+          alignItems: "center",
+          gap: 20,
+          paddingBottom: 24,
+          marginBottom: 24,
+          borderBottom: "1px solid #f0f0f0",
+        }}
+      >
+        <div
+          style={{ position: "relative", width: 90, height: 90, flexShrink: 0 }}
+        >
+          {profileImageUrl ? (
+            <span
+              style={{
+                display: "block",
+                width: 90,
+                height: 90,
+                borderRadius: "50%",
+                backgroundImage: `url('${profileImageUrl}')`,
+                backgroundSize: "cover",
+                backgroundPosition: "center",
+              }}
+            />
+          ) : (
+            <span
+              style={{
+                display: "flex",
+                width: 90,
+                height: 90,
+                borderRadius: "50%",
+                alignItems: "center",
+                justifyContent: "center",
+                background: "rgba(212, 175, 55, 0.18)",
+                border: "1px solid rgba(212, 175, 55, 0.75)",
+                color: "#D4AF37",
+              }}
+              aria-label="default profile icon"
+            >
+              <UserSvg />
+            </span>
+          )}
+          <button
+            type="button"
+            onClick={() => fileInputRef.current?.click()}
+            disabled={uploadingImage}
+            aria-label="Change profile photo"
+            style={{
+              position: "absolute",
+              bottom: 0,
+              right: 0,
+              background: "#fff",
+              border: "none",
+              borderRadius: "50%",
+              width: 28,
+              height: 28,
+              display: "flex",
+              alignItems: "center",
+              justifyContent: "center",
+              boxShadow: "0 2px 6px rgba(0,0,0,0.18)",
+              cursor: uploadingImage ? "wait" : "pointer",
+              padding: 0,
+              opacity: uploadingImage ? 0.75 : 1,
+            }}
+          >
+            {uploadingImage ? (
+              <span style={{ fontSize: 9 }}>...</span>
+            ) : (
+              <i className="fa-light fa-camera" style={{ fontSize: 12 }} />
+            )}
+          </button>
+          <input
+            ref={fileInputRef}
+            type="file"
+            accept={PROFILE_IMAGE_ACCEPT}
+            style={{ display: "none" }}
+            onChange={handleImageChange}
+          />
+        </div>
+        <div>
+          <h4
+            style={{
+              display: "flex",
+              alignItems: "center",
+              gap: 7,
+              margin: "0 0 4px",
+            }}
+          >
+            <span>{displayName}</span>
+            {renInfo.available && renInfo.verified ? (
+              <BadgeCheck
+                size={19}
+                strokeWidth={2.8}
+                color="#fff"
+                fill="#0095F6"
+                aria-label="Verified REN/PEA"
+              />
+            ) : renNumberMissing ? (
+              <BadgeAlert
+                size={19}
+                strokeWidth={2.6}
+                color="#8a6116"
+                aria-label="Please add REN/PEA number"
+              />
+            ) : null}
+          </h4>
+          {renInfo.available ? (
+            <div
+              style={{
+                alignItems: "center",
+                gap: 8,
+                marginBottom: 6,
+                padding: "5px 9px",
+                borderRadius: 6,
+                border: renInfo.verified
+                  ? "1px solid rgba(0, 59, 92, 0.24)"
+                  : "1px solid rgba(160, 110, 20, 0.28)",
+                background: renInfo.verified
+                  ? "rgba(0, 59, 92, 0.08)"
+                  : "rgba(255, 193, 7, 0.12)",
+                color: renInfo.verified ? "#003B5C" : "#8a6116",
+                fontSize: 13,
+                fontWeight: 700,
+                lineHeight: 1,
+              }}
+            >
+              <span>
+                {renInfo.number
+                  ? `REN/PEA status: ${renInfo.number}: ${renInfo.label}`
+                  : "REN/PEA status: Please add REN/PEA number"}
+              </span>
+            </div>
+          ) : null}
+          <button
+            type="button"
+            onClick={() => fileInputRef.current?.click()}
+            disabled={uploadingImage}
+            style={{
+              marginTop: 10,
+              border: "1px solid #d8d8d8",
+              background: "#fff",
+              borderRadius: 6,
+              padding: "7px 12px",
+              fontSize: 13,
+              fontWeight: 600,
+              lineHeight: 1,
+              cursor: uploadingImage ? "wait" : "pointer",
+            }}
+          >
+            {uploadingImage ? "Uploading..." : "Change photo"}
+          </button>
+        </div>
+      </div>
 
       {/* Profile Information Form */}
       <form onSubmit={handleProfileSubmit(onProfileSubmit)}>
