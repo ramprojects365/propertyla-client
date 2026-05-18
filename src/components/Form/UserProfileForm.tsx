@@ -397,11 +397,13 @@ setIsAgentProfile(isAgent);
   return (
     <>
       {/* Profile Image + Name */}
-  <div
+      <div
+        className="profile-photo-upload-row"
         style={{
           display: "flex",
           alignItems: "center",
           gap: 20,
+          flexWrap: "wrap",
           paddingBottom: 24,
           marginBottom: 24,
           borderBottom: "1px solid #f0f0f0",
@@ -477,12 +479,14 @@ setIsAgentProfile(isAgent);
             onChange={handleImageChange}
           />
         </div>
-        <div>
+        <div className="profile-photo-upload-content" style={{ minWidth: 0, flex: 1 }}>
           <h4
+            className="profile-photo-upload-name"
             style={{
               display: "flex",
               alignItems: "center",
               gap: 7,
+              flexWrap: "wrap",
               margin: "0 0 4px",
             }}
           >

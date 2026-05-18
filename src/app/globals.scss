@@ -129,6 +129,16 @@
   padding-bottom: 24px;
   margin-bottom: 24px;
 }
+.profile-photo-upload-row {
+  width: 100%;
+}
+.profile-photo-upload-content {
+  max-width: 100%;
+}
+.profile-photo-upload-name span {
+  min-width: 0;
+  overflow-wrap: anywhere;
+}
 .tp-team-details-info-top {
   border-radius: 8px 8px 8px 8px !important;
 }
@@ -385,6 +395,26 @@ body.scrolled .Profile-btn-span {
   }
   .tp-dashboard-main {
     padding: 10px;
+  }
+  .profile-photo-upload-row {
+    align-items: flex-start !important;
+    flex-direction: column !important;
+    gap: 14px !important;
+  }
+  .profile-photo-upload-content {
+    flex: 1 1 auto !important;
+    width: 100%;
+  }
+  .profile-photo-upload-content button {
+    width: 100%;
+    max-width: 100%;
+    white-space: normal;
+  }
+  .profile-photo-upload-name {
+    width: 100%;
+  }
+  .tp-dashboard-profile-information {
+    clear: both;
   }
   .tp-hero-tab-box {
     width: 100%;
