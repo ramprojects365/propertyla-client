@@ -1,54 +1,82 @@
 "use client";
-import React from "react";
+import React, { useEffect, useState } from "react";
 import Image from "next/image";
 import Link from "next/link";
+import { API_BASE_URL } from "@/config/constants";
 
 interface Agent {
   id: string;
   name: string;
   agentId: string;
+  email: string;
   image: string;
   rating: number;
   properties: number;
 }
 
+interface User {
+  id?: string;
+  username?: string;
+  email?: string;
+  phoneNumber?: string;
+  userType?: string | null;
+  profileImage?: string;
+  fullName?: string;
+  bio?: string;
+  companyName?: string;
+  designation?: string;
+  experienceYears?: number;
+  renNumber?: string | null;
+  renStatus?: string | null;
+  renVerified?: boolean;
+  renStatusLabel?: string;
+  emailVerified?: boolean;
+  createdAt?: string;
+  updatedAt?: string;
+}
+
 const trustedAgents: Agent[] = [
   {
-    id: "david-hussy-2987852",
+    id: "1",
     name: "Ram",
     agentId: "REN 1234",
+    email: "nagaramaganga@gmail.com",
     image: "/assets/img/team/team-details/user.jpg",
     rating: 4.8,
     properties: 150,
   },
   {
-    id: "sarah-lim-2987853",
+    id: "1",
     name: "Fara",
     agentId: "PEA 3329",
+    email: "faizzatulfarhana2020@gmail.com",
     image: "/assets/img/team/team-details/fara.jpg",
     rating: 4.9,
     properties: 120,
   },
-  // {
-  //   id: "ahmad-khan-2987854",
-  //   name: "Ahmad Khan",
-  //   agentId: "REN 1234",
-  //   image: "/assets/img/team/team-details/user.jpg",
-  //   rating: 4.7,
-  //   properties: 95,
-  // },
-  // {
-  //   id: "jennifer-lee-2987855",
-  //   name: "Jennifer Lee",
-  //   agentId: "REN 1234",
-  //   image: "/assets/img/team/team-details/user.jpg",
-  //   rating: 4.8,
-  //   properties: 110,
-  // },
+  {
+    id: "3",
+    name: "MR.PUI",
+    agentId: "PEA 2457)",
+    email: "puits888@gmail.com",
+    image: "/assets/img/team/team-details/pui.jpg",
+    rating: 4.7,
+    properties: 95,
+  },
+  {
+    id: "4",
+    name: "Eddie",
+    agentId: "REN 4234",
+    email: "",
+    image: "/assets/img/team/team-details/eddie.jpg",
+    rating: 3.1,
+    properties: 34,
+  },
   // {
   //   id: "michael-tan-2987856",
   //   name: "Michael Tan",
   //   agentId: "REN 1234",
+  //   email: "",
   //   image: "/assets/img/team/team-details/user.jpg",
   //   rating: 4.6,
   //   properties: 85,
@@ -57,6 +85,7 @@ const trustedAgents: Agent[] = [
   //   id: "fatima-ali-2987857",
   //   name: "Fatima Ali",
   //   agentId: "REN 1234",
+  //   email: "",
   //   image: "/assets/img/team/team-details/user.jpg",
   //   rating: 4.9,
   //   properties: 130,
@@ -64,6 +93,97 @@ const trustedAgents: Agent[] = [
 ];
 
 export default function TrustedAgents() {
+  const [userMap, setUserMap] = useState<Record<string, User>>({});
+  const [loading, setLoading] = useState(true);
+
+  useEffect(() => {
+    const fetchUsersFromProperties = async () => {
+      try {
+        const res = await fetch(`${API_BASE_URL}/properties`);
+        if (!res.ok) throw new Error("Failed to fetch properties");
+
+        const data = await res.json();
+        const properties = Array.isArray(data) ? data : data?.data || [];
+
+        // Extract unique users from properties
+        const usersMap: Record<string, User> = {};
+        properties.forEach((property: any) => {
+          if (property.user && property.user.email) {
+            usersMap[property.user.email] = property.user;
+          }
+        });
+
+        setUserMap(usersMap);
+      } catch (error) {
+        console.error("Error fetching users from properties:", error);
+      } finally {
+        setLoading(false);
+      }
+    };
+
+    fetchUsersFromProperties();
+  }, []);
+
+  const getAgentProfileUrl = (agent: Agent): string => {
+    const userData = userMap[agent.email];
+
+    if (!userData) {
+      // Fallback: use agent ID if no user data found
+      return `/property-agent/${agent.id}`;
+    }
+
+    const slug: string = userData.username || agent.name;
+    const cleanSlug = slug
+      .toLowerCase()
+      .replace(/\s+/g, "-")
+      .replace(/[^a-z0-9-]/g, "");
+
+    const renVerified =
+      userData.renVerified === true || userData.renStatus === "verified";
+    const renStatusLabel =
+      userData.renStatusLabel || (renVerified ? "Verified" : "Not verified");
+
+    const userDataForUrl = {
+      id: userData.id || cleanSlug,
+      username: userData.username || agent.name,
+      email: userData.email || agent.email,
+      phoneNumber: userData.phoneNumber || "",
+      userType: userData.userType || "",
+      profileImage: userData.profileImage || agent.image,
+      fullName: userData.fullName || userData.username || agent.name,
+      designation: userData.designation || "Real Estate Agent",
+      experienceYears: userData.experienceYears || 5,
+      bio:
+        userData.bio ||
+        "Professional real estate agent specializing in Malaysian properties.",
+      companyName: userData.companyName || "",
+      renNumber: userData.renNumber || agent.agentId,
+      renStatus: userData.renStatus || "not_verified",
+      renVerified,
+      renStatusLabel,
+      emailVerified: userData.emailVerified ?? true,
+      createdAt: userData.createdAt || new Date().toISOString(),
+      updatedAt: userData.updatedAt || new Date().toISOString(),
+    };
+
+    const jsonString = JSON.stringify(userDataForUrl);
+    const encodedData = btoa(encodeURIComponent(jsonString));
+    const finalUrl = `/property-agent/${cleanSlug}?data=${encodedData}`;
+    return finalUrl;
+  };
+
+  if (loading) {
+    return (
+      <section style={{ padding: "60px 0" }}>
+        <div className="container">
+          <div className="text-center">
+            <p>Loading trusted agents...</p>
+          </div>
+        </div>
+      </section>
+    );
+  }
+
   return (
     <section style={{ padding: "60px 0" }}>
       <div className="container">
@@ -106,7 +226,7 @@ export default function TrustedAgents() {
           {trustedAgents.map((agent) => (
             <Link
               key={agent.id}
-              href={`/property-agent/${agent.id}`}
+              href={getAgentProfileUrl(agent)}
               style={{
                 textDecoration: "none",
                 flex: "0 0 auto",
