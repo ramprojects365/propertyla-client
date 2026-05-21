@@ -230,7 +230,7 @@ export default function TrustedAgents() {
               style={{
                 textDecoration: "none",
                 flex: "0 0 auto",
-                minWidth: "200px",
+                minWidth: "140px",
                 maxWidth: "200px",
               }}
             >
