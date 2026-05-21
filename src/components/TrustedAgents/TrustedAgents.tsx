@@ -177,7 +177,7 @@ export default function TrustedAgents() {
       <section style={{ padding: "60px 0" }}>
         <div className="container">
           <div className="text-center">
-            <p>Loading trusted agents...</p>
+            <p>Loading trusted partners...</p>
           </div>
         </div>
       </section>
@@ -196,7 +196,7 @@ export default function TrustedAgents() {
               marginBottom: "15px",
             }}
           >
-            Trusted Agents
+            Trusted Partners
           </h2>
           <p
             style={{

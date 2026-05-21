@@ -71,7 +71,7 @@ export default function ReusableAboutArea() {
                   { href: "/about", text: "About More" },
                   {
                     href: "/contact",
-                    text: "Trusted Agents",
+                    text: "Trusted partners",
                     className: "btn-2",
                   },
                 ].map((btn, index) => (
