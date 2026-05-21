@@ -107,7 +107,7 @@ export default function HeaderOne() {
                     typeof window !== "undefined"
                       ? localStorage.getItem("loginUser")
                       : null;
-                  return username ? <p></p> : <p>Hi, Sign In</p>;
+                  return username ? null : <p>Hi, Sign In</p>;
                 })()}
               </div>
             </div>
