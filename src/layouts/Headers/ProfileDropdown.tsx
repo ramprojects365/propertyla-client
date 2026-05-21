@@ -10,9 +10,9 @@ const ProfileDropdown = () => {
   const dropdownRef = useRef<HTMLDivElement>(null);
   const router = useRouter();
 
-  const truncateUsername = (value: string, maxLength: number) => {
+  const truncateUsername = (value: string, maxLength: number, addDots: boolean = true) => {
     if (value.length <= maxLength) return value;
-    return value.slice(0, maxLength) + "…";
+    return addDots ? value.slice(0, maxLength) + "…" : value.slice(0, maxLength);
   };
 
   // ✅ Close only when clicking OUTSIDE
@@ -82,9 +82,10 @@ const ProfileDropdown = () => {
                   : null;
 
               return displayName ? (
-                <p
-                  style={{ margin: 0 }}
-                >{`${truncateUsername(displayName, 14)}`}</p>
+                <>
+                  <p className="hide-mobile" style={{ margin: 0 }}>{`${truncateUsername(displayName, 14)}`}</p>
+                  <p className="hide-desktop" style={{ margin: 0 }}>{`${truncateUsername(displayName, 3, false)}`}</p>
+                </>
               ) : (
                 <p style={{ margin: 0 }}></p>
               );

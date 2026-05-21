@@ -313,19 +313,6 @@ export default function PropertyAgentPage() {
                     WhatsApp
                   </button>
                 </div>
-
-                {/* About Section */}
-                <div
-                  className="tp-agent-profile-section"
-                  style={{ paddingTop: "10px" }}
-                >
-                  <h3 className="tp-agent-profile-section-title">
-                    About {agent.fullName || agent.username}
-                  </h3>
-                  <div className="tp-agent-profile-about">
-                    <p>{agent.bio || "No bio available."}</p>
-                  </div>
-                </div>
               </div>
             </div>
 
@@ -377,71 +364,13 @@ export default function PropertyAgentPage() {
                   </div>
                 </div>
 
-                {/* Contact Form */}
+                {/* About Section */}
                 <div className="tp-agent-profile-section">
                   <h3 className="tp-agent-profile-section-title">
-                    Send Message to {agent.fullName || agent.username}
+                    About {agent.fullName || agent.username}
                   </h3>
-                  <div className="tp-agent-contact-form">
-                    <form className="contact-form">
-                      <div className="row">
-                        <div className="col-md-6">
-                          <div className="form-group">
-                            <label>Your Name *</label>
-                            <input
-                              type="text"
-                              className="form-control"
-                              required
-                            />
-                          </div>
-                        </div>
-                        <div className="col-md-6">
-                          <div className="form-group">
-                            <label>Your Email *</label>
-                            <input
-                              type="email"
-                              className="form-control"
-                              required
-                            />
-                          </div>
-                        </div>
-                        <div className="col-md-6">
-                          <div className="form-group">
-                            <label>Your Phone *</label>
-                            <input
-                              type="tel"
-                              className="form-control"
-                              required
-                            />
-                          </div>
-                        </div>
-                        <div className="col-md-6">
-                          <div className="form-group">
-                            <label>Subject *</label>
-                            <input
-                              type="text"
-                              className="form-control"
-                              required
-                            />
-                          </div>
-                        </div>
-                        <div className="col-12">
-                          <div className="form-group">
-                            <label>Your Message *</label>
-                            <textarea
-                              className="form-control"
-                              rows={5}
-                              required
-                            ></textarea>
-                          </div>
-                        </div>
-                        <div className="col-12">
-                          <button type="submit" className="tp-btn">
-                            Send Message
-                          </button>
-                        </div>
-                      </div>
-                    </form>
+                  <div className="tp-agent-profile-about">
+                    <p>{agent.bio || "No bio available."}</p>
                   </div>
                 </div>
               </div>
@@ -575,24 +504,6 @@ export default function PropertyAgentPage() {
         .info-value {
           color: #003b5c;
           font-weight: 600;
-        }
-        .tp-agent-contact-form .form-group {
-          margin-bottom: 20px;
-        }
-        .tp-agent-contact-form label {
-          color: #333;
-          font-weight: 500;
-          margin-bottom: 8px;
-        }
-        .tp-agent-contact-form .form-control {
-          border: 1px solid #ddd;
-          border-radius: 5px;
-          padding: 12px;
-          font-size: 14px;
-        }
-        .tp-agent-contact-form .form-control:focus {
-          border-color: #003b5c;
-          box-shadow: 0 0 0 0.2rem rgba(0, 59, 92, 0.25);
         }
       `}</style>
     </>
