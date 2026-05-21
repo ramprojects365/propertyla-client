@@ -62,6 +62,18 @@ export default function RootLayout({
 
   return (
     <html lang="en">
+      <head>
+        <meta property="og:title" content="PropertyLa - Find Your Dream Property in Malaysia" />
+        <meta property="og:description" content="Discover the best properties for sale and rent in Malaysia. Trusted real estate platform with verified agents." />
+        <meta property="og:image" content="https://www.propertyla.com.my/assets/img/logo/logo-icon-blue.png" />
+        <meta property="og:url" content="https://www.propertyla.com.my" />
+        <meta property="og:type" content="website" />
+        <meta property="og:site_name" content="PropertyLa" />
+        <meta name="twitter:card" content="summary_large_image" />
+        <meta name="twitter:title" content="PropertyLa - Find Your Dream Property in Malaysia" />
+        <meta name="twitter:description" content="Discover the best properties for sale and rent in Malaysia. Trusted real estate platform with verified agents." />
+        <meta name="twitter:image" content="https://www.propertyla.com.my/assets/img/logo/logo-icon-blue.png" />
+      </head>
       <body
         suppressHydrationWarning
         className={`${plusJakartaSans.variable} ${geistSans.variable} ${geistMono.variable}`}
