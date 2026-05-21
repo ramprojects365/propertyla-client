@@ -33,22 +33,22 @@ export default function HeaderOne() {
               {sticky ? (
                 <>
                   <span className="logo-icon-black">Property</span>{" "}
+                  <span className="logo-icon-black">La</span>
                   <Image
                     className="logo-header"
                     src={logoIconBlue}
                     alt="image"
                   />
-                  <span className="logo-icon-black">La</span>
                 </>
               ) : (
                 <>
                   <span className="logo-icon-white">Property</span>{" "}
+                  <span className="logo-icon-white">La</span>
                   <Image
                     className="logo-header"
                     src={logoIconWhite}
                     alt="image"
                   />
-                  <span className="logo-icon-white">La</span>
                 </>
               )}
             </Link>
@@ -72,9 +72,7 @@ export default function HeaderOne() {
               className="tp-btn header-post-property-btn"
               onClick={handlePostPropertyClick}
             >
-              <span className="header-post-property-text">
-                Post property
-              </span>
+              <span className="header-post-property-text">Post property</span>
               <span className="header-post-property-free">FREE</span>
             </button>
           </div>

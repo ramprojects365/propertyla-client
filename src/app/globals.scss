@@ -35,8 +35,8 @@
   margin-bottom: 20px;
 }
 .logo-header {
-  width: 50px;
-  height: 50px;
+  width: 40px;
+  height: 40px;
   margin-bottom: 12px;
 }
 .tp-header-1-menu nav > ul {
@@ -428,7 +428,7 @@ body.scrolled .Profile-btn-span {
     align-items: center;
     justify-content: center;
   }
-  
+
   .tp-btn {
     padding: 14px 20px;
     font-size: 16px;
@@ -574,7 +574,7 @@ body.scrolled .Profile-btn-span {
 }
 
 .header-post-property-free {
-  background-color: #25D366 !important;
+  background-color: #25d366 !important;
   color: #fff !important;
   padding: 2px 8px !important;
   border-radius: 4px !important;
@@ -584,8 +584,8 @@ body.scrolled .Profile-btn-span {
 
 @media only screen and (min-width: 1200px) and (max-width: 1399px) {
   .logo-header {
-    width: 35px;
-    height: 35px;
+    width: 30px;
+    height: 30px;
     margin-bottom: 12px;
   }
   .logo-icon-white {
@@ -623,11 +623,11 @@ body.scrolled .Profile-btn-span {
     padding: 12px 20px;
     font-size: 15px;
   }
-  
+
   .tp-rent-btn .tp-btn {
     padding: 12px 20px;
   }
-  
+
   .list-img-sec {
     padding-left: 15px;
     padding-right: 15px;
@@ -660,8 +660,9 @@ body.scrolled .Profile-btn-span {
     padding-left: 3px;
   }
   .logo-header {
-    width: 40px;
-    height: 40px;
+    width: 25px;
+    height: 25px;
+    margin-bottom: 0px;
   }
   .Profile-btn-span {
     width: 30px;
