@@ -2,16 +2,19 @@ import neighbourhoodsData from "@/data/exploreAreaData";
 import NavigateArrowSvg from "../SVG/NavigateArrowSvg";
 import Image from "next/image";
 import Link from "next/link";
+import { useTranslation } from "@/contexts/LanguageContext";
 
 export default function HomePropertiesByCity() {
+  const { t } = useTranslation();
+
   return (
     <section className="tp-explore-area pb-100" style={{ paddingTop: "50px" }}>
       <div className="container">
         <div className="row">
           <div className="col-lg-12">
             <div className="tp-explore-heading mb-55">
-              <span className="tp-section-title-pre">PROPERTIES BY CITY</span>
-              <h3 className="tp-section-title">Explore the neighbourhoods</h3>
+              <span className="tp-section-title-pre">{t("home.propertiesByCity")}</span>
+              <h3 className="tp-section-title">{t("home.exploreNeighbourhoods")}</h3>
             </div>
           </div>
         </div>
@@ -45,7 +48,7 @@ export default function HomePropertiesByCity() {
                             {property.name}
                           </Link>
                         </h4>
-                        <span>{property.count} Property</span>
+                        <span>{property.count} {t("common.property")}</span>
                       </div>
                       <div className="tp-explore-btn">
                         <Link href={href}>

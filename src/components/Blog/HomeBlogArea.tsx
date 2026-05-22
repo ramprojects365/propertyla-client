@@ -1,7 +1,12 @@
+"use client";
+
 import BlogItemHome from "./subComponents/BlogItemHome";
 import blogData from "@/data/blogData";
+import { useTranslation } from "@/contexts/LanguageContext";
 
 export default function HomeBlogArea({ wrapClass }: { wrapClass?: string }) {
+  const { t } = useTranslation();
+
   return (
     <section
       className={`pt-50 pb-50 ${wrapClass ? wrapClass : "tp-blog-area"}`}
@@ -10,7 +15,7 @@ export default function HomeBlogArea({ wrapClass }: { wrapClass?: string }) {
         <div className="row">
           <div className="col-lg-12">
             <div className="tp-blog-heading text-center mb-50">
-              <h3 className="tp-section-title">Our latest article and news</h3>
+              <h3 className="tp-section-title">{t("home.latestArticleAndNews")}</h3>
             </div>
           </div>
           {blogData.slice(0, 3).map((blog) => (

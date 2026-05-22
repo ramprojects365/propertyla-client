@@ -39,6 +39,21 @@
   height: 40px;
   margin-bottom: 12px;
 }
+.language-switcher-btn {
+  padding: 0px 8px;
+  border: 1px solid #003b5c;
+  border-radius: 4px;
+  background: #fff;
+  color: #003b5c;
+  cursor: pointer;
+  font-size: 14px;
+  font-weight: 600;
+  text-transform: uppercase;
+  transition: all 0.3s ease;
+  min-width: 10px;
+  margin-right: 10px;
+  margin-left: 30px;
+}
 .tp-header-1-menu nav > ul {
   text-align: start;
   padding: 4px;
@@ -618,6 +633,20 @@ body.scrolled .Profile-btn-span {
 @media only screen and (min-width: 768px) and (max-width: 991px),
   only screen and (max-width: 767px) {
   /* Tablet and mobile button adjustments */
+  .language-switcher-btn {
+    padding: 0px 15px;
+    border: 1px solid #003b5c;
+    border-radius: 4px;
+    background: #fff;
+    color: #003b5c;
+    cursor: pointer;
+    font-size: 12px;
+    font-weight: 600;
+    text-transform: uppercase;
+    transition: all 0.3s ease;
+    min-width: 10px;
+    margin-right: 10px;
+  }
   .tp-btn {
     min-height: 48px;
     padding: 12px 20px;
