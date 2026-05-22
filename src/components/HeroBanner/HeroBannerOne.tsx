@@ -6,12 +6,14 @@ import HeroBannerTabContent from "./subComponents/HeroBannerTab";
 //import SearchAutocomplete from "./subComponents/SearchAutocomplete";
 import { SocialLinks } from "../UI/SocialLinks";
 import BannerSlider from "./BannerSlider";
+import { useTranslation } from "@/contexts/LanguageContext";
 
 export default function HeroBannerOne() {
   const [isFilterVisible, setIsFilterVisible] = useState(false);
   const [activeTab] = useState("rent");
   const toggleFilter = () => setIsFilterVisible((prev) => !prev);
   const handleSorting = () => {};
+  const { t } = useTranslation();
 
   return (
     <>
@@ -40,7 +42,7 @@ export default function HeroBannerOne() {
                       textShadow: "2px 2px 8px rgba(0, 0, 0, 0.8)",
                     }}
                   >
-                    Find Properties for Sale & Rent in Malaysia
+                    {t("hero.findProperties")}
                   </h1>
                   <p
                     style={{
@@ -50,7 +52,7 @@ export default function HeroBannerOne() {
                       textShadow: "2px 2px 6px rgba(0, 0, 0, 0.8)",
                     }}
                   >
-                    Search houses, condos, apartments, and land easily
+                    {t("hero.searchDescription")}
                   </p>
                 </div>
                 <div
@@ -72,7 +74,7 @@ export default function HeroBannerOne() {
                           aria-selected="false"
                           style={{ borderRadius: "8px 0px 0px 0px" }}
                         >
-                          Rent
+                          {t("common.rent")}
                         </button>
                         <button
                           className="nav-link"
@@ -85,7 +87,7 @@ export default function HeroBannerOne() {
                           aria-selected="true"
                           style={{ borderRadius: "0px 8px 0px 0px" }}
                         >
-                          Buy
+                          {t("common.buy")}
                         </button>
                       </div>
                     </nav>

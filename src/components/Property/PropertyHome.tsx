@@ -5,6 +5,7 @@ import React, { useEffect, useMemo, useState } from "react";
 import { IFeaturedPropertyDT } from "@/types/property-d-t";
 import { StaticImageData } from "next/image";
 import { getCoverImageUrl } from "@/utils/propertyImages";
+import { useTranslation } from "@/contexts/LanguageContext";
 
 // Import Swiper components and Pagination module
 import { Swiper, SwiperSlide } from "swiper/react";
@@ -30,6 +31,7 @@ type ApiProperty = {
 
 export default function PropertyHome() {
   const [items, setItems] = useState<IFeaturedPropertyDT[]>([]);
+  const { t } = useTranslation();
 
   const localImagePool: StaticImageData[] = useMemo(
     () =>
@@ -114,8 +116,8 @@ export default function PropertyHome() {
         <div className="row">
           <div className="col-lg-12">
             <div className="tp-rent-heading text-center mb-50">
-              <span className="tp-section-title-pre">Featured Listings</span>
-              <h3 className="tp-section-title">Property for sell and rent</h3>
+              <span className="tp-section-title-pre">{t("home.featuredListings")}</span>
+              <h3 className="tp-section-title">{t("home.propertyForSellAndRent")}</h3>
             </div>
           </div>
         </div>

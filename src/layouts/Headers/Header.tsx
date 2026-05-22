@@ -11,10 +11,13 @@ import UserSvg from "@/components/SVG/UserSvg";
 import useSticky from "@/hooks/useSticky";
 import Link from "next/link";
 import { requireAuth } from "@/utils/auth";
+import LanguageSwitcher from "@/components/LanguageSwitcher/LanguageSwitcher";
+import { useTranslation } from "@/contexts/LanguageContext";
 
 export default function HeaderOne() {
   const { toggleOffcanvas } = useGlobalContext();
   const { sticky } = useSticky();
+  const { t } = useTranslation();
 
   const handlePostPropertyClick = () => {
     const isAuthenticated = requireAuth("/dashboard/add-new-property");
@@ -28,7 +31,7 @@ export default function HeaderOne() {
     <div className="container container-large">
       <div className="row align-items-center">
         <div className="col-xl-2 col-lg-4 col-md-3 col-8">
-          <div className="tp-header-logo1" style={{ paddingTop: "10px" }}>
+          <div className="tp-header-logo1">
             <Link href="/">
               {sticky ? (
                 <>
@@ -72,13 +75,18 @@ export default function HeaderOne() {
               className="tp-btn header-post-property-btn"
               onClick={handlePostPropertyClick}
             >
-              <span className="header-post-property-text">Post property</span>
-              <span className="header-post-property-free">FREE</span>
+              <span className="header-post-property-text">
+                {t("header.postPropertyText")}
+              </span>
+              <span className="header-post-property-free">
+                {t("header.postPropertyFree")}
+              </span>
             </button>
           </div>
         </div>
         <div className="col-xl-2 col-lg-2 col-md-5 col-2">
           <div className="tp-header-main-right d-flex align-items-center justify-content-end">
+            <LanguageSwitcher />
             <div className="tp-header-right-user d-md-flex align-items-center">
               {(() => {
                 const username =
@@ -107,7 +115,7 @@ export default function HeaderOne() {
                     typeof window !== "undefined"
                       ? localStorage.getItem("loginUser")
                       : null;
-                  return username ? null : <p>Hi, Sign In</p>;
+                  return username ? null : <p>{t("header.hiSignIn")}</p>;
                 })()}
               </div>
             </div>

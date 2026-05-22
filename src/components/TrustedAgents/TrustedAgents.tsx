@@ -3,6 +3,7 @@ import React, { useEffect, useState } from "react";
 import Image from "next/image";
 import Link from "next/link";
 import { API_BASE_URL } from "@/config/constants";
+import { useTranslation } from "@/contexts/LanguageContext";
 
 interface Agent {
   id: string;
@@ -95,6 +96,7 @@ const trustedAgents: Agent[] = [
 export default function TrustedAgents() {
   const [userMap, setUserMap] = useState<Record<string, User>>({});
   const [loading, setLoading] = useState(true);
+  const { t } = useTranslation();
 
   useEffect(() => {
     const fetchUsersFromProperties = async () => {
@@ -196,7 +198,7 @@ export default function TrustedAgents() {
               marginBottom: "15px",
             }}
           >
-            Trusted Partners
+            {t("home.trustedPartners")}
           </h2>
           <p
             style={{
@@ -206,7 +208,7 @@ export default function TrustedAgents() {
               margin: "0 auto",
             }}
           >
-            Meet our verified and experienced property consultants
+            {t("home.meetPropertyConsultants")}
           </p>
         </div>
 

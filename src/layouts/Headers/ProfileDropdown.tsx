@@ -4,11 +4,13 @@ import { useState, useRef, useEffect } from "react";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
 import UserProfileSVG from "@/components/SVG/UserProfileSVG";
+import { useTranslation } from "@/contexts/LanguageContext";
 
 const ProfileDropdown = () => {
   const [open, setOpen] = useState(false);
   const dropdownRef = useRef<HTMLDivElement>(null);
   const router = useRouter();
+  const { t } = useTranslation();
 
   const truncateUsername = (value: string, maxLength: number, addDots: boolean = true) => {
     if (value.length <= maxLength) return value;
@@ -103,12 +105,12 @@ const ProfileDropdown = () => {
         <ul className="sub-menu">
           <li>
             <Link href="/dashboard/my-profile" onClick={() => setOpen(false)}>
-              <span>My Profile</span>
+              <span>{t("common.myProfile")}</span>
             </Link>
           </li>
           <li>
             <button type="button" onClick={handleLogout}>
-              <span>Logout</span>
+              <span>{t("common.logout")}</span>
             </button>
           </li>
         </ul>

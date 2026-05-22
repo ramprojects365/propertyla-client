@@ -1,3 +1,5 @@
+"use client";
+
 //import AboutHomeMain from "@/components/About/AboutHomeMain";
 import HomeApartmentArea from "@/components/Apartment/HomeApartment";
 //import HomeApartmentTypes from "@/components/Apartment/HomeApartmentTypes";
@@ -14,8 +16,11 @@ import PropertyHome from "@/components/Property/PropertyHome";
 import TrustBadges from "@/components/UI/TrustBadges";
 import TrustedAgents from "@/components/TrustedAgents/TrustedAgents";
 import React from "react";
+import { useTranslation } from "@/contexts/LanguageContext";
 
 export default function HomeOnePage() {
+  const { t } = useTranslation();
+
   return (
     <>
       {/* hero banner  */}
@@ -84,7 +89,7 @@ export default function HomeOnePage() {
                 color: "#003B5C",
               }}
             >
-              Why Choose PropertyLa?
+              {t("home.whyChoosePropertyLa")}
             </h3>
             <TrustBadges />
           </div>

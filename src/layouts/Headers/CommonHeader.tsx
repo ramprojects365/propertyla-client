@@ -10,10 +10,13 @@ import React from "react";
 import Image from "next/image";
 import Link from "next/link";
 import { requireAuth } from "@/utils/auth";
+import LanguageSwitcher from "@/components/LanguageSwitcher/LanguageSwitcher";
+import { useTranslation } from "@/contexts/LanguageContext";
 
 export default function CommonHeader({ wrapClass = "" }) {
   const { toggleOffcanvas } = useGlobalContext();
   const { sticky } = useSticky();
+  const { t } = useTranslation();
 
   const handlePostPropertyClick = () => {
     const isAuthenticated = requireAuth("/dashboard/add-new-property");
@@ -70,11 +73,12 @@ export default function CommonHeader({ wrapClass = "" }) {
                 onClick={handlePostPropertyClick}
               >
                 <span className="header-post-property-text">
-                  Post property
+                  {t("header.postPropertyText")}
                 </span>
-                <span className="header-post-property-free">FREE</span>
+                <span className="header-post-property-free">{t("header.postPropertyFree")}</span>
               </button>
             </div>
+            <LanguageSwitcher />
             <div className="tp-header-right-user ml-20">
               {(() => {
                 const username =

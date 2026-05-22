@@ -6,10 +6,11 @@ import GlobalVideoModal from "@/components/Popup/GlobalVideoModal";
 import { VideoProvider } from "@/provider/VideoProvider";
 import AppProvider from "@/provider/AppProvider";
 import ReduxProvider from "@/redux/provider";
+import { LanguageProvider } from "@/contexts/LanguageContext";
 import "slick-carousel/slick/slick.css";
 import { Toaster } from "sonner";
 import "swiper/css/bundle";
-import GoogleMapsProvider from "../components/HeroBanner/subComponents/GoogleMapsProvider";
+import GoogleMapsProvider from "@/components/HeroBanner/subComponents/GoogleMapsProvider";
 import "./globals.scss";
 
 // Load Plus Jakarta Sans from Google Fonts
@@ -78,15 +79,17 @@ export default function RootLayout({
         suppressHydrationWarning
         className={`${plusJakartaSans.variable} ${geistSans.variable} ${geistMono.variable}`}
       >
-        <ReduxProvider>
-          <VideoProvider>
-            <AppProvider>
-              <GoogleMapsProvider>{sanitizedChildren}</GoogleMapsProvider>
-            </AppProvider>
-            <Toaster position="top-center" richColors />
-            <GlobalVideoModal />
-          </VideoProvider>
-        </ReduxProvider>
+        <LanguageProvider>
+          <ReduxProvider>
+            <VideoProvider>
+              <AppProvider>
+                <GoogleMapsProvider>{sanitizedChildren}</GoogleMapsProvider>
+              </AppProvider>
+              <Toaster position="top-center" richColors />
+              <GlobalVideoModal />
+            </VideoProvider>
+          </ReduxProvider>
+        </LanguageProvider>
       </body>
     </html>
   );
