@@ -3,7 +3,7 @@
 import React from "react";
 import Image from "next/image";
 import Link from "next/link";
-import { CallThreeSvg, TeamEmailSvg, MessageSvgTwo } from "@/components/SVG";
+import { CallThreeSvg, TeamEmailSvg } from "@/components/SVG";
 import { BadgeAlert, BadgeCheck } from "lucide-react";
 
 // Define the agent interface to match API response
@@ -130,10 +130,10 @@ export default function PropertyAgentPage() {
     agent.renVerified === true || agent.renStatus === "verified";
   const renStatusLabel =
     agent.renStatusLabel || (renVerified ? "Verified" : "Not verified");
-  const profileRole =
-    agent.userType?.trim().toLowerCase() === "owner"
-      ? "Owner"
-      : "Property Consultant";
+  // const profileRole =
+  //   agent.userType?.trim().toLowerCase() === "owner"
+  //     ? "Owner"
+  //     : "Property Consultant";
 
   return (
     <>
