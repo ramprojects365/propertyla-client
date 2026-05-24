@@ -31,7 +31,7 @@ export default function HeaderOne() {
     <div className="container container-large">
       <div className="row align-items-center">
         <div className="col-xl-2 col-lg-4 col-md-3 col-8">
-          <div className="tp-header-logo1">
+          <div className="tp-header-top-pad">
             <Link href="/">
               {sticky ? (
                 <>

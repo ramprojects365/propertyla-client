@@ -4,18 +4,17 @@
 @forward "../../public/assets/scss/main.scss";
 @forward "../../public/assets/css/font-awesome-pro.css";
 
+/* ============================================
+   COMMON / BASE STYLES (Mobile-First)
+   These styles apply to all devices by default
+   ============================================ */
+
 .logo-icon-white {
   font-size: 24px;
   font-weight: 400;
   color: #fff;
   padding-left: 3px;
   text-shadow: rgba(0, 0, 0, 0.8) 2px 2px 4px;
-}
-.tp-rent-btn .tp-btn {
-  padding: 13px 24px;
-  color: var(--tp-theme-primary);
-  background-color: var(--tp-theme-secondary);
-  border: 1px solid #003b5c;
 }
 
 .logo-icon-black {
@@ -24,36 +23,37 @@
   color: #003b5c;
   padding-left: 3px;
 }
-.tp-footer-widget-border {
-  padding-bottom: 0px !important;
-}
-.tp-property-details-icon-price {
-  font-size: 30px !important;
-}
-.tp-hero-tab-input {
-  margin-right: 0px !important;
-  margin-bottom: 20px;
-}
+
 .logo-header {
   width: 40px;
   height: 40px;
   margin-bottom: 12px;
 }
-.language-switcher-btn {
-  padding: 0px 8px;
-  border: 1px solid #003b5c;
-  border-radius: 4px;
-  background: #fff;
-  color: #003b5c;
-  cursor: pointer;
-  font-size: 14px;
-  font-weight: 600;
-  text-transform: uppercase;
-  transition: all 0.3s ease;
-  min-width: 10px;
-  margin-right: 10px;
-  margin-left: 30px;
+
+.tp-header-top-pad {
+  padding-top: 10px;
 }
+
+.tp-footer-widget-border {
+  padding-bottom: 0px !important;
+}
+
+.tp-property-details-icon-price {
+  font-size: 30px !important;
+}
+
+.tp-hero-tab-input {
+  margin-right: 0px !important;
+  margin-bottom: 20px;
+}
+
+.tp-rent-btn .tp-btn {
+  padding: 13px 24px;
+  color: var(--tp-theme-primary);
+  background-color: var(--tp-theme-secondary);
+  border: 1px solid #003b5c;
+}
+
 .tp-header-1-menu nav > ul {
   text-align: start;
   padding: 4px;
@@ -61,71 +61,92 @@
   display: inline-block;
   border: none;
 }
+
 .gsrch {
-  //background: #fff;
-  //margin-right: 0px;
   padding-top: 20px;
   margin-bottom: 15px;
   border-radius: 8px;
 }
+
 .tp-property-section-title {
   font-size: 14px;
   font-weight: 600;
   letter-spacing: -0.84px;
 }
+
 .tp-rent-item:hover .tp-rent-thumb a img {
   transform: none;
   transition: none;
 }
+
 .tp-hero-tab-box {
   border-radius: 0px 8px 8px 8px;
+  width: 100%;
+  flex-wrap: wrap;
+  padding: 15px 15px 15px 0px;
+  background-color: var(--tp-common-white);
 }
+
 .tp-hero-tab-search button {
   border-radius: 8px;
 }
+
 .tp-header-1-menu nav > ul > li > a {
   border-radius: 8px !important;
 }
+
 .tp-btn {
   border-radius: 8px;
 }
+
 .tp-hero-tab-select .nice-select {
   border-radius: 8px !important;
 }
+
 .tp-hero-tab-filter .tp-hero-filter-btn span {
   border-radius: 8px;
 }
+
 .tp-dashboard-profile-btn a {
   border-radius: 8px;
 }
+
 .tp-dashboard-new-btn button {
   border-radius: 8px;
 }
+
 .tp-feature-item {
   border-radius: 8px;
 }
+
 .tp-section-title {
   font-size: 30px;
 }
+
 .tp-dashboard-main {
   padding: 15px;
 }
+
 .tp-main-menu ul li > a {
   font-size: 16px;
 }
+
 .tp-dashboard-new-title {
   font-size: 22px;
 }
+
 .tp-dashboard-new-input label {
   font-size: 15px;
   display: block;
   margin-bottom: 6px;
   font-weight: 500;
 }
+
 .tp-dashboard-new-input input,
 .tp-dashboard-new-input textarea {
   width: 100%;
 }
+
 .tp-dashboard-new-input {
   margin-bottom: 0;
 }
@@ -133,41 +154,52 @@
 .tp-dashboard-add-property-form .tp-dashboard-new-input {
   margin-bottom: 18px;
 }
+
 .gap-20 {
   gap: 20px;
 }
+
 .mt-10 {
   margin-top: 10px;
 }
+
 .tp-dashboard-profile-top {
   border-bottom: 1px solid #f0f0f0;
   padding-bottom: 24px;
   margin-bottom: 24px;
 }
+
 .tp-team-details-info-top {
   border-radius: 8px 8px 8px 8px !important;
 }
+
 .tp-sign-in-register-box {
   border-radius: 8px;
 }
+
 .tp-sign-in-register-title {
   font-size: 34px;
   font-weight: 600;
   letter-spacing: -1.02px;
 }
+
 .tp-from-button button {
   border-radius: 8px;
 }
+
 .rc-slider {
   margin-top: 20px;
 }
+
 .input-range {
   padding-left: 60px;
 }
+
 .padLR0 {
   padding-left: 0px;
   padding-right: 0px;
 }
+
 .srchUpdate {
   width: 102%;
   margin-bottom: 10px;
@@ -176,23 +208,52 @@
   border-radius: 8px;
   border: "1px solid #000";
 }
+
 .bclp {
   margin: 0px 0px 25px 0px;
   font-size: 14px;
 }
-.tp-hero-tab-box {
-  width: 100%;
-  flex-wrap: wrap;
-  padding: 15px 15px 15px 0px;
-  background-color: var(--tp-common-white);
-}
+
 .d-show {
   display: inline;
 }
+
 .tp-property-details-title {
   font-size: 30px;
 }
-//header profile icon styles
+
+/* Hide elements on mobile (tablets and phones) */
+.hide-mobile {
+  display: block;
+}
+
+/* Hide elements on desktop */
+.hide-desktop {
+  display: none;
+}
+
+.prop-det-dev {
+  padding-left: 0px;
+  padding-right: 0px;
+}
+
+.list-img-sec {
+  padding-left: 15px;
+  padding-right: 15px;
+}
+
+.tp-blog-item-title {
+  border-bottom: none !important;
+}
+
+.filt {
+  padding-left: 0px;
+}
+
+/* ============================================
+   PROFILE DROPDOWN STYLES
+   ============================================ */
+
 .profile-dropdown {
   position: relative;
   display: inline-block;
@@ -206,6 +267,7 @@
   border: none;
   cursor: pointer;
 }
+
 .Profile-btn-span {
   position: relative;
   display: inline-flex;
@@ -353,167 +415,44 @@ body.scrolled .Profile-btn-span {
 .profile-dropdown .sub-menu li:hover > button::before {
   width: 10px;
 }
+
 .tp-header-pinned .tp-header-1-main .tp-header-right-user-icon span {
   color: var(--tp-common-white);
 }
+
 .tp-header-pinned .tp-header-1-main .hamburger-btn {
   background: var(--tp-theme-primary);
 }
+
 .tp-header-right-user-icon span {
   height: 40px !important;
   width: 40px !important;
   margin-top: -8px;
 }
-.filt {
-  padding-left: 0px;
+
+/* ============================================
+   LANGUAGE SWITCHER STYLES
+   ============================================ */
+
+.language-switcher-btn {
+  padding: 0px 8px;
+  border: 1px solid #003b5c;
+  border-radius: 4px;
+  background: #fff;
+  color: #003b5c;
+  cursor: pointer;
+  font-size: 14px;
+  font-weight: 600;
+  text-transform: uppercase;
+  transition: all 0.3s ease;
+  min-width: 10px;
+  margin-right: 10px;
+  margin-left: 30px;
 }
 
-/* Hide elements on mobile (tablets and phones) */
-.hide-mobile {
-  display: block;
-}
-
-/* Hide elements on desktop */
-.hide-desktop {
-  display: none;
-}
-.prop-det-dev {
-  padding-left: 0px;
-  padding-right: 0px;
-}
-.list-img-sec {
-  padding-left: 15px;
-  padding-right: 15px;
-}
-.tp-blog-item-title {
-  border-bottom: none !important;
-}
-@media only screen and (max-width: 767px) {
-  .filt {
-    padding-left: 15px;
-  }
-  .d-show {
-    display: none;
-  }
-  .marTop20 {
-    margin-top: 20px;
-  }
-  .tp-dashboard-main {
-    padding: 10px;
-  }
-  .tp-hero-tab-box {
-    width: 100%;
-    flex-wrap: wrap;
-    padding: 10px 10px 10px 0px;
-    background-color: var(--tp-common-white);
-  }
-  .tp-apartment-item {
-    margin-right: 0px;
-    transition: all 0.3s ease-out;
-    padding: 13px 48px 13px 20px;
-    background-color: var(--tp-theme-secondary);
-  }
-  .padLR0 {
-    padding-left: 15px;
-    padding-right: 0px;
-  }
-  .srchUpdate {
-    width: 104%;
-    margin-bottom: 10px;
-    height: 50px;
-    padding-left: 15px;
-    border-radius: 8px;
-    border: "1px solid #000";
-  }
-  .mlb {
-    margin-bottom: 0px !important;
-  }
-  .bclp {
-    margin: 0px 0px 0px 0px;
-    font-size: 14px;
-    padding-top: 10px;
-  }
-  /* Improve touch targets for mobile */
-  .tp-btn,
-  button,
-  a {
-    min-height: 48px;
-    min-width: 48px;
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-  }
-
-  .tp-btn {
-    padding: 14px 20px;
-    font-size: 16px;
-  }
-  .tp-hero-tab-input input,
-  .tp-hero-tab-select select {
-    height: 50px;
-    font-size: 16px;
-  }
-  .tp-hero-tab-search button {
-    height: 50px;
-    font-size: 16px;
-  }
-  /* Mobile font size adjustments */
-  h1 {
-    font-size: 28px !important;
-    line-height: 1.2 !important;
-  }
-  h2 {
-    font-size: 24px !important;
-    line-height: 1.3 !important;
-  }
-  h3 {
-    font-size: 20px !important;
-    line-height: 1.3 !important;
-  }
-  h4 {
-    font-size: 18px !important;
-    line-height: 1.4 !important;
-  }
-  h5 {
-    font-size: 16px !important;
-    line-height: 1.4 !important;
-  }
-  h6 {
-    font-size: 14px !important;
-    line-height: 1.4 !important;
-  }
-  p {
-    font-size: 14px !important;
-    line-height: 1.6 !important;
-  }
-  /* Mobile spacing adjustments */
-  .pt-80 {
-    padding-top: 40px !important;
-  }
-  .pb-120 {
-    padding-bottom: 60px !important;
-  }
-  .pt-70 {
-    padding-top: 35px !important;
-  }
-  .pb-40 {
-    padding-bottom: 20px !important;
-  }
-  .mb-30 {
-    margin-bottom: 15px !important;
-  }
-  .mb-40 {
-    margin-bottom: 20px !important;
-  }
-  .mb-50 {
-    margin-bottom: 25px !important;
-  }
-  /* Container padding for mobile */
-  .container {
-    padding-left: 15px !important;
-    padding-right: 15px !important;
-  }
-}
+/* ============================================
+   BUTTON STYLES
+   ============================================ */
 
 /* Global button styling - consistent with market standards */
 .tp-btn {
@@ -597,42 +536,230 @@ body.scrolled .Profile-btn-span {
   font-size: 14px !important;
 }
 
-@media only screen and (min-width: 1200px) and (max-width: 1399px) {
-  .logo-header {
-    width: 30px;
-    height: 30px;
-    margin-bottom: 12px;
+/* ============================================
+   RESPONSIVE BREAKPOINTS
+   ============================================ */
+
+/* ============================================
+   MOBILE DEVICES (max-width: 767px)
+   Target: Small phones (320px) to large phones (767px)
+   Devices: iPhone SE, iPhone 12/13/14/15, Android phones
+   ============================================ */
+@media (max-width: 767px) {
+  .tp-header-top-pad {
+    padding-top: 0px;
   }
+  .filt {
+    padding-left: 15px;
+  }
+
+  .d-show {
+    display: none;
+  }
+
+  .marTop20 {
+    margin-top: 20px;
+  }
+
+  .tp-dashboard-main {
+    padding: 10px;
+  }
+
+  .tp-hero-tab-box {
+    width: 100%;
+    flex-wrap: wrap;
+    padding: 10px 10px 10px 0px;
+    background-color: var(--tp-common-white);
+  }
+
+  .tp-apartment-item {
+    margin-right: 0px;
+    transition: all 0.3s ease-out;
+    padding: 13px 48px 13px 20px;
+    background-color: var(--tp-theme-secondary);
+  }
+
+  .padLR0 {
+    padding-left: 15px;
+    padding-right: 0px;
+  }
+
+  .srchUpdate {
+    width: 104%;
+    margin-bottom: 10px;
+    height: 50px;
+    padding-left: 15px;
+    border-radius: 8px;
+    border: "1px solid #000";
+  }
+
+  .mlb {
+    margin-bottom: 0px !important;
+  }
+
+  .bclp {
+    margin: 0px 0px 0px 0px;
+    font-size: 14px;
+    padding-top: 10px;
+  }
+
+  /* Improve touch targets for mobile */
+  .tp-btn,
+  button,
+  a {
+    min-height: 48px;
+    min-width: 48px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .tp-btn {
+    padding: 14px 20px;
+    font-size: 16px;
+  }
+
+  .tp-hero-tab-input input,
+  .tp-hero-tab-select select {
+    height: 50px;
+    font-size: 16px;
+  }
+
+  .tp-hero-tab-search button {
+    height: 50px;
+    font-size: 16px;
+  }
+
+  /* Mobile font size adjustments */
+  h1 {
+    font-size: 28px !important;
+    line-height: 1.2 !important;
+  }
+
+  h2 {
+    font-size: 24px !important;
+    line-height: 1.3 !important;
+  }
+
+  h3 {
+    font-size: 20px !important;
+    line-height: 1.3 !important;
+  }
+
+  h4 {
+    font-size: 18px !important;
+    line-height: 1.4 !important;
+  }
+
+  h5 {
+    font-size: 16px !important;
+    line-height: 1.4 !important;
+  }
+
+  h6 {
+    font-size: 14px !important;
+    line-height: 1.4 !important;
+  }
+
+  p {
+    font-size: 14px !important;
+    line-height: 1.6 !important;
+  }
+
+  /* Mobile spacing adjustments */
+  .pt-80 {
+    padding-top: 40px !important;
+  }
+
+  .pb-120 {
+    padding-bottom: 60px !important;
+  }
+
+  .pt-70 {
+    padding-top: 35px !important;
+  }
+
+  .pb-40 {
+    padding-bottom: 20px !important;
+  }
+
+  .mb-30 {
+    margin-bottom: 15px !important;
+  }
+
+  .mb-40 {
+    margin-bottom: 20px !important;
+  }
+
+  .mb-50 {
+    margin-bottom: 25px !important;
+  }
+
+  /* Container padding for mobile */
+  .container {
+    padding-left: 15px !important;
+    padding-right: 15px !important;
+  }
+
+  /* Show desktop-hidden elements on mobile */
+  .hide-desktop {
+    display: block;
+  }
+
+  /* Hide mobile-visible elements on mobile */
+  .hide-mobile {
+    display: none !important;
+  }
+
+  .tp-footer-widget-title {
+    margin-bottom: 20px;
+  }
+
   .logo-icon-white {
-    font-size: 22px;
-    font-weight: 400;
-    color: #fff;
+    font-size: 18px;
     padding-left: 3px;
     text-shadow: rgba(0, 0, 0, 0.8) 2px 2px 4px;
   }
+
   .logo-icon-black {
-    font-size: 22px;
-    font-weight: 400;
-    color: #003b5c;
+    font-size: 18px;
+    padding-left: 3px;
+  }
+
+  .logo-header {
+    width: 25px;
+    height: 25px;
+    margin-bottom: 0px;
+  }
+
+  .Profile-btn-span {
+    width: 30px;
+    height: 30px;
+    min-width: 30px;
+    max-width: 30px;
+  }
+
+  .tp-header-right-user-icon span {
+    height: 30px !important;
+    width: 30px !important;
+    margin-top: -3px;
+  }
+
+  .mb-icon {
+    margin-top: -15px;
+  }
+
+  .mb-profile-icon {
+    margin-top: -5px;
+  }
+
+  .prop-det-dev {
     padding-left: 0px;
+    padding-right: 0px;
+    margin-top: 20px;
   }
-  .tp-header-1-menu {
-    margin-left: 0px;
-  }
-  .d-xxl-block {
-    display: block !important;
-  }
-  .tp-header-1-menu nav > ul > li > a {
-    padding: 4px 9px;
-  }
-}
-@media only screen and (min-width: 1200px) and (max-width: 1399px),
-  only screen and (min-width: 992px) and (max-width: 1199px),
-  only screen and (min-width: 768px) and (max-width: 991px) {
-}
-@media only screen and (min-width: 768px) and (max-width: 991px),
-  only screen and (max-width: 767px) {
-  /* Tablet and mobile button adjustments */
+
+  /* Language switcher adjustments for mobile */
   .language-switcher-btn {
     padding: 0px 15px;
     border: 1px solid #003b5c;
@@ -647,6 +774,7 @@ body.scrolled .Profile-btn-span {
     min-width: 10px;
     margin-right: 10px;
   }
+
   .tp-btn {
     min-height: 48px;
     padding: 12px 20px;
@@ -664,72 +792,17 @@ body.scrolled .Profile-btn-span {
     margin-left: 0px;
     padding-top: 10px;
   }
+
   .tp-property-ptb {
     padding-top: 0px !important;
     padding-bottom: 77px;
   }
-  .hide-mobile {
-    display: none !important;
-  }
-}
-@media only screen and (max-width: 767px) {
-  .hide-desktop {
-    display: block;
-  }
-  .tp-footer-widget-title {
-    margin-bottom: 20px;
-  }
-  .logo-icon-white {
-    font-size: 18px;
-    padding-left: 3px;
-    text-shadow: rgba(0, 0, 0, 0.8) 2px 2px 4px;
-  }
-  .logo-icon-black {
-    font-size: 18px;
-    padding-left: 3px;
-  }
-  .logo-header {
-    width: 25px;
-    height: 25px;
-    margin-bottom: 0px;
-  }
-  .Profile-btn-span {
-    width: 30px;
-    height: 30px;
-    min-width: 30px;
-    max-width: 30px;
-  }
-  .tp-header-right-user-icon span {
-    height: 30px !important;
-    width: 30px !important;
-    margin-top: -3px;
-  }
-  .mb-icon {
-    margin-top: -15px;
-  }
-  .mb-profile-icon {
-    margin-top: -5px;
-  }
-  .prop-det-dev {
-    padding-left: 0px;
-    padding-right: 0px;
-    margin-top: 20px;
-  }
-}
-@media (min-width: 768px) {
-  .d-md-block {
-    display: block !important;
-    margin-top: 8px;
-  }
-  .ml-list {
-    margin-left: -15px;
-  }
-}
-/* Hide pagination dots on mobile view */
-@media (max-width: 767px) {
+
+  /* Hide pagination dots on mobile view */
   .tp-rent-slider-dot {
     display: none !important;
   }
+
   .tp-btn,
   button,
   a {
@@ -738,9 +811,131 @@ body.scrolled .Profile-btn-span {
   }
 }
 
+/* ============================================
+   TABLET DEVICES (768px - 991px)
+   Target: iPad mini, small tablets
+   Devices: iPad mini (768px), iPad 11" (820px)
+   ============================================ */
+@media (min-width: 768px) and (max-width: 991px) {
+  .d-md-block {
+    display: block !important;
+    margin-top: 8px;
+  }
+
+  .ml-list {
+    margin-left: -15px;
+  }
+
+  /* Language switcher adjustments for tablet */
+  .language-switcher-btn {
+    padding: 0px 15px;
+    border: 1px solid #003b5c;
+    border-radius: 4px;
+    background: #fff;
+    color: #003b5c;
+    cursor: pointer;
+    font-size: 12px;
+    font-weight: 600;
+    text-transform: uppercase;
+    transition: all 0.3s ease;
+    min-width: 10px;
+    margin-right: 10px;
+  }
+
+  .tp-btn {
+    min-height: 48px;
+    padding: 12px 20px;
+    font-size: 15px;
+  }
+
+  .tp-rent-btn .tp-btn {
+    padding: 12px 20px;
+  }
+
+  .list-img-sec {
+    padding-left: 15px;
+    padding-right: 15px;
+    width: 100%;
+    margin-left: 0px;
+    padding-top: 10px;
+  }
+
+  .tp-property-ptb {
+    padding-top: 0px !important;
+    padding-bottom: 77px;
+  }
+
+  /* Hide mobile-visible elements on tablet */
+  .hide-mobile {
+    display: none !important;
+  }
+}
+
+/* ============================================
+   DESKTOP DEVICES (992px - 1199px)
+   Target: Small laptops, large tablets
+   Devices: Small laptops (992px+)
+   ============================================ */
+@media (min-width: 992px) and (max-width: 1199px) {
+  /* Desktop specific styles can be added here */
+}
+
+/* ============================================
+   LARGE DESKTOP DEVICES (1200px - 1399px)
+   Target: Standard desktops, laptops
+   Devices: Common laptops (1366px), desktops (1440px)
+   ============================================ */
+@media (min-width: 1200px) and (max-width: 1399px) {
+  .logo-header {
+    width: 30px;
+    height: 30px;
+    margin-bottom: 12px;
+  }
+
+  .logo-icon-white {
+    font-size: 22px;
+    font-weight: 400;
+    color: #fff;
+    padding-left: 3px;
+    text-shadow: rgba(0, 0, 0, 0.8) 2px 2px 4px;
+  }
+
+  .logo-icon-black {
+    font-size: 22px;
+    font-weight: 400;
+    color: #003b5c;
+    padding-left: 0px;
+  }
+
+  .tp-header-1-menu {
+    margin-left: 0px;
+  }
+
+  .d-xxl-block {
+    display: block !important;
+  }
+
+  .tp-header-1-menu nav > ul > li > a {
+    padding: 4px 9px;
+  }
+}
+
+/* ============================================
+   EXTRA LARGE DESKTOP DEVICES (1400px+)
+   Target: Large desktops, 4K displays
+   Devices: Large monitors (1920px+), 4K displays
+   ============================================ */
+@media (min-width: 1400px) {
+  /* Extra large desktop specific styles can be added here */
+}
+
+/* ============================================
+   GLOBAL UTILITIES
+   ============================================ */
+
 /* Classic vertical scrollbar (typical on Windows) narrows the layout vs macOS overlay scrollbars.
    Full-width rows + negative margins (theme sliders) can then exceed the client width by a few
-   pixels and cause horizontal scroll / “wiggle”. Clip document-level overflow without affecting
+   pixels and cause horizontal scroll / "wiggle". Clip document-level overflow without affecting
    vertical scroll. */
 html {
   overflow-x: clip;

@@ -20,7 +20,7 @@ export default function DashboardHeader() {
     <div className="container-fluid">
       <div className="row align-items-center">
         <div className="col-xl-2 col-lg-4 col-md-3 col-6">
-          <div className="tp-header-logo1" style={{ paddingTop: "10px" }}>
+          <div className="tp-header-top-pad">
             <Link href="/">
               {sticky ? (
                 <>
@@ -50,7 +50,7 @@ export default function DashboardHeader() {
         <div className="col-xl-3 col-lg-4 col-md-9 col-6">
           <div className="tp-header-dashboard-main-right d-flex align-items-center justify-content-end">
             <LanguageSwitcher />
-            <div className="tp-header-right-user ml-20">
+            <div className="tp-header-right-user ml-10">
               {(() => {
                 const username =
                   typeof window !== "undefined"
