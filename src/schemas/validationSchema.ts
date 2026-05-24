@@ -239,6 +239,13 @@ export const profileSchema = yup.object().shape({
     .number()
     .typeError("Must be a number")
     .min(0, "Must be 0 or more"),
+  renNumber: yup
+    .string()
+    .transform((value) => value?.toUpperCase() || "")
+    .matches(
+      /^(REN|PEA)[0-9]{4,6}$|^$/,
+      "Must start with REN or PEA followed by 4-6 digits",
+    ),
   phone: yup
     .string()
     .required("Phone number is required")

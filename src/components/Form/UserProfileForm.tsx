@@ -20,6 +20,7 @@ interface ProfileFormData {
   icPassport?: string;
   designation?: string;
   experience?: number;
+  renNumber?: string;
   phone: string;
   email?: string;
 }
@@ -56,6 +57,8 @@ interface UserProfile {
   email?: string;
   emailAddress?: string;
   mail?: string;
+  userType?: string | null;
+  user_type?: string | null;
   phone?: string;
   phoneNumber?: string;
   mobile?: string;
@@ -64,6 +67,8 @@ interface UserProfile {
   renStatus?: string | null;
   renVerified?: boolean;
   renStatusLabel?: string;
+  status?: string | null;
+  userStatus?: string | null;
 }
 
 const extractProfileImage = (value: unknown): string | null => {
@@ -100,6 +105,8 @@ export default function UserProfileForm() {
   const [uploadingImage, setUploadingImage] = useState(false);
   const [loading, setLoading] = useState(true);
   const [displayName, setDisplayName] = useState("My Profile");
+  const [isOwnerProfile, setIsOwnerProfile] = useState(false);
+  const [isAgentProfile, setIsAgentProfile] = useState(false);
   const [renInfo, setRenInfo] = useState<{
     number: string;
     verified: boolean;
@@ -166,6 +173,14 @@ export default function UserProfileForm() {
         const raw = extractPayload(res.data) ?? {};
 
         const profile = raw as UserProfile;
+        const normalizedUserType = (profile.userType || profile.user_type || "")
+          .trim()
+          .toLowerCase();
+          const isAgent = normalizedUserType === "agent";
+setIsAgentProfile(isAgent);
+        const isOwner =
+          normalizedUserType === "owner" || normalizedUserType === "ownwer";
+        setIsOwnerProfile(isOwner);
 
         const fullName =
           profile.fullName ||
@@ -225,6 +240,7 @@ export default function UserProfileForm() {
           icPassport,
           designation,
           experience,
+          renNumber: profile.renNumber || "",
           phone,
           email,
         });
@@ -254,6 +270,10 @@ export default function UserProfileForm() {
             (profile.renStatus === "verified" ? "Verified" : "Not verified"),
           available: profile.renStatus !== undefined || Boolean(profile.renNumber),
         });
+        const accountStatus = (profile.status || profile.userStatus || "active")
+          .trim()
+          .toLowerCase();
+
       } catch (err: unknown) {
         const error = err as { response?: { status?: number } };
         if (error?.response?.status !== 401) {
@@ -334,15 +354,22 @@ export default function UserProfileForm() {
   const onProfileSubmit = async (data: ProfileFormData) => {
     try {
       const normalizedPhone = data.phone?.trim() ? formatNum(data.phone) : "";
-      await apiClient.patch("/users/profile", {
+      const payload = {
         fullName: data.fullName,
         aboutYou: data.aboutYou,
-        companyName: data.companyName,
-        icPassport: data.icPassport,
-        designation: data.designation,
-        experience: data.experience,
         phone: normalizedPhone,
-      });
+        ...(isOwnerProfile
+          ? {}
+          : {
+              companyName: data.companyName,
+              icPassport: data.icPassport,
+              designation: data.designation,
+              experience: data.experience,
+              renNumber: data.renNumber,
+            }),
+      };
+
+      await apiClient.patch("/users/profile", payload);
       setDisplayName(data.fullName);
       localStorage.setItem("loginUserDisplayName", data.fullName);
       toast.success("Profile updated successfully!");
@@ -371,10 +398,12 @@ export default function UserProfileForm() {
     <>
       {/* Profile Image + Name */}
       <div
+        className="profile-photo-upload-row"
         style={{
           display: "flex",
           alignItems: "center",
           gap: 20,
+          flexWrap: "wrap",
           paddingBottom: 24,
           marginBottom: 24,
           borderBottom: "1px solid #f0f0f0",
@@ -450,39 +479,38 @@ export default function UserProfileForm() {
             onChange={handleImageChange}
           />
         </div>
-        <div>
+        <div className="profile-photo-upload-content" style={{ minWidth: 0, flex: 1 }}>
           <h4
+            className="profile-photo-upload-name"
             style={{
               display: "flex",
               alignItems: "center",
               gap: 7,
+              flexWrap: "wrap",
               margin: "0 0 4px",
             }}
           >
             <span>{displayName}</span>
-            {renInfo.available && renInfo.verified ? (
+            {isAgentProfile && renInfo.available && renInfo.verified ? (
               <BadgeCheck
                 size={19}
                 strokeWidth={2.8}
                 color="#fff"
                 fill="#0095F6"
                 aria-label="Verified REN/PEA"
-                title="Verified REN/PEA"
               />
-            ) : renNumberMissing ? (
+            ) : isAgentProfile && renNumberMissing ? (
               <BadgeAlert
                 size={19}
                 strokeWidth={2.6}
                 color="#8a6116"
                 aria-label="Please add REN/PEA number"
-                title="Please add REN/PEA number"
               />
             ) : null}
           </h4>
-          {renInfo.available ? (
+          {isAgentProfile && renInfo.available ? (
             <div
               style={{
-                display: "inline-flex",
                 alignItems: "center",
                 gap: 8,
                 marginBottom: 6,
@@ -495,7 +523,7 @@ export default function UserProfileForm() {
                   ? "rgba(0, 59, 92, 0.08)"
                   : "rgba(255, 193, 7, 0.12)",
                 color: renInfo.verified ? "#003B5C" : "#8a6116",
-                fontSize: 13,
+                fontSize: 12,
                 fontWeight: 700,
                 lineHeight: 1,
               }}
@@ -503,13 +531,10 @@ export default function UserProfileForm() {
               <span>
                 {renInfo.number
                   ? `${renInfo.number}: ${renInfo.label}`
-                  : "REN/PEA status: Please add REN/PEA number"}
+                  : "Please add REN/PEA number"}
               </span>
             </div>
           ) : null}
-          <p style={{ margin: 0, color: "#888", fontSize: 14 }}>
-            Update your personal details below
-          </p>
           <button
             type="button"
             onClick={() => fileInputRef.current?.click()}
@@ -598,62 +623,85 @@ export default function UserProfileForm() {
                 </div>
               </div>
 
-              <div className="col-lg-6">
-                <div className="tp-dashboard-new-input">
-                  <label>Company Name</label>
-                  <input
-                    {...registerProfile("companyName")}
-                    type="text"
-                    placeholder="Enter your company name"
-                  />
-                  <ErrorMessage
-                    message={profileErrors.companyName?.message || ""}
-                  />
-                </div>
-              </div>
+              {isAgentProfile  && (
+                <>
+                  <div className="col-lg-6">
+                    <div className="tp-dashboard-new-input">
+                      <label>REN / PEA Number</label>
+                      <input
+                        {...registerProfile("renNumber")}
+                        type="text"
+                        placeholder="REN12345 or PEA12345"
+                        style={{ textTransform: "uppercase" }}
+                        onInput={(e: React.FormEvent<HTMLInputElement>) => {
+                          const target = e.currentTarget;
+                          target.value = target.value.toUpperCase();
+                        }}
+                      />
+                      <ErrorMessage
+                        message={profileErrors.renNumber?.message || ""}
+                      />
+                    </div>
+                  </div>
 
-              <div className="col-lg-6">
-                <div className="tp-dashboard-new-input">
-                  <label>IC / Passport</label>
-                  <input
-                    {...registerProfile("icPassport")}
-                    type="text"
-                    placeholder="Enter your identification number"
-                  />
-                  <ErrorMessage
-                    message={profileErrors.icPassport?.message || ""}
-                  />
-                </div>
-              </div>
+                  <div className="col-lg-6">
+                    <div className="tp-dashboard-new-input">
+                      <label>Company Name</label>
+                      <input
+                        {...registerProfile("companyName")}
+                        type="text"
+                        placeholder="Enter your company name"
+                      />
+                      <ErrorMessage
+                        message={profileErrors.companyName?.message || ""}
+                      />
+                    </div>
+                  </div>
 
-              <div className="col-lg-6">
-                <div className="tp-dashboard-new-input">
-                  <label>Designation</label>
-                  <input
-                    {...registerProfile("designation")}
-                    type="text"
-                    placeholder="Enter your designation"
-                  />
-                  <ErrorMessage
-                    message={profileErrors.designation?.message || ""}
-                  />
-                </div>
-              </div>
+                  <div className="col-lg-6">
+                    <div className="tp-dashboard-new-input">
+                      <label>IC / Passport</label>
+                      <input
+                        {...registerProfile("icPassport")}
+                        type="text"
+                        placeholder="Enter your identification number"
+                      />
+                      <ErrorMessage
+                        message={profileErrors.icPassport?.message || ""}
+                      />
+                    </div>
+                  </div>
 
-              <div className="col-lg-6">
-                <div className="tp-dashboard-new-input">
-                  <label>Experience (years)</label>
-                  <input
-                    {...registerProfile("experience")}
-                    type="number"
-                    min={0}
-                    placeholder="Years of experience"
-                  />
-                  <ErrorMessage
-                    message={profileErrors.experience?.message || ""}
-                  />
-                </div>
-              </div>
+                  <div className="col-lg-6">
+                    <div className="tp-dashboard-new-input">
+                      <label>Designation</label>
+                      <input
+                        {...registerProfile("designation")}
+                        type="text"
+                        placeholder="Enter your designation"
+                      />
+                      <ErrorMessage
+                        message={profileErrors.designation?.message || ""}
+                      />
+                    </div>
+                  </div>
+
+                  <div className="col-lg-6">
+                    <div className="tp-dashboard-new-input">
+                      <label>Experience (years)</label>
+                      <input
+                        {...registerProfile("experience")}
+                        type="number"
+                        min={0}
+                        placeholder="Years of experience"
+                      />
+                      <ErrorMessage
+                        message={profileErrors.experience?.message || ""}
+                      />
+                    </div>
+                  </div>
+                </>
+              )}
 
               <div className="col-12">
                 <div className="tp-dashboard-new-btn" style={{ marginTop: 8 }}>

@@ -217,7 +217,7 @@ export default function PropertyAgentPage() {
                       <span>
                         {agent.renNumber
                           ? `${agent.renNumber}: ${renStatusLabel}`
-                          : `REN/PEA status: ${renStatusLabel}`}
+                          : `${renStatusLabel}`}
                       </span>
                     </div>
                     <p className="tp-agent-profile-designation">

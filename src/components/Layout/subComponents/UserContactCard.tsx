@@ -14,11 +14,11 @@ interface UserContactCardProps {
     phoneNumber?: string;
     userType?: string | null;
     profileImage?: string;
-    fullName?: string;
-    bio?: string;
-    companyName?: string;
-    designation?: string;
-    experienceYears?: number;
+    fullName?: string | null;
+    bio?: string | null;
+    companyName?: string | null;
+    designation?: string | null;
+    experienceYears?: number | null;
     renNumber?: string | null;
     renStatus?: string | null;
     renVerified?: boolean;
@@ -136,7 +136,7 @@ export default function UserContactCard({ user }: UserContactCardProps) {
                     }}
                   >
                     <span>{agentName}</span>
-                    {renVerified ? (
+                    {/* {renVerified ? (
                       <BadgeCheck
                         size={15}
                         strokeWidth={2.7}
@@ -151,10 +151,10 @@ export default function UserContactCard({ user }: UserContactCardProps) {
                         color="#ffd77a"
                         aria-label="REN/PEA not verified"
                       />
-                    )}
+                    )} */}
                   </span>
                 </Link>
-                <div
+                {/* <div
                   style={{
                     display: "inline-flex",
                     alignItems: "center",
@@ -172,7 +172,7 @@ export default function UserContactCard({ user }: UserContactCardProps) {
                     <BadgeAlert size={13} strokeWidth={2.5} />
                   )}
                   <span>{renStatusLabel}</span>
-                </div>
+                </div> */}
                 <p>{contactRole}</p>
               </div>
             </div>

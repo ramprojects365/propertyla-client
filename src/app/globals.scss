@@ -940,3 +940,85 @@ body.scrolled .Profile-btn-span {
 html {
   overflow-x: clip;
 }
+
+/* Fix real mobile overflow on property photo editor */
+@media only screen and (max-width: 767px) {
+  html,
+  body {
+    width: 100%;
+    max-width: 100%;
+    overflow-x: hidden;
+  }
+
+  .tp-dashboard-main,
+  .tp-dashboard-new,
+  .tp-dashboard-add-property-form,
+  .property-media-workspace,
+  .property-media-editor,
+  .property-photo-list,
+  .property-photo-card {
+    width: 100%;
+    max-width: 100%;
+    min-width: 0;
+    box-sizing: border-box;
+  }
+
+  .property-media-workspace {
+    overflow-x: hidden;
+  }
+
+  .property-photo-list {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) !important;
+    gap: 16px;
+  }
+
+  .property-photo-card {
+    overflow: hidden;
+  }
+
+  .property-photo-card img,
+  .property-photo-card canvas,
+  .property-photo-card video {
+    width: 100%;
+    max-width: 100%;
+    height: auto;
+    display: block;
+    object-fit: cover;
+  }
+
+  .property-photo-card input,
+  .property-photo-card select,
+  .property-photo-card textarea,
+  .property-photo-card button {
+    max-width: 100%;
+    box-sizing: border-box;
+  }
+}
+
+@media only screen and (max-width: 767px) {
+  .property-photo-card {
+    min-width: 0;
+  }
+
+  .property-photo-card * {
+    min-width: 0;
+  }
+
+  .property-photo-card-header,
+  .property-photo-card-title,
+  .property-photo-card-name {
+    min-width: 0;
+    max-width: 100%;
+  }
+
+  .property-photo-card-header span,
+  .property-photo-card-header p,
+  .property-photo-card-header strong,
+  .property-photo-card-title,
+  .property-photo-card-name {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+  }
+}
