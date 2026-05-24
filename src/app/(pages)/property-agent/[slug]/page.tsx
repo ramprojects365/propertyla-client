@@ -3,7 +3,7 @@
 import React from "react";
 import Image from "next/image";
 import Link from "next/link";
-import { CallThreeSvg, TeamEmailSvg, MessageSvgTwo } from "@/components/SVG";
+import { CallThreeSvg, TeamEmailSvg } from "@/components/SVG";
 import { BadgeAlert, BadgeCheck } from "lucide-react";
 
 // Define the agent interface to match API response
@@ -130,10 +130,10 @@ export default function PropertyAgentPage() {
     agent.renVerified === true || agent.renStatus === "verified";
   const renStatusLabel =
     agent.renStatusLabel || (renVerified ? "Verified" : "Not verified");
-  const profileRole =
-    agent.userType?.trim().toLowerCase() === "owner"
-      ? "Owner"
-      : "Property Consultant";
+  // const profileRole =
+  //   agent.userType?.trim().toLowerCase() === "owner"
+  //     ? "Owner"
+  //     : "Property Consultant";
 
   return (
     <>
@@ -223,9 +223,9 @@ export default function PropertyAgentPage() {
                     <p className="tp-agent-profile-designation">
                       {agent.designation || "Real Estate Agent"}
                     </p>
-                    <div className="tp-agent-profile-stats">
+                    {/* <div className="tp-agent-profile-stats">
                       <div className="stat-item">
-                        {/* <span className="stat-number">25</span> */}
+                        <span className="stat-number">25</span>
                         <span className="stat-label">{profileRole}</span>
                       </div>
                       <div className="stat-item">
@@ -234,7 +234,7 @@ export default function PropertyAgentPage() {
                         </span>
                         <span className="stat-label">Years Exp</span>
                       </div>
-                    </div>
+                    </div> */}
                   </div>
                 </div>
 
