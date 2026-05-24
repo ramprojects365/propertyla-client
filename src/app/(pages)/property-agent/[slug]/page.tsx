@@ -223,9 +223,9 @@ export default function PropertyAgentPage() {
                     <p className="tp-agent-profile-designation">
                       {agent.designation || "Real Estate Agent"}
                     </p>
-                    <div className="tp-agent-profile-stats">
+                    {/* <div className="tp-agent-profile-stats">
                       <div className="stat-item">
-                        {/* <span className="stat-number">25</span> */}
+                        <span className="stat-number">25</span>
                         <span className="stat-label">{profileRole}</span>
                       </div>
                       <div className="stat-item">
@@ -234,7 +234,7 @@ export default function PropertyAgentPage() {
                         </span>
                         <span className="stat-label">Years Exp</span>
                       </div>
-                    </div>
+                    </div> */}
                   </div>
                 </div>
 
