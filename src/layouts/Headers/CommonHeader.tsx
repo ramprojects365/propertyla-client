@@ -35,7 +35,7 @@ export default function CommonHeader({ wrapClass = "" }) {
     <div className="container container-large">
       <div className="row align-items-center">
         <div className="col-xl-2 col-lg-4 col-md-3 col-6">
-          <div className="tp-header-logo1" style={{ paddingTop: "10px" }}>
+          <div className="tp-header-top-pad">
             <Link href="/">
               {sticky ? (
                 <>
@@ -75,11 +75,13 @@ export default function CommonHeader({ wrapClass = "" }) {
                 <span className="header-post-property-text">
                   {t("header.postPropertyText")}
                 </span>
-                <span className="header-post-property-free">{t("header.postPropertyFree")}</span>
+                <span className="header-post-property-free">
+                  {t("header.postPropertyFree")}
+                </span>
               </button>
             </div>
             <LanguageSwitcher />
-            <div className="tp-header-right-user ml-20">
+            <div className="tp-header-right-user ml-10">
               {(() => {
                 const username =
                   typeof window !== "undefined"

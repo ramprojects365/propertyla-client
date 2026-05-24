@@ -91,6 +91,7 @@ export default function OffcanvasArea() {
                     borderRadius: "4px",
                     fontWeight: 600,
                     fontSize: "14px",
+                    marginLeft: "5px",
                   }}
                 >
                   FREE
