@@ -59,11 +59,11 @@ const ProfileDropdown = () => {
               position: "absolute",
               right: -1,
               bottom: -1,
-              width: 10,
-              height: 10,
+              width: 8,
+              height: 8,
               borderRadius: "50%",
               background: "#22C55E",
-              border: "2px solid #003B5C",
+              border: "1.5px solid #003B5C",
             }}
             aria-hidden="true"
           />

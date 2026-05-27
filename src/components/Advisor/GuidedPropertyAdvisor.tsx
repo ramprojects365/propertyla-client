@@ -601,7 +601,7 @@ export default function GuidedPropertyAdvisor({
                 ) : (
                   <Search size={16} />
                 )}
-                Find matching properties
+                Show matches
               </button>
             )}
           </div>

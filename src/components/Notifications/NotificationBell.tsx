@@ -2,6 +2,7 @@
 
 import { useCallback, useEffect, useRef, useState } from "react";
 import apiClient from "@/config/axios";
+import "./notification-bell.scss";
 
 type NotificationItem = {
   id: string;
@@ -134,160 +135,66 @@ export default function NotificationBell() {
   if (!visible) return null;
 
   return (
-    <div
-      ref={bellRef}
-      style={{ position: "relative", marginLeft: 10, marginRight: 4 }}
-    >
+    <div ref={bellRef} className="notification-bell">
       <button
         type="button"
+        className="notification-bell__button"
         aria-label="Notifications"
         title="Notifications"
         onClick={(event) => {
           event.stopPropagation();
           setOpen((prev) => !prev);
         }}
-        style={{
-          width: 42,
-          height: 42,
-          borderRadius: "50%",
-          border: "1px solid rgba(0, 59, 92, 0.16)",
-          background: "#fff",
-          color: "#003B5C",
-          display: "inline-flex",
-          alignItems: "center",
-          justifyContent: "center",
-          position: "relative",
-          boxShadow: "0 4px 14px rgba(0, 59, 92, 0.08)",
-        }}
       >
-        <i className="fa-regular fa-bell" style={{ fontSize: 18 }} />
+        <i className="fa-regular fa-bell" />
         {unreadCount > 0 && (
-          <span
-            style={{
-              position: "absolute",
-              top: -4,
-              right: -4,
-              minWidth: 18,
-              height: 18,
-              borderRadius: 9,
-              background: "#EF4444",
-              color: "#fff",
-              fontSize: 11,
-              lineHeight: "18px",
-              fontWeight: 700,
-              textAlign: "center",
-              padding: "0 5px",
-            }}
-          >
+          <span className="notification-bell__badge">
             {unreadCount > 9 ? "9+" : unreadCount}
           </span>
         )}
       </button>
 
       {open && (
-        <div
-          style={{
-            position: "absolute",
-            right: 0,
-            top: 50,
-            width: 330,
-            maxWidth: "calc(100vw - 24px)",
-            background: "#fff",
-            border: "1px solid #e8eef3",
-            borderRadius: 8,
-            boxShadow: "0 18px 50px rgba(0, 0, 0, 0.15)",
-            zIndex: 1000,
-            overflow: "hidden",
-          }}
-        >
-          <div
-            style={{
-              padding: "12px 14px",
-              display: "flex",
-              alignItems: "center",
-              justifyContent: "space-between",
-              borderBottom: "1px solid #edf2f7",
-            }}
-          >
-            <strong style={{ color: "#111", fontSize: 15 }}>
-              Notifications
-            </strong>
+        <div className="notification-bell__panel">
+          <div className="notification-bell__head">
+            <strong>Notifications</strong>
             {unreadCount > 0 && (
               <button
                 type="button"
+                className="notification-bell__mark-all"
                 onClick={markAllRead}
-                style={{
-                  border: 0,
-                  background: "transparent",
-                  color: "#003B5C",
-                  fontSize: 12,
-                  fontWeight: 700,
-                }}
               >
                 Mark all read
               </button>
             )}
           </div>
 
-          <div style={{ maxHeight: 360, overflowY: "auto" }}>
+          <div className="notification-bell__list">
             {loading ? (
-              <div style={{ padding: 16, color: "#777", fontSize: 14 }}>
-                Loading...
-              </div>
+              <div className="notification-bell__empty">Loading...</div>
             ) : notifications.length === 0 ? (
-              <div style={{ padding: 16, color: "#777", fontSize: 14 }}>
-                No notifications yet.
-              </div>
+              <div className="notification-bell__empty">No notifications yet.</div>
             ) : (
               notifications.map((item) => (
                 <button
                   key={item.id}
                   type="button"
+                  className={`notification-bell__item ${
+                    item.isRead ? "" : "is-unread"
+                  }`}
                   onClick={() => markRead(item)}
-                  style={{
-                    display: "block",
-                    width: "100%",
-                    textAlign: "left",
-                    border: 0,
-                    borderBottom: "1px solid #f0f3f6",
-                    background: item.isRead ? "#fff" : "#f3f8fb",
-                    padding: "12px 14px",
-                  }}
                 >
-                  <span
-                    style={{
-                      display: "block",
-                      color: "#111",
-                      fontSize: 14,
-                      fontWeight: item.isRead ? 600 : 800,
-                      lineHeight: 1.35,
-                    }}
-                  >
+                  <span className="notification-bell__message">
                     {item.message || item.title}
                   </span>
                   {(item.actorEmail || item.actorPhone) && (
-                    <span
-                      style={{
-                        display: "block",
-                        color: "#64748B",
-                        fontSize: 12,
-                        marginTop: 4,
-                        lineHeight: 1.35,
-                      }}
-                    >
+                    <span className="notification-bell__meta">
                       {[item.actorEmail, item.actorPhone]
                         .filter(Boolean)
                         .join(" | ")}
                     </span>
                   )}
-                  <span
-                    style={{
-                      display: "block",
-                      color: "#94A3B8",
-                      fontSize: 12,
-                      marginTop: 6,
-                    }}
-                  >
+                  <span className="notification-bell__time">
                     {formatTime(item.createdAt)}
                   </span>
                 </button>
