@@ -80,7 +80,7 @@ export default function HeaderOne() {
             </div>
           </div>
         </div>
-        <div className="col-xl-2 col-lg-2 col-md-4 col-2 d-flex align-items-center justify-content-center">
+        <div className="col-xl-2 col-lg-2 col-md-4 d-none d-md-flex align-items-center justify-content-center">
           <div
             className="tp-header-dashboard-btn d-none d-md-block"
             style={{ marginTop: "0px" }}
@@ -98,7 +98,7 @@ export default function HeaderOne() {
             </button>
           </div>
         </div>
-        <div className="col-xl-2 col-lg-2 col-md-5 col-2">
+        <div className="col-xl-2 col-lg-2 col-md-5 col-4">
           <div className="tp-header-main-right d-flex align-items-center justify-content-end">
             <LanguageSwitcher />
             {username && <NotificationBell />}
