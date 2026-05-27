@@ -12,6 +12,7 @@ import Link from "next/link";
 import { requireAuth } from "@/utils/auth";
 import LanguageSwitcher from "@/components/LanguageSwitcher/LanguageSwitcher";
 import { useTranslation } from "@/contexts/LanguageContext";
+import NotificationBell from "@/components/Notifications/NotificationBell";
 
 export default function CommonHeader({ wrapClass = "" }) {
   const { toggleOffcanvas } = useGlobalContext();
@@ -94,6 +95,7 @@ export default function CommonHeader({ wrapClass = "" }) {
               </button>
             </div>
             <LanguageSwitcher />
+            {username && <NotificationBell />}
             <div className="tp-header-right-user ml-10">
               {(() => {
                 return username ? (

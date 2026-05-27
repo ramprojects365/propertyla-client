@@ -48,16 +48,18 @@
 }
 
 .guided-advisor--popup .guided-advisor__intro {
-  margin-bottom: 14px;
+  margin-bottom: 12px;
 }
 
 .guided-advisor--popup .guided-advisor__intro h1 {
-  font-size: 30px;
+  font-size: 26px;
+  line-height: 1.12;
   max-width: 620px;
 }
 
 .guided-advisor--popup .guided-advisor__intro p {
-  font-size: 14px;
+  font-size: 13px;
+  max-width: 620px;
 }
 
 .guided-advisor--popup .guided-advisor__app {
@@ -70,7 +72,7 @@
 
 .guided-advisor--popup .guided-advisor__question,
 .guided-advisor--popup .guided-advisor__summary {
-  padding: 16px;
+  padding: 14px;
 }
 
 .guided-advisor__badge,
@@ -203,12 +205,13 @@
 .guided-advisor__question::before {
   content: "";
   position: absolute;
-  width: 180px;
-  height: 180px;
-  right: -70px;
-  top: -70px;
+  width: 120px;
+  height: 120px;
+  right: -52px;
+  top: -52px;
   border-radius: 50%;
-  background: rgba(0, 109, 119, 0.08);
+  background: rgba(0, 109, 119, 0.045);
+  pointer-events: none;
 }
 
 .guided-advisor__assistant-bubble {
@@ -274,14 +277,14 @@
 
 .guided-advisor__question-head h2 {
   color: #102a43;
-  font-size: 28px;
+  font-size: 25px;
   line-height: 1.2;
   margin: 0 0 6px;
 }
 
 .guided-advisor__question-head small {
   color: #5c6f7b;
-  font-size: 15px;
+  font-size: 14px;
 }
 
 .guided-advisor__options {
@@ -301,18 +304,22 @@
   display: grid;
   gap: 8px;
   color: #102a43;
-  font-weight: 900;
+  font-weight: 700;
 }
 
 .guided-advisor__typed-row {
   display: grid;
-  grid-template-columns: minmax(0, 1fr) 220px;
+  grid-template-columns: minmax(220px, 0.7fr) minmax(260px, 1fr);
   gap: 10px;
   align-items: stretch;
 }
 
+.guided-advisor__typed-row--options-only {
+  grid-template-columns: 1fr;
+}
+
 .guided-advisor__typed-control {
-  min-height: 58px;
+  min-height: 46px;
   border: 1px solid #dbe7ea;
   border-radius: 8px;
   background: #ffffff;
@@ -324,7 +331,7 @@
 
 .guided-advisor__typed-control span {
   align-self: stretch;
-  min-width: 62px;
+  min-width: 52px;
   background: #eefafa;
   color: #006d77;
   display: inline-flex;
@@ -336,11 +343,12 @@
 
 .guided-advisor__typed-control input {
   width: 100%;
-  min-height: 56px;
+  min-height: 44px;
   border: 0;
   color: #102a43;
-  padding: 0 14px;
+  padding: 0 12px;
   outline: 0;
+  font-size: 14px;
 }
 
 .guided-advisor__typed-control:focus-within {
@@ -350,18 +358,61 @@
 
 .guided-advisor__input-options {
   display: grid;
-  grid-template-columns: repeat(2, minmax(0, 1fr));
+  grid-template-columns: repeat(3, minmax(0, 1fr));
   gap: 8px;
 }
 
 .guided-advisor__input-options button {
-  min-height: 58px;
+  min-height: 42px;
   border: 1px solid #dbe7ea;
   border-radius: 8px;
   background: #f8fbfc;
   color: #102a43;
-  font-weight: 900;
-  padding: 0 10px;
+  font-weight: 700;
+  padding: 0 9px;
+  font-size: 13px;
+}
+
+.guided-advisor__other-option {
+  min-height: 42px;
+  border: 1px solid #dbe7ea;
+  border-radius: 8px;
+  background: #f8fbfc;
+  display: flex;
+  align-items: center;
+  overflow: hidden;
+}
+
+.guided-advisor__other-option span {
+  align-self: stretch;
+  min-width: 42px;
+  background: #eefafa;
+  color: #006d77;
+  border-right: 1px solid #dbe7ea;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 12px;
+  font-weight: 700;
+}
+
+.guided-advisor__other-option input {
+  width: 100%;
+  min-width: 0;
+  min-height: 40px;
+  border: 0;
+  outline: 0;
+  background: transparent;
+  color: #102a43;
+  padding: 0 9px;
+  font-size: 13px;
+  font-weight: 700;
+}
+
+.guided-advisor__other-option:focus-within {
+  border-color: #006d77;
+  background: #eefafa;
+  box-shadow: 0 0 0 3px rgba(0, 109, 119, 0.12);
 }
 
 .guided-advisor__input-options button.is-selected {
@@ -375,14 +426,15 @@
   z-index: 1;
   display: grid;
   grid-template-columns: repeat(2, minmax(0, 1fr));
-  gap: 12px;
+  gap: 10px;
 }
 
 .guided-advisor__contact-form label {
   display: grid;
-  gap: 7px;
+  gap: 5px;
   color: #102a43;
-  font-weight: 800;
+  font-size: 13px;
+  font-weight: 700;
 }
 
 .guided-advisor__contact-form label:first-child,
@@ -392,12 +444,13 @@
 
 .guided-advisor__contact-form input {
   width: 100%;
-  min-height: 52px;
+  min-height: 42px;
   border-radius: 8px;
   border: 1px solid #dbe7ea;
   background: #ffffff;
   color: #102a43;
-  padding: 12px 14px;
+  padding: 9px 11px;
+  font-size: 14px;
 }
 
 .guided-advisor__contact-form input:focus {
@@ -412,7 +465,7 @@
   border: 1px solid #cce8ea;
   border-radius: 8px;
   padding: 10px 12px;
-  font-size: 14px;
+  font-size: 13px;
 }
 
 .guided-advisor__contact-form .guided-advisor__lead-message {
@@ -422,7 +475,7 @@
 }
 
 .guided-advisor__options button {
-  min-height: 58px;
+  min-height: 48px;
   border: 1px solid #dbe7ea;
   border-radius: 8px;
   background: #ffffff;
@@ -432,17 +485,15 @@
   justify-content: space-between;
   gap: 12px;
   padding: 12px 14px;
-  font-weight: 800;
+  font-weight: 700;
   text-align: left;
   box-shadow: 0 8px 20px rgba(15, 48, 63, 0.04);
-  transition: transform 0.18s ease, border-color 0.18s ease, box-shadow 0.18s ease,
-    background 0.18s ease;
+  transition: border-color 0.18s ease, box-shadow 0.18s ease, background 0.18s ease;
 }
 
 .guided-advisor__options button:hover {
-  transform: translateY(-2px);
   border-color: #89c2c8;
-  box-shadow: 0 16px 30px rgba(15, 48, 63, 0.1);
+  box-shadow: 0 8px 18px rgba(15, 48, 63, 0.08);
 }
 
 .guided-advisor__options button.is-selected {
@@ -1074,7 +1125,7 @@
 
 @media (max-width: 991px) {
   .guided-advisor {
-    padding-top: 92px;
+    padding-top: 20px;
   }
 
   .guided-advisor__intro,
@@ -1095,6 +1146,10 @@
     grid-template-columns: 1fr;
   }
 
+  .guided-advisor--popup .guided-advisor__summary {
+    display: none;
+  }
+
   .guided-advisor__fallback-grid {
     grid-template-columns: 1fr;
   }
@@ -1111,6 +1166,125 @@
 }
 
 @media (max-width: 640px) {
+  .guided-advisor--popup .guided-advisor__cancel {
+    display: none;
+  }
+
+  .guided-advisor--popup .guided-advisor__intro {
+    margin-bottom: 10px;
+  }
+
+  .guided-advisor--popup .guided-advisor__badge {
+    padding: 6px 10px;
+    font-size: 12px;
+  }
+
+  .guided-advisor--popup .guided-advisor__intro h1 {
+    font-size: 23px;
+    margin: 8px 0 6px;
+  }
+
+  .guided-advisor--popup .guided-advisor__intro p {
+    font-size: 12px;
+    line-height: 1.45;
+  }
+
+  .guided-advisor--popup .guided-advisor__ai-strip {
+    display: none;
+  }
+
+  .guided-advisor--popup .guided-advisor__progress {
+    padding: 10px 12px;
+  }
+
+  .guided-advisor--popup .guided-advisor__progress div {
+    margin-bottom: 7px;
+  }
+
+  .guided-advisor--popup .guided-advisor__progress strong {
+    font-size: 17px;
+  }
+
+  .guided-advisor--popup .guided-advisor__progress span {
+    font-size: 12px;
+  }
+
+  .guided-advisor--popup .guided-advisor__assistant-bubble {
+    padding: 9px 10px;
+    margin-bottom: 11px;
+  }
+
+  .guided-advisor--popup .guided-advisor__assistant-bubble span {
+    width: 28px;
+    height: 28px;
+  }
+
+  .guided-advisor--popup .guided-advisor__assistant-bubble p {
+    font-size: 12px;
+    line-height: 1.4;
+  }
+
+  .guided-advisor--popup .guided-advisor__question-head {
+    gap: 10px;
+    padding-bottom: 12px;
+    margin-bottom: 12px;
+  }
+
+  .guided-advisor--popup .guided-advisor__question-head > span {
+    width: 34px;
+    height: 34px;
+  }
+
+  .guided-advisor--popup .guided-advisor__question-head p {
+    font-size: 11px;
+  }
+
+  .guided-advisor--popup .guided-advisor__question-head h2 {
+    font-size: 20px;
+    margin-bottom: 3px;
+  }
+
+  .guided-advisor--popup .guided-advisor__question-head small {
+    font-size: 12px;
+    line-height: 1.35;
+  }
+
+  .guided-advisor--popup .guided-advisor__input-options,
+  .guided-advisor--popup .guided-advisor__options {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 7px;
+  }
+
+  .guided-advisor--popup .guided-advisor__input-options button,
+  .guided-advisor--popup .guided-advisor__other-option {
+    min-height: 38px;
+  }
+
+  .guided-advisor--popup .guided-advisor__options button {
+    min-height: 42px;
+    padding: 9px 10px;
+    font-size: 13px;
+  }
+
+  .guided-advisor--popup .guided-advisor__contact-form {
+    gap: 8px;
+  }
+
+  .guided-advisor--popup .guided-advisor__contact-form input {
+    min-height: 38px;
+    padding: 8px 10px;
+  }
+
+  .guided-advisor--popup .guided-advisor__contact-form p {
+    padding: 8px 10px;
+    font-size: 12px;
+  }
+
+  .guided-advisor--popup .guided-advisor__nav {
+    margin-top: 12px;
+    padding-top: 12px;
+  }
+
   .guided-advisor__intro h1 {
     font-size: 34px;
   }
@@ -1158,8 +1332,8 @@
   }
 
   .home-advisor-popup__panel {
-    max-height: 90vh;
-    padding: 14px;
+    max-height: 94vh;
+    padding: 12px;
   }
 
   .home-advisor-popup__resume {
