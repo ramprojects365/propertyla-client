@@ -43,6 +43,7 @@ const ProfileDropdown = () => {
     localStorage.removeItem("authToken");
     localStorage.removeItem("loginUser");
     localStorage.removeItem("loginUserDisplayName");
+    window.dispatchEvent(new Event("propertyla-auth-changed"));
     setOpen(false);
     router.push("/sign-in");
   };

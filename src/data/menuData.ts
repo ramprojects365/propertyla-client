@@ -85,9 +85,10 @@ const menu_data_one = [
     label: "Services",
     url: "#",
     submenu: [
-      { id: 1, label: "Home loan", url: "/error" },
-      { id: 2, label: "EMI calculator", url: "/emi-calculator" },
-      { id: 3, label: "Interior design", url: "/interior-design" },
+      { id: 1, label: "Property advisor", url: "/property-advisor" },
+      { id: 2, label: "Home loan", url: "/error" },
+      { id: 3, label: "EMI calculator", url: "/emi-calculator" },
+      { id: 4, label: "Interior design", url: "/interior-design" },
     ],
   },
   {

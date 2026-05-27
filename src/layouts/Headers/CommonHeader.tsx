@@ -6,7 +6,7 @@ import useGlobalContext from "@/hooks/useContext";
 import NavMenus from "../subComponents/NavMenus";
 import useSticky from "@/hooks/useSticky";
 import ProfileDropdown from "./ProfileDropdown";
-import React from "react";
+import React, { useEffect, useState } from "react";
 import Image from "next/image";
 import Link from "next/link";
 import { requireAuth } from "@/utils/auth";
@@ -17,6 +17,19 @@ export default function CommonHeader({ wrapClass = "" }) {
   const { toggleOffcanvas } = useGlobalContext();
   const { sticky } = useSticky();
   const { t } = useTranslation();
+  const [username, setUsername] = useState<string | null>(null);
+
+  useEffect(() => {
+    const syncUser = () => setUsername(localStorage.getItem("loginUser"));
+    syncUser();
+    window.addEventListener("storage", syncUser);
+    window.addEventListener("propertyla-auth-changed", syncUser);
+
+    return () => {
+      window.removeEventListener("storage", syncUser);
+      window.removeEventListener("propertyla-auth-changed", syncUser);
+    };
+  }, []);
 
   const handlePostPropertyClick = () => {
     const isAuthenticated = requireAuth("/dashboard/add-new-property");
@@ -83,10 +96,6 @@ export default function CommonHeader({ wrapClass = "" }) {
             <LanguageSwitcher />
             <div className="tp-header-right-user ml-10">
               {(() => {
-                const username =
-                  typeof window !== "undefined"
-                    ? localStorage.getItem("loginUser")
-                    : null;
                 return username ? (
                   <ProfileDropdown />
                 ) : (

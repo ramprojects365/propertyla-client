@@ -1,6 +1,6 @@
 "use client";
 import Image from "next/image";
-import React from "react";
+import React, { useEffect, useState } from "react";
 import logoIconBlue from "../../../public/assets/img/logo/logo-icon-blue.png";
 import logoIconWhite from "../../../public/assets/img/logo/logo-icon-white.png";
 import ProfileDropdown from "./ProfileDropdown";
@@ -18,6 +18,19 @@ export default function HeaderOne() {
   const { toggleOffcanvas } = useGlobalContext();
   const { sticky } = useSticky();
   const { t } = useTranslation();
+  const [username, setUsername] = useState<string | null>(null);
+
+  useEffect(() => {
+    const syncUser = () => setUsername(localStorage.getItem("loginUser"));
+    syncUser();
+    window.addEventListener("storage", syncUser);
+    window.addEventListener("propertyla-auth-changed", syncUser);
+
+    return () => {
+      window.removeEventListener("storage", syncUser);
+      window.removeEventListener("propertyla-auth-changed", syncUser);
+    };
+  }, []);
 
   const handlePostPropertyClick = () => {
     const isAuthenticated = requireAuth("/dashboard/add-new-property");
@@ -89,10 +102,6 @@ export default function HeaderOne() {
             <LanguageSwitcher />
             <div className="tp-header-right-user d-md-flex align-items-center">
               {(() => {
-                const username =
-                  typeof window !== "undefined"
-                    ? localStorage.getItem("loginUser")
-                    : null;
                 return username ? (
                   <ProfileDropdown />
                 ) : (
@@ -111,10 +120,6 @@ export default function HeaderOne() {
                 style={{ paddingLeft: "5px" }}
               >
                 {(() => {
-                  const username =
-                    typeof window !== "undefined"
-                      ? localStorage.getItem("loginUser")
-                      : null;
                   return username ? null : <p>{t("header.hiSignIn")}</p>;
                 })()}
               </div>
