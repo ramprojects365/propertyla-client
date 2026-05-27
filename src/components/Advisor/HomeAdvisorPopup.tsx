@@ -3,10 +3,12 @@
 import { useEffect, useState } from "react";
 import { MessageCircle, Sparkles, X } from "lucide-react";
 import GuidedPropertyAdvisor from "./GuidedPropertyAdvisor";
+import useGlobalContext from "@/hooks/useContext";
 
 const POPUP_SEEN_KEY = "propertyla-home-advisor-seen";
 
 export default function HomeAdvisorPopup() {
+  const { openOffcanvas } = useGlobalContext();
   const [open, setOpen] = useState(false);
   const [showResume, setShowResume] = useState(false);
 
@@ -48,7 +50,7 @@ export default function HomeAdvisorPopup() {
         </div>
       )}
 
-      {!open && showResume && (
+      {!open && showResume && !openOffcanvas && (
         <button
           type="button"
           className="home-advisor-popup__resume"

@@ -16,7 +16,7 @@ import { toast } from "sonner";
 
 interface IProps {
   property: IFeaturedPropertyDT;
-  onDelete: (id: string | number) => void;
+  onDelete?: (id: string | number) => void;
 }
 
 export default function DashboardPropertyItem({ property, onDelete }: IProps) {
@@ -30,7 +30,7 @@ export default function DashboardPropertyItem({ property, onDelete }: IProps) {
     try {
       setLoading(true);
       await deleteProperty(id);
-      onDelete(id);
+      onDelete?.(id);
       toast.success("Property deleted successfully");
     } catch (err: any) {
       console.error(err);
@@ -130,20 +130,22 @@ export default function DashboardPropertyItem({ property, onDelete }: IProps) {
                 <PropertyEditSvg />
               </Link>
             </div>
-            <div className="tp-action-btn">
-              <button
-                className="click"
-                onClick={() => handleDelete(property.id)}
-                title="Delete Property"
-                disabled={loading}
-                style={{
-                  opacity: loading ? 0.6 : 1,
-                  cursor: loading ? "not-allowed" : "pointer",
-                }}
-              >
-                {loading ? <DeleteIconSvg /> : <DeleteIconSvg />}
-              </button>
-            </div>
+            {onDelete && (
+              <div className="tp-action-btn">
+                <button
+                  className="click"
+                  onClick={() => handleDelete(property.id)}
+                  title="Delete Property"
+                  disabled={loading}
+                  style={{
+                    opacity: loading ? 0.6 : 1,
+                    cursor: loading ? "not-allowed" : "pointer",
+                  }}
+                >
+                  <DeleteIconSvg />
+                </button>
+              </div>
+            )}
           </div>
           <div className="tp-rent-price">
             <span>{formatPrice(Number(property.price) || 0, false)}</span>
