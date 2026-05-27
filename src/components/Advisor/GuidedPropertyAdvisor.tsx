@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { ElementType } from "react";
 import { useRouter } from "next/navigation";
 import {
@@ -31,6 +31,11 @@ import "./guided-property-advisor.scss";
 
 type AdvisorStep = keyof AdvisorAnswers;
 type AdvisorFlowStep = AdvisorStep | "contact";
+type AdvisorSuggestion = {
+  label: string;
+  value: string;
+  custom?: boolean;
+};
 
 const isAdvisorAnswerStep = (key: AdvisorFlowStep): key is AdvisorStep =>
   key !== "contact";
@@ -79,19 +84,19 @@ const steps: Array<{
     icon: Wallet,
   },
   {
-    key: "contact",
-    eyebrow: "Save your search",
-    question: "Where should we send better matches?",
-    helper:
-      "This is only a UI simulation for now. Later we will save this and notify agents.",
-    icon: Phone,
-  },
-  {
     key: "bedrooms",
     eyebrow: "Space needs",
     question: "How many rooms do you need?",
     helper: "Enter the minimum bedroom count you want.",
     icon: BedDouble,
+  },
+  {
+    key: "contact",
+    eyebrow: "Save your search",
+    question: "Where should we send better matches?",
+    helper:
+      "We will save your lead and notify matching agents when your property fit is ready.",
+    icon: Phone,
   },
 ];
 
@@ -130,19 +135,48 @@ const inputConfig: Partial<Record<AdvisorStep, {
   },
 };
 
-const locationSuggestions = ["Kuala Lumpur", "Selangor", "Cheras", "Puchong"];
-const bedroomSuggestions = ["1", "2", "3", "4"];
+const locationSuggestions: AdvisorSuggestion[] = [
+  { label: "Kuala Lumpur", value: "Kuala Lumpur" },
+  { label: "Selangor", value: "Selangor" },
+  { label: "KL Sentral", value: "KL Sentral" },
+  { label: "Kota Damansara", value: "Kota Damansara" },
+  { label: "Cheras", value: "Cheras" },
+  { label: "Puchong", value: "Puchong" },
+  { label: "Other", value: "", custom: true },
+];
+
+const rentBudgetSuggestions: AdvisorSuggestion[] = [
+  { label: "RM 1.5k", value: "1500" },
+  { label: "RM 2.5k", value: "2500" },
+  { label: "RM 3.5k", value: "3500" },
+  { label: "RM 5k", value: "5000" },
+  { label: "Other", value: "", custom: true },
+];
+
+const buyBudgetSuggestions: AdvisorSuggestion[] = [
+  { label: "RM 500k", value: "500000" },
+  { label: "RM 800k", value: "800000" },
+  { label: "RM 1.2M", value: "1200000" },
+  { label: "RM 2M", value: "2000000" },
+  { label: "Other", value: "", custom: true },
+];
+
+const bedroomSuggestions: AdvisorSuggestion[] = [
+  { label: "1 room", value: "1" },
+  { label: "2 rooms", value: "2" },
+  { label: "3 rooms", value: "3" },
+  { label: "4+ rooms", value: "4" },
+  { label: "Other", value: "", custom: true },
+];
 
 const getInputSuggestions = (
   key: AdvisorStep,
   intent: AdvisorAnswers["intent"],
-): string[] => {
+): AdvisorSuggestion[] => {
   if (key === "location") return locationSuggestions;
   if (key === "bedrooms") return bedroomSuggestions;
   if (key === "budgetAmount") {
-    return intent === "rent"
-      ? ["1500", "2500", "3500", "5000"]
-      : ["500000", "800000", "1200000", "2000000"];
+    return intent === "rent" ? rentBudgetSuggestions : buyBudgetSuggestions;
   }
 
   return [];
@@ -165,6 +199,7 @@ export default function GuidedPropertyAdvisor({
   const [leadLoading, setLeadLoading] = useState(false);
   const [leadMessage, setLeadMessage] = useState("");
   const [showReminder, setShowReminder] = useState(false);
+  const customInputRef = useRef<HTMLInputElement>(null);
 
   const step = steps[currentStep];
   const progress = Math.round(((currentStep + 1) / steps.length) * 100);
@@ -223,6 +258,19 @@ export default function GuidedPropertyAdvisor({
       ...current,
       [key]: value,
     }));
+  };
+
+  const moveNextSoon = () => {
+    window.setTimeout(() => {
+      setCurrentStep((index) => Math.min(index + 1, steps.length - 1));
+    }, 180);
+  };
+
+  const selectAnswerAndContinue = (key: AdvisorStep, value: string) => {
+    selectAnswer(key, value);
+    if (currentStep < steps.length - 1) {
+      moveNextSoon();
+    }
   };
 
   const saveAuthFromResponse = (response: any) => {
@@ -336,12 +384,17 @@ export default function GuidedPropertyAdvisor({
       <section className="guided-advisor__intro">
         <span className="guided-advisor__badge">
           <Sparkles size={16} />
-          AI-style Guided Property Advisor
+          {popupMode ? "AI property match assistant" : "AI-style Guided Property Advisor"}
         </span>
-        <h1>Let PropertyLa guide you to a better-fit home.</h1>
+        <h1>
+          {popupMode
+            ? "Tell us what you need. We will shape the match."
+            : "Let PropertyLa guide you to a better-fit home."}
+        </h1>
         <p>
-          A warmer, step-by-step experience that feels like a property concierge, not
-          another basic search form.
+          {popupMode
+            ? "Pick the closest answer or type your own. The assistant will use your budget, rooms, and area to shortlist better properties."
+            : "A warmer, step-by-step experience that feels like a property concierge, not another basic search form."}
         </p>
         <div className="guided-advisor__ai-strip">
           <span>
@@ -454,28 +507,49 @@ export default function GuidedPropertyAdvisor({
             <div className="guided-advisor__typed-answer">
               <label>
                 {answerLabels[answerStep]}
-                <div className="guided-advisor__typed-row">
-                  <div className="guided-advisor__typed-control">
-                    {currentInput.prefix && <span>{currentInput.prefix}</span>}
-                    <input
-                      type={currentInput.type}
-                      min={currentInput.min}
-                      value={answers[answerStep]}
-                      onChange={(event) => selectAnswer(answerStep, event.target.value)}
-                      placeholder={currentInput.placeholder}
-                    />
-                  </div>
+                <div className="guided-advisor__typed-row guided-advisor__typed-row--options-only">
                   <div className="guided-advisor__input-options">
-                    {inputSuggestions.map((suggestion) => (
-                      <button
-                        type="button"
-                        key={suggestion}
-                        className={answers[answerStep] === suggestion ? "is-selected" : ""}
-                        onClick={() => selectAnswer(answerStep, suggestion)}
-                      >
-                        {answerStep === "budgetAmount" ? `RM ${Number(suggestion).toLocaleString()}` : suggestion}
-                      </button>
-                    ))}
+                    {inputSuggestions.map((suggestion) =>
+                      suggestion.custom ? (
+                        <div
+                          key={`${suggestion.label}-${suggestion.value || "custom"}`}
+                          className="guided-advisor__other-option"
+                        >
+                          {currentInput.prefix && answerStep === "budgetAmount" && (
+                            <span>{currentInput.prefix}</span>
+                          )}
+                          <input
+                            ref={customInputRef}
+                            type={currentInput.type}
+                            min={currentInput.min}
+                            value={answers[answerStep]}
+                            onChange={(event) =>
+                              selectAnswer(answerStep, event.target.value)
+                            }
+                            onKeyDown={(event) => {
+                              if (event.key === "Enter" && answers[answerStep]) {
+                                event.preventDefault();
+                                void handleNext();
+                              }
+                            }}
+                            placeholder="Other"
+                          />
+                        </div>
+                      ) : (
+                        <button
+                          type="button"
+                          key={`${suggestion.label}-${suggestion.value}`}
+                          className={
+                            answers[answerStep] === suggestion.value ? "is-selected" : ""
+                          }
+                          onClick={() =>
+                            selectAnswerAndContinue(answerStep, suggestion.value)
+                          }
+                        >
+                          {suggestion.label}
+                        </button>
+                      ),
+                    )}
                   </div>
                 </div>
               </label>
@@ -487,7 +561,7 @@ export default function GuidedPropertyAdvisor({
                   key={option}
                   type="button"
                   className={answers[answerStep] === option ? "is-selected" : ""}
-                  onClick={() => selectAnswer(answerStep, option)}
+                  onClick={() => selectAnswerAndContinue(answerStep, option)}
                 >
                   <span>{option}</span>
                   {answers[answerStep] === option && <Check size={18} />}
@@ -567,7 +641,7 @@ export default function GuidedPropertyAdvisor({
         </aside>
       </section>
 
-      {showReminder && !loading && (
+      {showReminder && !loading && !popupMode && (
         <button
           type="button"
           className="guided-advisor__resume"

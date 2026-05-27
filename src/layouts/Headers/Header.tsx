@@ -13,6 +13,7 @@ import Link from "next/link";
 import { requireAuth } from "@/utils/auth";
 import LanguageSwitcher from "@/components/LanguageSwitcher/LanguageSwitcher";
 import { useTranslation } from "@/contexts/LanguageContext";
+import NotificationBell from "@/components/Notifications/NotificationBell";
 
 export default function HeaderOne() {
   const { toggleOffcanvas } = useGlobalContext();
@@ -100,6 +101,7 @@ export default function HeaderOne() {
         <div className="col-xl-2 col-lg-2 col-md-5 col-2">
           <div className="tp-header-main-right d-flex align-items-center justify-content-end">
             <LanguageSwitcher />
+            {username && <NotificationBell />}
             <div className="tp-header-right-user d-md-flex align-items-center">
               {(() => {
                 return username ? (

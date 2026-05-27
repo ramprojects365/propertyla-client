@@ -28,6 +28,22 @@ type StoredAdvisorResults = {
   createdAt?: string;
 };
 
+type PropertyFitMatchResponse = {
+  data?: ApiProperty[];
+  autoRegistered?: boolean;
+  autoLoggedIn?: boolean;
+  fallbackUsed?: boolean;
+  agentNotificationCount?: number;
+  auth?: {
+    token?: string;
+    user?: {
+      username?: string;
+      email?: string;
+      fullName?: string;
+    };
+  } | null;
+};
+
 type ApiProperty = {
   id: string;
   title: string;
@@ -99,6 +115,7 @@ export default function PropertyFitResults() {
   const [apiUsed, setApiUsed] = useState(false);
   const [autoRegistered, setAutoRegistered] = useState(false);
   const [fallbackUsed, setFallbackUsed] = useState(false);
+  const [agentNotificationCount, setAgentNotificationCount] = useState(0);
 
   useEffect(() => {
     const saved = window.localStorage.getItem(ADVISOR_RESULTS_KEY);
@@ -133,9 +150,10 @@ export default function PropertyFitResults() {
         const response = await getPropertyFitMatches(
           storedResults.answers,
           storedResults.contact,
-        );
+        ) as PropertyFitMatchResponse;
         const data = Array.isArray(response?.data) ? response.data : [];
         const mapped = data.map(mapApiProperty);
+        const notifiedAgents = response?.agentNotificationCount ?? 0;
 
         if (!active) return;
 
@@ -143,6 +161,7 @@ export default function PropertyFitResults() {
         setApiUsed(true);
         setAutoRegistered(Boolean(response?.autoRegistered));
         setFallbackUsed(Boolean(response?.fallbackUsed));
+        setAgentNotificationCount(notifiedAgents);
         if (response?.auth?.token && response?.auth?.user) {
           const user = response.auth.user;
           window.localStorage.setItem("authToken", response.auth.token);
@@ -155,10 +174,10 @@ export default function PropertyFitResults() {
         setStatusMessage(
           mapped.length
             ? response?.fallbackUsed
-              ? "No exact match found. Our agents will contact you shortly; meanwhile, here are all existing projects you can browse."
+              ? `No exact match found. We notified ${notifiedAgents} matching agent${notifiedAgents === 1 ? "" : "s"} and showed available projects you can browse.`
               : response?.autoLoggedIn
-                ? "You are logged in with a default lead account. We emailed this list and prepared agent notifications for viewed properties."
-                : "We emailed this list to the contact and prepared agent notifications for viewed properties."
+                ? `You are logged in with a default lead account. We emailed this list and notified ${notifiedAgents} matching agent${notifiedAgents === 1 ? "" : "s"}.`
+                : `We emailed this list to the contact and notified ${notifiedAgents} matching agent${notifiedAgents === 1 ? "" : "s"}.`
             : "No database match found for this brief yet.",
         );
       } catch (error) {
@@ -302,7 +321,11 @@ export default function PropertyFitResults() {
                   <Bell size={19} />
                   <span>
                     Agent notice
-                    <strong>Sent when a property is viewed</strong>
+                    <strong>
+                      {agentNotificationCount > 0
+                        ? `Sent to ${agentNotificationCount} matching agent${agentNotificationCount === 1 ? "" : "s"}`
+                        : "Ready when matches are found"}
+                    </strong>
                   </span>
                 </div>
               </div>

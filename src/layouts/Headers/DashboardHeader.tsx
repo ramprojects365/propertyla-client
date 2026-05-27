@@ -11,6 +11,7 @@ import Image from "next/image";
 import Link from "next/link";
 import SignInForm from "@/components/Form/auth/SignInForm";
 import LanguageSwitcher from "@/components/LanguageSwitcher/LanguageSwitcher";
+import NotificationBell from "@/components/Notifications/NotificationBell";
 
 export default function DashboardHeader() {
   const { toggleOffcanvas } = useGlobalContext();
@@ -50,6 +51,7 @@ export default function DashboardHeader() {
         <div className="col-xl-3 col-lg-4 col-md-9 col-6">
           <div className="tp-header-dashboard-main-right d-flex align-items-center justify-content-end">
             <LanguageSwitcher />
+            <NotificationBell />
             <div className="tp-header-right-user ml-10">
               {(() => {
                 const username =
