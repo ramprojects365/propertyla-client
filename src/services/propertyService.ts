@@ -40,3 +40,13 @@ export const notifyPropertyFitView = async (payload: {
   const res = await apiClient.post("/properties/fit/view", payload);
   return res.data;
 };
+
+export const recordPropertyView = async (payload: {
+  propertyId: string | number;
+  propertyUrl?: string;
+}) => {
+  const res = await apiClient.post(`/properties/${payload.propertyId}/view`, {
+    propertyUrl: payload.propertyUrl,
+  });
+  return res.data;
+};

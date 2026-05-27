@@ -1,5 +1,5 @@
 "use client";
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { useSearchParams } from "next/navigation";
 import { BathroomsSvg, BedroomsSvg, LivingSvg } from "@/components/SVG";
 import DetailsReusableArea from "./subComponents/DetailsReusableArea";
@@ -9,6 +9,7 @@ import { IdProps } from "@/types/custom-interface";
 import { formatPrice } from "@/components/Utils/formatPrice";
 import Breadcrumb from "@/components/Breadcrumb/Breadcrumb";
 import { toast } from "sonner";
+import { recordPropertyView } from "@/services/propertyService";
 
 type ApiProperty = {
   id: string;
@@ -96,6 +97,7 @@ function mapToDisplay(item: ApiProperty): IFeaturedPropertyDT {
 
 export default function PropertyDetailsOneArea({ id }: IdProps) {
   const searchParams = useSearchParams();
+  const viewRecordedRef = useRef(false);
   const [apiProperty, setApiProperty] = useState<ApiProperty | null>(null);
   const [display, setDisplay] = useState<IFeaturedPropertyDT | null>(null);
   const [loading, setLoading] = useState(true);
@@ -148,6 +150,18 @@ export default function PropertyDetailsOneArea({ id }: IdProps) {
       }
     };
     load();
+  }, [id]);
+
+  useEffect(() => {
+    if (!id || viewRecordedRef.current) return;
+    viewRecordedRef.current = true;
+
+    recordPropertyView({
+      propertyId: id,
+      propertyUrl: window.location.href,
+    }).catch(() => {
+      viewRecordedRef.current = false;
+    });
   }, [id]);
 
   const getShareUrl = () => window.location.href;

@@ -118,6 +118,8 @@ export default function SignInForm() {
       const displayName = user?.fullName || user?.username || "";
       localStorage.setItem("loginUser", username);
       localStorage.setItem("loginUserDisplayName", displayName);
+      localStorage.setItem("loginUserType", user?.userType || "");
+      window.dispatchEvent(new Event("propertyla-auth-changed"));
       toast.success("Login successful!");
     } catch (error: any) {
       const errorMessage =
