@@ -4,6 +4,7 @@ import BackToTop from "@/components/Common/BackToTop";
 import Wrapper from "@/layouts/Wrapper";
 import CommonFooter from "@/layouts/Footers/CommonFooter";
 import { Metadata } from "next";
+import HomeAdvisorPopup from "@/components/Advisor/HomeAdvisorPopup";
 
 export const metadata: Metadata = {
   title:
@@ -21,6 +22,7 @@ const Home = () => {
           <HomeOnePage />
         </main>
         <BackToTop />
+        <HomeAdvisorPopup />
         <CommonFooter />
       </Wrapper>
     </>
