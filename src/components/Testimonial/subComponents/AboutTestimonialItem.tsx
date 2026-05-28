@@ -8,7 +8,7 @@ export default function AboutTestimonialItem({ image, name, description }: ITest
         <div className="tp-testimonial-3-item about">
             <div className="tp-testimonial-3-content d-flex align-items-center">
                 <div className="tp-testimonial-3-user">
-                    <Image src={image} alt={name} />
+                    <Image src={image} alt={name} loading="lazy" />
                 </div>
                 <div className="tp-testimonial-3-text">
                     <p>{description}</p>

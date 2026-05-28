@@ -16,12 +16,13 @@ export default function ReusableAboutArea() {
               data-wow-duration="1s"
               data-wow-delay=".3s"
             >
-              <Image src={aboutImg1} alt="About Image" />
+              <Image src={aboutImg1} alt="About Image" loading="lazy" />
               <div className="tp-about-5-img image-anime">
                 <Image
                   style={{ width: "100%", height: "auto" }}
                   src={aboutImg2}
                   alt="About Image"
+                  loading="lazy"
                 />
               </div>
             </div>
@@ -53,7 +54,7 @@ export default function ReusableAboutArea() {
                 ].map((item, index) => (
                   <div className="tp-about-5-item d-flex mb-30" key={index}>
                     <div className="tp-about-5-item-icon mr-30">
-                      <Image src={item.icon} alt={item.title} />
+                      <Image src={item.icon} alt={item.title} loading="lazy" />
                     </div>
                     <div className="tp-about-5-item-content">
                       <h4 className="tp-about-5-title">{item.title}</h4>

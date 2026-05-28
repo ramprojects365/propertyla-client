@@ -1,9 +1,3 @@
-// import MenuOne from "../../public/assets/img/menu/img-1.jpg";
-// import MenuTwo from "../../public/assets/img/menu/img-2.jpg";
-// import MenuThree from "../../public/assets/img/menu/img-3.jpg";
-// import MenuFour from "../../public/assets/img/menu/img-4.jpg";
-// import MenuFive from "../../public/assets/img/menu/img-5.jpg";
-
 const menu_data_one = [
   {
     id: 1,

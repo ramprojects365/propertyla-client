@@ -6,12 +6,13 @@ import { IFeaturedPropertyDT } from "@/types/property-d-t";
 import { formatPrice } from "../Utils/formatPrice";
 import Image from "next/image";
 import Link from "next/link";
+import React from "react";
 
 interface propertyProps {
   item: IFeaturedPropertyDT;
 }
 
-export default function PropertySingleCardTwo({ item }: propertyProps) {
+function PropertySingleCardTwo({ item }: propertyProps) {
   const detailsHref = `/property-details/${item.id}`;
 
   return (
@@ -32,7 +33,7 @@ export default function PropertySingleCardTwo({ item }: propertyProps) {
                 style={{ width: "100%", height: "250px", objectFit: "cover" }}
               />
             ) : (
-              <Image src={item.image} alt="property image" />
+              <Image src={item.image} alt="property image" loading="lazy" />
             )}
           </Link>
 
@@ -102,3 +103,5 @@ export default function PropertySingleCardTwo({ item }: propertyProps) {
     </div>
   );
 }
+
+export default React.memo(PropertySingleCardTwo);

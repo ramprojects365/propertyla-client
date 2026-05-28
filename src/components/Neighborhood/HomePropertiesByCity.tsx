@@ -3,8 +3,9 @@ import NavigateArrowSvg from "../SVG/NavigateArrowSvg";
 import Image from "next/image";
 import Link from "next/link";
 import { useTranslation } from "@/contexts/LanguageContext";
+import React from "react";
 
-export default function HomePropertiesByCity() {
+function HomePropertiesByCity() {
   const { t } = useTranslation();
 
   return (
@@ -40,7 +41,15 @@ export default function HomePropertiesByCity() {
                   <div className="tp-explore-item text-center mb-30">
                     <div className="tp-explore-thumb p-relative">
                       <Link href={href}>
-                        <Image src={property.image} alt={property.name} />
+                        <Image 
+                          src={property.image} 
+                          alt={property.name} 
+                          loading="lazy"
+                          width={0}
+                          height={0}
+                          sizes="100vw"
+                          style={{ width: '100%', height: 'auto' }}
+                        />
                       </Link>
                       <div className="tp-explore-content">
                         <h4 className="tp-explore-title">
@@ -68,3 +77,5 @@ export default function HomePropertiesByCity() {
     </section>
   );
 }
+
+export default React.memo(HomePropertiesByCity);
