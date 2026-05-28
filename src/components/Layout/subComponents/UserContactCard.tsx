@@ -4,7 +4,6 @@ import { SocialLinksThree } from "@/components/UI/SocialLinks";
 import { CallThreeSvg, TeamEmailSvg } from "@/components/SVG";
 import Image from "next/image";
 import Link from "next/link";
-import { BadgeAlert, BadgeCheck } from "lucide-react";
 
 interface UserContactCardProps {
   user?: {
@@ -38,7 +37,8 @@ export default function UserContactCard({ user }: UserContactCardProps) {
     user?.profileImage || "/assets/img/team/team-details/user.png";
   const agentWhatsAppNumberLabel = user?.phoneNumber || "";
   const agentWhatsAppNumber = agentWhatsAppNumberLabel.replace(/\D/g, "");
-  const renVerified = user?.renVerified === true || user?.renStatus === "verified";
+  const renVerified =
+    user?.renVerified === true || user?.renStatus === "verified";
   const renStatusLabel =
     user?.renStatusLabel || (renVerified ? "Verified" : "Not verified");
   const contactRole =
