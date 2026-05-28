@@ -20,6 +20,7 @@ export default function BlogSlider({
   const [visibleRange, setVisibleRange] = useState({ start: 0, end: itemsPerSlide });
   const sliderRef = useRef<HTMLDivElement>(null);
   const totalItems = children.length;
+  const [itemWidth, setItemWidth] = useState(0);
 
   // Calculate items per slide based on screen size
   const getItemsPerSlide = useCallback(() => {
@@ -53,6 +54,21 @@ export default function BlogSlider({
     const end = Math.min(currentIndex + currentItemsPerSlide + 1, totalItems);
     setVisibleRange({ start, end });
   }, [currentIndex, currentItemsPerSlide, totalItems]);
+
+  // Calculate item width on mount and resize
+  useEffect(() => {
+    const calculateItemWidth = () => {
+      if (sliderRef.current) {
+        const containerWidth = sliderRef.current.offsetWidth;
+        const calculatedWidth = (containerWidth - gap * (currentItemsPerSlide - 1)) / currentItemsPerSlide;
+        setItemWidth(calculatedWidth);
+      }
+    };
+
+    calculateItemWidth();
+    window.addEventListener('resize', calculateItemWidth);
+    return () => window.removeEventListener('resize', calculateItemWidth);
+  }, [currentItemsPerSlide, gap]);
 
   const maxIndex = Math.max(0, totalItems - currentItemsPerSlide);
 
@@ -104,7 +120,7 @@ export default function BlogSlider({
             display: "flex",
             gap: `${gap}px`,
             transition: "transform 0.5s ease-in-out",
-            transform: `translateX(-${currentIndex * (100 / currentItemsPerSlide)}%)`,
+            transform: `translateX(-${currentIndex * (itemWidth + gap)}px)`,
           }}
         >
           {children.map((child, index) => (
@@ -112,7 +128,8 @@ export default function BlogSlider({
               key={index}
               className="blog-slider-item"
               style={{
-                flex: `0 0 calc(${100 / currentItemsPerSlide}% - ${gap * (currentItemsPerSlide - 1) / currentItemsPerSlide}px)`,
+                flex: `0 0 ${itemWidth}px`,
+                minWidth: 0,
                 opacity: index >= visibleRange.start && index < visibleRange.end ? 1 : 0.3,
                 transition: "opacity 0.3s ease",
               }}
@@ -135,18 +152,6 @@ export default function BlogSlider({
         >
           <ChevronRight size={24} />
         </button>
-      </div>
-
-      {/* Dots Navigation */}
-      <div className="blog-slider-dots">
-        {Array.from({ length: totalSlides }).map((_, index) => (
-          <button
-            key={index}
-            onClick={() => handleDotClick(index * currentItemsPerSlide)}
-            className={`blog-slider-dot ${index === currentSlide ? "active" : ""}`}
-            aria-label={`Go to slide ${index + 1}`}
-          />
-        ))}
       </div>
 
       <style jsx>{`

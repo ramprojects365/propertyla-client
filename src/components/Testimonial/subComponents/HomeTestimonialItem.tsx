@@ -6,12 +6,12 @@ export default function HomeTestimonialItem({  description, image, name, role }:
     return (
         <div className="tp-testimonial-item">
             <div className="tp-testimonial-icon">
-                <Image src={starIcon} alt="Star Icon" />
+                <Image src={starIcon} alt="Star Icon" loading="lazy" />
             </div>
             <span>{description}</span>
             <div className="tp-testimonial-content d-flex align-items-center">
                 <div className="tp-testimonial-thumb">
-                    <Image src={image} alt={name} />
+                    <Image src={image} alt={name} loading="lazy" />
                 </div>
                 <div className="tp-testimonial-des">
                     <h4 className="tp-testimonial-title">{name}</h4>

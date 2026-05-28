@@ -12,10 +12,12 @@ import Link from "next/link";
 import SignInForm from "@/components/Form/auth/SignInForm";
 import LanguageSwitcher from "@/components/LanguageSwitcher/LanguageSwitcher";
 import NotificationBell from "@/components/Notifications/NotificationBell";
+import { useAuth } from "@/hooks/useAuth";
 
 export default function DashboardHeader() {
   const { toggleOffcanvas } = useGlobalContext();
   const { sticky } = useSticky();
+  const { user } = useAuth();
 
   const renderHeaderContent = () => (
     <div className="container-fluid">
@@ -54,11 +56,7 @@ export default function DashboardHeader() {
             <NotificationBell />
             <div className="tp-header-right-user ml-10">
               {(() => {
-                const username =
-                  typeof window !== "undefined"
-                    ? localStorage.getItem("loginUser")
-                    : null;
-                return username ? (
+                return user ? (
                   <ProfileDropdown />
                 ) : (
                   <div className="tp-header-right-user-icon">

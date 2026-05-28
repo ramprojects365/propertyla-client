@@ -1,8 +1,9 @@
 import { IBlogDT } from "@/types/blog-d-t";
 import Image from "next/image";
 import Link from "next/link";
+import React from "react";
 
-export default function BlogItemHome({
+function BlogItemHome({
   id,
   delay,
   image,
@@ -19,7 +20,15 @@ export default function BlogItemHome({
       >
         <div className="tp-blog-item-thumb">
           <Link href={`/blog/${slug || id}`}>
-            <Image src={image} alt={title} />
+            <Image 
+              src={image} 
+              alt={title} 
+              loading="lazy"
+              width={0}
+              height={0}
+              sizes="100vw"
+              style={{ width: '100%', height: 'auto' }}
+            />
           </Link>
         </div>
         <div className="tp-blog-item-content">
@@ -37,3 +46,5 @@ export default function BlogItemHome({
     </div>
   );
 }
+
+export default React.memo(BlogItemHome);

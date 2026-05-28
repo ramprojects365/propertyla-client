@@ -1,6 +1,6 @@
 "use client";
 import Image from "next/image";
-import React, { useEffect, useState } from "react";
+import React, { useEffect } from "react";
 import logoIconBlue from "../../../public/assets/img/logo/logo-icon-blue.png";
 import logoIconWhite from "../../../public/assets/img/logo/logo-icon-white.png";
 import ProfileDropdown from "./ProfileDropdown";
@@ -14,24 +14,13 @@ import { requireAuth } from "@/utils/auth";
 import LanguageSwitcher from "@/components/LanguageSwitcher/LanguageSwitcher";
 import { useTranslation } from "@/contexts/LanguageContext";
 import NotificationBell from "@/components/Notifications/NotificationBell";
+import { useAuth } from "@/hooks/useAuth";
 
 export default function HeaderOne() {
   const { toggleOffcanvas } = useGlobalContext();
   const { sticky } = useSticky();
   const { t } = useTranslation();
-  const [username, setUsername] = useState<string | null>(null);
-
-  useEffect(() => {
-    const syncUser = () => setUsername(localStorage.getItem("loginUser"));
-    syncUser();
-    window.addEventListener("storage", syncUser);
-    window.addEventListener("propertyla-auth-changed", syncUser);
-
-    return () => {
-      window.removeEventListener("storage", syncUser);
-      window.removeEventListener("propertyla-auth-changed", syncUser);
-    };
-  }, []);
+  const { user } = useAuth();
 
   const handlePostPropertyClick = () => {
     const isAuthenticated = requireAuth("/dashboard/add-new-property");
@@ -44,7 +33,7 @@ export default function HeaderOne() {
   const renderHeaderContent = () => (
     <div className="container container-large">
       <div className="row align-items-center">
-        <div className="col-xl-2 col-lg-4 col-md-3 col-8">
+        <div className="col-xl-2 col-lg-4 col-md-3 col-7">
           <div className="tp-header-top-pad">
             <Link href="/">
               {sticky ? (
@@ -98,13 +87,13 @@ export default function HeaderOne() {
             </button>
           </div>
         </div>
-        <div className="col-xl-2 col-lg-2 col-md-5 col-4">
+        <div className="col-xl-2 col-lg-2 col-md-5 col-5">
           <div className="tp-header-main-right d-flex align-items-center justify-content-end">
             <LanguageSwitcher />
-            {username && <NotificationBell />}
+            {user && <NotificationBell />}
             <div className="tp-header-right-user d-md-flex align-items-center">
               {(() => {
-                return username ? (
+                return user ? (
                   <ProfileDropdown />
                 ) : (
                   <div className="tp-header-right-user-icon">
@@ -122,7 +111,7 @@ export default function HeaderOne() {
                 style={{ paddingLeft: "5px" }}
               >
                 {(() => {
-                  return username ? null : <p>{t("header.hiSignIn")}</p>;
+                  return user ? null : <p>{t("header.hiSignIn")}</p>;
                 })()}
               </div>
             </div>
