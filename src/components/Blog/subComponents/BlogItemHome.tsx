@@ -12,9 +12,8 @@ export default function BlogItemHome({
   slug,
 }: IBlogDT) {
   return (
-    <div className="col-lg-4 col-md-6" key={id}>
+    <div className="tp-blog-item p-relative mb-30 wow fadeInUp h-100">
       <div
-        className="tp-blog-item p-relative mb-30 wow fadeInUp"
         data-wow-duration="1s"
         data-wow-delay={delay}
       >

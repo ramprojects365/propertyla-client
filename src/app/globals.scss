@@ -446,8 +446,9 @@ body.scrolled .Profile-btn-span {
   text-transform: uppercase;
   transition: all 0.3s ease;
   min-width: 10px;
-  margin-right: 10px;
-  margin-left: 30px;
+  margin-right: 8px;
+  margin-left: 0;
+  flex: 0 0 auto;
 }
 
 /* ============================================
@@ -463,7 +464,7 @@ body.scrolled .Profile-btn-span {
   transition: all 0.3s ease !important;
   border: none !important;
   min-height: 48px;
-  padding: 12px 24px;
+  padding: 12px 12px;
   font-size: 16px;
   font-weight: 600;
   display: inline-flex;
@@ -537,8 +538,167 @@ body.scrolled .Profile-btn-span {
 }
 
 /* ============================================
-   RESPONSIVE BREAKPOINTS
+   HEADER ICONS SPACING (Desktop)
    ============================================ */
+
+.tp-header-main-right,
+.tp-header-5-main-right,
+.tp-header-dashboard-main-right {
+  gap: 12px;
+  align-items: center;
+  flex-wrap: nowrap;
+}
+
+.tp-header-right-user {
+  margin-left: 0 !important;
+  flex: 0 0 auto;
+  display: inline-flex;
+  align-items: center;
+}
+
+.notification-bell {
+  margin-left: 0;
+  margin-right: 0;
+  flex: 0 0 auto;
+}
+
+/* ============================================
+   HEADER ICONS SPACING (Tablet - 768px - 991px)
+   ============================================ */
+@media (min-width: 768px) and (max-width: 991px) {
+  .tp-header-main-right,
+  .tp-header-5-main-right,
+  .tp-header-dashboard-main-right {
+    gap: 10px;
+  }
+
+  .language-switcher-btn {
+    padding: 0px 12px;
+    margin-right: 6px;
+    font-size: 13px;
+  }
+
+  .notification-bell__button {
+    width: 38px;
+    height: 38px;
+  }
+
+  .notification-bell__button i {
+    font-size: 17px;
+  }
+}
+
+/* ============================================
+   HEADER ICONS SPACING (Mobile - max-width: 767px)
+   ============================================ */
+@media (max-width: 767px) {
+  .tp-header-main-right,
+  .tp-header-5-main-right,
+  .tp-header-dashboard-main-right {
+    gap: 8px;
+    min-width: 0;
+    flex-wrap: nowrap;
+  }
+
+  .language-switcher-btn {
+    height: 36px;
+    min-height: 36px;
+    min-width: 36px;
+    padding: 0 9px;
+    margin: 0;
+    margin-right: 4px;
+    border: 1px solid #003b5c;
+    border-radius: 18px;
+    background: #fff;
+    color: #003b5c;
+    cursor: pointer;
+    font-size: 13px;
+    line-height: 36px;
+    font-weight: 800;
+    text-transform: uppercase;
+    transition: all 0.3s ease;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .notification-bell {
+    margin-left: 0;
+    margin-right: 0;
+  }
+
+  .notification-bell__button {
+    width: 36px;
+    height: 36px;
+  }
+
+  .notification-bell__button i {
+    font-size: 16px;
+  }
+
+  .tp-header-right-user {
+    margin-left: 0 !important;
+    flex: 0 0 auto;
+    display: inline-flex;
+    align-items: center;
+  }
+
+  .tp-header-hamburger {
+    flex: 0 0 auto;
+    margin-left: 0 !important;
+    display: inline-flex;
+    align-items: center;
+  }
+
+  .hamburger-btn {
+    width: 30px !important;
+    height: 30px !important;
+    min-width: 30px !important;
+    display: inline-flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 3px;
+    padding: 0 !important;
+  }
+
+  .hamburger-btn span {
+    width: 17px;
+    height: 2px;
+    margin: 0 !important;
+    display: block;
+  }
+}
+
+/* ============================================
+   HEADER ICONS SPACING (Large Desktop - 1200px - 1399px)
+   ============================================ */
+@media (min-width: 1200px) and (max-width: 1399px) {
+  .tp-header-main-right,
+  .tp-header-5-main-right,
+  .tp-header-dashboard-main-right {
+    gap: 10px;
+  }
+
+  .language-switcher-btn {
+    margin-right: 6px;
+  }
+}
+
+/* ============================================
+   HEADER ICONS SPACING (Extra Large Desktop - 1400px+)
+   ============================================ */
+@media (min-width: 1400px) {
+  .tp-header-main-right,
+  .tp-header-5-main-right,
+  .tp-header-dashboard-main-right {
+    gap: 14px;
+  }
+
+  .language-switcher-btn {
+    margin-right: 10px;
+  }
+}
 
 /* ============================================
    MOBILE DEVICES (max-width: 767px)
@@ -753,49 +913,8 @@ body.scrolled .Profile-btn-span {
     height: 14px;
   }
 
-  .tp-header-main-right,
-  .tp-header-5-main-right,
-  .tp-header-dashboard-main-right {
-    gap: 7px;
-    min-width: 0;
-    flex-wrap: nowrap;
-  }
-
-  .tp-header-right-user {
-    margin-left: 0 !important;
-    flex: 0 0 auto;
-    display: inline-flex;
-    align-items: center;
-  }
-
-  .tp-header-hamburger {
-    flex: 0 0 auto;
-    margin-left: 0 !important;
-    display: inline-flex;
-    align-items: center;
-  }
-
-  .hamburger-btn {
-    width: 30px !important;
-    height: 30px !important;
-    min-width: 30px !important;
-    display: inline-flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    gap: 3px;
-    padding: 0 !important;
-  }
-
-  .hamburger-btn span {
-    width: 17px;
-    height: 2px;
-    margin: 0 !important;
-    display: block;
-  }
-
   .mb-icon {
-   // margin-top: -15px;
+    // margin-top: -15px;
   }
 
   .mb-profile-icon {
@@ -989,6 +1108,120 @@ body.scrolled .Profile-btn-span {
 /* ============================================
    GLOBAL UTILITIES
    ============================================ */
+
+/* Blog Slider Styles */
+.blog-slider {
+  margin: 0 -15px;
+}
+
+.blog-slider-container {
+  position: relative;
+  overflow: hidden;
+}
+
+.blog-slider-track {
+  display: flex;
+  transition: transform 0.5s ease-in-out;
+}
+
+.blog-slider-item {
+  flex-shrink: 0;
+  padding: 0 15px;
+}
+
+.blog-slider-nav {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  border: 2px solid #003b5c;
+  background: white;
+  color: #003b5c;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  z-index: 10;
+  box-shadow: 0 2px 8px rgba(0, 59, 92, 0.15);
+}
+
+.blog-slider-nav:hover:not(:disabled) {
+  background: #003b5c;
+  color: white;
+  transform: translateY(-50%) scale(1.1);
+}
+
+.blog-slider-nav:disabled {
+  opacity: 0.3;
+  cursor: not-allowed;
+}
+
+.blog-slider-prev {
+  left: 0;
+}
+
+.blog-slider-next {
+  right: 0;
+}
+
+.blog-slider-dots {
+  display: flex;
+  justify-content: center;
+  gap: 10px;
+  margin-top: 30px;
+}
+
+.blog-slider-dot {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  border: 2px solid #003b5c;
+  background: white;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.blog-slider-dot:hover {
+  background: #003b5c;
+}
+
+.blog-slider-dot.active {
+  background: #003b5c;
+}
+
+/* Blog slider responsive adjustments */
+@media (max-width: 767px) {
+  .blog-slider {
+    margin: 0 -10px;
+  }
+
+  .blog-slider-item {
+    padding: 0 10px;
+  }
+
+  .blog-slider-nav {
+    width: 32px;
+    height: 32px;
+  }
+
+  .blog-slider-nav svg {
+    width: 18px;
+    height: 18px;
+  }
+
+  .blog-slider-dots {
+    gap: 8px;
+    margin-top: 20px;
+  }
+
+  .blog-slider-dot {
+    width: 8px;
+    height: 8px;
+  }
+}
 
 /* Classic vertical scrollbar (typical on Windows) narrows the layout vs macOS overlay scrollbars.
    Full-width rows + negative margins (theme sliders) can then exceed the client width by a few
