@@ -39,15 +39,6 @@ interface User {
 const trustedAgents: Agent[] = [
   {
     id: "1",
-    name: "Ram",
-    agentId: "REN 1234",
-    email: "nagaramaganga@gmail.com",
-    image: "/assets/img/team/team-details/user.jpg",
-    rating: 4.8,
-    properties: 150,
-  },
-  {
-    id: "1",
     name: "Fara",
     agentId: "PEA 3329",
     email: "faizzatulfarhana2020@gmail.com",
@@ -56,7 +47,7 @@ const trustedAgents: Agent[] = [
     properties: 120,
   },
   {
-    id: "3",
+    id: "2",
     name: "MR.PUI",
     agentId: "PEA 2457)",
     email: "puits888@gmail.com",
@@ -65,7 +56,7 @@ const trustedAgents: Agent[] = [
     properties: 95,
   },
   {
-    id: "4",
+    id: "3",
     name: "Eddie",
     agentId: "REN 4234",
     email: "",
@@ -73,24 +64,6 @@ const trustedAgents: Agent[] = [
     rating: 3.1,
     properties: 34,
   },
-  // {
-  //   id: "michael-tan-2987856",
-  //   name: "Michael Tan",
-  //   agentId: "REN 1234",
-  //   email: "",
-  //   image: "/assets/img/team/team-details/user.jpg",
-  //   rating: 4.6,
-  //   properties: 85,
-  // },
-  // {
-  //   id: "fatima-ali-2987857",
-  //   name: "Fatima Ali",
-  //   agentId: "REN 1234",
-  //   email: "",
-  //   image: "/assets/img/team/team-details/user.jpg",
-  //   rating: 4.9,
-  //   properties: 130,
-  // },
 ];
 
 export default function TrustedAgents() {

@@ -32,7 +32,7 @@ export const blogPosts: BlogPost[] = [
     id: "best-places-selangor",
     title: "Best Places to Buy Property in Selangor (2026)",
     slug: "/blog/best-places-to-buy-property-in-Selangor",
-    image: "/assets/img/blog/blog-thumb-4.jpg",
+    image: "/assets/img/blog/blog-thumb-2.png",
     readTime: "7 min read",
   },
 ];

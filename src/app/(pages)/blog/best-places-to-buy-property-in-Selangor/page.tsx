@@ -12,7 +12,7 @@ export const metadata: Metadata = {
     title: "Best Places to Buy Property in Selangor (2026)",
     description:
       "Explore the top locations for property investment in Selangor with expert insights on growth potential and lifestyle benefits.",
-    images: ["/assets/img/blog/blog-thumb-4.jpg"],
+    images: ["/assets/img/blog/blog-thumb-2.png"],
     type: "article",
   },
 };
