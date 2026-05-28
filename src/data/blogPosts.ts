@@ -11,14 +11,14 @@ export const blogPosts: BlogPost[] = [
     id: "costly-mistakes",
     title: "Costly Mistakes Malaysians Make When Buying Property",
     slug: "/blog/costly-mistakes-malaysians-make-when-buying-property",
-    image: "/assets/img/blog/blog-thumb-1.jpg",
+    image: "/assets/img/blog/blog-thumb-1.png",
     readTime: "5 min read",
   },
   {
     id: "foreign-investors",
     title: "Foreign Investors Still Interested in Malaysian Property (2026)",
     slug: "/blog/foreign-investors-still-interested-in-malaysian-property",
-    image: "/assets/img/blog/blog-thumb-2.jpg",
+    image: "/assets/img/blog/blog-thumb-2.png",
     readTime: "4 min read",
   },
   {

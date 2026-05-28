@@ -1,12 +1,12 @@
 import Image from "next/image";
 import Link from "next/link";
-import { blogPosts, BlogPost } from "@/data/blogPosts";
+import { blogPosts } from "@/data/blogPosts";
 
 interface RecentPostsProps {
   currentSlug: string;
 }
 
-const DEFAULT_BLOG_IMAGE = "/assets/img/blog/blog-thumb-1.jpg";
+const DEFAULT_BLOG_IMAGE = "/assets/img/blog/blog-thumb-1.png";
 
 export default function RecentPosts({ currentSlug }: RecentPostsProps) {
   const otherPosts = blogPosts.filter((post) => post.slug !== currentSlug);
