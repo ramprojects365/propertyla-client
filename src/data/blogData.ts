@@ -1,7 +1,7 @@
 import { IBlogDT } from "@/types/blog-d-t";
 import blogThumb1 from "../../public/assets/img/blog/blog-thumb-1.png";
 import blogThumb2 from "../../public/assets/img/blog/blog-thumb-2.png";
-import blogThumb3 from "../../public/assets/img/blog/blog-thumb-3.jpg";
+import blogThumb3 from "../../public/assets/img/blog/blog-thumb-3.png";
 
 export const blogData: IBlogDT[] = [
   //blog post data start
