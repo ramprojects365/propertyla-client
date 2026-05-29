@@ -87,7 +87,7 @@ const ProfileDropdown = () => {
 
               return displayName ? (
                 <>
-                  <p className="hide-mobile" style={{ margin: 0 }}>{`${truncateUsername(displayName, 14)}`}</p>
+                  <p className="hide-mobile" style={{ margin: 0 }}>{`${truncateUsername(displayName, 4)}`}</p>
                   <p className="hide-desktop" style={{ margin: 0 }}>{`${truncateUsername(displayName, 3, false)}`}</p>
                 </>
               ) : (

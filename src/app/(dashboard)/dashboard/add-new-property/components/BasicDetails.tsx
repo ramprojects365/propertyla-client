@@ -4,6 +4,7 @@ import { useFormContext } from "react-hook-form";
 import { PropertyFormData } from "@/schemas/validationSchema";
 import ErrorMessage from "../../../../../components/Form/ErrorMassage";
 import "../property.css";
+import { useState, useEffect } from "react";
 
 export default function BasicDetails() {
   const {
@@ -15,6 +16,20 @@ export default function BasicDetails() {
 
   const listingType = watch("listingType");
   const listingTypeRegister = register("listingType");
+  const description = watch("description") || "";
+  const [charCount, setCharCount] = useState(0);
+
+  useEffect(() => {
+    setCharCount(description.length);
+  }, [description]);
+
+  const handleDescriptionChange = (e: React.ChangeEvent<HTMLTextAreaElement>) => {
+    const value = e.target.value;
+    if (value.length <= 1000) {
+      setValue("description", value);
+      setCharCount(value.length);
+    }
+  };
 
   return (
     <div className="tp-dashboard-new-property mb-15">
@@ -38,11 +53,29 @@ export default function BasicDetails() {
           <div className="col-lg-12">
             <div className="tp-dashboard-new-input">
               <label>Description</label>
-              <textarea
-                placeholder="Write a few lines about your property something which is special and makes your property stand out. Please do not mention your contact details in any format."
-                {...register("description")}
-                style={{ borderRadius: "8px" }}
-              ></textarea>
+              <div style={{ position: "relative" }}>
+                <textarea
+                  placeholder="Write a few lines about your property something which is special and makes your property stand out. Please do not mention your contact details in any format."
+                  value={description}
+                  onChange={handleDescriptionChange}
+                  maxLength={1000}
+                  style={{ borderRadius: "8px", paddingRight: "80px" }}
+                ></textarea>
+                <div
+                  style={{
+                    position: "absolute",
+                    top: "8px",
+                    right: "12px",
+                    fontSize: "12px",
+                    color: "#666",
+                    backgroundColor: "#f5f5f5",
+                    padding: "2px 8px",
+                    borderRadius: "4px",
+                  }}
+                >
+                  {1000 - charCount} remaining
+                </div>
+              </div>
               {errors?.description && (
                 <ErrorMessage message={errors?.description?.message || ""} />
               )}
