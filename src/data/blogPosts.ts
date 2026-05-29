@@ -25,7 +25,7 @@ export const blogPosts: BlogPost[] = [
     id: "stamp-duty",
     title: "Stamp Duty in Malaysia Property (2026): Complete Guide",
     slug: "/blog/Stamp-Duty-in-Malaysia-Property",
-    image: "/assets/img/blog/blog-thumb-3.jpg",
+    image: "/assets/img/blog/blog-thumb-3.png",
     readTime: "6 min read",
   },
   {
