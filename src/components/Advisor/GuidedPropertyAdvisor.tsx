@@ -90,10 +90,9 @@ const steps: Array<{
   },
   {
     key: "contact",
-    eyebrow: "Optional",
-    question: "Want help from an agent?",
-    helper:
-      "Add email or phone if you want us to connect you with better matches.",
+    eyebrow: "Contact",
+    question: "Share contact details?",
+    helper: "",
     icon: Phone,
   },
 ];
@@ -462,7 +461,7 @@ export default function GuidedPropertyAdvisor({
           {!answerStep ? (
             <div className="guided-advisor__contact-form">
               <label>
-                Phone optional
+                Phone
                 <input
                   type="tel"
                   value={contact.phone}
@@ -476,7 +475,7 @@ export default function GuidedPropertyAdvisor({
                 />
               </label>
               <label>
-                Email optional
+                Email
                 <input
                   type="email"
                   value={contact.email}
@@ -605,7 +604,7 @@ export default function GuidedPropertyAdvisor({
                 ) : (
                   <Search size={16} />
                 )}
-                Show matches
+                Results
               </button>
             )}
           </div>
