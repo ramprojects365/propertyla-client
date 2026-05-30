@@ -6,7 +6,6 @@ import { Bell, CheckCircle2, Clock3, Mail, Sparkles, UserPlus } from "lucide-rea
 import Breadcrumb from "@/components/Breadcrumb/Breadcrumb";
 import PropertySingleCard from "@/components/Common/PropertySingleCard";
 import { formatPrice } from "@/components/Utils/formatPrice";
-import { propertyData } from "@/data/propertyData";
 import {
   getPropertyFitMatches,
   notifyPropertyFitView,
@@ -25,6 +24,7 @@ type StoredAdvisorResults = {
   answers: AdvisorAnswers;
   contact: AdvisorContact;
   autoRegisterReady?: boolean;
+  defaultPassword?: string;
   createdAt?: string;
 };
 
@@ -34,6 +34,8 @@ type PropertyFitMatchResponse = {
   autoLoggedIn?: boolean;
   fallbackUsed?: boolean;
   agentNotificationCount?: number;
+  existingEmailIgnored?: boolean;
+  defaultPassword?: string;
   auth?: {
     token?: string;
     user?: {
@@ -67,12 +69,8 @@ type ApiProperty = {
   };
 };
 
-const fallbackImages = propertyData
-  .filter((property) => property.image)
-  .map((property) => property.image);
-
 const mapApiProperty = (item: ApiProperty, index: number): IFeaturedPropertyDT => {
-  const image = getCoverImageUrl(item.images) || fallbackImages[index % fallbackImages.length];
+  const image = getCoverImageUrl(item.images) || "/assets/img/rent/property/property-details-thumb-1.png";
   const area = parseFloat(String(item.buildupArea ?? 0));
   const address = [
     item.propertyName,
@@ -103,6 +101,11 @@ const mapApiProperty = (item: ApiProperty, index: number): IFeaturedPropertyDT =
     userRole: item.user?.email ? "Assigned agent" : undefined,
     user: item.user,
   };
+};
+
+const formatBriefValue = (value?: string): string => {
+  if (!value) return "Not set";
+  return value.charAt(0).toUpperCase() + value.slice(1);
 };
 
 export default function PropertyFitResults() {
@@ -174,11 +177,13 @@ export default function PropertyFitResults() {
         setStatusMessage(
           mapped.length
             ? response?.fallbackUsed
-              ? `No exact match found. We notified ${notifiedAgents} matching agent${notifiedAgents === 1 ? "" : "s"} and showed available projects you can browse.`
+              ? "No exact match yet. Our agent will reach out with better options."
               : response?.autoLoggedIn
-                ? `You are logged in with a default lead account. We emailed this list and notified ${notifiedAgents} matching agent${notifiedAgents === 1 ? "" : "s"}.`
-                : `We emailed this list to the contact and notified ${notifiedAgents} matching agent${notifiedAgents === 1 ? "" : "s"}.`
-            : "No database match found for this brief yet.",
+                ? `Your search is saved. We notified ${notifiedAgents} matching agent${notifiedAgents === 1 ? "" : "s"}.`
+                : response?.existingEmailIgnored
+                  ? `That email already exists, so we skipped account setup and notified ${notifiedAgents} matching agent${notifiedAgents === 1 ? "" : "s"}.`
+                  : `We notified ${notifiedAgents} matching agent${notifiedAgents === 1 ? "" : "s"} for this brief.`
+            : "No exact match yet. Our agent will reach out with better options.",
         );
       } catch (error) {
         console.error("Property fit match error:", error);
@@ -228,9 +233,7 @@ export default function PropertyFitResults() {
   };
 
   const contactReady = Boolean(
-    storedResults?.contact.name &&
-      storedResults?.contact.phone &&
-      storedResults?.contact.email,
+    storedResults?.contact.phone || storedResults?.contact.email,
   );
 
   return (
@@ -246,35 +249,9 @@ export default function PropertyFitResults() {
           <div className="property-fit-page__hero-copy">
             <span>
               <Sparkles size={16} />
-              Property Fit Results
+              Smart match
             </span>
-            <h1>Properties matched from your answers.</h1>
-            <p>
-              We use your brief to show database properties, register the lead when
-              contact details are complete, and notify agents when a property is viewed.
-            </p>
-          </div>
-
-          <div className="property-fit-page__brief">
-            <span>
-              Goal <strong>{storedResults?.answers.intent || "Not set"}</strong>
-            </span>
-            <span>
-              Location{" "}
-              <strong>{storedResults?.answers.location || "Not set"}</strong>
-            </span>
-            <span>
-              Budget{" "}
-              <strong>
-                {storedResults?.answers.budgetAmount
-                  ? formatPrice(Number(storedResults.answers.budgetAmount), false)
-                  : storedResults?.answers.budgetRange || "Not set"}
-              </strong>
-            </span>
-            <span>
-              Rooms{" "}
-              <strong>{storedResults?.answers.bedrooms || "Not set"}</strong>
-            </span>
+            <h1>Here are homes that fit your search.</h1>
           </div>
         </div>
       </section>
@@ -292,6 +269,7 @@ export default function PropertyFitResults() {
 
           {storedResults && (
             <>
+              {/*
               <div className="property-fit-page__handoff">
                 <div>
                   <UserPlus size={19} />
@@ -300,20 +278,18 @@ export default function PropertyFitResults() {
                     <strong>
                       {contactReady
                         ? autoRegistered
-                          ? "New default lead account created"
-                          : "Lead ready, logged in if eligible"
-                        : "Needs name, phone, and email"}
+                          ? "Search saved with a simple login"
+                          : "Contact added"
+                        : "Skipped"}
                     </strong>
                   </span>
                 </div>
                 <div>
                   <Mail size={19} />
                   <span>
-                    Email list
+                    Login password
                     <strong>
-                      {storedResults.contact.email
-                        ? `Sent to ${storedResults.contact.email}`
-                        : "Email not provided"}
+                      {storedResults.defaultPassword || "Only shown when a new login is created"}
                     </strong>
                   </span>
                 </div>
@@ -329,33 +305,36 @@ export default function PropertyFitResults() {
                   </span>
                 </div>
               </div>
+              */}
 
+              {/*
               {statusMessage && (
                 <div className="property-fit-page__notice">
                   <CheckCircle2 size={18} />
                   {statusMessage}
                 </div>
               )}
+              */}
 
               <div className="property-fit-page__heading">
                 <span>
                   <Sparkles size={15} />
                   {fallbackUsed
-                    ? "All existing projects"
+                    ? "Closest options"
                     : apiUsed
-                      ? "Database matches"
-                      : "Property fit"}
+                      ? "Best fit"
+                      : "Finding options"}
                 </span>
                 <h2>
                   {fallbackUsed
-                    ? `${properties.length} projects you can browse`
-                    : `${properties.length} properties for this brief`}
+                    ? `${properties.length} options to explore`
+                    : `${properties.length} good ${properties.length === 1 ? "option" : "options"}`}
                 </h2>
-                <p>
+                {/* <p>
                   {fallbackUsed
                     ? "Your selected criteria did not return an exact match, so we are showing our available projects while an agent prepares better options."
                     : matchReason}
-                </p>
+                </p> */}
               </div>
 
               {loading && (
@@ -369,36 +348,59 @@ export default function PropertyFitResults() {
               {!loading && properties.length === 0 && (
                 <div className="property-fit-page__empty property-fit-page__empty--dark">
                   <Clock3 size={32} />
-                  <h2>No matching properties yet</h2>
-                  <p>
-                    Our agent will connect shortly with suitable options from our
-                    property list.
-                  </p>
-                  <Link href="/property-advisor">Adjust answers</Link>
+                  <h2>No exact match yet</h2>
+                  <p>Our agent will reach out when a suitable option is available.</p>
                 </div>
               )}
 
               {!loading && properties.length > 0 && (
-                <div className="row list-img-sec">
-                  {properties.map((item) => (
-                    <div className="col-xl-12 col-sm-12" key={item.id}>
-                      <div className="property-fit-page__reason">
-                        <Sparkles size={16} />
-                        {fallbackUsed ? "Available project" : matchReason} · {formatPrice(item.price, false)}
+                <>
+                  <div className="row list-img-sec">
+                    {properties.map((item) => (
+                      <div className="col-xl-12 col-sm-12" key={item.id}>
+                        <div className="property-fit-page__result-card">
+                          <div className="property-fit-page__reason">
+                            <Sparkles size={20} />
+                            {fallbackUsed ? "Available project" : matchReason}
+                          </div>
+                          <button
+                            type="button"
+                            className="property-fit-page__view-signal"
+                            onClick={(event) => handlePropertyView(item, event)}
+                          >
+                            Mark viewed and notify agent
+                          </button>
+                          <div onClick={() => handlePropertyView(item)}>
+                            <PropertySingleCard item={item} />
+                          </div>
+                        </div>
                       </div>
-                      <button
-                        type="button"
-                        className="property-fit-page__view-signal"
-                        onClick={(event) => handlePropertyView(item, event)}
-                      >
-                        Mark viewed and notify agent
-                      </button>
-                      <div onClick={() => handlePropertyView(item)}>
-                        <PropertySingleCard item={item} />
-                      </div>
-                    </div>
-                  ))}
-                </div>
+                    ))}
+                  </div>
+
+                  <div className="property-fit-page__brief property-fit-page__brief--bottom">
+                    <p>Search brief</p>
+                    <span>
+                      Goal <strong>{formatBriefValue(storedResults?.answers.intent)}</strong>
+                    </span>
+                    <span>
+                      Location{" "}
+                      <strong>{storedResults?.answers.location || "Not set"}</strong>
+                    </span>
+                    <span>
+                      Budget{" "}
+                      <strong>
+                        {storedResults?.answers.budgetAmount
+                          ? formatPrice(Number(storedResults.answers.budgetAmount), false)
+                          : storedResults?.answers.budgetRange || "Not set"}
+                      </strong>
+                    </span>
+                    <span>
+                      Rooms{" "}
+                      <strong>{storedResults?.answers.bedrooms || "Not set"}</strong>
+                    </span>
+                  </div>
+                </>
               )}
             </>
           )}

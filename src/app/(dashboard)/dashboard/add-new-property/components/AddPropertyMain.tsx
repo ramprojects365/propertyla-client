@@ -48,8 +48,8 @@ const AMENITY_GROUPS = {
 const normalizeListingType = (value: any): string => {
   const v = String(value || "").trim().toLowerCase();
 
-  if (v.includes("rent")) return "rent";
-  if (v.includes("sale") || v.includes("sell")) return "sale";
+  if (v.includes("rent")) return "Rent";
+  if (v.includes("sale") || v.includes("sell")) return "Sale";
 
   return "";
 };

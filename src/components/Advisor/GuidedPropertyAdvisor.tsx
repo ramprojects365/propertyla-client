@@ -7,7 +7,6 @@ import {
   ArrowLeft,
   ArrowRight,
   BedDouble,
-  Bot,
   Check,
   Home,
   Loader2,
@@ -49,7 +48,7 @@ const initialAnswers: AdvisorAnswers = {
 };
 
 const initialContact: AdvisorContact = {
-  name: "",
+  name: `Property seeker ${Math.floor(1000 + Math.random() * 9000)}`,
   phone: "",
   email: "",
 };
@@ -63,45 +62,44 @@ const steps: Array<{
 }> = [
   {
     key: "intent",
-    eyebrow: "Start with your goal",
-    question: "Are you looking to rent or buy?",
-    helper:
-      "This helps us tune the recommendations around monthly comfort or purchase budget.",
+    eyebrow: "Start",
+    question: "What are you looking for?",
+    helper: "",
     icon: Home,
   },
   {
     key: "location",
-    eyebrow: "Preferred location",
-    question: "Which location should we search?",
-    helper: "Type a city, township, area, or project name.",
+    eyebrow: "Area",
+    question: "Where should we look?",
+    helper: "",
     icon: MapPin,
   },
   {
     key: "budgetAmount",
-    eyebrow: "Price comfort",
-    question: "What is your max price?",
-    helper: "For rent, enter monthly budget. For buy, enter purchase budget.",
+    eyebrow: "Budget",
+    question: "Max price?",
+    helper: "",
     icon: Wallet,
   },
   {
     key: "bedrooms",
-    eyebrow: "Space needs",
-    question: "How many rooms do you need?",
-    helper: "Enter the minimum bedroom count you want.",
+    eyebrow: "Rooms",
+    question: "How many rooms?",
+    helper: "",
     icon: BedDouble,
   },
   {
     key: "contact",
-    eyebrow: "Save your search",
-    question: "Where should we send better matches?",
+    eyebrow: "Optional",
+    question: "Want help from an agent?",
     helper:
-      "We will save your lead and notify matching agents when your property fit is ready.",
+      "Add email or phone if you want us to connect you with better matches.",
     icon: Phone,
   },
 ];
 
 const options: Partial<Record<AdvisorStep, string[]>> = {
-  intent: ["buy", "rent"],
+  intent: ["Buy", "Rent"],
 };
 
 const answerLabels: Record<AdvisorStep, string> = {
@@ -138,10 +136,6 @@ const inputConfig: Partial<Record<AdvisorStep, {
 const locationSuggestions: AdvisorSuggestion[] = [
   { label: "Kuala Lumpur", value: "Kuala Lumpur" },
   { label: "Selangor", value: "Selangor" },
-  { label: "KL Sentral", value: "KL Sentral" },
-  { label: "Kota Damansara", value: "Kota Damansara" },
-  { label: "Cheras", value: "Cheras" },
-  { label: "Puchong", value: "Puchong" },
   { label: "Other", value: "", custom: true },
 ];
 
@@ -162,6 +156,7 @@ const buyBudgetSuggestions: AdvisorSuggestion[] = [
 ];
 
 const bedroomSuggestions: AdvisorSuggestion[] = [
+  { label: "Studio", value: "0" },
   { label: "1 room", value: "1" },
   { label: "2 rooms", value: "2" },
   { label: "3 rooms", value: "3" },
@@ -182,6 +177,13 @@ const getInputSuggestions = (
   return [];
 };
 
+const formatSummaryValue = (key: AdvisorStep, value: string): string => {
+  if (!value) return "Not selected yet";
+  if (key === "intent") return value.charAt(0).toUpperCase() + value.slice(1);
+  if (key === "bedrooms" && value === "0") return "Studio";
+  return value;
+};
+
 interface GuidedPropertyAdvisorProps {
   popupMode?: boolean;
   onCancel?: () => void;
@@ -198,6 +200,7 @@ export default function GuidedPropertyAdvisor({
   const [loading, setLoading] = useState(false);
   const [leadLoading, setLeadLoading] = useState(false);
   const [leadMessage, setLeadMessage] = useState("");
+  const [defaultPassword, setDefaultPassword] = useState("");
   const [showReminder, setShowReminder] = useState(false);
   const customInputRef = useRef<HTMLInputElement>(null);
 
@@ -206,14 +209,18 @@ export default function GuidedPropertyAdvisor({
   const completedCount = Object.values(answers).filter(Boolean).length;
   const contactCompleted = Boolean(contact.phone || contact.email);
   const flowCompletedCount = completedCount + (contactCompleted ? 1 : 0);
-  const autoRegisterReady = Boolean(contact.name && contact.phone && contact.email);
+  const requiredAnswerCount = steps.filter((item) =>
+    isAdvisorAnswerStep(item.key),
+  ).length;
+  const canFindMatches = completedCount >= requiredAnswerCount;
+  const autoRegisterReady = Boolean(contact.email);
   const answerStep = isAdvisorAnswerStep(step.key) ? step.key : null;
   const currentInput = answerStep ? inputConfig[answerStep] : undefined;
   const inputSuggestions = answerStep
     ? getInputSuggestions(answerStep, answers.intent)
     : [];
   const canContinue =
-    step.key === "contact" ? contactCompleted : Boolean(answerStep && answers[answerStep]);
+    step.key === "contact" ? true : Boolean(answerStep && answers[answerStep]);
   const isLastStep = currentStep === steps.length - 1;
   const StepIcon = step.icon;
 
@@ -256,7 +263,7 @@ export default function GuidedPropertyAdvisor({
   const selectAnswer = (key: AdvisorStep, value: string) => {
     setAnswers((current) => ({
       ...current,
-      [key]: value,
+      [key]: key === "intent" ? value.toLowerCase() : value,
     }));
   };
 
@@ -291,32 +298,32 @@ export default function GuidedPropertyAdvisor({
   };
 
   const createLeadLogin = async () => {
-    if (!autoRegisterReady) return true;
+    if (!autoRegisterReady) return { ok: true, password: "" };
 
     setLeadLoading(true);
     setLeadMessage("");
+    setDefaultPassword("");
 
     try {
       const response = await createOrLoginPropertyFitLead(contact);
       const loggedIn = saveAuthFromResponse(response);
+      const password = response?.data?.defaultPassword || response?.defaultPassword || "";
+      const existingEmailIgnored =
+        response?.data?.existingEmailIgnored || response?.existingEmailIgnored;
+      if (password) setDefaultPassword(password);
       setLeadMessage(
-        loggedIn
-          ? "You are logged in with a default PropertyLa lead account."
-          : "Lead saved. Please sign in if this email already has an account.",
+        existingEmailIgnored
+          ? "Welcome back. We sent a sign-in reminder to your email."
+          : loggedIn
+            ? "Saved. We emailed this password so you can sign in later."
+            : "Saved. We will continue without asking you to register.",
       );
-      return true;
+      return { ok: true, password };
     } catch (error: any) {
       const status = error?.response?.status;
       const serverMessage = error?.response?.data?.message;
       const endpointMissing = status === 404;
       const networkError = !error?.response;
-
-      if (status === 409) {
-        setLeadMessage(
-          "This email already has an account. We will continue to results; sign in later to manage the account.",
-        );
-        return true;
-      }
 
       setLeadMessage(
         serverMessage ||
@@ -326,7 +333,7 @@ export default function GuidedPropertyAdvisor({
               ? "Auto-login backend is not reachable. Please make sure the backend is running."
               : "We could not auto-login right now. Please try again."),
       );
-      return false;
+      return { ok: false, password: "" };
     } finally {
       setLeadLoading(false);
     }
@@ -337,16 +344,18 @@ export default function GuidedPropertyAdvisor({
 
     if (step.key === "contact") {
       const leadReady = await createLeadLogin();
-      if (!leadReady) return;
+      if (!leadReady.ok) return;
     }
 
     setCurrentStep((index) => Math.min(index + 1, steps.length - 1));
   };
 
   const handleFindMatches = async () => {
+    let createdPassword = defaultPassword;
     if (autoRegisterReady && !localStorage.getItem("authToken")) {
       const leadReady = await createLeadLogin();
-      if (!leadReady) return;
+      if (!leadReady.ok) return;
+      createdPassword = leadReady.password || createdPassword;
     }
 
     setLoading(true);
@@ -358,8 +367,12 @@ export default function GuidedPropertyAdvisor({
         ADVISOR_RESULTS_KEY,
         JSON.stringify({
           answers,
-          contact,
+          contact: {
+            ...contact,
+            name: contact.name || initialContact.name,
+          },
           autoRegisterReady,
+          defaultPassword: createdPassword,
           createdAt: new Date().toISOString(),
         }),
       );
@@ -383,37 +396,39 @@ export default function GuidedPropertyAdvisor({
 
       <section className="guided-advisor__intro">
         <span className="guided-advisor__badge">
-          <Sparkles size={16} />
-          {popupMode ? "AI property match assistant" : "AI-style Guided Property Advisor"}
+          <Sparkles size={14} />
+          {popupMode ? "Property helper" : "Guided Property Advisor"}
         </span>
         <h1>
           {popupMode
-            ? "Tell us what you need. We will shape the match."
+            ? "Find a better match."
             : "Let PropertyLa guide you to a better-fit home."}
         </h1>
-        <p>
-          {popupMode
-            ? "Pick the closest answer or type your own. The assistant will use your budget, rooms, and area to shortlist better properties."
-            : "A warmer, step-by-step experience that feels like a property concierge, not another basic search form."}
-        </p>
-        <div className="guided-advisor__ai-strip">
-          <span>
-            <Bot size={16} /> Smart brief
-          </span>
-          <span>
-            <WandSparkles size={16} /> Match reasons
-          </span>
-          <span>
-            <MessageCircle size={16} /> Agent fallback
-          </span>
-        </div>
+        {!popupMode && (
+          <>
+            <p>
+              A warmer, step-by-step experience that feels like a property concierge, not another basic search form.
+            </p>
+            <div className="guided-advisor__ai-strip">
+              <span>
+                <WandSparkles size={16} /> Smart brief
+              </span>
+              <span>
+                <WandSparkles size={16} /> Match reasons
+              </span>
+              <span>
+                <MessageCircle size={16} /> Agent fallback
+              </span>
+            </div>
+          </>
+        )}
       </section>
 
       <section className="guided-advisor__app">
         <div className="guided-advisor__progress">
           <div>
             <strong>{progress}%</strong>
-            <span>{flowCompletedCount} of {steps.length} answers selected</span>
+            <span>{completedCount}/{requiredAnswerCount} done</span>
           </div>
           <i>
             <b style={{ width: `${progress}%` }} />
@@ -421,23 +436,17 @@ export default function GuidedPropertyAdvisor({
         </div>
 
         <div className="guided-advisor__question">
-          <div className="guided-advisor__assistant-bubble">
-            <span>
-              <Bot size={18} />
-            </span>
-            <p>
-              {currentStep === 0 &&
-                "Great, let us shape your search from the goal first."}
-              {currentStep === 1 &&
-                "Now I will use your typed location to search real listings."}
-              {currentStep === 2 &&
-                "Your own price number keeps the results realistic for rent or buy."}
-              {step.key === "contact" &&
-                "Before I show matches, I can keep this search ready for follow-up."}
-              {step.key === "bedrooms" &&
-                "Last step. Space needs can change the whole shortlist."}
-            </p>
-          </div>
+          {!popupMode && (
+            <div className="guided-advisor__assistant-bubble">
+              <p>
+                {currentStep === 0 && "Start with the basics. We will narrow it down step by step."}
+                {currentStep === 1 && "Choose a common area or type another location."}
+                {currentStep === 2 && "Use the closest price, or type your own."}
+                {step.key === "contact" && "This is optional. It only helps us connect you with a suitable agent."}
+                {step.key === "bedrooms" && "One more answer, then we can show matches."}
+              </p>
+            </div>
+          )}
 
           <div className="guided-advisor__question-head">
             <span>
@@ -446,28 +455,14 @@ export default function GuidedPropertyAdvisor({
             <div>
               <p>{step.eyebrow}</p>
               <h2>{step.question}</h2>
-              <small>{step.helper}</small>
+              {step.helper && <small>{step.helper}</small>}
             </div>
           </div>
 
           {!answerStep ? (
             <div className="guided-advisor__contact-form">
               <label>
-                Name
-                <input
-                  type="text"
-                  value={contact.name}
-                  onChange={(event) =>
-                    setContact((current) => ({
-                      ...current,
-                      name: event.target.value,
-                    }))
-                  }
-                  placeholder="Your name"
-                />
-              </label>
-              <label>
-                Phone
+                Phone optional
                 <input
                   type="tel"
                   value={contact.phone}
@@ -481,7 +476,7 @@ export default function GuidedPropertyAdvisor({
                 />
               </label>
               <label>
-                Email
+                Email optional
                 <input
                   type="email"
                   value={contact.email}
@@ -495,10 +490,13 @@ export default function GuidedPropertyAdvisor({
                 />
               </label>
               <p>
-                {autoRegisterReady
-                  ? "Name, phone, and email will create a default lead account and log you in."
-                  : "Add name, phone, and email to auto-register and log in."}
+                We use this only to help connect you with better matches. You can skip it.
               </p>
+              {defaultPassword && (
+                <p className="guided-advisor__password-note">
+                  Your sign-in password: <strong>{defaultPassword}</strong>
+                </p>
+              )}
               {leadMessage && (
                 <p className="guided-advisor__lead-message">{leadMessage}</p>
               )}
@@ -560,11 +558,17 @@ export default function GuidedPropertyAdvisor({
                 <button
                   key={option}
                   type="button"
-                  className={answers[answerStep] === option ? "is-selected" : ""}
+                  className={
+                    answers[answerStep] === option.toLowerCase()
+                      ? "is-selected"
+                      : ""
+                  }
                   onClick={() => selectAnswerAndContinue(answerStep, option)}
                 >
                   <span>{option}</span>
-                  {answers[answerStep] === option && <Check size={18} />}
+                  {answers[answerStep] === option.toLowerCase() && (
+                    <Check size={18} />
+                  )}
                 </button>
               ))}
             </div>
@@ -594,7 +598,7 @@ export default function GuidedPropertyAdvisor({
                 type="button"
                 className="primary"
                 onClick={handleFindMatches}
-                disabled={flowCompletedCount < steps.length || loading}
+                disabled={!canFindMatches || loading}
               >
                 {loading ? (
                   <Loader2 className="guided-advisor__spin" size={16} />
@@ -610,7 +614,7 @@ export default function GuidedPropertyAdvisor({
         <aside className="guided-advisor__summary">
           <div className="guided-advisor__score-ring">
             <span>{flowCompletedCount}/{steps.length}</span>
-            <small>Brief strength</small>
+              <small>Brief strength</small>
           </div>
           <h3>Your search brief</h3>
           {steps.map((item) => (
@@ -629,12 +633,12 @@ export default function GuidedPropertyAdvisor({
               <span>{isAdvisorAnswerStep(item.key) ? answerLabels[item.key] : "Contact"}</span>
               <strong>
                 {isAdvisorAnswerStep(item.key)
-                  ? answers[item.key] || "Not selected yet"
+                  ? formatSummaryValue(item.key, answers[item.key])
                   : autoRegisterReady
-                    ? "Ready for auto-register"
+                    ? "Can save for later"
                     : contactCompleted
                       ? contact.phone || contact.email
-                      : "Not provided yet"}
+                      : "Skipped"}
               </strong>
             </div>
           ))}
@@ -675,13 +679,13 @@ export default function GuidedPropertyAdvisor({
                   Check projects
                 </div>
               </div>
-              <span>AI-style matching in progress</span>
-              <h2>Preparing your property fit page</h2>
-              <p>Checking your budget, rooms, and preferred location against active PropertyLa projects.</p>
+              <span>Matching in progress</span>
+              <h2>Preparing your matches</h2>
+              <p>Checking your budget, rooms, and location against active PropertyLa projects.</p>
               <div className="guided-advisor__modal-steps">
                 <span>Brief saved</span>
-                <span>Lead ready</span>
-                <span>Agent fallback</span>
+                <span>Projects checked</span>
+                <span>Agent help ready</span>
               </div>
               <div className="guided-advisor__thinking">
                 <span />

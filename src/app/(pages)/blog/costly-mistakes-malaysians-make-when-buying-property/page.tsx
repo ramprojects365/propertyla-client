@@ -4,6 +4,7 @@ import RecentPosts from "@/components/Blog/RecentPosts";
 // Using direct paths for public directory images
 
 export const metadata: Metadata = {
+  metadataBase: new URL("https://www.propertyla.com.my"),
   title:
     "Costly Mistakes Malaysians Make When Buying Property | PropertyLa Malaysia",
   description:
