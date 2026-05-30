@@ -11,6 +11,13 @@ type SearchItem = {
   cityName?: string;
 };
 
+const placeholderExamples = [
+  "Search by property name",
+  "Try Blue Wave Apartments",
+  "Try condo in Selangor",
+  "Try Kuala Lumpur",
+];
+
 export default function HeroBannerTabContent({
   id,
   isActive,
@@ -21,6 +28,7 @@ export default function HeroBannerTabContent({
   const [open, setOpen] = useState(false);
   const [searched, setSearched] = useState(false);
   const [loading, setLoading] = useState(false);
+  const [typedPlaceholder, setTypedPlaceholder] = useState(placeholderExamples[0]);
   const wrapperRef = useRef<HTMLDivElement>(null);
 
   const runSearch = (value: string, city?: string) => {
@@ -112,6 +120,44 @@ export default function HeroBannerTabContent({
     return () => document.removeEventListener("mousedown", handler);
   }, []);
 
+  useEffect(() => {
+    let exampleIndex = 0;
+    let charIndex = 0;
+    let deleting = false;
+    let timer: ReturnType<typeof setTimeout>;
+
+    const tick = () => {
+      const example = placeholderExamples[exampleIndex];
+      const nextText = example.slice(0, charIndex);
+      setTypedPlaceholder(nextText || " ");
+
+      if (!deleting && charIndex < example.length) {
+        charIndex += 1;
+        timer = setTimeout(tick, 65);
+        return;
+      }
+
+      if (!deleting) {
+        deleting = true;
+        timer = setTimeout(tick, 1400);
+        return;
+      }
+
+      if (deleting && charIndex > 0) {
+        charIndex -= 1;
+        timer = setTimeout(tick, 32);
+        return;
+      }
+
+      deleting = false;
+      exampleIndex = (exampleIndex + 1) % placeholderExamples.length;
+      timer = setTimeout(tick, 350);
+    };
+
+    timer = setTimeout(tick, 500);
+    return () => clearTimeout(timer);
+  }, []);
+
   return (
     <div
       className={`tab-pane fade${isActive ? " show active" : ""}`}
@@ -140,7 +186,7 @@ export default function HeroBannerTabContent({
                 setOpen(true);
               }}
               onKeyDown={handleKeyDown}
-              placeholder="Search by property name"
+              placeholder={typedPlaceholder}
               style={{
                 width: "100%",
                 height: "52px",
