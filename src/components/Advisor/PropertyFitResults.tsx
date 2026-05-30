@@ -319,16 +319,20 @@ export default function PropertyFitResults() {
               <div className="property-fit-page__heading">
                 <span>
                   <Sparkles size={15} />
-                  {fallbackUsed
-                    ? "Closest options"
-                    : apiUsed
-                      ? "Best fit"
-                      : "Finding options"}
+                  {properties.length === 0
+                    ? "Search received"
+                    : fallbackUsed
+                      ? "Closest options"
+                      : apiUsed
+                        ? "Best fit"
+                        : "Finding options"}
                 </span>
                 <h2>
-                  {fallbackUsed
-                    ? `${properties.length} options to explore`
-                    : `${properties.length} good ${properties.length === 1 ? "option" : "options"}`}
+                  {properties.length === 0
+                    ? "We are checking for you"
+                    : fallbackUsed
+                      ? `${properties.length} options to explore`
+                      : `${properties.length} good ${properties.length === 1 ? "option" : "options"}`}
                 </h2>
                 {/* <p>
                   {fallbackUsed
@@ -348,8 +352,8 @@ export default function PropertyFitResults() {
               {!loading && properties.length === 0 && (
                 <div className="property-fit-page__empty property-fit-page__empty--dark">
                   <Clock3 size={32} />
-                  <h2>No exact match yet</h2>
-                  <p>Our agent will reach out when a suitable option is available.</p>
+                  <h2>No exact match right now</h2>
+                  <p>We will notify you when a suitable option is available.</p>
                 </div>
               )}
 
