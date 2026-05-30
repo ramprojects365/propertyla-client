@@ -40,7 +40,22 @@ export const signInSchema = yup.object().shape({
 
 //Forgot form validation schema
 export const forgotSchema = yup.object().shape({
-  email: yup.string().required("Enter email"),
+  email: yup.string().required("Enter email").email("Invalid email format"),
+});
+
+export const resetPasswordSchema = yup.object().shape({
+  password: yup
+    .string()
+    .required("Enter password")
+    .min(8, "Password must be at least 8 characters")
+    .matches(
+      /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)/,
+      "Password must contain uppercase, lowercase and number",
+    ),
+  confirmPassword: yup
+    .string()
+    .required("Please confirm your password")
+    .oneOf([yup.ref("password")], "Passwords do not match"),
 });
 
 //Verify form validation schema

@@ -1,5 +1,3 @@
-import aboutImg1 from "../../../public/assets/img/about/home-5/about-5-1.jpg";
-import aboutImg2 from "../../../public/assets/img/about/home-5/about-5-2.jpg";
 import aboutIcon1 from "../../../public/assets/img/about/home-5/about-5-icon-1.svg";
 import aboutIcon2 from "../../../public/assets/img/about/home-5/about-5-icon-2.svg";
 import Image from "next/image";
@@ -10,24 +8,7 @@ export default function ReusableAboutArea() {
     <section className="tp-about-5-ptb fix pt-130 pb-120">
       <div className="container">
         <div className="row">
-          <div className="col-lg-6">
-            <div
-              className="tp-about-5-thumb p-relative wow fadeInLeft"
-              data-wow-duration="1s"
-              data-wow-delay=".3s"
-            >
-              <Image src={aboutImg1} alt="About Image" loading="lazy" />
-              <div className="tp-about-5-img image-anime">
-                <Image
-                  style={{ width: "100%", height: "auto" }}
-                  src={aboutImg2}
-                  alt="About Image"
-                  loading="lazy"
-                />
-              </div>
-            </div>
-          </div>
-          <div className="col-lg-6">
+          <div className="col-lg-12">
             <div
               className="tp-about-5-wrapper wow fadeInRight"
               data-wow-duration="1s"
@@ -67,7 +48,7 @@ export default function ReusableAboutArea() {
                   </div>
                 ))}
               </div>
-              <div className="tp-about-btn d-flex">
+              {/* <div className="tp-about-btn d-flex">
                 {[
                   { href: "/about", text: "About More" },
                   {
@@ -87,7 +68,7 @@ export default function ReusableAboutArea() {
                     </span>
                   </Link>
                 ))}
-              </div>
+              </div> */}
             </div>
           </div>
         </div>

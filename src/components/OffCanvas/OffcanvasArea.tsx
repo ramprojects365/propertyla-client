@@ -8,6 +8,8 @@ import { requireAuth } from "@/utils/auth";
 
 export default function OffcanvasArea() {
   const { openOffcanvas, toggleOffcanvas } = useGlobalContext();
+  const mapUrl =
+    "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d4902.030604269124!2d101.68526107497111!3d3.1283924968470944!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x31cc49eb996ef441%3A0x6de34fcd050ef0db!2s86%2C%20Jalan%20Berhala%2C%20Brickfields%2C%2050470%20Kuala%20Lumpur%2C%20Wilayah%20Persekutuan%20Kuala%20Lumpur!5e1!3m2!1sen!2smy!4v1780136583896!5m2!1sen!2smy";
 
   const handlePostPropertyClick = () => {
     const isAuthenticated = requireAuth("/dashboard/add-new-property");
@@ -122,8 +124,8 @@ export default function OffcanvasArea() {
                   <i className="fa-sharp fa-solid fa-location-dot"></i>
                 </div>
                 <div className="offcanvas__contact-content-content">
-                  <Link href="https://www.google.com/maps/search/86+Road+Broklyn+Street,+600+New+York,+USA/@40.6897806,-74.0278086,12z/data=!3m1!4b1">
-                    86 Jalan Berhla, Brickfields{" "}
+                  <Link href={mapUrl}>
+                    86 Jalan Berhala, Brickfields{" "}
                   </Link>
                 </div>
               </div>

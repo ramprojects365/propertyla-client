@@ -5,28 +5,16 @@ import Link from "next/link";
 
 const contactLocations: ContactLocation[] = [
   {
-    title: "London",
+    title: "Kuala Lumpur",
     address: (
       <>
         <p>
-          401 Broadway, 24th floor, <br /> Orchard view, London, UK
+          PropertyLa Malaysia, <br /> Kuala Lumpur City Centre
         </p>
       </>
     ),
-    phone: "+999 325 654 8596",
-    email: "Property-La@gmail.com",
-  },
-  {
-    title: "Dubai",
-    address: (
-      <>
-        <p>
-          Dubai Investment Park 23 <br /> Abu Shagara, Sharjah
-        </p>
-      </>
-    ),
-    phone: "+999 325 654 8596",
-    email: "Property-La@gmail.com",
+    phone: "+60 11 2114 9066",
+    email: "support@propertyla.com.my",
   },
 ];
 
@@ -37,11 +25,9 @@ export default function ContactAreaTwo() {
         <div className="row">
           <div className="col-lg-6">
             <div className="tp-contact-inner-heading mb-30">
-              <span className="tp-section-title-pre">
-                FEEL FREE TO CONTACT WITH US
-              </span>
+              <span className="tp-section-title-pre">CONTACT PROPERTYLA</span>
               <h3 className="tp-section-title">
-                Contact us we are <br /> around the world.
+                Talk to our <br /> Malaysia team.
               </h3>
             </div>
           </div>
