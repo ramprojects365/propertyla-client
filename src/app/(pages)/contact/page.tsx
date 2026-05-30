@@ -3,6 +3,7 @@ import ContactAreaTwo from "@/components/Contact/ContactAreaTwo";
 import ContactFormTwo from "@/components/Form/ContactFormTwo";
 import MapArea from "@/components/Contact/MapArea";
 import { Metadata } from "next";
+import "./contact-page.scss";
 
 export const metadata: Metadata = {
   title: "Contact PropertyLa | Malaysia Real Estate Agents & Property Services",
@@ -12,7 +13,7 @@ export const metadata: Metadata = {
 
 export default function Contact() {
   return (
-    <>
+    <main className="contact-page">
       {/* breadcrumb area start */}
       <BreadcrumbArea title="Contact us" />
       {/* breadcrumb area end */}
@@ -35,7 +36,7 @@ export default function Contact() {
             <div className="col-lg-12">
               <div className="tp-contact-inner-wrap">
                 <h4 className="tp-contact-inner-wrap-title">
-                  {`Let’s`} talk. Have a project in mind?
+                  Let&apos;s talk. Need help with a property?
                 </h4>
                 <ContactFormTwo />
               </div>
@@ -43,6 +44,6 @@ export default function Contact() {
           </div>
         </div>
       </section>
-    </>
+    </main>
   );
 }

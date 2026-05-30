@@ -4,6 +4,7 @@ import AboutHomeFive from "@/components/About/ReusableAboutArea";
 import AboutPointArea from "@/components/About/AboutPointArea";
 import ContactArea from "@/components/Contact/ContactArea";
 import { Metadata } from "next";
+import "./about-page.scss";
 
 export const metadata: Metadata = {
   title:
@@ -14,7 +15,7 @@ export const metadata: Metadata = {
 
 export default function About() {
   return (
-    <>
+    <main className="about-page">
       {/* about area */}
       <AboutHomeFive />
       {/* about area end */}
@@ -30,6 +31,6 @@ export default function About() {
       {/* contact area */}
       <ContactArea btnClass="tp-countact-btn" />
       {/* contact area end */}
-    </>
+    </main>
   );
 }

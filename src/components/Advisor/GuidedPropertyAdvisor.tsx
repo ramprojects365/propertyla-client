@@ -159,7 +159,7 @@ const bedroomSuggestions: AdvisorSuggestion[] = [
   { label: "1 room", value: "1" },
   { label: "2 rooms", value: "2" },
   { label: "3 rooms", value: "3" },
-  { label: "4+ rooms", value: "4" },
+  // { label: "4+ rooms", value: "4" },
   { label: "Other", value: "", custom: true },
 ];
 
@@ -667,24 +667,24 @@ export default function GuidedPropertyAdvisor({
             <div className="guided-advisor__modal-loading">
               <div className="guided-advisor__modal-visual">
                 <div className="guided-advisor__modal-orbit">
-                  <Loader2 className="guided-advisor__spin" size={34} />
+                  <WandSparkles size={34} />
                 </div>
                 <div className="guided-advisor__modal-card guided-advisor__modal-card--one">
                   <Home size={15} />
-                  Match brief
+                  Reading brief
                 </div>
                 <div className="guided-advisor__modal-card guided-advisor__modal-card--two">
                   <MapPin size={15} />
-                  Check projects
+                  Checking projects
                 </div>
               </div>
-              <span>Matching in progress</span>
-              <h2>Preparing your matches</h2>
-              <p>Checking your budget, rooms, and location against active PropertyLa projects.</p>
+              <span>AI match check</span>
+              <h2>Checking your best fit</h2>
+              <p>Scanning your location, budget, and rooms against live PropertyLa projects.</p>
               <div className="guided-advisor__modal-steps">
-                <span>Brief saved</span>
-                <span>Projects checked</span>
-                <span>Agent help ready</span>
+                <span>Brief understood</span>
+                <span>Database scan</span>
+                <span>Results next</span>
               </div>
               <div className="guided-advisor__thinking">
                 <span />

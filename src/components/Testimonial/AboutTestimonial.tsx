@@ -3,7 +3,6 @@ import Link from "next/link";
 import { testimonial_three_data } from "@/data/testimonialData";
 import AboutTestimonialItem from "./subComponents/AboutTestimonialItem";
 
-// Import Swiper components module
 import { Swiper, SwiperSlide } from "swiper/react";
 
 export default function AboutTestimonial() {
@@ -34,9 +33,9 @@ export default function AboutTestimonial() {
                     "0": { slidesPerView: 1 },
                   }}
                 >
-                  {testimonial_three_data.map((testimonial, index) => (
+                  {testimonial_three_data.map((testimonial) => (
                     <SwiperSlide key={testimonial.id}>
-                      <AboutTestimonialItem key={index} {...testimonial} />
+                      <AboutTestimonialItem {...testimonial} />
                     </SwiperSlide>
                   ))}
                 </Swiper>
@@ -46,8 +45,8 @@ export default function AboutTestimonial() {
           <div className="col-lg-12">
             <div className="tp-testimonial-about-btn text-center">
               <span>
-                Let’s make something great work together.{" "}
-                <Link href="/property-details">Got a project in mind?</Link>
+                Ready to find a better property match?{" "}
+                <Link href="/property-advisor">Try the property advisor</Link>
               </span>
             </div>
           </div>
