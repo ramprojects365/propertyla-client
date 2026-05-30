@@ -20,12 +20,33 @@ interface ApiProperty {
   imageUrl?: string;
   listingType?: string;
   address?: string;
+  location?: string;
+  streetName?: string;
   bedrooms?: number;
   bathrooms?: number;
   livingArea?: number;
+  buildupArea?: number;
   cityName?: string;
+  state?: string;
   stateName?: string;
 }
+
+const buildPropertyAddress = (property: ApiProperty): string => {
+  const addressParts = [
+    property.streetName,
+    property.cityName,
+    property.state || property.stateName,
+  ]
+    .map((part) => part?.trim())
+    .filter(Boolean);
+
+  return (
+    property.address?.trim() ||
+    property.location?.trim() ||
+    addressParts.join(", ") ||
+    "Address not available"
+  );
+};
 
 export default function DashboardProperty() {
   const [properties, setProperties] = useState<IFeaturedPropertyDT[]>([]);
@@ -85,15 +106,15 @@ export default function DashboardProperty() {
             return {
               id: property.id || String(index + 1),
               title: title,
-              address: property.address || "Address not available",
+              address: buildPropertyAddress(property),
               image: image,
               price: price,
               quantity: 1,
               bedrooms: String(property.bedrooms || 0),
               bathrooms: String(property.bathrooms || 0),
-              livingArea: String(property.livingArea || 0),
+              livingArea: String(property.livingArea || property.buildupArea || 0),
               city: property.cityName || "",
-              state: property.stateName || "",
+              state: property.state || property.stateName || "",
               isForRent: property.listingType === "rent",
               isForSale: property.listingType === "sale",
               showTags: true,

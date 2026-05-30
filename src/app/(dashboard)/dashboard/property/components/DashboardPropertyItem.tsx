@@ -110,7 +110,7 @@ export default function DashboardPropertyItem({ property, onDelete }: IProps) {
               <span>
                 <LivingSvg />
               </span>
-              <p>1</p>
+              <p>{property.livingArea}</p>
             </div>
             <p>Living Area</p>
           </div>
