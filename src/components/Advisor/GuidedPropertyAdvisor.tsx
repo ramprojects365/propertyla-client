@@ -35,6 +35,7 @@ type AdvisorSuggestion = {
   value: string;
   custom?: boolean;
 };
+type ContactErrors = Partial<Record<"phone" | "email", string>>;
 
 const isAdvisorAnswerStep = (key: AdvisorFlowStep): key is AdvisorStep =>
   key !== "contact";
@@ -159,7 +160,6 @@ const bedroomSuggestions: AdvisorSuggestion[] = [
   { label: "1 room", value: "1" },
   { label: "2 rooms", value: "2" },
   { label: "3 rooms", value: "3" },
-  { label: "4+ rooms", value: "4" },
   { label: "Other", value: "", custom: true },
 ];
 
@@ -183,6 +183,25 @@ const formatSummaryValue = (key: AdvisorStep, value: string): string => {
   return value;
 };
 
+const validateContact = (contact: AdvisorContact): ContactErrors => {
+  const errors: ContactErrors = {};
+  const email = contact.email.trim();
+  const phone = contact.phone.trim();
+
+  if (email && !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
+    errors.email = "Enter a valid email address.";
+  }
+
+  if (phone) {
+    const digits = phone.replace(/\D/g, "");
+    if (digits.length < 9 || digits.length > 15) {
+      errors.phone = "Enter a valid phone number.";
+    }
+  }
+
+  return errors;
+};
+
 interface GuidedPropertyAdvisorProps {
   popupMode?: boolean;
   onCancel?: () => void;
@@ -200,6 +219,7 @@ export default function GuidedPropertyAdvisor({
   const [leadLoading, setLeadLoading] = useState(false);
   const [leadMessage, setLeadMessage] = useState("");
   const [defaultPassword, setDefaultPassword] = useState("");
+  const [contactErrors, setContactErrors] = useState<ContactErrors>({});
   const [showReminder, setShowReminder] = useState(false);
   const customInputRef = useRef<HTMLInputElement>(null);
 
@@ -297,6 +317,12 @@ export default function GuidedPropertyAdvisor({
   };
 
   const createLeadLogin = async () => {
+    const validationErrors = validateContact(contact);
+    setContactErrors(validationErrors);
+    if (Object.keys(validationErrors).length > 0) {
+      return { ok: false, password: "" };
+    }
+
     if (!autoRegisterReady) return { ok: true, password: "" };
 
     setLeadLoading(true);
@@ -342,6 +368,10 @@ export default function GuidedPropertyAdvisor({
     if (!canContinue) return;
 
     if (step.key === "contact") {
+      const validationErrors = validateContact(contact);
+      setContactErrors(validationErrors);
+      if (Object.keys(validationErrors).length > 0) return;
+
       const leadReady = await createLeadLogin();
       if (!leadReady.ok) return;
     }
@@ -350,6 +380,10 @@ export default function GuidedPropertyAdvisor({
   };
 
   const handleFindMatches = async () => {
+    const validationErrors = validateContact(contact);
+    setContactErrors(validationErrors);
+    if (Object.keys(validationErrors).length > 0) return;
+
     let createdPassword = defaultPassword;
     if (autoRegisterReady && !localStorage.getItem("authToken")) {
       const leadReady = await createLeadLogin();
@@ -441,7 +475,7 @@ export default function GuidedPropertyAdvisor({
                 {currentStep === 0 && "Start with the basics. We will narrow it down step by step."}
                 {currentStep === 1 && "Choose a common area or type another location."}
                 {currentStep === 2 && "Use the closest price, or type your own."}
-                {step.key === "contact" && "This is optional. It only helps us connect you with a suitable agent."}
+                {step.key === "contact" && "Share one contact so we can send better options if the match is not exact."}
                 {step.key === "bedrooms" && "One more answer, then we can show matches."}
               </p>
             </div>
@@ -466,13 +500,33 @@ export default function GuidedPropertyAdvisor({
                   type="tel"
                   value={contact.phone}
                   onChange={(event) =>
-                    setContact((current) => ({
-                      ...current,
-                      phone: event.target.value,
-                    }))
+                    {
+                      setContact((current) => ({
+                        ...current,
+                        phone: event.target.value,
+                      }));
+                      setContactErrors((current) => ({
+                        ...current,
+                        phone: undefined,
+                      }));
+                    }
                   }
+                  onFocus={() => {
+                    if (!contact.phone.trim()) {
+                      setContact((current) => ({
+                        ...current,
+                        phone: "+6",
+                      }));
+                    }
+                  }}
                   placeholder="+60"
+                  aria-invalid={Boolean(contactErrors.phone)}
                 />
+                {contactErrors.phone && (
+                  <small className="guided-advisor__field-error">
+                    {contactErrors.phone}
+                  </small>
+                )}
               </label>
               <label>
                 Email
@@ -480,16 +534,28 @@ export default function GuidedPropertyAdvisor({
                   type="email"
                   value={contact.email}
                   onChange={(event) =>
-                    setContact((current) => ({
-                      ...current,
-                      email: event.target.value,
-                    }))
+                    {
+                      setContact((current) => ({
+                        ...current,
+                        email: event.target.value,
+                      }));
+                      setContactErrors((current) => ({
+                        ...current,
+                        email: undefined,
+                      }));
+                    }
                   }
                   placeholder="you@example.com"
+                  aria-invalid={Boolean(contactErrors.email)}
                 />
+                {contactErrors.email && (
+                  <small className="guided-advisor__field-error">
+                    {contactErrors.email}
+                  </small>
+                )}
               </label>
               <p>
-                We use this only to help connect you with better matches. You can skip it.
+                Leave phone or email so a suitable agent can follow up with better options.
               </p>
               {defaultPassword && (
                 <p className="guided-advisor__password-note">

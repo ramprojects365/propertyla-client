@@ -2,7 +2,7 @@
 
 import { MouseEvent, useEffect, useState } from "react";
 import Link from "next/link";
-import { Bell, CheckCircle2, Clock3, Mail, Sparkles, UserPlus } from "lucide-react";
+import { CheckCircle2, Clock3, Sparkles } from "lucide-react";
 import Breadcrumb from "@/components/Breadcrumb/Breadcrumb";
 import PropertySingleCard from "@/components/Common/PropertySingleCard";
 import { formatPrice } from "@/components/Utils/formatPrice";
@@ -318,7 +318,11 @@ export default function PropertyFitResults() {
 
               <div className="property-fit-page__heading">
                 <span>
-                  <Sparkles size={15} />
+                  {properties.length === 0 ? (
+                    <Clock3 size={15} />
+                  ) : (
+                    <CheckCircle2 size={15} />
+                  )}
                   {properties.length === 0
                     ? "Search received"
                     : fallbackUsed
@@ -361,22 +365,24 @@ export default function PropertyFitResults() {
                 <>
                   <div className="row list-img-sec">
                     {properties.map((item) => (
-                      <div className="col-xl-12 col-sm-12" key={item.id}>
-                        <div className="property-fit-page__result-card">
-                          <div className="property-fit-page__reason">
-                            <Sparkles size={20} />
-                            {fallbackUsed ? "Available project" : matchReason}
-                          </div>
-                          <button
-                            type="button"
-                            className="property-fit-page__view-signal"
-                            onClick={(event) => handlePropertyView(item, event)}
-                          >
-                            Mark viewed and notify agent
-                          </button>
-                          <div onClick={() => handlePropertyView(item)}>
-                            <PropertySingleCard item={item} />
-                          </div>
+                      <div
+                        className="col-xl-12 col-sm-12"
+                        key={item.id}
+                        style={{ marginBottom: "15px" }}
+                      >
+                        <div className="property-fit-page__reason">
+                          <CheckCircle2 size={18} />
+                          {fallbackUsed ? "Available project" : matchReason}
+                        </div>
+                        <button
+                          type="button"
+                          className="property-fit-page__view-signal"
+                          onClick={(event) => handlePropertyView(item, event)}
+                        >
+                          Mark viewed and notify agent
+                        </button>
+                        <div onClick={() => handlePropertyView(item)}>
+                          <PropertySingleCard item={item} />
                         </div>
                       </div>
                     ))}
