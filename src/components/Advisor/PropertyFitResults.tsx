@@ -359,9 +359,9 @@ export default function PropertyFitResults() {
 
               {!loading && properties.length > 0 && (
                 <>
-                  <div className="row list-img-sec">
+                  <div className="row list-img-sec property-fit-page__results-grid">
                     {properties.map((item) => (
-                      <div className="col-xl-12 col-sm-12" key={item.id}>
+                      <div className="col-xl-6 col-lg-6 col-sm-12" key={item.id}>
                         <div className="property-fit-page__result-card">
                           <div className="property-fit-page__reason">
                             <Sparkles size={20} />

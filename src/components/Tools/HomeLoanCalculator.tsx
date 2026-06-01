@@ -53,7 +53,11 @@ function calculateLegalFees(amount: number): number {
 const percent = (value: number, min: number, max: number) =>
   `${((value - min) / (max - min)) * 100}%`;
 
-export default function HomeLoanCalculator() {
+export default function HomeLoanCalculator({
+  variant = "page",
+}: {
+  variant?: "page" | "home";
+}) {
   const [projectType, setProjectType] = useState<ProjectType>("new");
   const [propertyPrice, setPropertyPrice] = useState(500_000);
   const [downPaymentPercent, setDownPaymentPercent] = useState(10);
@@ -183,40 +187,56 @@ export default function HomeLoanCalculator() {
   );
 
   return (
-    <main className="home-loan-page">
-      <section className="home-loan-page__hero">
-        <div className="container">
-          <div className="home-loan-page__hero-grid">
-            <div className="home-loan-page__hero-copy">
-              <span>
-                <Banknote size={17} />
-                Home loan planning
-              </span>
-              <h1>Estimate your Malaysia mortgage before you buy.</h1>
-              <p>
-                Check monthly repayments, upfront costs, stamp duty, legal fees,
-                and mortgage insurance in one simple Property Lah calculator.
-              </p>
-            </div>
-            <div className="home-loan-page__hero-note">
-              <CheckCircle2 size={22} />
-              <div>
-                <strong>Buyer-friendly estimate</strong>
+    <main className={`home-loan-page ${variant === "home" ? "home-loan-page--home" : ""}`}>
+      {variant === "page" && (
+        <section className="home-loan-page__hero">
+          <div className="container">
+            <div className="home-loan-page__hero-grid">
+              <div className="home-loan-page__hero-copy">
+                <span>
+                  <Banknote size={17} />
+                  Home loan planning
+                </span>
+                <h1>Estimate your Malaysia mortgage before you buy.</h1>
                 <p>
-                  Use this as a planning guide before speaking with a bank or
-                  property consultant.
+                  Check monthly repayments, upfront costs, stamp duty, legal fees,
+                  and mortgage insurance in one simple Property La calculator.
                 </p>
+              </div>
+              <div className="home-loan-page__hero-note">
+                <CheckCircle2 size={22} />
+                <div>
+                  <strong>Buyer-friendly estimate</strong>
+                  <p>
+                    Use this as a planning guide before speaking with a bank or
+                    property consultant.
+                  </p>
+                </div>
               </div>
             </div>
           </div>
-        </div>
-      </section>
+        </section>
+      )}
 
       <section className="mortgage-calculator" id="mortgage-calculator">
         <div className="container">
           <div className="mortgage-calculator__heading">
-            <h2>Mortgage calculator</h2>
-            <p>Estimate your monthly payments and upfront costs</p>
+            {variant === "home" && (
+              <span>
+                <Banknote size={17} />
+                Home loan planning
+              </span>
+            )}
+            <h2>
+              {variant === "home"
+                ? "Estimate your monthly loan."
+                : "Mortgage calculator"}
+            </h2>
+            <p>
+              {variant === "home"
+                ? "Plan repayments and upfront costs before you enquire."
+                : "Estimate your monthly payments and upfront costs"}
+            </p>
           </div>
 
           <div className="mortgage-calculator__shell">
@@ -410,54 +430,56 @@ export default function HomeLoanCalculator() {
         </div>
       </section>
 
-      <section className="home-loan-page__guide">
-        <div className="container">
-          <div className="home-loan-page__guide-grid">
-            <article>
-              <Calculator size={22} />
-              <h3>How to use it</h3>
-              <p>
-                Adjust the property price, down payment, interest rate, and
-                tenure. The estimate updates immediately so you can compare
-                different budgets before you enquire.
-              </p>
-            </article>
-            <article>
-              <FileText size={22} />
-              <h3>What costs are included</h3>
-              <p>
-                The calculator estimates down payment, MOT stamp duty, SPA legal
-                fees, loan stamp duty, loan legal fees, and optional MRTA or
-                MLTA insurance.
-              </p>
-            </article>
-            <article>
-              <Building2 size={22} />
-              <h3>New project vs subsale</h3>
-              <p>
-                New projects may include developer incentives such as free legal
-                fees or stamp duty. Subsale purchases usually require buyers to
-                budget for more upfront costs.
-              </p>
-            </article>
-            <article>
-              <ShieldCheck size={22} />
-              <h3>Before applying</h3>
-              <p>
-                Final approval depends on bank checks, income, debt service
-                ratio, credit record, property value, and current lending
-                policies.
-              </p>
-            </article>
+      {variant === "page" && (
+        <section className="home-loan-page__guide">
+          <div className="container">
+            <div className="home-loan-page__guide-grid">
+              <article>
+                <Calculator size={22} />
+                <h3>How to use it</h3>
+                <p>
+                  Adjust the property price, down payment, interest rate, and
+                  tenure. The estimate updates immediately so you can compare
+                  different budgets before you enquire.
+                </p>
+              </article>
+              <article>
+                <FileText size={22} />
+                <h3>What costs are included</h3>
+                <p>
+                  The calculator estimates down payment, MOT stamp duty, SPA legal
+                  fees, loan stamp duty, loan legal fees, and optional MRTA or
+                  MLTA insurance.
+                </p>
+              </article>
+              <article>
+                <Building2 size={22} />
+                <h3>New project vs subsale</h3>
+                <p>
+                  New projects may include developer incentives such as free legal
+                  fees or stamp duty. Subsale purchases usually require buyers to
+                  budget for more upfront costs.
+                </p>
+              </article>
+              <article>
+                <ShieldCheck size={22} />
+                <h3>Before applying</h3>
+                <p>
+                  Final approval depends on bank checks, income, debt service
+                  ratio, credit record, property value, and current lending
+                  policies.
+                </p>
+              </article>
+            </div>
+            <p className="home-loan-page__disclaimer">
+              This calculator is for illustration only. Actual rates, legal fees,
+              insurance, stamp duty, and bank offers may differ. Confirm all
+              figures with your bank, lawyer, or licensed adviser before making a
+              purchase decision.
+            </p>
           </div>
-          <p className="home-loan-page__disclaimer">
-            This calculator is for illustration only. Actual rates, legal fees,
-            insurance, stamp duty, and bank offers may differ. Confirm all
-            figures with your bank, lawyer, or licensed adviser before making a
-            purchase decision.
-          </p>
-        </div>
-      </section>
+        </section>
+      )}
     </main>
   );
 }

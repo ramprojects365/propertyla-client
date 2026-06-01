@@ -4,6 +4,7 @@ import HomeBlogArea from "@/components/Blog/HomeBlogArea";
 import HeroBannerOne from "@/components/HeroBanner/HeroBannerOne";
 import HomePropertiesByCity from "@/components/Neighborhood/HomePropertiesByCity";
 import PropertyHome from "@/components/Property/PropertyHome";
+import HomeLoanCalculator from "@/components/Tools/HomeLoanCalculator";
 import TrustBadges from "@/components/UI/TrustBadges";
 import TrustedAgents from "@/components/TrustedAgents/TrustedAgents";
 import React from "react";
@@ -31,8 +32,8 @@ export default function HomeOnePage() {
         <div className="container">
           <div style={{ textAlign: "center" }}>
             <h3
+              className="tp-section-title"
               style={{
-                fontSize: "24px",
                 marginBottom: "30px",
                 color: "#003B5C",
               }}
@@ -43,6 +44,9 @@ export default function HomeOnePage() {
           </div>
         </div>
       </section>
+      <div style={{ backgroundColor: "#fff" }}>
+        <HomeLoanCalculator variant="home" />
+      </div>
     </>
   );
 }

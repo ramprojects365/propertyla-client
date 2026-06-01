@@ -291,35 +291,27 @@ export default function PropertyListing() {
         )}
 
         {!loading && resultCount !== null && resultCount > 0 && (
-          <div
-            style={{
-              background: "#f0f0ff",
-              border: "1px solid #d4d4f5",
-              borderRadius: "8px",
-              padding: "12px 16px",
-              marginBottom: "20px",
-            }}
-          >
-            <p style={{ color: "#3a3a8c", margin: 0 }}>
-              <span style={{ fontWeight: 700 }}>{resultCount}</span>{" "}
+          <div className="search-results-summary">
+            <p>
+              <span>{resultCount}</span>{" "}
               {resultCount === 1 ? "property" : "properties"} found
               {keyword && (
                 <>
                   {" "}
                   for{" "}
-                  <span style={{ fontWeight: 700 }}>&quot;{keyword}&quot;</span>
+                  <strong>&quot;{keyword}&quot;</strong>
                 </>
               )}
               {type && (
                 <>
                   {" "}
-                  · Type: <span style={{ fontWeight: 700 }}>{type}</span>
+                  <em>Type: {type}</em>
                 </>
               )}
               {city && (
                 <>
                   {" "}
-                  · City: <span style={{ fontWeight: 700 }}>{city}</span>
+                  <em>City: {city}</em>
                 </>
               )}
             </p>
@@ -338,7 +330,7 @@ export default function PropertyListing() {
         )}
 
         {!loading && properties.length > 0 && (
-          <div className="row list-img-sec">
+          <div className="row list-img-sec search-results-list">
             {properties.map((item) => (
               <div
                 className="col-xl-12 col-sm-12"

@@ -332,10 +332,22 @@ export default function CostlyMistakesBlog() {
 
                   <div className="tp-blog-details-share">
                     <span>Share:</span>
-                    <Link href="#">Facebook</Link>
-                    <Link href="#">Twitter</Link>
-                    <Link href="#">LinkedIn</Link>
-                    <Link href="#">WhatsApp</Link>
+                    <Link className="share-facebook" href="#">
+                      <i className="fab fa-facebook-f"></i>
+                      Facebook
+                    </Link>
+                    <Link className="share-twitter" href="#">
+                      <i className="fab fa-twitter"></i>
+                      Twitter
+                    </Link>
+                    <Link className="share-linkedin" href="#">
+                      <i className="fab fa-linkedin-in"></i>
+                      LinkedIn
+                    </Link>
+                    <Link className="share-whatsapp" href="#">
+                      <i className="fab fa-whatsapp"></i>
+                      WhatsApp
+                    </Link>
                   </div>
                 </div>
               </div>

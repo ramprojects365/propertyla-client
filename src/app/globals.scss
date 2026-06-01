@@ -156,9 +156,95 @@
   font-size: 30px !important;
 }
 
+.tp-property-details-description {
+  white-space: pre-wrap;
+  overflow-wrap: anywhere;
+  line-height: 1.75;
+}
+
+.sidebar-recent-property .tp-rent-meta-content span {
+  width: auto;
+  height: auto;
+  min-width: 0;
+  background: transparent !important;
+  border: 0 !important;
+  box-shadow: none !important;
+}
+
+.sidebar-recent-property .tp-rent-meta-content span svg {
+  width: 18px !important;
+  height: 18px !important;
+}
+
+.sidebar-recent-property .tp-rent-meta-content {
+  // align-items: center;
+  gap: 6px;
+  justify-content: center;
+  margin-bottom: 4px;
+}
+
+.sidebar-recent-property .tp-rent-meta-content > p {
+  margin: 0;
+  color: #003b5c;
+  font-size: 14px;
+  font-weight: 800;
+  line-height: 1;
+}
+
+.sidebar-recent-property .tp-rent-meta-item > p {
+  margin: 0;
+  color: #6b7280;
+  font-size: 12px;
+  line-height: 1.35;
+}
+
+.sidebar-recent-property .tp-rent-thumb img {
+  display: block;
+  width: 100% !important;
+  min-height: 190px;
+  object-fit: cover;
+}
+
 .tp-hero-tab-input {
   margin-right: 0px !important;
   margin-bottom: 20px;
+}
+
+.property-search-refine__select {
+  position: relative;
+}
+
+.property-search-refine__select::after {
+  position: absolute;
+  top: 50%;
+  right: 14px;
+  width: 8px;
+  height: 8px;
+  border-right: 2px solid #6b7280;
+  border-bottom: 2px solid #6b7280;
+  content: "";
+  pointer-events: none;
+  transform: translateY(-65%) rotate(45deg);
+}
+
+.property-search-refine__select select {
+  min-height: 51px;
+  padding-right: 42px !important;
+  color: #111827;
+  appearance: none;
+  cursor: pointer;
+}
+
+.property-search-refine__select select:focus {
+  border-color: #003b5c !important;
+  box-shadow: 0 0 0 3px rgba(0, 59, 92, 0.08);
+}
+
+.property-search-refine input,
+.property-search-refine select,
+.property-search-refine button {
+  height: 42px !important;
+  min-height: 42px;
 }
 
 .tp-rent-btn .tp-btn {
@@ -235,6 +321,49 @@
 
 .tp-section-title {
   font-size: 30px;
+}
+
+.home-page .tp-section-title,
+.home-page .trusted-partners__heading h2,
+.home-page .mortgage-calculator__heading h2 {
+  margin-bottom: 8px;
+  color: #003b5c;
+  font-size: 30px !important;
+  font-weight: 850;
+  line-height: 1.18;
+}
+
+.home-page .tp-section-title-pre,
+.home-page .trusted-partners__heading > span,
+.home-page .mortgage-calculator__heading > span {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  margin-bottom: 10px;
+  color: #0f6f69;
+  font-size: 13px !important;
+  font-weight: 800;
+  letter-spacing: 0.04em;
+  line-height: 1.2;
+  text-transform: uppercase;
+}
+
+.home-page .tp-rent-heading,
+.home-page .tp-explore-heading,
+.home-page .tp-blog-heading,
+.home-page .trusted-partners__heading,
+.home-page .mortgage-calculator__heading {
+  margin-bottom: 34px !important;
+}
+
+.home-page .trusted-partners__heading p,
+.home-page .mortgage-calculator__heading p {
+  max-width: 620px;
+  margin-right: auto;
+  margin-left: auto;
+  color: #64717f;
+  font-size: 15px;
+  line-height: 1.65;
 }
 
 .tp-dashboard-main {
@@ -352,8 +481,59 @@
 }
 
 .list-img-sec {
+  padding-left: 0;
+  padding-right: 0;
+}
+
+.search-results-list {
   padding-left: 15px;
   padding-right: 15px;
+}
+
+.search-results-summary {
+  margin: 0 0 16px;
+  padding: 12px 16px;
+  border: 1px solid rgba(0, 59, 92, 0.14);
+  border-radius: 8px;
+  background: #f0f7fb;
+}
+
+.search-results-summary p {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 6px;
+  margin: 0;
+  color: #003b5c;
+  font-size: 15px;
+  font-weight: 700;
+  line-height: 1.45;
+}
+
+.search-results-summary p > span:first-child {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 28px;
+  height: 28px;
+  border-radius: 50%;
+  background: #003b5c;
+  color: #ffffff;
+  font-weight: 850;
+}
+
+.search-results-summary strong,
+.search-results-summary em {
+  color: #003b5c;
+  font-style: normal;
+  font-weight: 850;
+}
+
+.search-results-summary em {
+  padding: 4px 8px;
+  border-radius: 999px;
+  background: rgba(0, 59, 92, 0.08);
+  font-size: 13px;
 }
 
 .tp-blog-item-title {
@@ -754,6 +934,12 @@ body.scrolled .Profile-btn-span {
   border-radius: 4px !important;
   font-weight: 600 !important;
   font-size: 14px !important;
+}
+
+@media (min-width: 992px) {
+  .tp-header-5-main .tp-header-dashboard-btn {
+    transform: translateX(14px);
+  }
 }
 
 /* ============================================
@@ -1220,11 +1406,32 @@ body.scrolled .Profile-btn-span {
   }
 
   .list-img-sec {
-    padding-left: 15px;
-    padding-right: 15px;
+    padding-left: 0;
+    padding-right: 0;
     width: 100%;
     margin-left: 0px;
     padding-top: 10px;
+  }
+
+  .search-results-list {
+    padding-left: 15px;
+    padding-right: 15px;
+  }
+
+  .search-results-summary {
+    margin: 0 14px 16px;
+    padding: 12px 14px;
+    border-radius: 0;
+  }
+
+  .search-results-summary p {
+    gap: 5px;
+    font-size: 14px;
+  }
+
+  .search-results-summary p > span:first-child {
+    min-width: 26px;
+    height: 26px;
   }
 
   .tp-property-ptb {
@@ -1287,11 +1494,22 @@ body.scrolled .Profile-btn-span {
   }
 
   .list-img-sec {
-    padding-left: 15px;
-    padding-right: 15px;
+    padding-left: 0;
+    padding-right: 0;
     width: 100%;
     margin-left: 0px;
     padding-top: 10px;
+  }
+
+  .search-results-list {
+    padding-left: 15px;
+    padding-right: 15px;
+  }
+
+  .search-results-summary {
+    margin: 0px 0px 16px;
+    padding: 12px 14px;
+    border-radius: 0;
   }
 
   .tp-property-ptb {
@@ -1586,9 +1804,59 @@ html {
   position: relative;
 }
 
+.properties-by-city .tp-explore-thumb img {
+  width: 100% !important;
+  height: 100% !important;
+  object-fit: cover;
+}
+
+.properties-by-city .tp-explore-content {
+  right: 16px;
+  bottom: 16px;
+  left: 16px;
+}
+
 @media (max-width: 767px) {
   .tp-explore-thumb {
     height: 200px;
+  }
+
+  .properties-by-city {
+    padding-bottom: 55px !important;
+  }
+
+  .properties-by-city .tp-explore-heading {
+    margin-bottom: 22px !important;
+    text-align: left;
+  }
+
+  .properties-by-city .tp-explore-thumb {
+    height: 145px;
+    border-radius: 8px;
+  }
+
+  .properties-by-city .tp-explore-item {
+    margin-bottom: 12px !important;
+  }
+
+  .properties-by-city .tp-explore-content {
+    right: 10px;
+    bottom: 10px;
+    left: 10px;
+  }
+
+  .properties-by-city .tp-explore-title {
+    margin-bottom: 2px;
+    font-size: 15px;
+    line-height: 1.2;
+  }
+
+  .properties-by-city .tp-explore-content span {
+    font-size: 12px;
+  }
+
+  .properties-by-city .tp-explore-btn {
+    display: none;
   }
 }
 
@@ -1678,6 +1946,10 @@ html {
     padding: 60px 0 100px !important;
   }
 
+  .tp-hero-content {
+    margin-top: 45% !important;
+  }
+
   .tp-hero-content h1 {
     font-size: 28px !important;
     margin-bottom: 10px !important;
@@ -1711,6 +1983,35 @@ html {
   .tp-rent-heading,
   .tp-explore-heading {
     margin-bottom: 30px !important;
+  }
+
+  .home-page .tp-section-title,
+  .home-page .trusted-partners__heading h2,
+  .home-page .mortgage-calculator__heading h2 {
+    font-size: 24px !important;
+    line-height: 1.2 !important;
+  }
+
+  .home-page .tp-section-title-pre,
+  .home-page .trusted-partners__heading > span,
+  .home-page .mortgage-calculator__heading > span {
+    margin-bottom: 8px;
+    font-size: 11px !important;
+    letter-spacing: 0.03em;
+  }
+
+  .home-page .tp-rent-heading,
+  .home-page .tp-explore-heading,
+  .home-page .tp-blog-heading,
+  .home-page .trusted-partners__heading,
+  .home-page .mortgage-calculator__heading {
+    margin-bottom: 24px !important;
+  }
+
+  .home-page .trusted-partners__heading p,
+  .home-page .mortgage-calculator__heading p {
+    font-size: 14px;
+    line-height: 1.55;
   }
 }
 
@@ -1844,12 +2145,57 @@ html {
 /* SEARCH PAGE MOBILE FIX */
 @media (max-width: 767px) {
   .tp-property-ptb {
-    padding-top: 80px !important;
+    padding-top: 24px !important;
     padding-bottom: 60px !important;
   }
 
   .tp-property-list-section {
     margin-top: 0 !important;
+  }
+
+  .property-search-refine {
+    display: block !important;
+    width: 100% !important;
+    margin: 0 0 22px !important;
+    padding: 14px !important;
+    border-radius: 8px !important;
+  }
+
+  .property-search-refine__row {
+    --bs-gutter-x: 0;
+    --bs-gutter-y: 10px;
+  }
+
+  .property-search-refine__field,
+  .property-search-refine__action {
+    width: 100% !important;
+    max-width: 100% !important;
+    flex: 0 0 100% !important;
+    padding-right: 0 !important;
+    padding-left: 0 !important;
+  }
+
+  .property-search-refine label {
+    margin-bottom: 5px !important;
+    font-size: 11px !important;
+    letter-spacing: 0 !important;
+  }
+
+  .property-search-refine input,
+  .property-search-refine select,
+  .property-search-refine button {
+    height: 42px !important;
+    min-height: 42px !important;
+    font-size: 14px !important;
+  }
+
+  .property-search-refine input,
+  .property-search-refine select {
+    padding: 9px 13px !important;
+  }
+
+  .property-search-refine__select select {
+    padding-right: 40px !important;
   }
 
   .filt {
@@ -1890,6 +2236,31 @@ html {
 
   .tp-property-details-meta-item {
     font-size: 13px !important;
+  }
+
+  .tp-property-details-area {
+    padding-bottom: 40px !important;
+  }
+
+  .sidebar-recent-property .tp-rent-thumb img {
+    min-height: 230px;
+    max-height: 280px;
+  }
+
+  .sidebar-recent-property .tp-rent-meta-list.team-details {
+    gap: 10px;
+    padding: 14px 0 0;
+  }
+
+  .sidebar-recent-property .tp-rent-meta-item {
+    flex: 1;
+    min-width: 0;
+    text-align: center;
+  }
+
+  .sidebar-recent-property .tp-rent-meta-item > p {
+    font-size: 12px;
+    line-height: 1.35;
   }
 }
 
@@ -2601,6 +2972,10 @@ html {
   background: #f7faf9;
 }
 
+.home-loan-page--home {
+  background: #ffffff;
+}
+
 .home-loan-page__hero {
   padding: 86px 0 54px;
   background: linear-gradient(180deg, #ffffff 0%, #f7faf9 100%);
@@ -2678,9 +3053,26 @@ html {
   padding: 40px 0 72px;
 }
 
+.home-loan-page--home .mortgage-calculator {
+  padding: 70px 0;
+  background: #ffffff;
+}
+
 .mortgage-calculator__heading {
   margin-bottom: 24px;
   text-align: center;
+}
+
+.mortgage-calculator__heading > span {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  margin-bottom: 12px;
+  color: #0f6f69;
+  font-size: 13px;
+  font-weight: 800;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
 }
 
 .mortgage-calculator__heading h2 {
@@ -2708,6 +3100,11 @@ html {
   border-radius: 10px;
   background: #ffffff;
   box-shadow: 0 22px 60px rgba(15, 23, 42, 0.08);
+}
+
+.home-loan-page--home .mortgage-calculator__shell {
+  max-width: 1080px;
+  box-shadow: 0 16px 44px rgba(15, 23, 42, 0.07);
 }
 
 .mortgage-calculator__inputs {
@@ -3235,6 +3632,10 @@ html {
 
   .mortgage-calculator {
     padding: 26px 0 54px;
+  }
+
+  .home-loan-page--home .mortgage-calculator {
+    padding: 46px 0;
   }
 
   .mortgage-calculator__heading {

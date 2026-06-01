@@ -18,7 +18,7 @@ const Home = () => {
     <>
       <Wrapper>
         <Header />
-        <main>
+        <main className="home-page">
           <HomeOnePage />
         </main>
         <BackToTop />

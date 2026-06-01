@@ -121,7 +121,7 @@ export default function SidebarPropertyItem({
         <div className={customClass ? customClass : ""}>
           <h4 className="tp-team-details-item-title">Recent Properties</h4>
           {latest ? (
-            <>
+            <div className="sidebar-recent-property">
               <div className="tp-rent-thumb p-relative">
                 <Link href={detailsHref}>
                   {latest.imageUrl ? (
@@ -161,27 +161,30 @@ export default function SidebarPropertyItem({
                     <span>
                       <BedroomsSvg />
                     </span>
+                    <p>{String(latest.bedrooms).padStart(2, "0")}</p>
                   </div>
-                  <p>{String(latest.bedrooms).padStart(2, "0")} Bed</p>
+                  <p>Bed</p>
                 </div>
                 <div className="tp-rent-meta-item">
                   <div className="tp-rent-meta-content d-flex">
                     <span>
                       <BathroomsSvg />
                     </span>
+                    <p>{String(latest.bathrooms).padStart(2, "0")}</p>
                   </div>
-                  <p>{String(latest.bathrooms).padStart(2, "0")} Baths</p>
+                  <p>Baths</p>
                 </div>
                 <div className="tp-rent-meta-item">
                   <div className="tp-rent-meta-content d-flex">
                     <span>
                       <LivingSvg />
                     </span>
+                    <p>{latest.area}</p>
                   </div>
-                  <p>{latest.area}</p>
+                  <p>Area</p>
                 </div>
               </div>
-            </>
+            </div>
           ) : null}
         </div>
       </div>
