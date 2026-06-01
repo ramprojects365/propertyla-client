@@ -11,7 +11,7 @@ export default function Layout({ children }: { children: React.ReactNode }) {
             <Wrapper>
                 <CommonHeader />
                 {children}
-                <CommonFooter className='pt-180' />
+                <CommonFooter className='pt-60' />
                 <BackToTop />
             </Wrapper>
         </main>

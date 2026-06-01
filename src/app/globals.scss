@@ -2336,8 +2336,16 @@ html {
 
 /* FOOTER MOBILE FIX */
 @media (max-width: 767px) {
+  .tp-footer-area {
+    padding-top: 46px !important;
+  }
+
+  .tp-footer-logo {
+    margin-bottom: 18px !important;
+  }
+
   .tp-footer-widget {
-    margin-bottom: 30px !important;
+    margin-bottom: 24px !important;
   }
 
   .tp-footer-widget-title {
