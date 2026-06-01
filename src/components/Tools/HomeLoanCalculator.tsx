@@ -1,7 +1,19 @@
 "use client";
 
 import { formatPrice } from "@/components/Utils/formatPrice";
+import {
+  Banknote,
+  Building2,
+  Calculator,
+  CheckCircle2,
+  FileText,
+  ShieldCheck,
+} from "lucide-react";
+import type { CSSProperties } from "react";
 import { useMemo, useState } from "react";
+
+type ProjectType = "new" | "subsale";
+type InsuranceType = "mrta" | "mlta";
 
 function computeMonthlyInstallment(
   principal: number,
@@ -9,303 +21,443 @@ function computeMonthlyInstallment(
   tenureYears: number,
 ): { monthly: number; total: number; months: number } {
   const months = Math.max(1, Math.round(tenureYears * 12));
-  if (principal <= 0) {
-    return { monthly: 0, total: 0, months };
-  }
+  if (principal <= 0) return { monthly: 0, total: 0, months };
+
   const r = annualRatePercent / 100 / 12;
   if (r <= 0) {
     const monthly = principal / months;
     return { monthly, total: monthly * months, months };
   }
+
   const pow = (1 + r) ** months;
   const monthly = (principal * r * pow) / (pow - 1);
   return { monthly, total: monthly * months, months };
 }
 
+function calculateMotStampDuty(price: number): number {
+  const first = Math.min(price, 100_000) * 0.01;
+  const second = Math.min(Math.max(price - 100_000, 0), 400_000) * 0.02;
+  const third = Math.min(Math.max(price - 500_000, 0), 500_000) * 0.03;
+  const fourth = Math.max(price - 1_000_000, 0) * 0.04;
+  return first + second + third + fourth;
+}
+
+function calculateLegalFees(amount: number): number {
+  const first = Math.min(amount, 500_000) * 0.01;
+  const second = Math.min(Math.max(amount - 500_000, 0), 500_000) * 0.008;
+  const third = Math.min(Math.max(amount - 1_000_000, 0), 2_000_000) * 0.007;
+  const fourth = Math.max(amount - 3_000_000, 0) * 0.006;
+  return first + second + third + fourth;
+}
+
+const percent = (value: number, min: number, max: number) =>
+  `${((value - min) / (max - min)) * 100}%`;
+
 export default function HomeLoanCalculator() {
+  const [projectType, setProjectType] = useState<ProjectType>("new");
   const [propertyPrice, setPropertyPrice] = useState(500_000);
-  const [downPayment, setDownPayment] = useState(100_000);
-  const [interestRate, setInterestRate] = useState(3.8);
+  const [downPaymentPercent, setDownPaymentPercent] = useState(10);
+  const [interestRate, setInterestRate] = useState(4.5);
   const [tenureYears, setTenureYears] = useState(30);
+  const [freeMot, setFreeMot] = useState(false);
+  const [freeSpaLegal, setFreeSpaLegal] = useState(false);
+  const [freeLoanLegal, setFreeLoanLegal] = useState(false);
+  const [includeInsurance, setIncludeInsurance] = useState(true);
+  const [insuranceType, setInsuranceType] = useState<InsuranceType>("mrta");
+  const [addInsuranceToLoan, setAddInsuranceToLoan] = useState(false);
 
-  const loanAmount = Math.max(0, propertyPrice - downPayment);
+  const result = useMemo(() => {
+    const downPayment = propertyPrice * (downPaymentPercent / 100);
+    const baseLoanAmount = Math.max(0, propertyPrice - downPayment);
+    const insuranceRate = insuranceType === "mrta" ? 0.03 : 0.05;
+    const insuranceCost = includeInsurance ? baseLoanAmount * insuranceRate : 0;
+    const financedInsurance = addInsuranceToLoan ? insuranceCost : 0;
+    const loanAmount = baseLoanAmount + financedInsurance;
+    const installment = computeMonthlyInstallment(
+      loanAmount,
+      interestRate,
+      tenureYears,
+    );
+    const motStampDuty =
+      projectType === "new" && freeMot ? 0 : calculateMotStampDuty(propertyPrice);
+    const spaLegalFees =
+      projectType === "new" && freeSpaLegal ? 0 : calculateLegalFees(propertyPrice);
+    const loanStampDuty = baseLoanAmount * 0.005;
+    const loanLegalFees =
+      projectType === "new" && freeLoanLegal ? 0 : calculateLegalFees(baseLoanAmount);
+    const upfrontInsurance = addInsuranceToLoan ? 0 : insuranceCost;
+    const totalUpfront =
+      downPayment +
+      motStampDuty +
+      spaLegalFees +
+      loanStampDuty +
+      loanLegalFees +
+      upfrontInsurance;
+    const totalInterest = Math.max(0, installment.total - loanAmount);
+    const effectiveInterestCost =
+      loanAmount > 0 ? (totalInterest / loanAmount) * 100 : 0;
+    const ltv = propertyPrice > 0 ? (baseLoanAmount / propertyPrice) * 100 : 0;
 
-  const { monthly, total } = useMemo(
-    () => computeMonthlyInstallment(loanAmount, interestRate, tenureYears),
-    [loanAmount, interestRate, tenureYears],
+    return {
+      baseLoanAmount,
+      downPayment,
+      effectiveInterestCost,
+      insuranceCost,
+      loanAmount,
+      loanLegalFees,
+      loanStampDuty,
+      ltv,
+      monthly: installment.monthly,
+      motStampDuty,
+      spaLegalFees,
+      totalAmountPaid: installment.total,
+      totalInterest,
+      totalUpfront,
+    };
+  }, [
+    addInsuranceToLoan,
+    downPaymentPercent,
+    freeLoanLegal,
+    freeMot,
+    freeSpaLegal,
+    includeInsurance,
+    insuranceType,
+    interestRate,
+    projectType,
+    propertyPrice,
+    tenureYears,
+  ]);
+
+  const renderSlider = ({
+    label,
+    value,
+    displayValue,
+    min,
+    max,
+    step,
+    onChange,
+  }: {
+    label: string;
+    value: number;
+    displayValue: string;
+    min: number;
+    max: number;
+    step: number;
+    onChange: (value: number) => void;
+  }) => (
+    <div className="mortgage-calculator__control">
+      <div className="mortgage-calculator__control-head">
+        <p>{label}</p>
+        <strong>{displayValue}</strong>
+      </div>
+      <input
+        type="range"
+        min={min}
+        max={max}
+        step={step}
+        value={value}
+        onChange={(event) => onChange(Number(event.target.value))}
+        style={{ "--progress": percent(value, min, max) } as CSSProperties}
+      />
+    </div>
   );
 
-  const invalidLoan = loanAmount <= 0;
-  const invalidDown = downPayment > propertyPrice;
+  const renderSwitch = ({
+    checked,
+    label,
+    onChange,
+  }: {
+    checked: boolean;
+    label: string;
+    onChange: () => void;
+  }) => (
+    <button
+      type="button"
+      className={`mortgage-calculator__switch ${checked ? "is-on" : ""}`}
+      aria-pressed={checked}
+      onClick={onChange}
+    >
+      <span aria-hidden="true" />
+      {label}
+    </button>
+  );
 
   return (
-    <section className="emi-loan-calculator pt-70 pb-120">
-      <div className="container">
-        <div className="row justify-content-center mb-40">
-          <div className="col-lg-10 text-center">
-            <h2 className="tp-section-title mb-15">Home Loan Calculator</h2>
-            <p
-              className="text-muted mb-0"
-              style={{ maxWidth: "640px", margin: "0 auto" }}
-            >
-              Estimate your monthly housing loan repayment from property price,
-              down payment, interest rate, and tenure. This is a guide only —
-              actual bank offers may differ.
-            </p>
-          </div>
-        </div>
-
-        <div className="row g-4 justify-content-center">
-          <div className="col-xl-10">
-            <div
-              className="emi-loan-calculator__card p-4 p-lg-5"
-              style={{
-                border: "1px solid #dbe1ef",
-                borderRadius: "12px",
-                background: "#fff",
-                boxShadow: "0 8px 40px rgba(45, 46, 69, 0.06)",
-              }}
-            >
-              <h4
-                className="mb-4 pb-3"
-                style={{
-                  fontSize: "18px",
-                  fontWeight: 600,
-                  borderBottom: "1px solid #eef1f6",
-                  color: "#003b5c",
-                }}
-              >
-                Home loan details
-              </h4>
-
-              <div className="row g-4 g-xl-5">
-                <div className="col-lg-7">
-                  <div className="mb-4">
-                    <label
-                      className="form-label fw-semibold"
-                      htmlFor="emi-property-price"
-                    >
-                      Property price (RM)
-                    </label>
-                    <input
-                      id="emi-property-price"
-                      type="number"
-                      min={0}
-                      className="form-control"
-                      value={propertyPrice || ""}
-                      onChange={(e) =>
-                        setPropertyPrice(Number(e.target.value) || 0)
-                      }
-                    />
-                  </div>
-
-                  <div className="mb-4">
-                    <label
-                      className="form-label fw-semibold"
-                      htmlFor="emi-down-payment"
-                    >
-                      Down payment (RM)
-                    </label>
-                    <input
-                      id="emi-down-payment"
-                      type="number"
-                      min={0}
-                      className="form-control"
-                      value={downPayment || ""}
-                      onChange={(e) =>
-                        setDownPayment(Number(e.target.value) || 0)
-                      }
-                    />
-                    {invalidDown && (
-                      <p className="text-danger small mt-1 mb-0">
-                        Down payment cannot exceed property price.
-                      </p>
-                    )}
-                  </div>
-
-                  <div className="mb-2">
-                    <div className="d-flex justify-content-between align-items-center mb-1">
-                      <label
-                        className="form-label fw-semibold mb-0"
-                        htmlFor="emi-rate"
-                      >
-                        Interest rate (% p.a.)
-                      </label>
-                      <span className="small text-muted">
-                        {interestRate.toFixed(1)}%
-                      </span>
-                    </div>
-                    <input
-                      id="emi-rate"
-                      type="range"
-                      className="form-range"
-                      min={2}
-                      max={8}
-                      step={0.1}
-                      value={interestRate}
-                      onChange={(e) => setInterestRate(Number(e.target.value))}
-                    />
-                    <div className="d-flex justify-content-between small text-muted">
-                      <span>2%</span>
-                      <span>8%</span>
-                    </div>
-                  </div>
-
-                  <div className="mb-0">
-                    <div className="d-flex justify-content-between align-items-center mb-1">
-                      <label
-                        className="form-label fw-semibold mb-0"
-                        htmlFor="emi-tenure"
-                      >
-                        Tenure (years)
-                      </label>
-                      <span className="small text-muted">
-                        {tenureYears} yrs
-                      </span>
-                    </div>
-                    <input
-                      id="emi-tenure"
-                      type="range"
-                      className="form-range"
-                      min={5}
-                      max={35}
-                      step={1}
-                      value={tenureYears}
-                      onChange={(e) => setTenureYears(Number(e.target.value))}
-                    />
-                    <div className="d-flex justify-content-between small text-muted">
-                      <span>5</span>
-                      <span>35</span>
-                    </div>
-                  </div>
-
-                  <div
-                    className="mt-4 p-3 rounded-2"
-                    style={{ background: "#f0f4fd" }}
-                  >
-                    <div className="d-flex justify-content-between small mb-1">
-                      <span className="text-muted">Loan amount</span>
-                      <span
-                        className="fw-semibold"
-                        style={{ color: "#003b5c" }}
-                      >
-                        {invalidLoan || invalidDown
-                          ? "—"
-                          : formatPrice(loanAmount, false)}
-                      </span>
-                    </div>
-                  </div>
-                </div>
-
-                <div className="col-lg-5">
-                  <div
-                    className="h-100 p-4 rounded-3"
-                    style={{
-                      background:
-                        "linear-gradient(160deg, #003b5c 0%, #0a5a82 100%)",
-                      color: "#fff",
-                    }}
-                  >
-                    <h5
-                      className="text-white mb-4"
-                      style={{ fontSize: "16px", fontWeight: 600 }}
-                    >
-                      Summary
-                    </h5>
-                    <div
-                      className="mb-4 pb-4"
-                      style={{
-                        borderBottom: "1px solid rgba(255,255,255,0.2)",
-                      }}
-                    >
-                      <p className="small text-white-50 mb-1">
-                        Monthly installment
-                      </p>
-                      <p
-                        className="mb-0"
-                        style={{
-                          fontSize: "28px",
-                          fontWeight: 700,
-                          lineHeight: 1.2,
-                        }}
-                      >
-                        {invalidLoan || invalidDown
-                          ? "—"
-                          : formatPrice(monthly, false)}
-                      </p>
-                    </div>
-                    <div>
-                      <p className="small text-white-50 mb-1">
-                        Total payment (principal + interest)
-                      </p>
-                      <p
-                        className="mb-0"
-                        style={{ fontSize: "22px", fontWeight: 600 }}
-                      >
-                        {invalidLoan || invalidDown
-                          ? "—"
-                          : formatPrice(total, false)}
-                      </p>
-                    </div>
-                  </div>
-                </div>
-              </div>
-
-              <p
-                className="small text-muted mt-4 mb-0"
-                style={{ lineHeight: 1.6 }}
-              >
-                * This calculator is for illustration only. Results vary by bank
-                and product. PropertyLa does not guarantee accuracy or
-                suitability for your circumstances — confirm figures with your
-                financial institution before committing.
+    <main className="home-loan-page">
+      <section className="home-loan-page__hero">
+        <div className="container">
+          <div className="home-loan-page__hero-grid">
+            <div className="home-loan-page__hero-copy">
+              <span>
+                <Banknote size={17} />
+                Home loan planning
+              </span>
+              <h1>Estimate your Malaysia mortgage before you buy.</h1>
+              <p>
+                Check monthly repayments, upfront costs, stamp duty, legal fees,
+                and mortgage insurance in one simple Property Lah calculator.
               </p>
+            </div>
+            <div className="home-loan-page__hero-note">
+              <CheckCircle2 size={22} />
+              <div>
+                <strong>Buyer-friendly estimate</strong>
+                <p>
+                  Use this as a planning guide before speaking with a bank or
+                  property consultant.
+                </p>
+              </div>
             </div>
           </div>
         </div>
+      </section>
 
-        <div className="row justify-content-center mt-5">
-          <div className="col-lg-10">
-            <h3
-              className="h5 mb-3"
-              style={{ color: "#003b5c", fontWeight: 600 }}
-            >
-              How to use this calculator
-            </h3>
-            <ol className="text-muted ps-3" style={{ lineHeight: 1.85 }}>
-              <li>Enter the property price you are considering.</li>
-              <li>
-                Enter your planned down payment (loan = price minus down
-                payment).
-              </li>
-              <li>
-                Set an expected annual interest rate (Malaysian housing loans
-                often sit in a similar range — adjust to match your bank quote).
-              </li>
-              <li>
-                Choose loan tenure in years (common options are up to 35 years).
-              </li>
-              <li>
-                Read the monthly installment and total repayment as a planning
-                guide.
-              </li>
-            </ol>
+      <section className="mortgage-calculator" id="mortgage-calculator">
+        <div className="container">
+          <div className="mortgage-calculator__heading">
+            <h2>Mortgage calculator</h2>
+            <p>Estimate your monthly payments and upfront costs</p>
+          </div>
 
-            <h3
-              className="h5 mt-4 mb-3"
-              style={{ color: "#003b5c", fontWeight: 600 }}
-            >
-              How home loans work in Malaysia (brief)
-            </h3>
-            <p className="text-muted mb-2" style={{ lineHeight: 1.8 }}>
-              Most housing loans are amortising: early payments are weighted
-              toward interest; over time more goes to principal. Banks assess
-              income, existing debts, and credit history (e.g. CCRIS). Rates may
-              be fixed or floating and can change with market or policy rates.
-            </p>
+          <div className="mortgage-calculator__shell">
+            <div className="mortgage-calculator__inputs">
+              <div className="mortgage-calculator__tabs" role="group">
+                <button
+                  type="button"
+                  className={projectType === "new" ? "is-active" : ""}
+                  aria-pressed={projectType === "new"}
+                  onClick={() => setProjectType("new")}
+                >
+                  New Project
+                </button>
+                <button
+                  type="button"
+                  className={projectType === "subsale" ? "is-active" : ""}
+                  aria-pressed={projectType === "subsale"}
+                  onClick={() => setProjectType("subsale")}
+                >
+                  Subsale
+                </button>
+              </div>
+
+              {renderSlider({
+                label: "Property price",
+                value: propertyPrice,
+                displayValue: formatPrice(propertyPrice, false),
+                min: 100_000,
+                max: 10_000_000,
+                step: 50_000,
+                onChange: setPropertyPrice,
+              })}
+
+              {renderSlider({
+                label: "Down payment",
+                value: downPaymentPercent,
+                displayValue: `${downPaymentPercent}% (${formatPrice(
+                  result.downPayment,
+                  false,
+                )})`,
+                min: 0,
+                max: 100,
+                step: 1,
+                onChange: setDownPaymentPercent,
+              })}
+
+              {renderSlider({
+                label: "Interest rate",
+                value: interestRate,
+                displayValue: `${interestRate.toFixed(1)}%`,
+                min: 1,
+                max: 10,
+                step: 0.1,
+                onChange: setInterestRate,
+              })}
+
+              {renderSlider({
+                label: "Loan tenure",
+                value: tenureYears,
+                displayValue: `${tenureYears} years`,
+                min: 5,
+                max: 35,
+                step: 1,
+                onChange: setTenureYears,
+              })}
+
+              {projectType === "new" && (
+                <div className="mortgage-calculator__option-group">
+                  <p>Developer incentives</p>
+                  {renderSwitch({
+                    checked: freeMot,
+                    label: "Free stamp duty (MOT)",
+                    onChange: () => setFreeMot((value) => !value),
+                  })}
+                  {renderSwitch({
+                    checked: freeSpaLegal,
+                    label: "Free SPA legal fees",
+                    onChange: () => setFreeSpaLegal((value) => !value),
+                  })}
+                  {renderSwitch({
+                    checked: freeLoanLegal,
+                    label: "Free loan legal fees",
+                    onChange: () => setFreeLoanLegal((value) => !value),
+                  })}
+                </div>
+              )}
+
+              <div className="mortgage-calculator__option-group">
+                {renderSwitch({
+                  checked: includeInsurance,
+                  label: "Include mortgage insurance",
+                  onChange: () => setIncludeInsurance((value) => !value),
+                })}
+
+                {includeInsurance && (
+                  <>
+                    <div className="mortgage-calculator__tabs mortgage-calculator__tabs--small">
+                      <button
+                        type="button"
+                        className={insuranceType === "mrta" ? "is-active" : ""}
+                        onClick={() => setInsuranceType("mrta")}
+                      >
+                        MRTA (est. 3%)
+                      </button>
+                      <button
+                        type="button"
+                        className={insuranceType === "mlta" ? "is-active" : ""}
+                        onClick={() => setInsuranceType("mlta")}
+                      >
+                        MLTA (est. 5%)
+                      </button>
+                    </div>
+                    {renderSwitch({
+                      checked: addInsuranceToLoan,
+                      label: `Add ${insuranceType.toUpperCase()} to loan amount`,
+                      onChange: () => setAddInsuranceToLoan((value) => !value),
+                    })}
+                  </>
+                )}
+              </div>
+            </div>
+
+            <aside className="mortgage-calculator__summary">
+              <div className="mortgage-calculator__payment">
+                <p>Estimated monthly payment</p>
+                <strong>{formatPrice(result.monthly, false)}</strong>
+                <span>
+                  Loan: {formatPrice(result.loanAmount, false)} . LTV:{" "}
+                  {result.ltv.toFixed(0)}%
+                </span>
+              </div>
+
+              <div className="mortgage-calculator__summary-card">
+                <h3>Loan summary</h3>
+                <div>
+                  <span>Total interest paid</span>
+                  <strong>{formatPrice(result.totalInterest, false)}</strong>
+                </div>
+                <div>
+                  <span>Total amount paid</span>
+                  <strong>{formatPrice(result.totalAmountPaid, false)}</strong>
+                </div>
+                <hr />
+                <div>
+                  <span>Effective interest cost</span>
+                  <strong>{result.effectiveInterestCost.toFixed(1)}%</strong>
+                </div>
+              </div>
+
+              <div className="mortgage-calculator__summary-card">
+                <h3>Upfront costs</h3>
+                <div>
+                  <span>Down payment</span>
+                  <strong>{formatPrice(result.downPayment, false)}</strong>
+                </div>
+                <hr />
+                <div>
+                  <span>Stamp duty (MOT)</span>
+                  <strong>{formatPrice(result.motStampDuty, false)}</strong>
+                </div>
+                <div>
+                  <span>SPA legal fees</span>
+                  <strong>{formatPrice(result.spaLegalFees, false)}</strong>
+                </div>
+                <div>
+                  <span>Loan stamp duty</span>
+                  <strong>{formatPrice(result.loanStampDuty, false)}</strong>
+                </div>
+                <div>
+                  <span>Loan legal fees</span>
+                  <strong>{formatPrice(result.loanLegalFees, false)}</strong>
+                </div>
+                {includeInsurance && (
+                  <div>
+                    <span>{insuranceType.toUpperCase()} insurance (est.)</span>
+                    <strong>
+                      {addInsuranceToLoan
+                        ? "Financed"
+                        : formatPrice(result.insuranceCost, false)}
+                    </strong>
+                  </div>
+                )}
+                <hr />
+                <div className="mortgage-calculator__total">
+                  <span>Total upfront</span>
+                  <strong>{formatPrice(result.totalUpfront, false)}</strong>
+                </div>
+              </div>
+            </aside>
           </div>
         </div>
-      </div>
-    </section>
+      </section>
+
+      <section className="home-loan-page__guide">
+        <div className="container">
+          <div className="home-loan-page__guide-grid">
+            <article>
+              <Calculator size={22} />
+              <h3>How to use it</h3>
+              <p>
+                Adjust the property price, down payment, interest rate, and
+                tenure. The estimate updates immediately so you can compare
+                different budgets before you enquire.
+              </p>
+            </article>
+            <article>
+              <FileText size={22} />
+              <h3>What costs are included</h3>
+              <p>
+                The calculator estimates down payment, MOT stamp duty, SPA legal
+                fees, loan stamp duty, loan legal fees, and optional MRTA or
+                MLTA insurance.
+              </p>
+            </article>
+            <article>
+              <Building2 size={22} />
+              <h3>New project vs subsale</h3>
+              <p>
+                New projects may include developer incentives such as free legal
+                fees or stamp duty. Subsale purchases usually require buyers to
+                budget for more upfront costs.
+              </p>
+            </article>
+            <article>
+              <ShieldCheck size={22} />
+              <h3>Before applying</h3>
+              <p>
+                Final approval depends on bank checks, income, debt service
+                ratio, credit record, property value, and current lending
+                policies.
+              </p>
+            </article>
+          </div>
+          <p className="home-loan-page__disclaimer">
+            This calculator is for illustration only. Actual rates, legal fees,
+            insurance, stamp duty, and bank offers may differ. Confirm all
+            figures with your bank, lawyer, or licensed adviser before making a
+            purchase decision.
+          </p>
+        </div>
+      </section>
+    </main>
   );
 }

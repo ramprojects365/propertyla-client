@@ -1,9 +1,49 @@
 import * as yup from "yup";
+
+const strictEmail = (requiredMessage = "Enter email") =>
+  yup
+    .string()
+    .trim()
+    .required(requiredMessage)
+    .email("Invalid email format")
+    .matches(
+      /^[^\s@]+@(?:[a-zA-Z0-9-]+\.)+[a-zA-Z]{2,}$/,
+      "Enter a valid email address",
+    );
+
+const strictPhone = (requiredMessage = "Phone number is required") =>
+  yup
+    .string()
+    .trim()
+    .required(requiredMessage)
+    .matches(/^[0-9]{10,12}$/, "Phone number must be 10 to 12 digits");
+
+const personName = (requiredMessage = "Name is required") =>
+  yup
+    .string()
+    .trim()
+    .required(requiredMessage)
+    .max(60, "Name must be 60 characters or less")
+    .matches(/^(?![0-9])(?=.*[A-Za-z])[A-Za-z\s.'-]+$/, "Enter a valid name");
+
+const meaningfulText = (
+  field: string,
+  requiredMessage = `${field} is required`,
+  max = 1000,
+) =>
+  yup
+    .string()
+    .trim()
+    .required(requiredMessage)
+    .max(max, `${field} must be ${max} characters or less`)
+    .matches(/[A-Za-z]/, `${field} must include letters`)
+    .matches(/[A-Za-z0-9]/, `${field} cannot be only special characters`);
+
 //Sign Up form validation schema
 export const signUpSchema = yup.object().shape({
-  displayname: yup.string().required("Enter display name"),
-  email: yup.string().required("Enter email").email("Invalid email format"),
-  phone: yup.string().required("Phone number is required"),
+  displayname: personName("Enter display name"),
+  email: strictEmail(),
+  phone: strictPhone(),
   renNumber: yup.string().when("$showRen", {
     is: true,
     then: (schema) =>
@@ -40,7 +80,7 @@ export const signInSchema = yup.object().shape({
 
 //Forgot form validation schema
 export const forgotSchema = yup.object().shape({
-  email: yup.string().required("Enter email").email("Invalid email format"),
+  email: strictEmail(),
 });
 
 export const resetPasswordSchema = yup.object().shape({
@@ -193,60 +233,42 @@ export type PropertyFormData = yup.InferType<typeof propertySchema>;
 
 //Blog comment form validation schema
 export const blogCommentSchema = yup.object().shape({
-  name: yup.string().required("Name is required"),
-  email: yup
-    .string()
-    .required("Email is required")
-    .email("Invalid email format"),
-  number: yup
-    .string()
-    .required("Phone number is required")
-    .matches(/^\d+$/, "Phone number must be numeric"),
-  message: yup.string().required("Message is required"),
+  name: personName("Name is required"),
+  email: strictEmail("Email is required"),
+  number: strictPhone(),
+  message: meaningfulText("Message"),
 });
 
 //Contact form validation schema
 export const contactSchema = yup.object().shape({
-  name: yup.string().required("Name is required"),
-  email: yup
-    .string()
-    .required("Email is required")
-    .email("Invalid email format"),
-  number: yup.string().required("Phone number is required"),
-  subject: yup.string().required("Subject is required"),
-  message: yup.string().required("Message is required"),
+  name: personName("Name is required"),
+  email: strictEmail("Email is required"),
+  number: strictPhone(),
+  subject: meaningfulText("Subject", "Subject is required", 120),
+  message: meaningfulText("Message"),
 });
 
 //Contact form validation schema
 export const contactTwoSchema = yup.object().shape({
-  firstName: yup.string().required("First Name is required"),
-  lastName: yup.string().required("Last Name is required"),
-  email: yup
-    .string()
-    .required("Email is required")
-    .email("Invalid email format"),
-  phone: yup.string().required("Phone number is required"),
-  caseDetails: yup.string().required("Message is required"),
+  firstName: personName("First Name is required"),
+  lastName: personName("Last Name is required"),
+  email: strictEmail("Email is required"),
+  phone: strictPhone(),
+  caseDetails: meaningfulText("Message", "Message is required"),
 });
 
 //Property Review validation schema
 export const propertyReviewSchema = yup.object().shape({
-  name: yup.string().required("Name is required"),
-  email: yup
-    .string()
-    .required("Email is required")
-    .email("Invalid email format"),
-  number: yup
-    .string()
-    .required("Phone number is required")
-    .matches(/^\d+$/, "Phone number must be numeric"),
-  message: yup.string().required("Message is required"),
+  name: personName("Name is required"),
+  email: strictEmail("Email is required"),
+  number: strictPhone(),
+  message: meaningfulText("Message"),
 });
 
 //Profile information validation schema
 export const profileSchema = yup.object().shape({
-  fullName: yup.string().required("Full name is required"),
-  aboutYou: yup.string(),
+  fullName: personName("Full name is required"),
+  aboutYou: yup.string().trim().max(500, "About you must be 500 characters or less"),
   companyName: yup.string(),
   icPassport: yup.string(),
   designation: yup.string(),
@@ -261,11 +283,15 @@ export const profileSchema = yup.object().shape({
       /^(REN|PEA)[0-9]{4,6}$|^$/,
       "Must start with REN or PEA followed by 4-6 digits",
     ),
-  phone: yup
+  phone: strictPhone(),
+  email: yup
     .string()
-    .required("Phone number is required")
-    .matches(/^[0-9]{10,12}$/, "Phone number must be between 10 and 12 digits"),
-  email: yup.string().email("Invalid email format"),
+    .trim()
+    .email("Invalid email format")
+    .matches(
+      /^$|^[^\s@]+@(?:[a-zA-Z0-9-]+\.)+[a-zA-Z]{2,}$/,
+      "Enter a valid email address",
+    ),
 });
 
 //Change password validation schema
@@ -283,11 +309,8 @@ export const changePasswordSchema = yup.object().shape({
 
 //leave message validation schema
 export const leaveMessageSchema = yup.object().shape({
-  name: yup.string().required("Name is required"),
-  phone: yup.string().required("Phone number is required"),
-  email: yup
-    .string()
-    .required("Email is required")
-    .email("Invalid email format"),
-  message: yup.string().required("Message is required"),
+  name: personName("Name is required"),
+  phone: strictPhone(),
+  email: strictEmail("Email is required"),
+  message: meaningfulText("Message"),
 });

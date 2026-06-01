@@ -863,8 +863,11 @@
 }
 
 .guided-advisor__modal-orbit svg {
+  width: 34px;
+  height: 34px;
   position: relative;
   z-index: 1;
+  display: block;
 }
 
 .guided-advisor__modal-card {
@@ -884,6 +887,13 @@
   font-size: 12px;
   font-weight: 900;
   box-shadow: 0 12px 24px rgba(0, 109, 119, 0.12);
+}
+
+.guided-advisor__modal-card svg {
+  width: 15px;
+  height: 15px;
+  display: block;
+  flex: 0 0 15px;
 }
 
 .guided-advisor__modal-card--one {
@@ -1099,6 +1109,17 @@
   animation: advisor-resume-pulse 10s ease-in-out infinite;
 }
 
+.home-advisor-popup__resume > svg,
+.guided-advisor__resume > svg,
+.guided-advisor__matches-head svg,
+.guided-advisor__question-head svg,
+.guided-advisor__reason svg {
+  width: 18px;
+  height: 18px;
+  display: block;
+  flex: 0 0 18px;
+}
+
 .home-advisor-popup__resume span {
   width: 28px;
   height: 28px;
@@ -1107,6 +1128,13 @@
   display: inline-flex;
   align-items: center;
   justify-content: center;
+}
+
+.home-advisor-popup__resume span svg {
+  width: 14px;
+  height: 14px;
+  display: block;
+  flex: 0 0 14px;
 }
 
 .guided-advisor__resume {

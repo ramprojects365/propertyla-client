@@ -6,6 +6,7 @@ import { toast } from "sonner";
 
 import { IContactFormValues } from "@/types/blog-d-t";
 import { contactTwoSchema } from "@/schemas/validationSchema";
+import apiClient from "@/config/axios";
 import ErrorMessage from "./ErrorMassage";
 
 interface ContactFormProps {
@@ -20,13 +21,41 @@ export default function ContactForm({
     handleSubmit,
     formState: { errors },
     reset,
+    setError,
   } = useForm<IContactFormValues>({
     resolver: yupResolver(contactTwoSchema),
   });
 
-  const onSubmit = () => {
-    toast.success("Your message has been sent successfully!");
-    reset();
+  const handleNameInput = (event: React.FormEvent<HTMLInputElement>) => {
+    event.currentTarget.value = event.currentTarget.value
+      .replace(/[^A-Za-z\s.'-]/g, "")
+      .slice(0, 60);
+  };
+
+  const handlePhoneInput = (event: React.FormEvent<HTMLInputElement>) => {
+    event.currentTarget.value = event.currentTarget.value
+      .replace(/\D/g, "")
+      .slice(0, 12);
+  };
+
+  const onSubmit = async (values: IContactFormValues) => {
+    try {
+      await apiClient.post("/contact", {
+        name: `${values.firstName} ${values.lastName}`.trim(),
+        email: values.email,
+        phone: values.phone,
+        message: values.caseDetails,
+        source: "About contact form",
+      });
+      toast.success("Your message has been sent successfully!");
+      reset();
+    } catch {
+      setError("caseDetails", {
+        type: "server",
+        message: "Message could not be sent. Please try again.",
+      });
+      toast.error("Message could not be sent. Please try again.");
+    }
   };
 
   return (
@@ -38,6 +67,8 @@ export default function ContactForm({
               type="text"
               {...register("firstName")}
               placeholder="First name"
+              maxLength={60}
+              onInput={handleNameInput}
             />
             {errors?.firstName && (
               <ErrorMessage message={errors?.firstName.message} />
@@ -51,6 +82,8 @@ export default function ContactForm({
               type="text"
               {...register("lastName")}
               placeholder="Last name"
+              maxLength={60}
+              onInput={handleNameInput}
             />
             {errors?.lastName && (
               <ErrorMessage message={errors?.lastName.message} />
@@ -72,9 +105,13 @@ export default function ContactForm({
         <div className="col-lg-6">
           <div className="tp-contact-input">
             <input
-              type="text"
+              type="tel"
+              inputMode="numeric"
+              pattern="[0-9]*"
+              maxLength={12}
               {...register("phone")}
               placeholder="Phone number"
+              onInput={handlePhoneInput}
             />
             {errors?.phone && <ErrorMessage message={errors?.phone.message} />}
           </div>
@@ -84,6 +121,7 @@ export default function ContactForm({
           <div className="tp-contact-input">
             <textarea
               placeholder="Your message"
+              maxLength={1000}
               {...register("caseDetails")}
             ></textarea>
             {errors?.caseDetails && (

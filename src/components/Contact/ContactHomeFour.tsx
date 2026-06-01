@@ -1,20 +1,12 @@
-import image from "../../../public/assets/img/awards/get-in-touch.jpg";
-import SendMessageIcon from "../SVG/ContactSvg/SendMessageIcon";
-import EmailTwoSvg from "../SVG/ContactSvg/EmailTwoSvg";
-import { CallTwoSvg } from "../SVG/ContactSvg/CallTwoSvg";
-import Link from "next/link";
-import React from "react";
+import ContactForm from "@/components/Form/ContactForm";
 
 const ContactHomeFour = () => {
   return (
-    <section
-      className="tp-touch-ptb include-bg pt-120"
-      style={{ backgroundImage: `url(${image.src})` }}
-    >
+    <section className="tp-touch-ptb pricing-contact-form-section pt-120 pb-120">
       <div className="container">
-        <div className="row">
-          <div className="col-lg-12">
-            <div className="tp-touch-heading">
+        <div className="row justify-content-center">
+          <div className="col-lg-8">
+            <div className="tp-touch-heading pricing-contact-form-section__heading text-center">
               <span className="tp-section-title-pre">Get in touch with us</span>
               <h3 className="tp-section-title">
                 Looking for partnership <br /> contact us.
@@ -22,42 +14,11 @@ const ContactHomeFour = () => {
             </div>
           </div>
         </div>
-        <div className="row">
-          <div className="col-lg-7"></div>
-          <div className="col-lg-5">
-            <div
-              className="tp-touch-box wow fadeInUp"
-              data-wow-duration="1s"
-              data-wow-delay=".3s"
-            >
-              <div className="tp-touch-box-heading d-flex justify-content-between">
-                <span>Send Message</span>
-                <span>
-                  <SendMessageIcon />
-                </span>
-              </div>
-              <div className="tp-touch-box-content">
-                <div className="tp-touch-box-content-item">
-                  <span>
-                    <EmailTwoSvg />
-                  </span>
-                  <Link href="mailto:infoProperty-La@gmail.com">
-                    infoProperty-La@gmail.com
-                  </Link>
-                </div>
-                <div className="tp-touch-box-content-item">
-                  <span>
-                    <CallTwoSvg />
-                  </span>
-                  <Link href="tel:25663">(999) 3456 3456 3456</Link>
-                </div>
-                <div className="tp-touch-box-content-item">
-                  <p>View on maps</p>
-                  <Link href="#">
-                    21 Valentin Paterson, Road 24, London, UK
-                  </Link>
-                </div>
-              </div>
+
+        <div className="row justify-content-center">
+          <div className="col-xl-8 col-lg-9">
+            <div className="pricing-contact-form-section__card">
+              <ContactForm btnClass="tp-contact-btn pricing-contact-form-section__btn" />
             </div>
           </div>
         </div>

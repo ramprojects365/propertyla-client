@@ -78,6 +78,16 @@
   border-radius: 8px;
   background: #eefafa;
   color: #006d77;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.about-page .tp-contact-info-icon span svg {
+  width: 20px;
+  height: 20px;
+  display: block;
+  flex: 0 0 20px;
 }
 
 .about-page .tp-contact-info-content span {
@@ -205,6 +215,22 @@
   width: 20px;
   height: 20px;
   display: block;
+  flex: 0 0 20px;
+}
+
+.about-page .tp-about-5-item-icon {
+  width: 46px;
+  height: 46px;
+  min-width: 46px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.about-page .tp-about-5-item-icon img {
+  width: 32px;
+  height: 32px;
+  object-fit: contain;
 }
 
 .about-page .tp-about-point-item-title {

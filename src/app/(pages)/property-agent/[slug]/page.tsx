@@ -370,7 +370,7 @@ export default function PropertyAgentPage() {
                     About {agent.fullName || agent.username}
                   </h3>
                   <div className="tp-agent-profile-about">
-                    <p>{agent.bio || "No bio available."}</p>
+                    <p>{agent.bio?.trim() ? agent.bio : "No bio available."}</p>
                   </div>
                 </div>
               </div>
@@ -484,6 +484,8 @@ export default function PropertyAgentPage() {
         .tp-agent-profile-about p {
           color: #666;
           line-height: 1.6;
+          white-space: pre-wrap;
+          overflow-wrap: anywhere;
         }
         .info-grid {
           display: grid;
