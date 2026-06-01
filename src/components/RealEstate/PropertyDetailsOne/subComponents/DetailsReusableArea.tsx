@@ -85,7 +85,11 @@ export default function DetailsReusableArea({
               <div className="tp-property-details-box box-1 mb-30">
                 <h3 className="tp-property-details-box-title">Description</h3>
                 <div className="tp-property-details-box-desc">
-                  <p>{property?.description || "No description available."}</p>
+                  <p className="tp-property-details-description">
+                    {property?.description?.trim()
+                      ? property.description
+                      : "No description available."}
+                  </p>
                 </div>
               </div>
 

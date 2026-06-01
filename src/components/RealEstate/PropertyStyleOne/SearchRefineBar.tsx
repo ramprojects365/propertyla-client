@@ -38,7 +38,7 @@ export default function SearchRefineBar() {
   const inputStyle: React.CSSProperties = {
     border: "1px solid #ddd",
     borderRadius: "8px",
-    padding: "15px 14px",
+    padding: "9px 14px",
     fontSize: "14px",
     width: "100%",
     outline: "none",
@@ -57,6 +57,7 @@ export default function SearchRefineBar() {
 
   return (
     <div
+      className="property-search-refine"
       style={{
         background: "#f8f9ff",
         border: "1px solid #e8e8f0",
@@ -66,9 +67,9 @@ export default function SearchRefineBar() {
       }}
     >
       <form onSubmit={handleSearch}>
-        <div className="row g-3 align-items-end">
+        <div className="row g-3 align-items-end property-search-refine__row">
           {/* Keyword / Property */}
-          <div className="col-lg-3 col-md-6">
+          <div className="col-lg-3 col-md-6 property-search-refine__field">
             <label style={labelStyle}>Keyword</label>
             <input
               type="text"
@@ -80,7 +81,7 @@ export default function SearchRefineBar() {
           </div>
 
           {/* Property Name */}
-          <div className="col-lg-3 col-md-6">
+          <div className="col-lg-3 col-md-6 property-search-refine__field">
             <label style={labelStyle}>Property Name</label>
             <input
               type="text"
@@ -92,7 +93,7 @@ export default function SearchRefineBar() {
           </div>
 
           {/* City */}
-          <div className="col-lg-2 col-md-6">
+          <div className="col-lg-2 col-md-6 property-search-refine__field">
             <label style={labelStyle}>City</label>
             <input
               type="text"
@@ -104,25 +105,27 @@ export default function SearchRefineBar() {
           </div>
 
           {/* Type */}
-          <div className="col-lg-2 col-md-6">
+          <div className="col-lg-2 col-md-6 property-search-refine__field">
             <label style={labelStyle}>Listing Type</label>
-            <select
-              style={{ ...inputStyle, appearance: "auto" }}
-              value={type}
-              onChange={(e) => setType(e.target.value)}
-            >
-              {LISTING_TYPES.map((t) => (
-                <option key={t} value={t}>
-                  {t === ""
-                    ? "All Types"
-                    : t.charAt(0).toUpperCase() + t.slice(1)}
-                </option>
-              ))}
-            </select>
+            <div className="property-search-refine__select">
+              <select
+                style={inputStyle}
+                value={type}
+                onChange={(e) => setType(e.target.value)}
+              >
+                {LISTING_TYPES.map((t) => (
+                  <option key={t} value={t}>
+                    {t === ""
+                      ? "All Types"
+                      : t.charAt(0).toUpperCase() + t.slice(1)}
+                  </option>
+                ))}
+              </select>
+            </div>
           </div>
 
           {/* Submit */}
-          <div className="col-lg-2 col-md-12">
+          <div className="col-lg-2 col-md-12 property-search-refine__action">
             <button
               type="submit"
               style={{

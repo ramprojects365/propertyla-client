@@ -204,6 +204,16 @@
     margin: 0;
   }
 
+  .contact-page .tp-contact-inner-item a {
+    display: grid;
+    grid-template-columns: 18px minmax(0, 1fr);
+  }
+
+  .contact-page .tp-contact-inner-item a span {
+    order: 0;
+    justify-self: start;
+  }
+
   .contact-page .tp-contact-inner-wrap {
     padding: 16px !important;
   }
