@@ -7,11 +7,11 @@ export const quickLinks = [
 ];
 
 export const locationLinks = [
-  { label: "Kuala Lumpur", href: "/search?keyword=Kuala Lumpur" },
-  { label: "Selangor", href: "/search?keyword=Selangor" },
-  { label: "Penang", href: "/search?keyword=Penang" },
-  { label: "Johor", href: "/search?keyword=Johor" },
-  { label: "Perak", href: "/search?keyword=Perak" },
+  { label: "Kuala Lumpur", href: "/properties/kuala-lumpur" },
+  { label: "Selangor", href: "/properties/selangor" },
+  { label: "Penang", href: "/properties/penang" },
+  { label: "Johor", href: "/properties/johor" },
+  { label: "Perak", href: "/properties/perak" },
 ];
 
 export const propertyTypeLinks = [

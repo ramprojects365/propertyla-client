@@ -12,8 +12,8 @@ export default function FooterContact() {
           <Link href="/">
             <>
               <span className="logo-icon-white">Property</span>{" "}
-              <Image className="logo-header" src={logoIcon} alt="image" />
               <span className="logo-icon-white">La</span>
+              <Image className="logo-header" src={logoIcon} alt="Property Lah" />
             </>
           </Link>
         </div>
@@ -23,7 +23,7 @@ export default function FooterContact() {
             Puchong & Klang Valley. Find your perfect property with PropertyLa.
           </p>
           <div className="tp-footer-widget-contact">
-            <Link href="tel:+601126368426">
+            <Link className="tp-footer-phone-link" href="tel:+601126368426">
               <span>
                 <svg
                   xmlns="http://www.w3.org/2000/svg"

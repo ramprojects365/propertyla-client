@@ -1,4 +1,5 @@
 import BreadcrumbArea from "@/components/Breadcrumb/BreadcrumbArea";
+import TrustedAgents from "@/components/TrustedAgents/TrustedAgents";
 import { Metadata } from "next";
 
 export const metadata: Metadata = {
@@ -14,6 +15,7 @@ export default async function AgentDetails() {
         {/* breadcrumb area */}
         <BreadcrumbArea title="Agent Details" />
         {/* breadcrumb area end */}
+        <TrustedAgents />
       </>
     </main>
   );

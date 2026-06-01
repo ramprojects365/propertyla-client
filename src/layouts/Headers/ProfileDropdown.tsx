@@ -105,9 +105,26 @@ const ProfileDropdown = () => {
       {/* ✅ Dropdown */}
       {open && (
         <ul className="sub-menu">
+          <li className="profile-dropdown__section">Manage listing</li>
+          <li>
+            <Link href="/dashboard/add-new-property" onClick={() => setOpen(false)}>
+              <span>Add new property</span>
+            </Link>
+          </li>
+          <li>
+            <Link href="/dashboard/property" onClick={() => setOpen(false)}>
+              <span>My properties</span>
+            </Link>
+          </li>
+          <li className="profile-dropdown__section">Manage account</li>
           <li>
             <Link href="/dashboard/my-profile" onClick={() => setOpen(false)}>
-              <span>{t("common.myProfile")}</span>
+              <span>My profile</span>
+            </Link>
+          </li>
+          <li>
+            <Link href="/dashboard/update-password" onClick={() => setOpen(false)}>
+              <span>Update Password</span>
             </Link>
           </li>
           <li>

@@ -1,7 +1,9 @@
 "use client";
+
 import React, { useEffect, useState } from "react";
 import Image from "next/image";
 import Link from "next/link";
+import { ArrowRight, BadgeCheck, Star } from "lucide-react";
 import { API_BASE_URL } from "@/config/constants";
 import { useTranslation } from "@/contexts/LanguageContext";
 
@@ -49,7 +51,7 @@ const trustedAgents: Agent[] = [
   {
     id: "2",
     name: "MR.PUI",
-    agentId: "PEA 2457)",
+    agentId: "PEA 2457",
     email: "puits888@gmail.com",
     image: "/assets/img/team/team-details/pui.jpg",
     rating: 4.7,
@@ -79,11 +81,10 @@ export default function TrustedAgents() {
 
         const data = await res.json();
         const properties = Array.isArray(data) ? data : data?.data || [];
-
-        // Extract unique users from properties
         const usersMap: Record<string, User> = {};
+
         properties.forEach((property: any) => {
-          if (property.user && property.user.email) {
+          if (property.user?.email) {
             usersMap[property.user.email] = property.user;
           }
         });
@@ -103,11 +104,10 @@ export default function TrustedAgents() {
     const userData = userMap[agent.email];
 
     if (!userData) {
-      // Fallback: use agent ID if no user data found
       return `/property-agent/${agent.id}`;
     }
 
-    const slug: string = userData.username || agent.name;
+    const slug = userData.username || agent.name;
     const cleanSlug = slug
       .toLowerCase()
       .replace(/\s+/g, "-")
@@ -141,17 +141,15 @@ export default function TrustedAgents() {
       updatedAt: userData.updatedAt || new Date().toISOString(),
     };
 
-    const jsonString = JSON.stringify(userDataForUrl);
-    const encodedData = btoa(encodeURIComponent(jsonString));
-    const finalUrl = `/property-agent/${cleanSlug}?data=${encodedData}`;
-    return finalUrl;
+    const encodedData = btoa(encodeURIComponent(JSON.stringify(userDataForUrl)));
+    return `/property-agent/${cleanSlug}?data=${encodedData}`;
   };
 
   if (loading) {
     return (
-      <section style={{ padding: "60px 0" }}>
+      <section className="trusted-partners">
         <div className="container">
-          <div className="text-center">
+          <div className="trusted-partners__loading">
             <p>Loading trusted partners...</p>
           </div>
         </div>
@@ -160,162 +158,63 @@ export default function TrustedAgents() {
   }
 
   return (
-    <section style={{ padding: "60px 0" }}>
+    <section className="trusted-partners">
       <div className="container">
-        <div className="text-center mb-5 pb-15">
-          <h2
-            style={{
-              fontSize: "32px",
-              fontWeight: 700,
-              color: "#003B5C",
-              marginBottom: "15px",
-            }}
-          >
-            {t("home.trustedPartners")}
-          </h2>
-          <p
-            style={{
-              fontSize: "16px",
-              color: "#666",
-              maxWidth: "600px",
-              margin: "0 auto",
-            }}
-          >
-            {t("home.meetPropertyConsultants")}
-          </p>
+        <div className="trusted-partners__heading">
+          <span>
+            <BadgeCheck size={16} />
+            Verified network
+          </span>
+          <h2>{t("home.trustedPartners")}</h2>
+          <p>{t("home.meetPropertyConsultants")}</p>
         </div>
 
-        {/* Horizontal Scroll Container */}
-        <div
-          style={{
-            display: "flex",
-            gap: "20px",
-            overflowX: "auto",
-            paddingBottom: "20px",
-            scrollBehavior: "smooth",
-            scrollbarWidth: "thin",
-            scrollbarColor: "#003B5C #f0f0f0",
-          }}
-          className="trusted-agents-scroll"
-        >
+        <div className="trusted-partners__scroll trusted-agents-scroll">
           {trustedAgents.map((agent) => (
             <Link
               key={agent.id}
               href={getAgentProfileUrl(agent)}
-              style={{
-                textDecoration: "none",
-                flex: "0 0 auto",
-                minWidth: "140px",
-                maxWidth: "200px",
-              }}
+              className="trusted-partners__card"
             >
-              <div
-                style={{
-                  backgroundColor: "#fff",
-                  borderRadius: "12px",
-                  padding: "20px",
-                  textAlign: "center",
-                  boxShadow: "0 4px 12px rgba(0, 0, 0, 0.08)",
-                  transition: "all 0.3s ease",
-                  border: "1px solid #e0e0e0",
-                  cursor: "pointer",
-                }}
-                onMouseEnter={(e) => {
-                  e.currentTarget.style.transform = "translateY(-5px)";
-                  e.currentTarget.style.boxShadow =
-                    "0 8px 20px rgba(0, 59, 92, 0.15)";
-                  e.currentTarget.style.borderColor = "#003B5C";
-                }}
-                onMouseLeave={(e) => {
-                  e.currentTarget.style.transform = "translateY(0)";
-                  e.currentTarget.style.boxShadow =
-                    "0 4px 12px rgba(0, 0, 0, 0.08)";
-                  e.currentTarget.style.borderColor = "#e0e0e0";
-                }}
-              >
-                <div
-                  style={{
-                    width: "100px",
-                    height: "100px",
-                    margin: "0 auto 15px",
-                    borderRadius: "50%",
-                    overflow: "hidden",
-                    border: "1px solid #003B5C",
-                  }}
-                >
-                  <Image
-                    src={agent.image}
-                    alt={agent.name}
-                    width={100}
-                    height={100}
-                    style={{
-                      objectFit: "cover",
-                      width: "100%",
-                      height: "100%",
-                    }}
-                  />
-                </div>
-                <h3
-                  style={{
-                    fontSize: "16px",
-                    fontWeight: 600,
-                    color: "#003B5C",
-                    marginBottom: "5px",
-                  }}
-                >
-                  {agent.name}
-                </h3>
-                <p
-                  style={{
-                    fontSize: "13px",
-                    color: "#666",
-                    marginBottom: "10px",
-                  }}
-                >
-                  {agent.agentId}
-                </p>
-                <div
-                  style={{
-                    display: "flex",
-                    alignItems: "center",
-                    justifyContent: "center",
-                    gap: "5px",
-                    fontSize: "12px",
-                    color: "#666",
-                    marginBottom: "5px",
-                  }}
-                >
-                  <span style={{ color: "#FFA500" }}>★</span>
-                  <span>{agent.rating}</span>
-                </div>
-                <p
-                  style={{
-                    fontSize: "12px",
-                    color: "#666",
-                  }}
-                >
-                  {agent.properties} Properties
-                </p>
+              <div className="trusted-partners__image">
+                <Image src={agent.image} alt={agent.name} width={104} height={104} />
+                <span>
+                  <BadgeCheck size={15} />
+                </span>
+              </div>
+
+              <div className="trusted-partners__content">
+                <h3>{agent.name}</h3>
+                <p>{agent.agentId}</p>
+              </div>
+
+              <div className="trusted-partners__meta">
+                <span>
+                  <Star size={14} fill="currentColor" />
+                  {agent.rating}
+                </span>
+                <span>{agent.properties} properties</span>
+              </div>
+
+              <div className="trusted-partners__action">
+                View profile
+                <ArrowRight size={14} />
               </div>
             </Link>
           ))}
         </div>
 
-        {/* Custom scrollbar styling */}
         <style jsx>{`
           .trusted-agents-scroll::-webkit-scrollbar {
             height: 8px;
           }
           .trusted-agents-scroll::-webkit-scrollbar-track {
-            background: #f0f0f0;
+            background: #eef2f4;
             border-radius: 4px;
           }
           .trusted-agents-scroll::-webkit-scrollbar-thumb {
             background: #003b5c;
             border-radius: 4px;
-          }
-          .trusted-agents-scroll::-webkit-scrollbar-thumb:hover {
-            background: #0056b3;
           }
         `}</style>
       </div>

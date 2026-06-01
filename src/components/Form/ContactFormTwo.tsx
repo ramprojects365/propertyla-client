@@ -6,22 +6,52 @@ import { yupResolver } from "@hookform/resolvers/yup";
 import { useForm } from "react-hook-form";
 import ErrorMessage from "./ErrorMassage";
 import { toast } from "sonner";
+import apiClient from "@/config/axios";
 
 export default function ContactFormTwo() {
   const {
     register,
     handleSubmit,
     reset,
+    setError,
     formState: { errors },
   } = useForm<IContactFormTwoData>({
     resolver: yupResolver(contactSchema),
   });
 
-  const onSubmit = () => {
-    toast.success(
-      "Thank you for reaching out! We've received your message and will respond soon.",
-    );
-    reset();
+  const handleNameInput = (event: React.FormEvent<HTMLInputElement>) => {
+    event.currentTarget.value = event.currentTarget.value
+      .replace(/[^A-Za-z\s.'-]/g, "")
+      .slice(0, 60);
+  };
+
+  const handlePhoneInput = (event: React.FormEvent<HTMLInputElement>) => {
+    event.currentTarget.value = event.currentTarget.value
+      .replace(/\D/g, "")
+      .slice(0, 12);
+  };
+
+  const onSubmit = async (values: IContactFormTwoData) => {
+    try {
+      await apiClient.post("/contact", {
+        name: values.name,
+        email: values.email,
+        phone: values.number,
+        subject: values.subject,
+        message: values.message,
+        source: "Contact page form",
+      });
+      toast.success(
+        "Thank you for reaching out! We've received your message and will respond soon.",
+      );
+      reset();
+    } catch {
+      setError("message", {
+        type: "server",
+        message: "Message could not be sent. Please try again.",
+      });
+      toast.error("Message could not be sent. Please try again.");
+    }
   };
 
   return (
@@ -36,6 +66,8 @@ export default function ContactFormTwo() {
                     type="text"
                     {...register("name")}
                     placeholder="Full name"
+                    maxLength={60}
+                    onInput={handleNameInput}
                   />
                   <ErrorMessage message={errors?.name?.message || ""} />
                 </div>
@@ -57,9 +89,13 @@ export default function ContactFormTwo() {
               <div className="tp-sign-in-input-box">
                 <div className="tp-contact-input p-relative">
                   <input
-                    type="text"
+                    type="tel"
+                    inputMode="numeric"
+                    pattern="[0-9]*"
+                    maxLength={12}
                     {...register("number")}
                     placeholder="Phone number"
+                    onInput={handlePhoneInput}
                   />
                   <ErrorMessage message={errors?.number?.message || ""} />
                 </div>
@@ -72,6 +108,7 @@ export default function ContactFormTwo() {
                     type="text"
                     {...register("subject")}
                     placeholder="Subject"
+                    maxLength={120}
                   />
                   <ErrorMessage message={errors?.subject?.message || ""} />
                 </div>
@@ -83,6 +120,7 @@ export default function ContactFormTwo() {
                   <textarea
                     {...register("message")}
                     placeholder="Write your message"
+                    maxLength={1000}
                   ></textarea>
                   <ErrorMessage message={errors?.message?.message || ""} />
                 </div>

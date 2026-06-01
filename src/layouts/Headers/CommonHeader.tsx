@@ -43,14 +43,14 @@ export default function CommonHeader({ wrapClass = "" }) {
               {sticky ? (
                 <>
                   <span className="logo-icon-black">Property</span>{" "}
-                  <Image className="logo-header" src={logoIcon} alt="image" />
                   <span className="logo-icon-black">La</span>
+                  <Image className="logo-header" src={logoIcon} alt="Property Lah" />
                 </>
               ) : (
                 <>
                   <span className="logo-icon-black">Property</span>{" "}
-                  <Image className="logo-header" src={logoIcon} alt="image" />
                   <span className="logo-icon-black">La</span>
+                  <Image className="logo-header" src={logoIcon} alt="Property Lah" />
                 </>
               )}
             </Link>

@@ -37,6 +37,7 @@ export default function UserContactCard({ user }: UserContactCardProps) {
     user?.profileImage || "/assets/img/team/team-details/user.png";
   const agentWhatsAppNumberLabel = user?.phoneNumber || "";
   const agentWhatsAppNumber = agentWhatsAppNumberLabel.replace(/\D/g, "");
+  const whatsappNumber = agentWhatsAppNumber || "601121149066";
   const renVerified =
     user?.renVerified === true || user?.renStatus === "verified";
   const renStatusLabel =
@@ -52,7 +53,7 @@ export default function UserContactCard({ user }: UserContactCardProps) {
       `Hi, I am interested in this property and would like to know more ${url}`,
     );
     window.open(
-      `https://wa.me/${agentPhone.replace(/\D/g, "")}?text=${message}`,
+      `https://wa.me/${whatsappNumber}?text=${message}`,
       "_blank",
       "noopener,noreferrer",
     );

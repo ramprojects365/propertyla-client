@@ -1,23 +1,25 @@
 import { getCurrentYear } from "@/components/Utils/getCurrentYear";
-import WhatsAppButton from "@/components/UI/WhatsAppButton";
 import { FooterSocialLinks } from "@/components/UI/SocialLinks";
+import Link from "next/link";
 
 export default function FooterCopyright() {
   return (
     <div className="tp-footer-copyright-ptb pt-20 pb-20">
-      <div className="row align-items-center">
-        <div className="col-lg-6">
+      <div className="row align-items-center gy-3">
+        <div className="col-lg-5">
           <div className="tp-footer-copyright">
-            <p>© {getCurrentYear()} Property La. All rights reserved.</p>
+            <p>© {getCurrentYear()} Property Lah. All rights reserved.</p>
           </div>
         </div>
-        <div className="col-lg-6">
-          <div className="tp-footer-copyright d-flex justify-content-end align-items-center gap-3">
-            <WhatsAppButton
-              phoneNumber="601126368426"
-              message="Hi, I'm interested in a property on PropertyLa"
-            />
-            <FooterSocialLinks />
+        <div className="col-lg-7">
+          <div className="tp-footer-copyright-actions">
+            <div className="tp-footer-copyright-links">
+              <Link href="/terms-and-conditions">Terms and Conditions</Link>
+              <Link href="/privacy-policy">Privacy Policy</Link>
+            </div>
+            <div className="tp-footer-social-line" aria-label="Property Lah social media">
+              <FooterSocialLinks />
+            </div>
           </div>
         </div>
       </div>

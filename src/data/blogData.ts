@@ -8,7 +8,7 @@ export const blogData: IBlogDT[] = [
   {
     id: 1,
     image: blogThumb1,
-    category: "Property la",
+    category: "Property lah",
     readTime: "2 min read",
     title: "Costly Mistakes Malaysians Make When Buying Property",
     slug: "costly-mistakes-malaysians-make-when-buying-property",
@@ -19,7 +19,7 @@ export const blogData: IBlogDT[] = [
   {
     id: 2,
     image: blogThumb2,
-    category: "Property la",
+    category: "Property lah",
     readTime: "3 min read",
     title: "Foreign Investors Still Interested in Malaysian Property",
     slug: "foreign-investors-still-interested-in-malaysian-property",
@@ -30,7 +30,7 @@ export const blogData: IBlogDT[] = [
   {
     id: 3,
     image: blogThumb3,
-    category: "Property la",
+    category: "Property lah",
     readTime: "6 min read",
     title: "Stamp Duty in Malaysia Property",
     slug: "Stamp-Duty-in-Malaysia-Property",
@@ -43,7 +43,7 @@ export const blogData: IBlogDT[] = [
   {
     id: 4,
     image: blogThumb3,
-    category: "Property la",
+    category: "Property lah",
     readTime: "6 min read",
     title: "Best Places to Buy Property in Selangor (2026)",
     slug: "best-places-to-buy-property-in-Selangor",
@@ -54,7 +54,7 @@ export const blogData: IBlogDT[] = [
   {
     id: 5,
     image: blogThumb3,
-    category: "Property la",
+    category: "Property lah",
     readTime: "6 min read",
     title: "Stamp Duty in Malaysia Property",
     slug: "Stamp-Duty-in-Malaysia-Property",
@@ -65,7 +65,7 @@ export const blogData: IBlogDT[] = [
   {
     id: 6,
     image: blogThumb3,
-    category: "Property la",
+    category: "Property lah",
     readTime: "6 min read",
     title: "Stamp Duty in Malaysia Property",
     slug: "Stamp-Duty-in-Malaysia-Property",
@@ -78,7 +78,7 @@ export const blogData: IBlogDT[] = [
   {
     id: 7,
     image: blogThumb3,
-    category: "Property la",
+    category: "Property lah",
     readTime: "6 min read",
     title: "Stamp Duty in Malaysia Property",
     slug: "Stamp-Duty-in-Malaysia-Property",
@@ -89,7 +89,7 @@ export const blogData: IBlogDT[] = [
   {
     id: 8,
     image: blogThumb3,
-    category: "Property la",
+    category: "Property lah",
     readTime: "6 min read",
     title: "Stamp Duty in Malaysia Property",
     slug: "Stamp-Duty-in-Malaysia-Property",
@@ -100,7 +100,7 @@ export const blogData: IBlogDT[] = [
   {
     id: 9,
     image: blogThumb3,
-    category: "Property la",
+    category: "Property lah",
     readTime: "6 min read",
     title: "Stamp Duty in Malaysia Property",
     slug: "Stamp-Duty-in-Malaysia-Property",
@@ -113,7 +113,7 @@ export const blogData: IBlogDT[] = [
   {
     id: 10,
     image: blogThumb3,
-    category: "Property la",
+    category: "Property lah",
     readTime: "6 min read",
     title: "Stamp Duty in Malaysia Property",
     slug: "Stamp-Duty-in-Malaysia-Property",
@@ -124,7 +124,7 @@ export const blogData: IBlogDT[] = [
   {
     id: 11,
     image: blogThumb3,
-    category: "Property la",
+    category: "Property lah",
     readTime: "6 min read",
     title: "Stamp Duty in Malaysia Property",
     slug: "Stamp-Duty-in-Malaysia-Property",
@@ -135,7 +135,7 @@ export const blogData: IBlogDT[] = [
   {
     id: 12,
     image: blogThumb3,
-    category: "Property la",
+    category: "Property lah",
     readTime: "6 min read",
     title: "Stamp Duty in Malaysia Property",
     slug: "Stamp-Duty-in-Malaysia-Property",
@@ -147,7 +147,7 @@ export const blogData: IBlogDT[] = [
   {
     id: 13,
     image: blogThumb3,
-    category: "Property la",
+    category: "Property lah",
     readTime: "6 min read",
     title: "Stamp Duty in Malaysia Property",
     slug: "Stamp-Duty-in-Malaysia-Property",
@@ -158,7 +158,7 @@ export const blogData: IBlogDT[] = [
   {
     id: 14,
     image: blogThumb3,
-    category: "Property la",
+    category: "Property lah",
     readTime: "6 min read",
     title: "Stamp Duty in Malaysia Property",
     slug: "Stamp-Duty-in-Malaysia-Property",
@@ -169,7 +169,7 @@ export const blogData: IBlogDT[] = [
   {
     id: 15,
     image: blogThumb3,
-    category: "Property la",
+    category: "Property lah",
     readTime: "6 min read",
     title: "Stamp Duty in Malaysia Property",
     slug: "Stamp-Duty-in-Malaysia-Property",
@@ -180,7 +180,7 @@ export const blogData: IBlogDT[] = [
   {
     id: 16,
     image: blogThumb3,
-    category: "Property la",
+    category: "Property lah",
     readTime: "6 min read",
     title: "Stamp Duty in Malaysia Property",
     slug: "Stamp-Duty-in-Malaysia-Property",
@@ -191,7 +191,7 @@ export const blogData: IBlogDT[] = [
   {
     id: 17,
     image: blogThumb3,
-    category: "Property la",
+    category: "Property lah",
     readTime: "6 min read",
     title: "Stamp Duty in Malaysia Property",
     slug: "Stamp-Duty-in-Malaysia-Property",
@@ -212,7 +212,7 @@ export const blogData: IBlogDT[] = [
   {
     id: 19,
     image: blogThumb3,
-    category: "Property la",
+    category: "Property lah",
     readTime: "6 min read",
     title: "Stamp Duty in Malaysia Property",
     slug: "Stamp-Duty-in-Malaysia-Property",

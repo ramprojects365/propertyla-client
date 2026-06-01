@@ -62,8 +62,8 @@ export default function OffcanvasArea() {
                 <Link href="/">
                   <>
                     <span className="logo-icon-white">Property</span>{" "}
-                    <Image className="logo-header" src={logoIcon} alt="image" />
                     <span className="logo-icon-white">La</span>
+                    <Image className="logo-header" src={logoIcon} alt="Property Lah" />
                   </>
                 </Link>
               </div>

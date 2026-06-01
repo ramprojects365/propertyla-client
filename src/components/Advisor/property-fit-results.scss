@@ -105,8 +105,11 @@
 }
 
 .property-fit-page__handoff svg {
+  width: 20px;
+  height: 20px;
   color: #006d77;
   flex: 0 0 auto;
+  display: block;
 }
 
 .property-fit-page__handoff span {
@@ -133,6 +136,15 @@
   margin-bottom: 18px;
   padding: 12px 14px;
   font-weight: 800;
+}
+
+.property-fit-page__notice svg,
+.property-fit-page__hero-copy svg,
+.property-fit-page__heading svg {
+  width: 18px;
+  height: 18px;
+  display: block;
+  flex: 0 0 18px;
 }
 
 .property-fit-page__heading {
@@ -176,7 +188,8 @@
 .property-fit-page__reason svg {
   width: 20px;
   height: 20px;
-  flex: 0 0 auto;
+  flex: 0 0 20px;
+  display: block;
 }
 
 .property-fit-page__view-signal {
