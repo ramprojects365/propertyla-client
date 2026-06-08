@@ -38,7 +38,7 @@ export async function generateMetadata(
     const canonicalUrl = `https://propertyla.com.my/property-details/${id}`;
 
     return {
-      metadataBase: new URL("https://www.propertyla.com.my"),
+      metadataBase: new URL("https://propertyla.com.my"),
       title,
       description,
       alternates: { canonical: canonicalUrl },
@@ -46,7 +46,7 @@ export async function generateMetadata(
         title,
         description,
         url: canonicalUrl,
-        siteName: "Propertyla",
+        siteName: "PropertyLa",
         type: "website",
         images: imageUrl
           ? [
@@ -65,7 +65,7 @@ export async function generateMetadata(
     };
   } catch {
     return {
-      metadataBase: new URL("https://www.propertyla.com.my"),
+      metadataBase: new URL("https://propertyla.com.my"),
       title: `Property Details - ${id}`,
     };
   }

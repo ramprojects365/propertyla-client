@@ -29,13 +29,13 @@ export default function DashboardHeader() {
                 <>
                   <span className="logo-icon-black">Property</span>{" "}
                   <span className="logo-icon-black">La</span>
-                  <Image className="logo-header" src={logoIcon} alt="Property Lah" />
+                  <Image className="logo-header" src={logoIcon} alt="PropertyLa" />
                 </>
               ) : (
                 <>
                   <span className="logo-icon-black">Property</span>{" "}
                   <span className="logo-icon-black">La</span>
-                  <Image className="logo-header" src={logoIcon} alt="Property Lah" />
+                  <Image className="logo-header" src={logoIcon} alt="PropertyLa" />
                 </>
               )}
             </Link>

@@ -4,7 +4,7 @@ import RecentPosts from "@/components/Blog/RecentPosts";
 // Using direct paths for public directory images
 
 export const metadata: Metadata = {
-  metadataBase: new URL("https://www.propertyla.com.my"),
+  metadataBase: new URL("https://propertyla.com.my"),
   title:
     "Stamp Duty in Malaysia Property (2026): Complete Guide | PropertyLa Malaysia",
   description:
