@@ -369,7 +369,13 @@
   }
 
   .property-fit-page__hero-copy h1 {
-    font-size: 28px;
+    font-size: 22px !important;
+    line-height: 1.18 !important;
+  }
+
+  .property-fit-page__heading h2 {
+    font-size: 20px !important;
+    line-height: 1.25 !important;
   }
 
   .property-fit-page__brief,

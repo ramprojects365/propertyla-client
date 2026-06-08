@@ -28,18 +28,11 @@ export default function HomeOnePage() {
       <div style={{ backgroundColor: "rgb(240, 244, 253)" }}>
         <HomeBlogArea />
       </div>
-      <section style={{ padding: "40px 0", backgroundColor: "#fff" }}>
+      <section className="home-trust-section">
         <div className="container">
-          <div style={{ textAlign: "center" }}>
-            <h3
-              className="tp-section-title"
-              style={{
-                marginBottom: "30px",
-                color: "#003B5C",
-              }}
-            >
-              {t("home.whyChoosePropertyLa")}
-            </h3>
+          <div className="home-trust-section__inner">
+            <span className="tp-section-title-pre">Why PropertyLa</span>
+            <h3 className="tp-section-title">{t("home.whyChoosePropertyLa")}</h3>
             <TrustBadges />
           </div>
         </div>
