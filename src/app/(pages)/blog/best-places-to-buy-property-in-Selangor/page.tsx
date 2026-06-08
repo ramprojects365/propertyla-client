@@ -3,7 +3,7 @@ import Link from "next/link";
 import RecentPosts from "@/components/Blog/RecentPosts";
 
 export const metadata: Metadata = {
-  metadataBase: new URL("https://www.propertyla.com.my"),
+  metadataBase: new URL("https://propertyla.com.my"),
   title: "Best Places to Buy Property in Selangor (2026) | PropertyLa Malaysia",
   description:
     "Discover the best places to buy property in Selangor including Shah Alam, Petaling Jaya, Puchong, Cyberjaya, Klang, and Semenyih. Expert insights on property investment opportunities in Selangor.",
@@ -302,7 +302,7 @@ export default function BestPlacesSelangorBlog() {
 
                     <p className="mb-30">
                       Explore the latest property listings in Selangor today
-                      with Propertyla and discover your next home with
+                      with PropertyLa and discover your next home with
                       confidence.
                     </p>
 

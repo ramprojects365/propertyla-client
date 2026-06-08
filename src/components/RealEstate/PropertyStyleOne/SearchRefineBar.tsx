@@ -63,13 +63,13 @@ export default function SearchRefineBar() {
         border: "1px solid #e8e8f0",
         borderRadius: "8px",
         padding: "20px 24px",
-        marginBottom: "32px",
+        marginBottom: "120px",
       }}
     >
       <form onSubmit={handleSearch}>
-        <div className="row g-3 align-items-end property-search-refine__row">
+        <div className="row align-items-end property-search-refine__row">
           {/* Keyword / Property */}
-          <div className="col-lg-3 col-md-6 property-search-refine__field">
+          <div className="col-xl-3 col-lg-6 col-md-6 property-search-refine__field">
             <label style={labelStyle}>Keyword</label>
             <input
               type="text"
@@ -81,7 +81,7 @@ export default function SearchRefineBar() {
           </div>
 
           {/* Property Name */}
-          <div className="col-lg-3 col-md-6 property-search-refine__field">
+          <div className="col-xl-3 col-lg-6 col-md-6 property-search-refine__field">
             <label style={labelStyle}>Property Name</label>
             <input
               type="text"
@@ -93,7 +93,7 @@ export default function SearchRefineBar() {
           </div>
 
           {/* City */}
-          <div className="col-lg-2 col-md-6 property-search-refine__field">
+          <div className="col-xl-2 col-lg-4 col-md-6 property-search-refine__field">
             <label style={labelStyle}>City</label>
             <input
               type="text"
@@ -105,7 +105,7 @@ export default function SearchRefineBar() {
           </div>
 
           {/* Type */}
-          <div className="col-lg-2 col-md-6 property-search-refine__field">
+          <div className="col-xl-2 col-lg-4 col-md-6 property-search-refine__field">
             <label style={labelStyle}>Listing Type</label>
             <div className="property-search-refine__select">
               <select
@@ -125,7 +125,7 @@ export default function SearchRefineBar() {
           </div>
 
           {/* Submit */}
-          <div className="col-lg-2 col-md-12 property-search-refine__action">
+          <div className="col-xl-2 col-lg-4 col-md-12 property-search-refine__action">
             <button
               type="submit"
               style={{
