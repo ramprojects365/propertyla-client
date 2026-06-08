@@ -114,8 +114,12 @@ function HomePropertiesByCity() {
         <div className="row">
           <div className="col-lg-12">
             <div className="tp-explore-heading mb-55">
-              <span className="tp-section-title-pre">{t("home.propertiesByCity")}</span>
-              <h3 className="tp-section-title">{t("home.exploreNeighbourhoods")}</h3>
+              <span className="tp-section-title-pre">
+                {t("home.propertiesByCity")}
+              </span>
+              <h3 className="tp-section-title">
+                {t("home.exploreNeighbourhoods")}
+              </h3>
             </div>
           </div>
         </div>
@@ -125,10 +129,7 @@ function HomePropertiesByCity() {
           data-wow-delay=".7s"
         >
           {items.map((property) => (
-            <div
-              key={property.id}
-              className="col-lg-4 col-md-6 col-6"
-            >
+            <div key={property.id} className="col-lg-4 col-md-6 col-6">
               {(() => {
                 const params = new URLSearchParams();
                 params.set("q", property.name);
@@ -165,7 +166,7 @@ function HomePropertiesByCity() {
                         <span>
                           {property.isDynamic
                             ? `${property.count} ${t("common.property")}`
-                            : "Browse area"}
+                            : ""}
                         </span>
                       </div>
                       <div className="tp-explore-btn">

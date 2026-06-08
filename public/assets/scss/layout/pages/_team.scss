@@ -491,12 +491,12 @@
   }
   &-content {
     &-title {
-      font-size: 46px;
+      font-size: 28px;
       font-weight: 600;
       margin-bottom: 25px;
       letter-spacing: -0.92px;
       @media #{$xs} {
-        font-size: 32px;
+        font-size: 22px;
       }
     }
   }
