@@ -13,7 +13,7 @@ export default function FooterContact() {
             <>
               <span className="logo-icon-white">Property</span>{" "}
               <span className="logo-icon-white">La</span>
-              <Image className="logo-header" src={logoIcon} alt="Property Lah" />
+              <Image className="logo-header" src={logoIcon} alt="PropertyLa" />
             </>
           </Link>
         </div>

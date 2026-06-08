@@ -4,7 +4,7 @@ import RecentPosts from "@/components/Blog/RecentPosts";
 // Using direct paths for public directory images
 
 export const metadata: Metadata = {
-  metadataBase: new URL("https://www.propertyla.com.my"),
+  metadataBase: new URL("https://propertyla.com.my"),
   title:
     "Foreign Investors Still Interested in Malaysian Property (2026) | PropertyLa Malaysia",
   description:

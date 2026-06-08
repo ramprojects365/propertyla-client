@@ -7,10 +7,11 @@ import { Metadata } from "next";
 import HomeAdvisorPopup from "@/components/Advisor/HomeAdvisorPopup";
 
 export const metadata: Metadata = {
-  title:
-    "Property for Sale & Rent in Kuala Lumpur & Klang Valley | Condos, Houses, Apartments",
+  title: {
+    absolute: "PropertyLa Malaysia Real Estate | Buy, Rent & Discover Property",
+  },
   description:
-    "Find your perfect property in Kuala Lumpur, Selangor, Cheras, Puchong & Klang Valley. Browse condos for rent, houses for sale, apartments, and landed properties. Malaysia's trusted real estate platform.",
+    "PropertyLa is a Malaysia real estate platform for condos, houses, apartments, rental homes, subsale homes and verified property agents.",
 };
 
 const Home = () => {

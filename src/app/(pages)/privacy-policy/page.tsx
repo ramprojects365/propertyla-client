@@ -1,9 +1,9 @@
 import { Metadata } from "next";
 
 export const metadata: Metadata = {
-  title: "Privacy Policy | Property Lah",
+  title: "Privacy Policy | PropertyLa",
   description:
-    "Learn how Property Lah collects, uses, protects, and shares personal information for property enquiries, accounts, listings, and platform services.",
+    "Learn how PropertyLa collects, uses, protects, and shares personal information for property enquiries, accounts, listings, and platform services.",
 };
 
 const sections = [
@@ -13,7 +13,7 @@ const sections = [
   },
   {
     title: "How we use your information",
-    body: "We use information to operate Property Lah, show relevant listings, respond to enquiries, connect you with property consultants, manage accounts, improve the platform, prevent misuse, and send important service updates.",
+    body: "We use information to operate PropertyLa, show relevant listings, respond to enquiries, connect you with property consultants, manage accounts, improve the platform, prevent misuse, and send important service updates.",
   },
   {
     title: "Property enquiries and agent follow-up",
@@ -21,7 +21,7 @@ const sections = [
   },
   {
     title: "Cookies and analytics",
-    body: "Property Lah may use cookies, local storage, analytics, and similar technologies to remember preferences, keep you signed in, understand website performance, and improve user experience.",
+    body: "PropertyLa may use cookies, local storage, analytics, and similar technologies to remember preferences, keep you signed in, understand website performance, and improve user experience.",
   },
   {
     title: "How we protect data",
@@ -37,7 +37,7 @@ const sections = [
   },
   {
     title: "Policy updates",
-    body: "We may update this Privacy Policy as Property Lah grows or legal requirements change. The latest version will be available on this page.",
+    body: "We may update this Privacy Policy as PropertyLa grows or legal requirements change. The latest version will be available on this page.",
   },
 ];
 
@@ -51,7 +51,7 @@ export default function PrivacyPolicy() {
               <span className="tp-section-title-pre">Privacy</span>
               <h1 className="tp-section-title">Privacy Policy</h1>
               <p>
-                This policy explains how Property Lah handles personal
+                This policy explains how PropertyLa handles personal
                 information when you browse listings, create an account, submit
                 a property, send an enquiry, or use our property tools.
               </p>

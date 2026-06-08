@@ -6,6 +6,14 @@ import "swiper/css/bundle";
 import "./globals.scss";
 import RootProviders from "./RootProviders";
 
+const siteUrl = "https://propertyla.com.my/";
+const siteTitle =
+  "PropertyLa Malaysia Real Estate | Buy, Rent & Discover Property";
+const siteDescription =
+  "PropertyLa is a Malaysia real estate platform for condos, houses, apartments, rental homes, subsale homes and verified property agents.";
+const siteLogo =
+  "https://propertyla.com.my/assets/img/logo/logo-icon-blue.png";
+
 const plusJakartaSans = Plus_Jakarta_Sans({
   variable: "--font-plus-jakarta-sans",
   subsets: ["latin"],
@@ -26,12 +34,11 @@ export const metadata: Metadata = {
   metadataBase: new URL("https://propertyla.com.my"),
 
   title: {
-    default: "PropertyLa Malaysia Real Estate",
+    default: siteTitle,
     template: "%s | PropertyLa",
   },
 
-  description:
-    "Find condos, houses, apartments and rooms for rent or sale in Malaysia with PropertyLa. Connect with verified agents and discover your next property.",
+  description: siteDescription,
 
   applicationName: "PropertyLa",
 
@@ -51,18 +58,17 @@ export const metadata: Metadata = {
   publisher: "PropertyLa",
 
   alternates: {
-    canonical: "https://propertyla.com.my",
+    canonical: siteUrl,
   },
 
   openGraph: {
-    title: "PropertyLa Malaysia Real Estate",
-    description:
-      "Find condos, houses, apartments and rooms for rent or sale in Malaysia with PropertyLa.",
-    url: "https://propertyla.com.my",
+    title: siteTitle,
+    description: siteDescription,
+    url: siteUrl,
     siteName: "PropertyLa",
     images: [
       {
-        url: "https://propertyla.com.my/assets/img/logo/logo-icon-blue.png",
+        url: siteLogo,
         width: 512,
         height: 512,
         alt: "PropertyLa Logo",
@@ -74,10 +80,9 @@ export const metadata: Metadata = {
 
   twitter: {
     card: "summary_large_image",
-    title: "PropertyLa Malaysia Real Estate",
-    description:
-      "Find condos, houses, apartments and rooms for rent or sale in Malaysia with PropertyLa.",
-    images: ["https://propertyla.com.my/assets/img/logo/logo-icon-blue.png"],
+    title: siteTitle,
+    description: siteDescription,
+    images: [siteLogo],
   },
 
   icons: {
@@ -101,16 +106,16 @@ export default function RootLayout({
     "@context": "https://schema.org",
     "@type": "WebSite",
     name: "PropertyLa",
-    alternateName: "PropertyLa Malaysia Real Estate",
-    url: "https://propertyla.com.my",
+    alternateName: ["PropertyLa Malaysia", "PropertyLa Malaysia Real Estate"],
+    url: siteUrl,
   };
 
   const organizationSchema = {
     "@context": "https://schema.org",
     "@type": "Organization",
     name: "PropertyLa",
-    url: "https://propertyla.com.my",
-    logo: "https://propertyla.com.my/assets/img/logo/logo-icon-blue.png",
+    url: siteUrl,
+    logo: siteLogo,
   };
 
   return (
