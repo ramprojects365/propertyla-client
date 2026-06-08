@@ -193,7 +193,7 @@ export const propertyData: IFeaturedPropertyDT[] = [
   //home Two feature list data start
   {
     id: 9,
-    title: "Uptown Property-La land residence",
+    title: "Uptown Property La land residence",
     image: listingThumb1,
     bedrooms: "05",
     bathrooms: "03",
@@ -233,7 +233,7 @@ export const propertyData: IFeaturedPropertyDT[] = [
   },
   {
     id: 13,
-    title: "Uptown Property-La land residence",
+    title: "Uptown Property La land residence",
     image: listingThumb2,
     bedrooms: "05",
     bathrooms: "03",
