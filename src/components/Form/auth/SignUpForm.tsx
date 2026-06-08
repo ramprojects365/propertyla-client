@@ -43,7 +43,6 @@ export default function SignUpForm() {
       border: "1px solid #ddd",
       borderRadius: "8px",
       width: "250px",
-      fontFamily: "Arial, sans-serif",
     },
     title: {
       fontWeight: 600,
