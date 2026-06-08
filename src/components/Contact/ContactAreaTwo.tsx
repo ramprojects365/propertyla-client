@@ -25,7 +25,7 @@ export default function ContactAreaTwo() {
         <div className="row">
           <div className="col-lg-6">
             <div className="tp-contact-inner-heading mb-30">
-              <span className="tp-section-title-pre">CONTACT PROPERTYLA</span>
+              <span className="tp-section-title-pre">Contact PropertyLa</span>
               <h3 className="tp-section-title">
                 Talk to our <br /> Malaysia team.
               </h3>
@@ -48,6 +48,17 @@ export default function ContactAreaTwo() {
                       <TeamEmailSvg />
                     </span>
                     {email}
+                  </Link>
+                  <Link
+                    className="tp-contact-inner-whatsapp"
+                    href="https://wa.me/601121149066?text=Hi%20PropertyLa%2C%20I%20would%20like%20help%20with%20my%20property%20search."
+                    target="_blank"
+                    rel="noopener noreferrer"
+                  >
+                    <span>
+                      <i className="fa-brands fa-whatsapp"></i>
+                    </span>
+                    Reach out on WhatsApp
                   </Link>
                 </div>
               ))}

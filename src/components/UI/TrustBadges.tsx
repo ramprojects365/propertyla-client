@@ -1,25 +1,45 @@
 "use client";
+
 import React from "react";
+import { LockKeyhole, ShieldCheck, Trophy, Users } from "lucide-react";
+
+const badges = [
+  {
+    label: "Verified Agents",
+    detail: "REN-focused profiles",
+    icon: ShieldCheck,
+  },
+  {
+    label: "Secure Platform",
+    detail: "Protected enquiries",
+    icon: LockKeyhole,
+  },
+  {
+    label: "Top Rated",
+    detail: "Trusted by buyers",
+    icon: Trophy,
+  },
+  {
+    label: "10,000+ Users",
+    detail: "Growing community",
+    icon: Users,
+  },
+];
 
 export default function TrustBadges() {
   return (
-    <div className="trust-badges" style={{ display: "flex", gap: "20px", flexWrap: "wrap", marginTop: "20px", justifyContent: "center" }}>
-      <div className="trust-badge" style={{ display: "flex", alignItems: "center", gap: "8px", fontSize: "14px", color: "#666" }}>
-        <span style={{ fontSize: "18px" }}>✓</span>
-        <span>Verified Agents</span>
-      </div>
-      <div className="trust-badge" style={{ display: "flex", alignItems: "center", gap: "8px", fontSize: "14px", color: "#666" }}>
-        <span style={{ fontSize: "18px" }}>🔒</span>
-        <span>Secure Platform</span>
-      </div>
-      <div className="trust-badge" style={{ display: "flex", alignItems: "center", gap: "8px", fontSize: "14px", color: "#666" }}>
-        <span style={{ fontSize: "18px" }}>🏆</span>
-        <span>Top Rated</span>
-      </div>
-      <div className="trust-badge" style={{ display: "flex", alignItems: "center", gap: "8px", fontSize: "14px", color: "#666" }}>
-        <span style={{ fontSize: "18px" }}>👥</span>
-        <span>10,000+ Users</span>
-      </div>
+    <div className="trust-badges">
+      {badges.map(({ label, detail, icon: Icon }) => (
+        <div className="trust-badge" key={label}>
+          <span className="trust-badge__icon">
+            <Icon size={19} strokeWidth={2.4} />
+          </span>
+          <span className="trust-badge__copy">
+            <strong>{label}</strong>
+            <small>{detail}</small>
+          </span>
+        </div>
+      ))}
     </div>
   );
 }

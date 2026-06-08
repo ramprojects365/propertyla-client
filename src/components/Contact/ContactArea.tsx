@@ -1,6 +1,6 @@
 
 import ContactInfoList from "./subComponents/ContactInfoList";
-import ContactForm from "../Form/ContactForm";
+import WhatsAppButton from "@/components/UI/WhatsAppButton";
 
 export default function ContactArea({btnClass}:{btnClass?:string}) {
     return (
@@ -17,7 +17,20 @@ export default function ContactArea({btnClass}:{btnClass?:string}) {
                     </div>
                     <div className="col-lg-7">
                         <div className="tp-contact-box wow fadeInUp" data-wow-duration="1s" data-wow-delay=".5s">
-                            <ContactForm btnClass={btnClass}/>
+                            <div className="contact-whatsapp-cta">
+                                <span className="tp-section-title-pre">Quick enquiry</span>
+                                <h4 className="tp-section-title">
+                                    Prefer a faster reply? Chat with us on WhatsApp.
+                                </h4>
+                                <p>
+                                    Share what you are looking for and our team will guide you to the right property options.
+                                </p>
+                                <WhatsAppButton
+                                    phoneNumber="601121149066"
+                                    message="Hi PropertyLa, I would like help with my property search."
+                                    className={btnClass}
+                                />
+                            </div>
                         </div>
                     </div>
                 </div>

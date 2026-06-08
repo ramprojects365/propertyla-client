@@ -1,4 +1,4 @@
-import ContactForm from "@/components/Form/ContactForm";
+import WhatsAppButton from "@/components/UI/WhatsAppButton";
 
 const ContactHomeFour = () => {
   return (
@@ -18,7 +18,20 @@ const ContactHomeFour = () => {
         <div className="row justify-content-center">
           <div className="col-xl-8 col-lg-9">
             <div className="pricing-contact-form-section__card">
-              <ContactForm btnClass="tp-contact-btn pricing-contact-form-section__btn" />
+              <div className="contact-whatsapp-cta contact-whatsapp-cta--pricing">
+                <span className="tp-section-title-pre">Quick enquiry</span>
+                <h4 className="tp-section-title">
+                  Chat with PropertyLa on WhatsApp.
+                </h4>
+                <p>
+                  Tell us what you need and our team will help you choose the right next step.
+                </p>
+                <WhatsAppButton
+                  phoneNumber="601121149066"
+                  message="Hi PropertyLa, I would like to ask about pricing and partnership options."
+                  className="tp-contact-btn pricing-contact-form-section__btn"
+                />
+              </div>
             </div>
           </div>
         </div>

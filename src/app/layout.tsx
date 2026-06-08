@@ -1,26 +1,17 @@
-"use client";
-
+import type { Metadata } from "next";
 import { Geist, Geist_Mono, Plus_Jakarta_Sans } from "next/font/google";
-import React, { useEffect } from "react";
-import GlobalVideoModal from "@/components/Popup/GlobalVideoModal";
-import { VideoProvider } from "@/provider/VideoProvider";
-import AppProvider from "@/provider/AppProvider";
-import ReduxProvider from "@/redux/provider";
-import { LanguageProvider } from "@/contexts/LanguageContext";
-import "slick-carousel/slick/slick.css";
-import { Toaster } from "sonner";
-import "swiper/css/bundle";
-import GoogleMapsProvider from "@/components/HeroBanner/subComponents/GoogleMapsProvider";
-import "./globals.scss";
 
-// Load Plus Jakarta Sans from Google Fonts
+import "slick-carousel/slick/slick.css";
+import "swiper/css/bundle";
+import "./globals.scss";
+import RootProviders from "./RootProviders";
+
 const plusJakartaSans = Plus_Jakarta_Sans({
   variable: "--font-plus-jakarta-sans",
   subsets: ["latin"],
   weight: ["400", "500", "600", "700", "800"],
 });
 
-// Load Geist Sans & Geist Mono
 const geistSans = Geist({
   variable: "--font-geist-sans",
   subsets: ["latin"],
@@ -31,65 +22,118 @@ const geistMono = Geist_Mono({
   subsets: ["latin"],
 });
 
+export const metadata: Metadata = {
+  metadataBase: new URL("https://propertyla.com.my"),
+
+  title: {
+    default: "PropertyLa Malaysia Real Estate",
+    template: "%s | PropertyLa",
+  },
+
+  description:
+    "Find condos, houses, apartments and rooms for rent or sale in Malaysia with PropertyLa. Connect with verified agents and discover your next property.",
+
+  applicationName: "PropertyLa",
+
+  keywords: [
+    "PropertyLa",
+    "Malaysia real estate",
+    "Malaysia property",
+    "condos Malaysia",
+    "houses Malaysia",
+    "apartments Malaysia",
+    "property for rent Malaysia",
+    "property for sale Malaysia",
+  ],
+
+  authors: [{ name: "PropertyLa" }],
+  creator: "PropertyLa",
+  publisher: "PropertyLa",
+
+  alternates: {
+    canonical: "https://propertyla.com.my",
+  },
+
+  openGraph: {
+    title: "PropertyLa Malaysia Real Estate",
+    description:
+      "Find condos, houses, apartments and rooms for rent or sale in Malaysia with PropertyLa.",
+    url: "https://propertyla.com.my",
+    siteName: "PropertyLa",
+    images: [
+      {
+        url: "https://propertyla.com.my/assets/img/logo/logo-icon-blue.png",
+        width: 512,
+        height: 512,
+        alt: "PropertyLa Logo",
+      },
+    ],
+    locale: "en_MY",
+    type: "website",
+  },
+
+  twitter: {
+    card: "summary_large_image",
+    title: "PropertyLa Malaysia Real Estate",
+    description:
+      "Find condos, houses, apartments and rooms for rent or sale in Malaysia with PropertyLa.",
+    images: ["https://propertyla.com.my/assets/img/logo/logo-icon-blue.png"],
+  },
+
+  icons: {
+    icon: "/favicon.ico",
+    shortcut: "/favicon.ico",
+    apple: "/apple-touch-icon.png",
+  },
+
+  robots: {
+    index: true,
+    follow: true,
+  },
+};
+
 export default function RootLayout({
   children,
 }: Readonly<{
   children: React.ReactNode;
 }>) {
-  // Add scroll detection for profile icon styling
-  useEffect(() => {
-    const handleScroll = () => {
-      if (window.scrollY > 50) {
-        document.body.classList.add("scrolled");
-      } else {
-        document.body.classList.remove("scrolled");
-      }
-    };
+  const websiteSchema = {
+    "@context": "https://schema.org",
+    "@type": "WebSite",
+    name: "PropertyLa",
+    alternateName: "PropertyLa Malaysia Real Estate",
+    url: "https://propertyla.com.my",
+  };
 
-    window.addEventListener("scroll", handleScroll);
-
-    return () => {
-      window.removeEventListener("scroll", handleScroll);
-    };
-  }, []);
-
-  // If children is a plain object (e.g. an error object) stringify it so React doesn't try to render it directly.
-  const sanitizedChildren =
-    typeof children === "object" &&
-    children !== null &&
-    !React.isValidElement(children)
-      ? JSON.stringify(children)
-      : children;
+  const organizationSchema = {
+    "@context": "https://schema.org",
+    "@type": "Organization",
+    name: "PropertyLa",
+    url: "https://propertyla.com.my",
+    logo: "https://propertyla.com.my/assets/img/logo/logo-icon-blue.png",
+  };
 
   return (
     <html lang="en">
-      <head>
-        <meta property="og:title" content="PropertyLa - Find Your Dream Property in Malaysia" />
-        <meta property="og:description" content="Discover the best properties for sale and rent in Malaysia. Trusted real estate platform with verified agents." />
-        <meta property="og:image" content="https://www.propertyla.com.my/assets/img/logo/logo-icon-blue.png" />
-        <meta property="og:url" content="https://www.propertyla.com.my" />
-        <meta property="og:type" content="website" />
-        <meta property="og:site_name" content="PropertyLa" />
-        <meta name="twitter:card" content="summary_large_image" />
-        <meta name="twitter:title" content="PropertyLa - Find Your Dream Property in Malaysia" />
-        <meta name="twitter:description" content="Discover the best properties for sale and rent in Malaysia. Trusted real estate platform with verified agents." />
-        <meta name="twitter:image" content="https://www.propertyla.com.my/assets/img/logo/logo-icon-blue.png" />
-      </head>
       <body
         suppressHydrationWarning
         className={`${plusJakartaSans.variable} ${geistSans.variable} ${geistMono.variable}`}
       >
-        <LanguageProvider>
-          <ReduxProvider>
-            <VideoProvider>
-              <AppProvider>
-                <GoogleMapsProvider>{sanitizedChildren}</GoogleMapsProvider>
-              </AppProvider>
-              <Toaster position="top-center" richColors />
-              <GlobalVideoModal />
-            </VideoProvider>
-          </ReduxProvider>
-        </LanguageProvider>
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{
+            __html: JSON.stringify(websiteSchema),
+          }}
+        />
+
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{
+            __html: JSON.stringify(organizationSchema),
+          }}
+        />
+
+        <RootProviders>{children}</RootProviders>
       </body>
     </html>
   );
