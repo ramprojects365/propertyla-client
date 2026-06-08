@@ -30,7 +30,7 @@ export default function PropertyLayout({ children }: { children: ReactNode }) {
 
   return (
     <>
-      <section className="tp-property-ptb pt-20 pb-120">
+      <section className="tp-property-ptb pt-20 pb-20">
         <div className="container">
           <div className="ml-list">
             <Breadcrumb
