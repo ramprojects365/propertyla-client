@@ -59,7 +59,7 @@ function PropertySingleCardTwo({ item }: propertyProps) {
               {item.title}
             </Link>
           </h4>
-          <p style={{ height: "43px" }}>
+          <p>
             <MapMarkerSvg /> {item.address}
           </p>
           <div className="tp-rent-meta-list d-flex justify-content-between align-items-center">
