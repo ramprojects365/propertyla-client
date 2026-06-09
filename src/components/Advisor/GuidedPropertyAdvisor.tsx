@@ -223,9 +223,9 @@ const validateContactDetails = (contact: AdvisorContact): ContactErrors => {
   const hasAnyContact = Boolean(phone || email);
 
   if (hasAnyContact && !phone) {
-    errors.phone = "Enter your Malaysia phone number";
+    errors.phone = "Enter your phone number";
   } else if (phone && !isValidMalaysiaPhone(phone)) {
-    errors.phone = "Enter a valid Malaysia phone number";
+    errors.phone = "Enter a valid phone number";
   }
 
   if (hasAnyContact && !email) {
