@@ -1,0 +1,153 @@
+PropertyLa Frontend Documentation
+=================================
+
+Overview
+--------
+This repository contains the PropertyLa frontend application.
+
+The frontend renders the public website, property search, property details,
+property advisor flow, dashboard pages, authentication screens, contact forms,
+and client side validation.
+
+
+Technology
+----------
+Main stack:
+  Next.js 15
+  React 19
+  TypeScript
+  Sass/SCSS
+  Axios
+  React Hook Form
+  Yup
+
+
+Important Folders
+-----------------
+src/app
+  Next.js app router pages and layouts.
+
+src/components
+  Shared UI components, forms, advisor components, property cards, layout,
+  dashboard components, and SVG/icon components.
+
+src/services
+  Frontend API service functions that call the backend.
+
+src/config
+  Frontend configuration, including Axios setup.
+
+src/schemas
+  Validation schemas used by forms.
+
+src/locales
+  Translation/localization JSON files.
+
+public
+  Static assets such as images, fonts, and CSS/SCSS assets.
+
+
+Property Advisor Contact Validation
+-----------------------------------
+Main file:
+  src/components/Advisor/GuidedPropertyAdvisor.tsx
+
+Style file:
+  src/components/Advisor/guided-property-advisor.scss
+
+The contact step is optional.
+
+Validation rules:
+  Empty phone + empty email = user can skip contact.
+  Phone entered + email empty = invalid.
+  Email entered + phone empty = invalid.
+  Phone entered + email entered = both must be valid.
+
+Phone number rule:
+  Phone must be a valid Malaysia phone number.
+
+Accepted examples:
+  0123456789
+  60123456789
+  +60123456789
+
+Rejected example:
+  2424242
+
+Email rule:
+  Email must use a valid email format when provided.
+
+User experience:
+  The phone input can start with +6 for Malaysia numbers.
+  A bare +6 is treated as empty, so the user can still skip contact.
+  Invalid phone/email values show inline field errors.
+  The user cannot continue to results until invalid contact fields are fixed.
+
+
+Backend API Connection
+----------------------
+API calls are made through Axios.
+
+Important file:
+  src/config/axios.ts
+
+Property advisor API functions:
+  src/services/propertyService.ts
+
+Related endpoints:
+  POST /api/properties/fit/matches
+  POST /api/properties/fit/lead
+  POST /api/properties/fit/view
+  POST /api/properties/:id/view
+
+
+Development
+-----------
+Install dependencies:
+  npm install
+
+Start local development server:
+  npm run dev
+
+Typical development behavior:
+  Runs the Next.js development server.
+  Supports fast local refresh while editing.
+  Uses .env.local for local frontend environment variables.
+  API URLs may point to localhost or a local backend.
+  Useful for UI development, debugging, and validation checks.
+
+
+Production
+----------
+Build the production app:
+  npm run build
+
+Start the production app:
+  npm run start
+
+Typical production behavior:
+  Uses optimized Next.js build output.
+  Serves compiled pages and static assets.
+  Environment variables must point to production services.
+  API base URL should point to the production backend.
+  Should not depend on localhost or local-only configuration.
+
+
+Useful Commands
+---------------
+npm run dev
+  Start the frontend in development mode.
+
+npm run build
+  Create an optimized production build.
+
+npm run start
+  Start the built production frontend.
+
+
+Notes
+-----
+Frontend validation improves user experience, but backend validation is still
+required for security and consistency. The backend repository mirrors the
+property advisor contact validation rules.
+

@@ -523,6 +523,23 @@
   outline: 3px solid rgba(0, 109, 119, 0.12);
 }
 
+.guided-advisor__contact-form input[aria-invalid="true"] {
+  border-color: #d94b4b;
+  background: #fffafa;
+}
+
+.guided-advisor__contact-form input[aria-invalid="true"]:focus {
+  border-color: #d94b4b;
+  outline-color: rgba(217, 75, 75, 0.14);
+}
+
+.guided-advisor__contact-form .guided-advisor__field-error {
+  color: #b42318;
+  font-size: 12px;
+  font-weight: 800;
+  line-height: 1.35;
+}
+
 .guided-advisor__contact-form p {
   margin: 0;
   color: #5c6f7b;

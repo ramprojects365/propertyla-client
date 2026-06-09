@@ -35,6 +35,7 @@ type AdvisorSuggestion = {
   value: string;
   custom?: boolean;
 };
+type ContactErrors = Partial<Record<keyof Pick<AdvisorContact, "phone" | "email">, string>>;
 
 const isAdvisorAnswerStep = (key: AdvisorFlowStep): key is AdvisorStep =>
   key !== "contact";
@@ -183,6 +184,64 @@ const formatSummaryValue = (key: AdvisorStep, value: string): string => {
   return value;
 };
 
+const emailPattern = /^[^\s@]+@(?:[a-zA-Z0-9-]+\.)+[a-zA-Z]{2,}$/;
+const malaysiaDialPrefix = "+6";
+
+const getEnteredPhoneValue = (value: string): string => {
+  const phone = value.trim();
+  return phone === malaysiaDialPrefix ? "" : phone;
+};
+
+const normalizeMalaysiaPhone = (value: string): string => {
+  const digits = value.replace(/\D/g, "");
+
+  if (digits.startsWith("60")) return `0${digits.slice(2)}`;
+  return digits;
+};
+
+const applyMalaysiaDialPrefix = (value: string): string => {
+  const phone = value.trim();
+
+  if (!phone) return "";
+  if (phone.startsWith(malaysiaDialPrefix)) return phone;
+  if (phone.startsWith("6")) return `+${phone}`;
+  return `${malaysiaDialPrefix}${phone}`;
+};
+
+const isValidMalaysiaPhone = (value: string): boolean => {
+  const normalized = normalizeMalaysiaPhone(value);
+
+  return /^0(?:1(?:1\d{8}|[02-46-9]\d{7,8})|3\d{8}|[4-9]\d{7,8})$/.test(
+    normalized,
+  );
+};
+
+const validateContactDetails = (contact: AdvisorContact): ContactErrors => {
+  const errors: ContactErrors = {};
+  const phone = getEnteredPhoneValue(contact.phone);
+  const email = contact.email.trim();
+  const hasAnyContact = Boolean(phone || email);
+
+  if (hasAnyContact && !phone) {
+    errors.phone = "Enter your Malaysia phone number";
+  } else if (phone && !isValidMalaysiaPhone(phone)) {
+    errors.phone = "Enter a valid Malaysia phone number";
+  }
+
+  if (hasAnyContact && !email) {
+    errors.email = "Enter your email address";
+  } else if (email && !emailPattern.test(email)) {
+    errors.email = "Enter a valid email address";
+  }
+
+  return errors;
+};
+
+const getSubmittableContact = (contact: AdvisorContact): AdvisorContact => ({
+  ...contact,
+  phone: getEnteredPhoneValue(contact.phone),
+});
+
 interface GuidedPropertyAdvisorProps {
   popupMode?: boolean;
   onCancel?: () => void;
@@ -201,12 +260,15 @@ export default function GuidedPropertyAdvisor({
   const [leadMessage, setLeadMessage] = useState("");
   const [defaultPassword, setDefaultPassword] = useState("");
   const [showReminder, setShowReminder] = useState(false);
+  const [contactErrors, setContactErrors] = useState<ContactErrors>({});
   const customInputRef = useRef<HTMLInputElement>(null);
 
   const step = steps[currentStep];
   const progress = Math.round(((currentStep + 1) / steps.length) * 100);
   const completedCount = Object.values(answers).filter(Boolean).length;
-  const contactCompleted = Boolean(contact.phone || contact.email);
+  const contactCompleted = Boolean(
+    getEnteredPhoneValue(contact.phone) || contact.email,
+  );
   const flowCompletedCount = completedCount + (contactCompleted ? 1 : 0);
   const requiredAnswerCount = steps.filter((item) =>
     isAdvisorAnswerStep(item.key),
@@ -304,7 +366,9 @@ export default function GuidedPropertyAdvisor({
     setDefaultPassword("");
 
     try {
-      const response = await createOrLoginPropertyFitLead(contact);
+      const response = await createOrLoginPropertyFitLead(
+        getSubmittableContact(contact),
+      );
       const loggedIn = saveAuthFromResponse(response);
       const password = response?.data?.defaultPassword || response?.defaultPassword || "";
       const existingEmailIgnored =
@@ -342,6 +406,10 @@ export default function GuidedPropertyAdvisor({
     if (!canContinue) return;
 
     if (step.key === "contact") {
+      const errors = validateContactDetails(contact);
+      setContactErrors(errors);
+      if (Object.keys(errors).length > 0) return;
+
       const leadReady = await createLeadLogin();
       if (!leadReady.ok) return;
     }
@@ -350,6 +418,13 @@ export default function GuidedPropertyAdvisor({
   };
 
   const handleFindMatches = async () => {
+    const errors = validateContactDetails(contact);
+    setContactErrors(errors);
+    if (Object.keys(errors).length > 0) {
+      setCurrentStep(steps.findIndex((item) => item.key === "contact"));
+      return;
+    }
+
     let createdPassword = defaultPassword;
     if (autoRegisterReady && !localStorage.getItem("authToken")) {
       const leadReady = await createLeadLogin();
@@ -367,7 +442,7 @@ export default function GuidedPropertyAdvisor({
         JSON.stringify({
           answers,
           contact: {
-            ...contact,
+            ...getSubmittableContact(contact),
             name: contact.name || initialContact.name,
           },
           autoRegisterReady,
@@ -465,28 +540,66 @@ export default function GuidedPropertyAdvisor({
                 <input
                   type="tel"
                   value={contact.phone}
-                  onChange={(event) =>
-                    setContact((current) => ({
-                      ...current,
-                      phone: event.target.value,
-                    }))
+                  onChange={(event) => {
+                    const nextContact = {
+                      ...contact,
+                      phone: applyMalaysiaDialPrefix(event.target.value),
+                    };
+                    setContact(nextContact);
+                    setContactErrors(validateContactDetails(nextContact));
+                  }}
+                  onFocus={() => {
+                    if (contact.phone) return;
+
+                    const nextContact = {
+                      ...contact,
+                      phone: malaysiaDialPrefix,
+                    };
+                    setContact(nextContact);
+                    setContactErrors(validateContactDetails(nextContact));
+                  }}
+                  placeholder="+60123456789"
+                  aria-invalid={Boolean(contactErrors.phone)}
+                  aria-describedby={
+                    contactErrors.phone ? "advisor-phone-error" : undefined
                   }
-                  placeholder="+60"
                 />
+                {contactErrors.phone && (
+                  <small
+                    id="advisor-phone-error"
+                    className="guided-advisor__field-error"
+                  >
+                    {contactErrors.phone}
+                  </small>
+                )}
               </label>
               <label>
                 Email
                 <input
                   type="email"
                   value={contact.email}
-                  onChange={(event) =>
-                    setContact((current) => ({
-                      ...current,
+                  onChange={(event) => {
+                    const nextContact = {
+                      ...contact,
                       email: event.target.value,
-                    }))
-                  }
+                    };
+                    setContact(nextContact);
+                    setContactErrors(validateContactDetails(nextContact));
+                  }}
                   placeholder="you@example.com"
+                  aria-invalid={Boolean(contactErrors.email)}
+                  aria-describedby={
+                    contactErrors.email ? "advisor-email-error" : undefined
+                  }
                 />
+                {contactErrors.email && (
+                  <small
+                    id="advisor-email-error"
+                    className="guided-advisor__field-error"
+                  >
+                    {contactErrors.email}
+                  </small>
+                )}
               </label>
               <p>
                 We use this only to help connect you with better matches. You can skip it.
