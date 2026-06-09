@@ -2,7 +2,14 @@
 
 import { MouseEvent, useEffect, useState } from "react";
 import Link from "next/link";
-import { Bell, CheckCircle2, Clock3, Mail, Sparkles, UserPlus } from "lucide-react";
+import {
+  Bell,
+  CheckCircle2,
+  Clock3,
+  Mail,
+  Sparkles,
+  UserPlus,
+} from "lucide-react";
 import Breadcrumb from "@/components/Breadcrumb/Breadcrumb";
 import PropertySingleCard from "@/components/Common/PropertySingleCard";
 import { formatPrice } from "@/components/Utils/formatPrice";
@@ -69,8 +76,13 @@ type ApiProperty = {
   };
 };
 
-const mapApiProperty = (item: ApiProperty, index: number): IFeaturedPropertyDT => {
-  const image = getCoverImageUrl(item.images) || "/assets/img/rent/property/property-details-thumb-1.png";
+const mapApiProperty = (
+  item: ApiProperty,
+  index: number,
+): IFeaturedPropertyDT => {
+  const image =
+    getCoverImageUrl(item.images) ||
+    "/assets/img/rent/property/property-details-thumb-1.png";
   const area = parseFloat(String(item.buildupArea ?? 0));
   const address = [
     item.propertyName,
@@ -109,9 +121,8 @@ const formatBriefValue = (value?: string): string => {
 };
 
 export default function PropertyFitResults() {
-  const [storedResults, setStoredResults] = useState<StoredAdvisorResults | null>(
-    null,
-  );
+  const [storedResults, setStoredResults] =
+    useState<StoredAdvisorResults | null>(null);
   const [properties, setProperties] = useState<IFeaturedPropertyDT[]>([]);
   const [loading, setLoading] = useState(true);
   const [statusMessage, setStatusMessage] = useState("");
@@ -150,10 +161,10 @@ export default function PropertyFitResults() {
       setStatusMessage("");
 
       try {
-        const response = await getPropertyFitMatches(
+        const response = (await getPropertyFitMatches(
           storedResults.answers,
           storedResults.contact,
-        ) as PropertyFitMatchResponse;
+        )) as PropertyFitMatchResponse;
         const data = Array.isArray(response?.data) ? response.data : [];
         const mapped = data.map(mapApiProperty);
         const notifiedAgents = response?.agentNotificationCount ?? 0;
@@ -168,7 +179,10 @@ export default function PropertyFitResults() {
         if (response?.auth?.token && response?.auth?.user) {
           const user = response.auth.user;
           window.localStorage.setItem("authToken", response.auth.token);
-          window.localStorage.setItem("loginUser", user.username || user.email || "");
+          window.localStorage.setItem(
+            "loginUser",
+            user.username || user.email || "",
+          );
           window.localStorage.setItem(
             "loginUserDisplayName",
             user.fullName || user.username || user.email || "",
@@ -215,7 +229,9 @@ export default function PropertyFitResults() {
     }
 
     if (!storedResults || !apiUsed) {
-      setStatusMessage("View captured locally. Agent notification will run once backend is connected.");
+      setStatusMessage(
+        "View captured locally. Agent notification will run once backend is connected.",
+      );
       return;
     }
 
@@ -228,7 +244,9 @@ export default function PropertyFitResults() {
       setStatusMessage(`Agent notification sent for ${property.title}.`);
     } catch (error) {
       console.error("Property view notification error:", error);
-      setStatusMessage("Could not notify the agent yet, but the property view was captured.");
+      setStatusMessage(
+        "Could not notify the agent yet, but the property view was captured.",
+      );
     }
   };
 
@@ -241,17 +259,14 @@ export default function PropertyFitResults() {
       <section className="property-fit-page__hero">
         <div className="container">
           <Breadcrumb
-            items={[
-              { label: "Home", href: "/" },
-              { label: "Property Fit" },
-            ]}
+            items={[{ label: "Home", href: "/" }, { label: "Property Fit" }]}
           />
           <div className="property-fit-page__hero-copy">
             <span>
               <Sparkles size={16} />
               Smart match
             </span>
-            <h1>Here are homes that fit your search.</h1>
+            <h1>These homes match your search.</h1>
           </div>
         </div>
       </section>
@@ -262,7 +277,9 @@ export default function PropertyFitResults() {
             <div className="property-fit-page__empty">
               <Clock3 size={32} />
               <h2>No advisor answers yet</h2>
-              <p>Complete the property advisor first so we can match properties.</p>
+              <p>
+                Complete the property advisor first so we can match properties.
+              </p>
               <Link href="/property-advisor">Open property advisor</Link>
             </div>
           )}
@@ -361,7 +378,10 @@ export default function PropertyFitResults() {
                 <>
                   <div className="row list-img-sec property-fit-page__results-grid">
                     {properties.map((item) => (
-                      <div className="col-xl-6 col-lg-6 col-sm-12" key={item.id}>
+                      <div
+                        className="col-xl-6 col-lg-6 col-sm-12"
+                        key={item.id}
+                      >
                         <div className="property-fit-page__result-card">
                           <div className="property-fit-page__reason">
                             <Sparkles size={20} />
@@ -385,23 +405,33 @@ export default function PropertyFitResults() {
                   <div className="property-fit-page__brief property-fit-page__brief--bottom">
                     <p>Search brief</p>
                     <span>
-                      Goal <strong>{formatBriefValue(storedResults?.answers.intent)}</strong>
+                      Goal{" "}
+                      <strong>
+                        {formatBriefValue(storedResults?.answers.intent)}
+                      </strong>
                     </span>
                     <span>
                       Location{" "}
-                      <strong>{storedResults?.answers.location || "Not set"}</strong>
+                      <strong>
+                        {storedResults?.answers.location || "Not set"}
+                      </strong>
                     </span>
                     <span>
                       Budget{" "}
                       <strong>
                         {storedResults?.answers.budgetAmount
-                          ? formatPrice(Number(storedResults.answers.budgetAmount), false)
+                          ? formatPrice(
+                              Number(storedResults.answers.budgetAmount),
+                              false,
+                            )
                           : storedResults?.answers.budgetRange || "Not set"}
                       </strong>
                     </span>
                     <span>
                       Rooms{" "}
-                      <strong>{storedResults?.answers.bedrooms || "Not set"}</strong>
+                      <strong>
+                        {storedResults?.answers.bedrooms || "Not set"}
+                      </strong>
                     </span>
                   </div>
                 </>
