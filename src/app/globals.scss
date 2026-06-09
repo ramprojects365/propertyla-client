@@ -324,6 +324,16 @@
   letter-spacing: -0.84px;
 }
 
+.tp-dashboard-property-wrapper .tp-rent-item {
+  border-radius: 6px !important;
+  overflow: hidden !important;
+}
+
+.tp-rent-item {
+  border-radius: 6px;
+  overflow: hidden;
+}
+
 .tp-rent-item:hover .tp-rent-thumb a img {
   transform: none;
   transition: none;
