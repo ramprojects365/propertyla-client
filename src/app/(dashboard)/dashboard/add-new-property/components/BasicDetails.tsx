@@ -52,20 +52,10 @@ export default function BasicDetails() {
           </div>
           <div className="col-lg-12">
             <div className="tp-dashboard-new-input">
-              <label>Description</label>
-              <div style={{ position: "relative" }}>
-                <textarea
-                  placeholder="Write a few lines about your property something which is special and makes your property stand out. Please do not mention your contact details in any format."
-                  value={description}
-                  onChange={handleDescriptionChange}
-                  maxLength={1000}
-                  style={{ borderRadius: "8px", paddingRight: "80px" }}
-                ></textarea>
+              <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", marginBottom: "6px" }}>
+                <label style={{ marginBottom: "0" }}>Description</label>
                 <div
                   style={{
-                    position: "absolute",
-                    top: "8px",
-                    right: "12px",
                     fontSize: "12px",
                     color: "#666",
                     backgroundColor: "#f5f5f5",
@@ -76,6 +66,13 @@ export default function BasicDetails() {
                   {1000 - charCount} remaining
                 </div>
               </div>
+              <textarea
+                placeholder="Write a few lines about your property something which is special and makes your property stand out. Please do not mention your contact details in any format."
+                value={description}
+                onChange={handleDescriptionChange}
+                maxLength={1000}
+                style={{ borderRadius: "8px" }}
+              ></textarea>
               {errors?.description && (
                 <ErrorMessage message={errors?.description?.message || ""} />
               )}
