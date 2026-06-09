@@ -34,8 +34,16 @@ export default function HomeAdvisorPopup() {
   return (
     <>
       {open && (
-        <div className="home-advisor-popup" role="dialog" aria-modal="true" aria-label="Guided Property Advisor">
-          <div className="home-advisor-popup__backdrop" onClick={closeForLater} />
+        <div
+          className="home-advisor-popup"
+          role="dialog"
+          aria-modal="true"
+          aria-label="Guided Property Advisor"
+        >
+          <div
+            className="home-advisor-popup__backdrop"
+            onClick={closeForLater}
+          />
           <div className="home-advisor-popup__panel">
             <button
               type="button"
@@ -60,7 +68,7 @@ export default function HomeAdvisorPopup() {
           }}
         >
           <Sparkles size={18} />
-          Continue advisor
+          AI advisor
           <span>
             <MessageCircle size={14} />
           </span>

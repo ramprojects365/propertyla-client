@@ -109,12 +109,17 @@ const answerLabels: Record<AdvisorStep, string> = {
   bedrooms: "Bedrooms",
 };
 
-const inputConfig: Partial<Record<AdvisorStep, {
-  type: string;
-  placeholder: string;
-  prefix?: string;
-  min?: string;
-}>> = {
+const inputConfig: Partial<
+  Record<
+    AdvisorStep,
+    {
+      type: string;
+      placeholder: string;
+      prefix?: string;
+      min?: string;
+    }
+  >
+> = {
   location: {
     type: "text",
     placeholder: "Example: Kuala Lumpur, Cheras, Puchong",
@@ -306,7 +311,8 @@ export default function GuidedPropertyAdvisor({
     try {
       const response = await createOrLoginPropertyFitLead(contact);
       const loggedIn = saveAuthFromResponse(response);
-      const password = response?.data?.defaultPassword || response?.defaultPassword || "";
+      const password =
+        response?.data?.defaultPassword || response?.defaultPassword || "";
       const existingEmailIgnored =
         response?.data?.existingEmailIgnored || response?.existingEmailIgnored;
       if (password) setDefaultPassword(password);
@@ -380,7 +386,9 @@ export default function GuidedPropertyAdvisor({
   };
 
   return (
-    <main className={`guided-advisor ${popupMode ? "guided-advisor--popup" : ""}`}>
+    <main
+      className={`guided-advisor ${popupMode ? "guided-advisor--popup" : ""}`}
+    >
       {popupMode && onCancel && (
         <button
           type="button"
@@ -406,7 +414,8 @@ export default function GuidedPropertyAdvisor({
         {!popupMode && (
           <>
             <p>
-              A warmer, step-by-step experience that feels like a property concierge, not another basic search form.
+              A warmer, step-by-step experience that feels like a property
+              concierge, not another basic search form.
             </p>
             <div className="guided-advisor__ai-strip">
               <span>
@@ -427,7 +436,9 @@ export default function GuidedPropertyAdvisor({
         <div className="guided-advisor__progress">
           <div>
             <strong>{progress}%</strong>
-            <span>{completedCount}/{requiredAnswerCount} done</span>
+            <span>
+              {completedCount}/{requiredAnswerCount} done
+            </span>
           </div>
           <i>
             <b style={{ width: `${progress}%` }} />
@@ -438,11 +449,16 @@ export default function GuidedPropertyAdvisor({
           {!popupMode && (
             <div className="guided-advisor__assistant-bubble">
               <p>
-                {currentStep === 0 && "Start with the basics. We will narrow it down step by step."}
-                {currentStep === 1 && "Choose a common area or type another location."}
-                {currentStep === 2 && "Use the closest price, or type your own."}
-                {step.key === "contact" && "This is optional. It only helps us connect you with a suitable agent."}
-                {step.key === "bedrooms" && "One more answer, then we can show matches."}
+                {currentStep === 0 &&
+                  "Start with the basics. We will narrow it down step by step."}
+                {currentStep === 1 &&
+                  "Choose a common area or type another location."}
+                {currentStep === 2 &&
+                  "Use the closest price, or type your own."}
+                {step.key === "contact" &&
+                  "This is optional. It only helps us connect you with a suitable agent."}
+                {step.key === "bedrooms" &&
+                  "One more answer, then we can show matches."}
               </p>
             </div>
           )}
@@ -488,9 +504,7 @@ export default function GuidedPropertyAdvisor({
                   placeholder="you@example.com"
                 />
               </label>
-              <p>
-                We use this only to help connect you with better matches. You can skip it.
-              </p>
+              <p>We use this to help you find better matches.</p>
               {defaultPassword && (
                 <p className="guided-advisor__password-note">
                   Your sign-in password: <strong>{defaultPassword}</strong>
@@ -512,9 +526,10 @@ export default function GuidedPropertyAdvisor({
                           key={`${suggestion.label}-${suggestion.value || "custom"}`}
                           className="guided-advisor__other-option"
                         >
-                          {currentInput.prefix && answerStep === "budgetAmount" && (
-                            <span>{currentInput.prefix}</span>
-                          )}
+                          {currentInput.prefix &&
+                            answerStep === "budgetAmount" && (
+                              <span>{currentInput.prefix}</span>
+                            )}
                           <input
                             ref={customInputRef}
                             type={currentInput.type}
@@ -524,7 +539,10 @@ export default function GuidedPropertyAdvisor({
                               selectAnswer(answerStep, event.target.value)
                             }
                             onKeyDown={(event) => {
-                              if (event.key === "Enter" && answers[answerStep]) {
+                              if (
+                                event.key === "Enter" &&
+                                answers[answerStep]
+                              ) {
                                 event.preventDefault();
                                 void handleNext();
                               }
@@ -537,10 +555,15 @@ export default function GuidedPropertyAdvisor({
                           type="button"
                           key={`${suggestion.label}-${suggestion.value}`}
                           className={
-                            answers[answerStep] === suggestion.value ? "is-selected" : ""
+                            answers[answerStep] === suggestion.value
+                              ? "is-selected"
+                              : ""
                           }
                           onClick={() =>
-                            selectAnswerAndContinue(answerStep, suggestion.value)
+                            selectAnswerAndContinue(
+                              answerStep,
+                              suggestion.value,
+                            )
                           }
                         >
                           {suggestion.label}
@@ -612,8 +635,10 @@ export default function GuidedPropertyAdvisor({
 
         <aside className="guided-advisor__summary">
           <div className="guided-advisor__score-ring">
-            <span>{flowCompletedCount}/{steps.length}</span>
-              <small>Brief strength</small>
+            <span>
+              {flowCompletedCount}/{steps.length}
+            </span>
+            <small>Brief strength</small>
           </div>
           <h3>Your search brief</h3>
           {steps.map((item) => (
@@ -629,7 +654,11 @@ export default function GuidedPropertyAdvisor({
                     : ""
               }
             >
-              <span>{isAdvisorAnswerStep(item.key) ? answerLabels[item.key] : "Contact"}</span>
+              <span>
+                {isAdvisorAnswerStep(item.key)
+                  ? answerLabels[item.key]
+                  : "Contact"}
+              </span>
               <strong>
                 {isAdvisorAnswerStep(item.key)
                   ? formatSummaryValue(item.key, answers[item.key])
@@ -679,8 +708,11 @@ export default function GuidedPropertyAdvisor({
                 </div>
               </div>
               <span>AI match check</span>
-              <h2>Checking your best fit</h2>
-              <p>Scanning your location, budget, and rooms against live PropertyLa projects.</p>
+              <h2>Finding your best match</h2>
+              <p>
+                Scanning your location, budget, and rooms against live
+                PropertyLa projects.
+              </p>
               <div className="guided-advisor__modal-steps">
                 <span>Brief understood</span>
                 <span>Database scan</span>
