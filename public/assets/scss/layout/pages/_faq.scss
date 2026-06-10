@@ -101,7 +101,7 @@
       left: 0;
       height: 100%;
       width: 620px;
-      content: url("../../../img/feature/faq-bg.png");
+      background: var(--tp-theme-primary);
       @media #{$xl} {
         left: -30px;
       }
@@ -109,7 +109,7 @@
         left: -140px;
       }
       @media #{$md,$xs} {
-        content: none;
+        display: none;
       }
     }
   }

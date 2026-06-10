@@ -1,12 +1,12 @@
 import { ITestimonialIDT } from "@/types/testimonial-d-t";
-//home testimonial image
-import userImg1 from "../../public/assets/img/rent/rent-user-4.png";
-import userImg2 from "../../public/assets/img/rent/rent-user-4.png";
-import userImg3 from "../../public/assets/img/rent/rent-user-4.png";
+//home testimonial image - use existing team image
+import userImg1 from "../../public/assets/img/team/team-details/user.png";
+const userImg2 = userImg1;
+const userImg3 = userImg1;
 
-//home three testimonial image
-import image1 from "../../public/assets/img/testimonial/home-3/testimonial-3-1.png";
-import image2 from "../../public/assets/img/testimonial/home-3/testimonial-3-2.png";
+//home three testimonial image - use existing testimonial image
+import image1 from "../../public/assets/img/testimonial/star_icon.png";
+const image2 = image1;
 
 export const testimonials_home: ITestimonialIDT[] = [
   {

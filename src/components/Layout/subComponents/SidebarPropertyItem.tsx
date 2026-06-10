@@ -127,14 +127,14 @@ export default function SidebarPropertyItem({
                   {latest.imageUrl ? (
                     <img
                       src={latest.imageUrl}
-                      alt="thumb image"
+                      alt={latest.title || "Property listing in Malaysia"}
                       style={{ width: "100%", height: "auto" }}
                     />
                   ) : (
                     <Image
                       style={{ width: "100%", height: "auto" }}
                       src={rentThumb}
-                      alt="thumb image"
+                      alt={latest.title || "Property listing in Malaysia"}
                     />
                   )}
                 </Link>

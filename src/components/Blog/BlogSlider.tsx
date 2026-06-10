@@ -2,7 +2,7 @@
 
 import React from "react";
 import { Swiper, SwiperSlide } from "swiper/react";
-import { Pagination } from "swiper/modules";
+import { Navigation } from "swiper/modules";
 
 interface BlogSliderProps {
   children: React.ReactNode[];
@@ -28,7 +28,7 @@ export default function BlogSlider({
           data-wow-delay=".7s"
         >
           <Swiper
-            modules={[Pagination]}
+            modules={[Navigation]}
             slidesPerView={itemsPerSlide}
             spaceBetween={gap}
             loop={slides.length > itemsPerSlide + 1}
@@ -40,9 +40,9 @@ export default function BlogSlider({
               576: { slidesPerView: 1 },
               0: { slidesPerView: 1 },
             }}
-            pagination={{
-              el: ".tp-blog-slider-dot",
-              clickable: true,
+            navigation={{
+              nextEl: ".tp-blog-slider-button-next",
+              prevEl: ".tp-blog-slider-button-prev",
             }}
           >
             {slides.map((child, index) => (
@@ -50,7 +50,18 @@ export default function BlogSlider({
             ))}
           </Swiper>
         </div>
-        <div className="tp-blog-slider-dot"></div>
+        <div className="tp-blog-slider-navigation">
+          <div className="tp-blog-slider-button-prev">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path d="M15 18L9 12L15 6" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
+            </svg>
+          </div>
+          <div className="tp-blog-slider-button-next">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path d="M9 18L15 12L9 6" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
+            </svg>
+          </div>
+        </div>
       </div>
     </div>
   );

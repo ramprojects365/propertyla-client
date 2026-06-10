@@ -1,47 +1,49 @@
 import { IFeaturedPropertyDT } from "@/types/property-d-t";
 import rentThumb1 from "../../public/assets/img/rent/rent-thumb-1.jpg";
-import rentThumb2 from "../../public/assets/img/rent/rent-thumb-2.jpg";
-import rentThumb3 from "../../public/assets/img/rent/rent-thumb-3.jpg";
-import rentThumb4 from "../../public/assets/img/rent/rent-thumb-4.jpg";
-import rentThumb5 from "../../public/assets/img/rent/rent-thumb-5.jpg";
-import rentThumb6 from "../../public/assets/img/rent/rent-thumb-6.jpg";
-import rentThumb7 from "../../public/assets/img/rent/rent-thumb-7.jpg";
-import rentThumb8 from "../../public/assets/img/rent/rent-thumb-8.jpg";
-import rentUser1 from "../../public/assets/img/rent/rent-user-4.png";
-import rentUser2 from "../../public/assets/img/rent/rent-user-4.png";
-import rentUser3 from "../../public/assets/img/rent/rent-user-4.png";
-import rentUser4 from "../../public/assets/img/rent/rent-user-4.png";
-//home two property list image
-import listingThumb1 from "../../public/assets/img/listing/listing-thumb-1.jpg";
-import listingThumb2 from "../../public/assets/img/listing/listing-thumb-2.jpg";
-import listingThumb3 from "../../public/assets/img/listing/listing-thumb-3.jpg";
-import listingThumb4 from "../../public/assets/img/listing/listing-thumb-4.jpg";
+// Reuse rentThumb1 for other rent thumbs since they were deleted
+const rentThumb2 = rentThumb1;
+const rentThumb3 = rentThumb1;
+const rentThumb4 = rentThumb1;
+const rentThumb5 = rentThumb1;
+const rentThumb6 = rentThumb1;
+const rentThumb7 = rentThumb1;
+const rentThumb8 = rentThumb1;
+// Use existing team image for rent users
+import rentUser1 from "../../public/assets/img/team/team-details/user.png";
+const rentUser2 = rentUser1;
+const rentUser3 = rentUser1;
+const rentUser4 = rentUser1;
+//home two property list image - use existing images
+import listingThumb1 from "../../public/assets/img/banner/bg-1.png";
+const listingThumb2 = listingThumb1;
+const listingThumb3 = listingThumb1;
+const listingThumb4 = listingThumb1;
 //home two feature list image
-import featureListImg1 from "../../public/assets/img/listing/listing-thumb-5.jpg";
-import featureListImg2 from "../../public/assets/img/listing/listing-thumb-6.jpg";
-import featureListImg3 from "../../public/assets/img/listing/listing-thumb-7.jpg";
-//home three property list image
-import propertyImg1 from "../../public/assets/img/listing/home-2/listing-2-1.jpg";
-import propertyImg2 from "../../public/assets/img/listing/home-2/listing-2-2.jpg";
-import propertyImg3 from "../../public/assets/img/listing/home-2/listing-2-3.jpg";
-import propertyImg4 from "../../public/assets/img/listing/home-2/listing-2-4.jpg";
+const featureListImg1 = listingThumb1;
+const featureListImg2 = listingThumb1;
+const featureListImg3 = listingThumb1;
+//home three property list image - use existing images
+import propertyImg1 from "../../public/assets/img/banner/bg-2.jpg";
+const propertyImg2 = propertyImg1;
+const propertyImg3 = propertyImg1;
+const propertyImg4 = propertyImg1;
 //home three property image
-import propertyImg5 from "../../public/assets/img/listing/home-3/thumb-1.jpg";
-import propertyImg6 from "../../public/assets/img/listing/home-3/thumb-2.jpg";
-import propertyImg7 from "../../public/assets/img/listing/home-3/thumb-3.jpg";
-//author image
-import authorImg from "../../public/assets/img/rent/home-5/author.png";
+import propertyImg5 from "../../public/assets/img/banner/bg-4.jpg";
+const propertyImg6 = propertyImg5;
+const propertyImg7 = propertyImg5;
+//author image - use existing team image
+import authorImg from "../../public/assets/img/team/team-details/user.png";
 
-//home five feature property image
-import sellThumb from "../../public/assets/img/rent/home-5/sell-thumb-1.jpg";
-import sellThumb2 from "../../public/assets/img/rent/home-5/sell-thumb-2.jpg";
+//home five feature property image - use existing images
+const sellThumb = propertyImg1;
+const sellThumb2 = propertyImg5;
 //property image for home five
-import propertyImg8 from "../../public/assets/img/listing/home-2/listing-2-5.jpg";
-import propertyImg9 from "../../public/assets/img/listing/home-2/listing-2-6.jpg";
-import propertyImg10 from "../../public/assets/img/listing/home-3/thumb-4.jpg";
-import propertyImg11 from "../../public/assets/img/listing/home-3/thumb-5.jpg";
-import propertyImg12 from "../../public/assets/img/listing/home-2/listing-2-7.jpg";
-import propertyImg13 from "../../public/assets/img/listing/home-2/listing-2-8.jpg";
+const propertyImg8 = propertyImg1;
+const propertyImg9 = propertyImg5;
+const propertyImg10 = propertyImg1;
+const propertyImg11 = propertyImg5;
+const propertyImg12 = propertyImg1;
+const propertyImg13 = propertyImg5;
 
 export const propertyData: IFeaturedPropertyDT[] = [
   //home One property data start

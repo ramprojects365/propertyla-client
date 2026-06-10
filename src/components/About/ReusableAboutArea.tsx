@@ -1,5 +1,5 @@
-import aboutIcon1 from "../../../public/assets/img/about/home-5/about-5-icon-1.svg";
-import aboutIcon2 from "../../../public/assets/img/about/home-5/about-5-icon-2.svg";
+import aboutIcon1 from "../../../public/assets/img/testimonial/star_icon.png";
+import aboutIcon2 from "../../../public/assets/img/testimonial/star_icon.png";
 import Image from "next/image";
 import Link from "next/link";
 

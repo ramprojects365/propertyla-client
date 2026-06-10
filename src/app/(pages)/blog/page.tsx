@@ -7,6 +7,22 @@ export const metadata: Metadata = {
   title: "Property Blog | Property La Malaysia",
   description:
     "Read Property La articles about Malaysian property buying, stamp duty, Selangor locations, foreign investors, and common homebuyer mistakes.",
+  metadataBase: new URL("https://propertyla.com.my"),
+  alternates: {
+    canonical: "/blog",
+  },
+  openGraph: {
+    title: "Property Blog | Property La Malaysia",
+    description: "Read Property La articles about Malaysian property buying, stamp duty, Selangor locations, foreign investors, and common homebuyer mistakes.",
+    url: "https://propertyla.com.my/blog",
+    siteName: "PropertyLa",
+    type: "website",
+  },
+  twitter: {
+    card: "summary",
+    title: "Property Blog | Property La Malaysia",
+    description: "Read Property La articles about Malaysian property buying, stamp duty, Selangor locations, foreign investors, and common homebuyer mistakes.",
+  },
 };
 
 export default function BlogPage() {

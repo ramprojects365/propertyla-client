@@ -1,6 +1,6 @@
-import userImg1 from "../../public/assets/img/rent/property/review-user-1.png";
-import userImg2 from "../../public/assets/img/rent/property/review-user-2.png";
-import userImg3 from "../../public/assets/img/rent/property/review-user-3.png";
+import userImg1 from "../../public/assets/img/team/team-details/user.png";
+const userImg2 = userImg1;
+const userImg3 = userImg1;
 import { Review } from "@/types/custom-interface";
 
  export const dashboardReviews: Review[] = [

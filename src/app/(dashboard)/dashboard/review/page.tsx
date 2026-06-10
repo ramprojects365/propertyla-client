@@ -4,9 +4,10 @@ import ReviewItem from "./components/ReviewSingleItem";
 import { Metadata } from "next";
 
 export const metadata: Metadata = {
-  title: "Property Reviews & Ratings | PropertyLa Malaysia",
+  title: "My Reviews | PropertyLa Malaysia Dashboard",
   description:
-    "Read and write property reviews on PropertyLa. Share your experience with Malaysia real estate agents, properties, and services to help others make informed decisions.",
+    "View and manage your property reviews on PropertyLa. Track your feedback on Malaysia real estate agents, properties, and services.",
+  robots: "noindex, nofollow",
 };
 
 export default function DashboardReview() {

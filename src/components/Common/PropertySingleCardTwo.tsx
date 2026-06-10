@@ -29,11 +29,11 @@ function PropertySingleCardTwo({ item }: propertyProps) {
             {typeof item.image === "string" ? (
               <img
                 src={item.image}
-                alt="property image"
+                alt={item.title || "Property for sale or rent in Malaysia"}
                 style={{ width: "100%", height: "250px", objectFit: "cover" }}
               />
             ) : (
-              <Image src={item.image} alt="property image" loading="lazy" />
+              <Image src={item.image} alt={item.title || "Property for sale or rent in Malaysia"} loading="lazy" />
             )}
           </Link>
 

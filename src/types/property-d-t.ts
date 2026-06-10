@@ -47,7 +47,7 @@ export interface IFeaturedPropertyDT {
 export interface INeighbourhoodProperty {
   id: number;
   name: string;
-  image: StaticImageData;
+  image: StaticImageData | string;
   count: number;
 }
 
