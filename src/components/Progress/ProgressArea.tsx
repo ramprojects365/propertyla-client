@@ -1,5 +1,5 @@
-import progressThumb2 from "../../../public/assets/img/listing/home-3/progress-thumb-2.png";
-import progressThumb from "../../../public/assets/img/listing/home-3/progress-thumb.png";
+import progressThumb2 from "../../../public/assets/img/banner/bg-2.jpg";
+import progressThumb from "../../../public/assets/img/banner/bg-4.jpg";
 import AnimatedCounter from "../Counter/AnimatedCounter";
 import { ProgressData } from "@/types/custom-interface";
 import Image from "next/image";
