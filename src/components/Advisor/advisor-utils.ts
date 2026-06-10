@@ -22,5 +22,6 @@ export const getMatchReason = (answers: AdvisorAnswers): string => {
   if (answers.bedrooms) parts.push("bedroom needs");
 
   if (!parts.length) return "Recommended starter property for your search";
-  return `Matches your ${parts.join(", ")}`;
+  //return `Matches your ${parts.join(", ")}`;
+  return "Matches what you're looking for";
 };
