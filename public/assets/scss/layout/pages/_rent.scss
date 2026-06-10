@@ -32,22 +32,6 @@
       transform: scale(1) translateZ(0);
       transition: transform 0.6s cubic-bezier(0.5, 1, 0.89, 1);
     }
-
-    &::before {
-      position: absolute;
-      content: "";
-      left: 0;
-      bottom: 0;
-      height: 70%;
-      width: 100%;
-      pointer-events: none;
-      z-index: 1;
-      background: linear-gradient(
-        0deg,
-        #06132c 0.04%,
-        rgba(111, 126, 155, 0) 62.49%
-      );
-    }
   }
 
   &-user {
@@ -77,11 +61,11 @@
         margin: -2px;
         line-height: 1;
         letter-spacing: -0.32px;
-        color: var(--tp-common-white);
+        color: var(--tp-common-black);
       }
 
       & span {
-        color: #bababa;
+        color: var(--tp-text-body);
         font-size: 14px;
         line-height: 1;
         font-weight: 400;
