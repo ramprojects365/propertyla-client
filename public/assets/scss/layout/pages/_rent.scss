@@ -39,7 +39,7 @@
       position: absolute;
       left: 20px;
       right: 20px;
-      bottom: 20px;
+      bottom: 48px;
       margin: 0 auto;
       z-index: 2;
     }
@@ -61,11 +61,11 @@
         margin: -2px;
         line-height: 1;
         letter-spacing: -0.32px;
-        color: var(--tp-common-black);
+        color: #fff;
       }
 
       & span {
-        color: var(--tp-text-body);
+        color: #fff;
         font-size: 14px;
         line-height: 1;
         font-weight: 400;
@@ -133,7 +133,7 @@
 
   &-meta {
     &-list {
-      margin-top: 38px;
+      margin-top: 10px;
       padding-bottom: 30px;
       margin-bottom: 30px;
       border-bottom: 1px solid #e6e6e6;
