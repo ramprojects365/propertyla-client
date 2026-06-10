@@ -106,8 +106,8 @@
 ---------------------------------*/
 body {
   font-size: 16px;
-  line-height: 28px;
-  font-weight: normal;
+  line-height: 1.6;
+  font-weight: 400;
   color: var(--tp-text-body);
   font-family: var(--tp-ff-body);
 }
@@ -124,34 +124,64 @@ h5,
 h6 {
   margin-top: 0px;
   font-weight: 600;
-  line-height: 1.2;
+  line-height: 1.3;
   @include transition(color);
   font-family: var(--tp-ff-heading);
   color: var(--tp-theme-primary);
 }
 
 h1 {
-  font-size: 40px;
+  font-size: 48px;
+  @media #{$lg} {
+    font-size: 42px;
+  }
+  @media #{$md} {
+    font-size: 36px;
+  }
+  @media #{$xs} {
+    font-size: 32px;
+  }
 }
 
 h2 {
   font-size: 36px;
+  @media #{$md} {
+    font-size: 30px;
+  }
+  @media #{$xs} {
+    font-size: 26px;
+  }
 }
 
 h3 {
-  font-size: 28px;
+  font-size: 30px;
+  @media #{$md} {
+    font-size: 26px;
+  }
+  @media #{$xs} {
+    font-size: 22px;
+  }
 }
 
 h4 {
   font-size: 24px;
+  @media #{$xs} {
+    font-size: 20px;
+  }
 }
 
 h5 {
-  font-size: 18px;
+  font-size: 20px;
+  @media #{$xs} {
+    font-size: 18px;
+  }
 }
 
 h6 {
-  font-size: 16px;
+  font-size: 18px;
+  @media #{$xs} {
+    font-size: 16px;
+  }
 }
 
 ul {
