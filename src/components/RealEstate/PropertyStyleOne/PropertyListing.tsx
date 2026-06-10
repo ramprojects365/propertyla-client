@@ -33,6 +33,21 @@ type ApiProperty = {
   bathrooms?: number | string;
   images?: unknown[];
   status?: string;
+  user?: {
+    id?: string;
+    username?: string;
+    email?: string;
+    phoneNumber?: string;
+    profileImage?: string;
+    fullName?: string | null;
+    bio?: string | null;
+    companyName?: string | null;
+    designation?: string | null;
+    experienceYears?: number | null;
+    emailVerified?: boolean;
+    createdAt?: string;
+    updatedAt?: string;
+  };
 };
 
 function mapApiProperty(item: ApiProperty, index: number): Property {
@@ -80,6 +95,10 @@ function mapApiProperty(item: ApiProperty, index: number): Property {
     price: parseFloat(String(item.price ?? 0)) || 0,
     description: item.description,
     quantity: 0,
+    userImage: item.user?.profileImage || undefined,
+    userName: item.user?.fullName || undefined,
+    userRole: item.user?.companyName || item.user?.designation || undefined,
+    user: item.user,
   };
 }
 

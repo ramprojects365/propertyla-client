@@ -52,6 +52,22 @@ function PropertySingleCardTwo({ item }: propertyProps) {
               )}
             </div>
           )}
+          <div className="tp-rent-user-wrap d-flex align-items-center justify-content-between">
+            <div className="tp-rent-user d-flex align-items-center">
+              <div className="tp-rent-user-thumb">
+                <Image
+                  src={item.userImage || "/assets/img/team/team-details/user.png"}
+                  alt={item.userName || "User"}
+                  width={40}
+                  height={40}
+                />
+              </div>
+              <div className="tp-rent-user-content">
+                <h5 className="tp-rent-user-content-title">{item.userName || "—"}</h5>
+                <span>{item.userRole || "—"}</span>
+              </div>
+            </div>
+          </div>
         </div>
         <div className="tp-rent-content">
           <h4 className="tp-rent-title">

@@ -55,17 +55,17 @@ export default function PropertyDetailsBox({
       value: yearOfBuild ? String(yearOfBuild) : "—",
     },
     {
-    icon: <HomeSvg />,
-    label: "Furnishing",
-    value: furnishing
-      ? furnishing === "Fully"
-        ? "Fully Furnished"
-        : furnishing === "Partially"
-          ? "Partially Furnished"
-          : furnishing
-      : "—",
-  },
-    { icon: <HomeSvg />, label: "Floor Level", value: floorLevel || "—" },
+      icon: <HomeSvg />,
+      label: "Furnishing",
+      value: furnishing
+        ? furnishing === "Fully"
+          ? "Fully Furnished"
+          : furnishing === "Partially"
+            ? "Partially Furnished"
+            : furnishing
+        : "—",
+    },
+    { icon: <HomeSvg />, label: "Floor", value: floorLevel || "—" },
   ];
 
   return (
