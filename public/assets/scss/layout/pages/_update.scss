@@ -19,7 +19,7 @@
           position: absolute;
           right: -12px;
           top: -1px;
-          font-size: 12px;
+          font-size: 14px;
           font-weight: 600;
           height: 20px;
           width: 20px;
@@ -53,7 +53,7 @@
           position: absolute;
           right: -10px;
           top: -5px;
-          font-size: 12px;
+          font-size: 14px;
           font-weight: 600;
           height: 20px;
           width: 20px;
@@ -513,7 +513,7 @@
   }
 
   &__quantity {
-    font-size: 12px;
+    font-size: 14px;
     font-weight: 500;
   }
 
@@ -615,7 +615,7 @@
       #{$self} {
         &-tooltip {
           font-weight: 600;
-          font-size: 12px;
+          font-size: 14px;
           color: var(--tp-common-white);
         }
       }
@@ -642,7 +642,7 @@
     top: 50%;
     right: 100%;
     font-weight: 500;
-    font-size: 12px;
+    font-size: 14px;
     color: var(--tp-common-white);
     background-color: var(--tp-common-black);
     display: inline-block;
@@ -769,7 +769,7 @@
       display: inline-block;
       line-height: 1;
       font-weight: 500;
-      font-size: 12px;
+      font-size: 14px;
       text-transform: uppercase;
       color: var(--tp-text-body);
       transition: all 0.4s ease;
@@ -927,7 +927,7 @@
       align-items: center;
 
       & span {
-        font-size: 12px;
+        font-size: 14px;
         color: #ffb21d;
 
         &:not(:last-child) {
@@ -1228,7 +1228,7 @@
 
         &-rating {
           & span {
-            font-size: 10px;
+            font-size: 14px;
             margin-right: 2px;
             color: #ffb21d;
           }
@@ -1266,7 +1266,7 @@
 
           &-icon {
             & span {
-              font-size: 12px;
+              font-size: 14px;
               color: #ffb21d;
             }
           }
