@@ -48,7 +48,7 @@ export default function PropertySingleCard({ item }: IFeatureListProps) {
                 ? item.image
                 : (item.image as { src: string }).src
             }
-            style={{ width: "100%", height: "280px" }}
+            style={{ width: "100%", height: "310px" }}
             alt={item.title}
           />
         </Link>
