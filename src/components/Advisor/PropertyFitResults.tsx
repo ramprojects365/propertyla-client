@@ -69,10 +69,19 @@ type ApiProperty = {
   bathrooms?: number | string;
   images?: unknown[];
   user?: {
-    fullName?: string | null;
+    id?: string;
     username?: string;
     email?: string;
     phoneNumber?: string;
+    profileImage?: string;
+    fullName?: string | null;
+    bio?: string | null;
+    companyName?: string | null;
+    designation?: string | null;
+    experienceYears?: number | null;
+    emailVerified?: boolean;
+    createdAt?: string;
+    updatedAt?: string;
   };
 };
 
@@ -109,8 +118,9 @@ const mapApiProperty = (
     description: item.description,
     quantity: 0,
     spacing: true,
+    userImage: item.user?.profileImage || undefined,
     userName: item.user?.fullName || item.user?.username,
-    userRole: item.user?.email ? "Assigned agent" : undefined,
+    userRole: item.user?.companyName || item.user?.designation || (item.user?.email ? "Assigned agent" : undefined),
     user: item.user,
   };
 };

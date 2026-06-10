@@ -27,6 +27,21 @@ type ApiProperty = {
   images?: unknown[];
   createdAt?: string;
   updatedAt?: string;
+  user?: {
+    id?: string;
+    username?: string;
+    email?: string;
+    phoneNumber?: string;
+    profileImage?: string;
+    fullName?: string | null;
+    bio?: string | null;
+    companyName?: string | null;
+    designation?: string | null;
+    experienceYears?: number | null;
+    emailVerified?: boolean;
+    createdAt?: string;
+    updatedAt?: string;
+  };
 };
 
 export default function PropertyHome() {
@@ -99,6 +114,10 @@ export default function PropertyHome() {
             livingArea,
             price: parseFloat(String(p.price ?? 0)) || 0,
             quantity: 0,
+            userImage: p.user?.profileImage || undefined,
+            userName: p.user?.fullName || undefined,
+            userRole: p.user?.companyName || p.user?.designation || undefined,
+            user: p.user,
           };
         });
 
