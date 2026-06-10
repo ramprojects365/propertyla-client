@@ -55,7 +55,7 @@ export default function PropertySingleCard({ item }: IFeatureListProps) {
         <div className="tp-rent-user-wrap d-flex align-items-center justify-content-between">
           <div className="tp-rent-user d-flex align-items-center">
             <div className="tp-rent-user-thumb">
-              {item.userImage && <Image src={item.userImage} alt="User" />}
+              {item.userImage && <Image src={item.userImage} alt={`${item.userName} - ${item.userRole}`} />}
             </div>
             <div className="tp-rent-user-content">
               <h5 className="tp-rent-user-content-title">{item.userName}</h5>

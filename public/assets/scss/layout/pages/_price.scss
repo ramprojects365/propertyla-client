@@ -227,7 +227,8 @@
         height: 100%;
         width: 100%;
         z-index: -1;
-        content: url("../../../img/portfolio/price-shape.png");
+        background: var(--tp-theme-primary);
+        opacity: 0.1;
       }
     }
   }

@@ -59,7 +59,7 @@ export default function ProgressArea({paddingTopCls="", paddingBottomCls="pb-130
                                 </div>
                             </div>
                             <div className="tp-progress-item-shape">
-                                <Image src={progressThumb2} alt="progress thumb" />
+                                <Image src={progressThumb2} alt="PropertyLa progress statistics" />
                             </div>
                         </div>
                     </div>

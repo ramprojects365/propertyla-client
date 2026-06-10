@@ -9,6 +9,22 @@ export const metadata: Metadata = {
   title: "PropertyLa Pricing Plans | Real Estate Advertising Rates in Malaysia",
   description:
     "View PropertyLa's affordable pricing plans for property listings and advertising in Malaysia. Choose the best package for selling, renting, or promoting your real estate properties.",
+  metadataBase: new URL("https://propertyla.com.my"),
+  alternates: {
+    canonical: "/pricing",
+  },
+  openGraph: {
+    title: "PropertyLa Pricing Plans | Real Estate Advertising Rates in Malaysia",
+    description: "View PropertyLa's affordable pricing plans for property listings and advertising in Malaysia. Choose the best package for selling, renting, or promoting your real estate properties.",
+    url: "https://propertyla.com.my/pricing",
+    siteName: "PropertyLa",
+    type: "website",
+  },
+  twitter: {
+    card: "summary",
+    title: "PropertyLa Pricing Plans | Real Estate Advertising Rates in Malaysia",
+    description: "View PropertyLa's affordable pricing plans for property listings and advertising in Malaysia. Choose the best package for selling, renting, or promoting your real estate properties.",
+  },
 };
 
 export default function Pricing() {

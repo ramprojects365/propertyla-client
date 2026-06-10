@@ -5,9 +5,10 @@ import { propertyData } from "@/data/propertyData";
 import { Metadata } from "next";
 
 export const metadata: Metadata = {
-  title: "Property Agents in Malaysia | Find Trusted Real Estate Agents",
+  title: "My Favorites | PropertyLa Malaysia Dashboard",
   description:
-    "Connect with trusted property agents in Malaysia to buy, sell or rent homes. Browse verified real estate agents near you.",
+    "View and manage your favorite property listings on PropertyLa. Access saved properties for sale and rent in Kuala Lumpur, Selangor, Penang, Johor and nationwide.",
+  robots: "noindex, nofollow",
 };
 
 export default function DashboardFavourite() {

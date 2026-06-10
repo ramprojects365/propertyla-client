@@ -127,7 +127,7 @@ export default function RecentlyViewedProperties() {
             <Link href={property.link}>
               <Image
                 src={property.image}
-                alt="property image"
+                alt={property.title || "Property listing in Malaysia"}
                 width={80}
                 height={80}
                 style={{ objectFit: "cover" }}

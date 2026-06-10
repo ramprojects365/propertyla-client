@@ -4,9 +4,10 @@ import ProtectedRoute from "@/components/Auth/ProtectedRoute";
 import { Metadata } from "next";
 
 export const metadata: Metadata = {
-  title: "Commercial Properties for Sale & Rent in Malaysia",
+  title: "Add New Property | PropertyLa Malaysia Dashboard",
   description:
-    "Browse commercial properties in Malaysia including offices, retail shops, warehouses and industrial buildings for sale or rent.",
+    "List your property for sale or rent on PropertyLa Malaysia. Upload details, photos, and reach thousands of buyers and renters in Kuala Lumpur, Selangor, Penang, Johor and nationwide. Easy property listing management for agents and owners.",
+  robots: "noindex, nofollow",
 };
 
 export default function AddProperty() {
