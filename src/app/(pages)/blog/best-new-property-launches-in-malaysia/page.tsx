@@ -6,7 +6,7 @@ export const metadata: Metadata = {
   metadataBase: new URL("https://propertyla.com.my"),
   title: "Best New Property Launches in Malaysia (2026) | PropertyLa",
   description: "Discover the best new property launches in Malaysia for 2026. Explore upcoming developments, new condos, and township projects with attractive early bird prices.",
-  keywords: "new property launches Malaysia 2026, upcoming condos Malaysia, new township projects Malaysia, property launches Kuala Lumpur, new developments Selangor, early bird property Malaysia",
+  keywords: "new property launches Malaysia 2026, upcoming condos Malaysia, new township projects Malaysia, property launches Kuala Lumpur, new developments Selangor, early bird property Malaysia, new condo launches Malaysia, Malaysia property development 2026, pre-launch property Malaysia, new residential projects Malaysia",
   openGraph: {
     title: "Best New Property Launches in Malaysia (2026)",
     description: "Discover the best new property launches in Malaysia for 2026 with attractive early bird prices.",

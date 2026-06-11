@@ -10,7 +10,7 @@ export const metadata: Metadata = {
   description:
     "Learn about the most common and costly mistakes Malaysians make when buying property. Expert tips to avoid these pitfalls and make smarter real estate investment decisions. Explore condo-for-rent/cheras, cheap-condo-kl, and terrace-house-kajang options.",
   keywords:
-    "property buying mistakes, Malaysia real estate, property investment, home buying tips, Malaysian property market",
+    "property buying mistakes Malaysia, Malaysia real estate mistakes, home buying errors Malaysia, property investment pitfalls Malaysia, first time buyer mistakes Malaysia, Malaysian property market tips, avoid property buying mistakes Malaysia, property purchase errors Malaysia, real estate investment mistakes Malaysia, Malaysia home buying guide",
   openGraph: {
     title: "Costly Mistakes Malaysians Make When Buying Property",
     description:

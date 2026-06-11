@@ -6,7 +6,7 @@ export const metadata: Metadata = {
   metadataBase: new URL("https://propertyla.com.my"),
   title: "Complete Guide to Buying Your First Home in Malaysia | PropertyLa",
   description: "Step-by-step guide for first-time homebuyers in Malaysia. Learn about eligibility, financing, hidden costs, legal processes, and tips to make your dream home a reality.",
-  keywords: "first home buyer Malaysia, buying first home guide, Malaysia home loan, property purchase process Malaysia, first-time buyer benefits, PR1MA, MyFirstHome",
+  keywords: "first home buyer Malaysia 2026, buying first home guide Malaysia, Malaysia home loan for beginners, property purchase process Malaysia, first time buyer benefits Malaysia, PR1MA Malaysia, MyFirstHome scheme Malaysia, first home loan Malaysia, BSN first home, first house buyer Malaysia",
   openGraph: {
     title: "Complete Guide to Buying Your First Home in Malaysia",
     description: "Step-by-step guide for first-time homebuyers in Malaysia. Learn about eligibility, financing, and the purchase process.",

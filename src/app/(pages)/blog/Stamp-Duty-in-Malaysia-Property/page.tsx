@@ -10,7 +10,7 @@ export const metadata: Metadata = {
   description:
     "Complete guide to Malaysia property stamp duty in 2026. Learn about rates, exemptions, foreign buyer rules, and calculation tips for home buyers.",
   keywords:
-    "stamp duty Malaysia, property tax Malaysia, 2026 stamp duty rates, foreign buyer stamp duty, first time buyer exemption, Malaysia property purchase",
+    "stamp duty Malaysia 2026, Malaysia property stamp duty rates, property tax Malaysia, memorandum of transfer Malaysia, foreign buyer stamp duty Malaysia, first time buyer stamp duty exemption Malaysia, calculate stamp duty Malaysia, SPA stamp duty Malaysia, property purchase tax Malaysia, real estate stamp duty Malaysia",
   openGraph: {
     title: "Stamp Duty in Malaysia Property (2026): A Complete Guide",
     description:

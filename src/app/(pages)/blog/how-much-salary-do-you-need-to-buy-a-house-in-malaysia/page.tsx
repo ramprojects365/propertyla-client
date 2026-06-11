@@ -6,7 +6,7 @@ export const metadata: Metadata = {
   metadataBase: new URL("https://propertyla.com.my"),
   title: "How Much Salary Do You Need to Buy a House in Malaysia? | PropertyLa",
   description: "Calculate the minimum salary required to buy a house in Malaysia. Learn about income requirements, loan eligibility, and affordability factors for different property types and locations.",
-  keywords: "salary to buy house Malaysia, home loan eligibility Malaysia, minimum income for property Malaysia, affordable housing Malaysia, property affordability calculator",
+  keywords: "salary to buy house Malaysia 2026, minimum income buy property Malaysia, home loan eligibility Malaysia, affordable housing Malaysia, property affordability calculator Malaysia, how much income for house Malaysia, Malaysia home loan calculator, DSR Malaysia, debt service ratio Malaysia, monthly income for property Malaysia",
   openGraph: {
     title: "How Much Salary Do You Need to Buy a House in Malaysia?",
     description: "Calculate the minimum salary required to buy a house in Malaysia. Learn about income requirements and loan eligibility.",

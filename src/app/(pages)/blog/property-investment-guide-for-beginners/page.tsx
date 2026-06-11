@@ -6,7 +6,7 @@ export const metadata: Metadata = {
   metadataBase: new URL("https://propertyla.com.my"),
   title: "Property Investment Guide for Beginners in Malaysia | PropertyLa",
   description: "Complete guide to property investment for beginners in Malaysia. Learn about investment strategies, financing, risk management, and how to build your property portfolio.",
-  keywords: "property investment Malaysia, real estate investment for beginners, Malaysia property guide, property portfolio Malaysia, rental yield Malaysia, property investment strategy",
+  keywords: "property investment Malaysia 2026, real estate investment for beginners Malaysia, Malaysia property guide, property portfolio Malaysia, rental yield Malaysia, property investment strategy Malaysia, buy to let Malaysia, property investment tips Malaysia, real estate Malaysia beginner, Malaysia property market analysis",
   openGraph: {
     title: "Property Investment Guide for Beginners in Malaysia",
     description: "Complete guide to property investment for beginners in Malaysia. Learn about investment strategies and financing.",

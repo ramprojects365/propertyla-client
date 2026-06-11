@@ -6,7 +6,7 @@ export const metadata: Metadata = {
   metadataBase: new URL("https://propertyla.com.my"),
   title: "Understanding SPA (Sale and Purchase Agreement) in Malaysia | PropertyLa",
   description: "Learn about the Sale and Purchase Agreement (SPA) when buying property in Malaysia. Understand key clauses, legal obligations, and buyer protections.",
-  keywords: "SPA Malaysia, Sale and Purchase Agreement Malaysia, property legal documents Malaysia, buying property legal process Malaysia, property agreement Malaysia",
+  keywords: "SPA Malaysia 2026, Sale and Purchase Agreement Malaysia, property legal documents Malaysia, buying property legal process Malaysia, property agreement Malaysia, SPA lawyer Malaysia, property lawyer Malaysia, legal fees SPA Malaysia, property purchase agreement Malaysia, Malaysia property legal guide",
   openGraph: {
     title: "Understanding SPA (Sale and Purchase Agreement) in Malaysia",
     description: "Learn about the Sale and Purchase Agreement (SPA) when buying property in Malaysia.",

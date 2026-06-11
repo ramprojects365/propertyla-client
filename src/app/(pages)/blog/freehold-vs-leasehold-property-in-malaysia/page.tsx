@@ -6,7 +6,7 @@ export const metadata: Metadata = {
   metadataBase: new URL("https://propertyla.com.my"),
   title: "Freehold vs Leasehold Property in Malaysia | PropertyLa",
   description: "Understand the differences between freehold and leasehold property in Malaysia. Learn about ownership rights, tenure periods, and which type suits your investment goals.",
-  keywords: "freehold vs leasehold Malaysia, property tenure Malaysia, leasehold property Malaysia, freehold property Malaysia, land ownership Malaysia, property investment Malaysia",
+  keywords: "freehold vs leasehold Malaysia 2026, property tenure Malaysia, leasehold property Malaysia, freehold property Malaysia, land ownership Malaysia, property investment Malaysia, leasehold renewal Malaysia, 99 year leasehold Malaysia, freehold land Malaysia, property ownership types Malaysia",
   openGraph: {
     title: "Freehold vs Leasehold Property in Malaysia",
     description: "Understand the differences between freehold and leasehold property in Malaysia and which suits your investment goals.",

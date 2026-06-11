@@ -6,7 +6,7 @@ export const metadata: Metadata = {
   metadataBase: new URL("https://propertyla.com.my"),
   title: "How to Increase Your Property Value Before Selling | PropertyLa",
   description: "Learn proven strategies to increase your property value before selling in Malaysia. Discover renovations, staging tips, and improvements that offer the best ROI.",
-  keywords: "increase property value Malaysia, home renovation ROI Malaysia, property upgrades Malaysia, selling house tips Malaysia, home staging Malaysia, property value appreciation",
+  keywords: "increase property value Malaysia 2026, home renovation ROI Malaysia, property upgrades Malaysia, selling house tips Malaysia, home staging Malaysia, property value appreciation Malaysia, renovation before selling Malaysia, home improvement ROI Malaysia, property valuation Malaysia, maximize property sale price Malaysia",
   openGraph: {
     title: "How to Increase Your Property Value Before Selling",
     description: "Learn proven strategies to increase your property value before selling in Malaysia.",
