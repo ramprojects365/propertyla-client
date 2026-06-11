@@ -6,7 +6,7 @@ export const metadata: Metadata = {
   metadataBase: new URL("https://propertyla.com.my"),
   title: "Top 10 Areas to Buy Property in Kuala Lumpur | PropertyLa Malaysia",
   description: "Explore the best neighborhoods to invest in Kuala Lumpur property. From KLCC to Mont Kiara, discover prime locations with strong appreciation potential and excellent amenities.",
-  keywords: "Kuala Lumpur property, best areas KL, KL real estate investment, Mont Kiara condos, Bangsar property, Damansara Heights, KLCC apartments, Bukit Bintang property",
+  keywords: "Kuala Lumpur property 2026, best areas KL Malaysia, KL real estate investment, Mont Kiara condos Malaysia, Bangsar property Kuala Lumpur, Damansara Heights property, KLCC apartments for sale, Bukit Bintang property, buy property Kuala Lumpur, Kuala Lumpur residential areas",
   openGraph: {
     title: "Top 10 Areas to Buy Property in Kuala Lumpur",
     description: "Explore the best neighborhoods to invest in Kuala Lumpur property with strong appreciation potential.",

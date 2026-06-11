@@ -6,7 +6,7 @@ export const metadata: Metadata = {
   metadataBase: new URL("https://propertyla.com.my"),
   title: "How to Sell Your House Faster in Malaysia | PropertyLa",
   description: "Expert tips to sell your property quickly in Malaysia. Learn about staging, pricing strategies, marketing, and legal processes to accelerate your home sale.",
-  keywords: "sell house fast Malaysia, selling property Malaysia, home selling tips Malaysia, property marketing Malaysia, real estate agent Malaysia, house staging Malaysia",
+  keywords: "sell house fast Malaysia 2026, selling property Malaysia tips, home selling tips Malaysia, property marketing Malaysia, real estate agent Malaysia, house staging Malaysia, quick house sale Malaysia, property listing Malaysia, sell property quickly Malaysia, Malaysia real estate selling guide",
   openGraph: {
     title: "How to Sell Your House Faster in Malaysia",
     description: "Expert tips to sell your property quickly in Malaysia. Learn about staging, pricing strategies, and marketing.",

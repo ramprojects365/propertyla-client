@@ -6,7 +6,7 @@ export const metadata: Metadata = {
   metadataBase: new URL("https://propertyla.com.my"),
   title: "Top Condo Projects Near KLCC | PropertyLa Malaysia",
   description: "Discover the best condominium projects near KLCC Kuala Lumpur. From luxury residences to family-friendly options, find the perfect condo with excellent amenities and connectivity.",
-  keywords: "KLCC condos, condominiums near KLCC, Kuala Lumpur luxury condos, KLCC residential projects, apartments near Petronas Towers, KLCC property investment",
+  keywords: "KLCC condos 2026, condominiums near KLCC, Kuala Lumpur luxury condos, KLCC residential projects, apartments near Petronas Towers, KLCC property investment, buy condo KLCC, luxury apartments Kuala Lumpur, KLCC high-rise, KLCC serviced apartments",
   openGraph: {
     title: "Top Condo Projects Near KLCC",
     description: "Discover the best condominium projects near KLCC Kuala Lumpur with excellent amenities and connectivity.",

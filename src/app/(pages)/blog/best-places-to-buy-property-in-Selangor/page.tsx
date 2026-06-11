@@ -8,7 +8,7 @@ export const metadata: Metadata = {
   description:
     "Discover the best places to buy property in Selangor including Shah Alam, Petaling Jaya, Puchong, Cyberjaya, Klang, and Semenyih. Expert insights on property investment opportunities in Selangor.",
   keywords:
-    "Selangor property, Shah Alam property, Petaling Jaya property, Puchong property, Cyberjaya property, Klang property, Semenyih property, Malaysia real estate, property investment Selangor",
+    "Selangor property 2026, best places Selangor property, Shah Alam property investment, Petaling Jaya real estate, Puchong property development, Cyberjaya property, Klang property market, Semenyih property, buy property Selangor, Selangor residential property",
   openGraph: {
     title: "Best Places to Buy Property in Selangor (2026)",
     description:

@@ -6,7 +6,7 @@ export const metadata: Metadata = {
   metadataBase: new URL("https://propertyla.com.my"),
   title: "Hidden Costs When Buying a Property in Malaysia | PropertyLa",
   description: "Discover the hidden costs of buying property in Malaysia beyond the purchase price. Learn about stamp duty, legal fees, renovation costs, and other expenses to budget for.",
-  keywords: "hidden costs property Malaysia, property buying costs Malaysia, stamp duty Malaysia, legal fees property Malaysia, renovation costs Malaysia, property purchase expenses",
+  keywords: "hidden costs property Malaysia 2026, property buying costs Malaysia, stamp duty Malaysia fees, legal fees property Malaysia, renovation costs Malaysia, property purchase expenses Malaysia, additional costs buying house Malaysia, property transaction costs Malaysia, SPA legal fees Malaysia, property maintenance costs Malaysia",
   openGraph: {
     title: "Hidden Costs When Buying a Property in Malaysia",
     description: "Discover the hidden costs of buying property in Malaysia beyond the purchase price.",

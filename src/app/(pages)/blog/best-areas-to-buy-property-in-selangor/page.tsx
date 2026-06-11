@@ -6,7 +6,7 @@ export const metadata: Metadata = {
   metadataBase: new URL("https://propertyla.com.my"),
   title: "Best Areas to Buy Property in Selangor | PropertyLa Malaysia",
   description: "Discover the top areas to buy property in Selangor. From Shah Alam to Subang Jaya, explore locations with strong growth potential, excellent amenities, and good connectivity.",
-  keywords: "Selangor property, best areas Selangor, property investment Selangor, Shah Alam real estate, Subang Jaya property, Petaling Jaya condos, Klang property",
+  keywords: "Selangor property 2026, best areas Selangor, Shah Alam real estate, Subang Jaya property, Petaling Jaya condos, Puchong property, Klang property, Cyberjaya property, buy property Selangor, Selangor real estate investment",
   openGraph: {
     title: "Best Areas to Buy Property in Selangor",
     description: "Discover the top areas to buy property in Selangor with strong growth potential and excellent amenities.",

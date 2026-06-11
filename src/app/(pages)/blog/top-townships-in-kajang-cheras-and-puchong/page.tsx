@@ -6,7 +6,7 @@ export const metadata: Metadata = {
   metadataBase: new URL("https://propertyla.com.my"),
   title: "Top Townships in Kajang, Cheras, and Puchong | PropertyLa Malaysia",
   description: "Explore the best townships in Kajang, Cheras, and Puchong. Discover family-friendly developments with excellent amenities, connectivity, and investment potential.",
-  keywords: "Kajang townships, Cheras property, Puchong developments, Selangor townships, family-friendly communities, property investment Selangor",
+  keywords: "Kajang townships 2026, Cheras property Malaysia, Puchong developments, Selangor townships, family-friendly communities Malaysia, property investment Selangor, buy property Kajang, Cheras condo, Puchong landed property, Kajang Cheras Puchong real estate",
   openGraph: {
     title: "Top Townships in Kajang, Cheras, and Puchong",
     description: "Explore the best townships in Kajang, Cheras, and Puchong with excellent amenities and investment potential.",
