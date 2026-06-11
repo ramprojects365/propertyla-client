@@ -7,20 +7,20 @@
 .#{$theme-prefix}-section {
   &-title {
     font-weight: 600;
-    font-size: 32px;
+    font-size: 28px;
     line-height: 1.22;
     margin-bottom: 20px;
     letter-spacing: -1.1px;
     font-family: var(--tp-ff-heading);
     color: var(--tp-theme-primary);
     &.fns-70 {
-      font-size: 36px;
+      font-size: 30px;
       letter-spacing: -1.4px;
       @media #{$md} {
-        font-size: 28px;
+        font-size: 24px;
       }
       @media #{$xs} {
-        font-size: 24px;
+        font-size: 20px;
       }
     }
     & br {
@@ -29,13 +29,13 @@
       }
     }
     @media #{$xl} {
-      font-size: 30px;
+      font-size: 26px;
     }
     @media #{$lg,$md} {
-      font-size: 28px;
+      font-size: 24px;
     }
     @media #{$xs} {
-      font-size: 24px;
+      font-size: 20px;
     }
     &-pre {
       position: relative;

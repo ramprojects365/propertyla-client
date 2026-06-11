@@ -330,15 +330,15 @@
           bottom: 0;
         }
         &-title {
-          font-size: 205px;
+          font-size: 160px;
           font-weight: 600;
           color: #f6f9ff;
           letter-spacing: -8.8px;
           @media #{$xl} {
-            font-size: 130px;
+            font-size: 100px;
           }
           @media #{$lg,$md,$xs} {
-            font-size: 90px;
+            font-size: 70px;
           }
         }
       }
@@ -386,7 +386,7 @@
       }
     }
     &-title {
-      font-size: 34px;
+      font-size: 28px;
       font-weight: 600;
       letter-spacing: -1.02px;
     }

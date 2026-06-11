@@ -82,9 +82,9 @@
       }
     }
     & p {
-      font-size: 22px;
+      font-size: 18px;
       font-weight: 600;
-      line-height: 26px;
+      line-height: 24px;
       margin-bottom: 114px;
       color: var(--tp-theme-primary);
       @media #{$xs} {
@@ -104,7 +104,7 @@
     }
   }
   &-title {
-    font-size: 60px;
+    font-size: 48px;
     font-weight: 600;
     letter-spacing: -1.2px;
     color: var(--tp-theme-primary);
@@ -179,7 +179,7 @@
     }
   }
   &-title {
-    font-size: 80px;
+    font-size: 64px;
     font-weight: 600;
     letter-spacing: -1.6px;
     color: var(--tp-theme-primary);

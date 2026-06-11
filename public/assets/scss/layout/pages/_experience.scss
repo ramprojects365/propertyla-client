@@ -35,7 +35,7 @@
     }
   }
   &-title {
-    font-size: 240px;
+    font-size: 180px;
     font-weight: 600;
     line-height: 0.8;
     margin-bottom: 0;
@@ -46,7 +46,7 @@
       margin-bottom: 20px;
     }
     @media #{$xs} {
-      font-size: 160px;
+      font-size: 120px;
     }
     & i {
       font-style: normal;
@@ -59,9 +59,9 @@
   &-content {
     & span {
       display: inline-block;
-      font-size: 24px;
+      font-size: 20px;
       font-weight: 600;
-      line-height: 30px;
+      line-height: 28px;
       margin-bottom: 10px;
       letter-spacing: -0.24px;
       color: var(--tp-theme-primary);
@@ -220,7 +220,7 @@
       }
     }
     &-title {
-      font-size: 24px;
+      font-size: 20px;
       font-weight: 600;
       margin-bottom: 10px;
       letter-spacing: -0.24px;

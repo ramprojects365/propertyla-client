@@ -30,13 +30,13 @@
     z-index: -1;
   }
   &__title {
-    font-size: 36px;
+    font-size: 30px;
     font-weight: 600;
     line-height: 1;
     margin-bottom: 15px;
     color: var(--tp-common-white);
     @media #{$xs} {
-      font-size: 28px;
+      font-size: 24px;
     }
   }
   &__list {
@@ -64,7 +64,7 @@
       display: none;
     }
     &-title {
-      font-size: 300px;
+      font-size: 240px;
       font-weight: 600;
       line-height: 1;
       margin: 0;
@@ -73,7 +73,7 @@
       -webkit-text-stroke-width: 3px;
       -webkit-text-stroke-color: rgba(255, 255, 255, 0.8);
       @media #{$lg} {
-        font-size: 240px;
+        font-size: 180px;
       }
     }
   }
