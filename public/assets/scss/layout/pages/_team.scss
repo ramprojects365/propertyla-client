@@ -45,7 +45,7 @@
     }
   }
   &-title {
-    font-size: 22px;
+    font-size: 20px;
     font-weight: 600;
     margin-bottom: 0;
     color: var(--tp-theme-primary);
@@ -267,7 +267,7 @@
       margin-right: 20px;
     }
     &-title {
-      font-size: 26px;
+      font-size: 22px;
       font-weight: 600;
       letter-spacing: -0.52px;
       color: var(--tp-theme-primary);
@@ -336,7 +336,7 @@
       }
     }
     &-title {
-      font-size: 22px;
+      font-size: 20px;
       font-weight: 600;
       margin-bottom: 6px;
       color: var(--tp-theme-primary);
@@ -491,12 +491,12 @@
   }
   &-content {
     &-title {
-      font-size: 28px;
+      font-size: 24px;
       font-weight: 600;
       margin-bottom: 25px;
       letter-spacing: -0.92px;
       @media #{$xs} {
-        font-size: 22px;
+        font-size: 20px;
       }
     }
   }

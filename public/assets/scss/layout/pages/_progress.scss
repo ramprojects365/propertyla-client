@@ -67,7 +67,7 @@
       }
     }
     &-title {
-      font-size: 24px;
+      font-size: 20px;
       font-weight: 600;
       margin-bottom: 20px;
       color: var(--tp-common-black);
@@ -100,10 +100,10 @@
       margin-bottom: 30px;
     }
     & .tp-counter-title {
-      font-size: 56px;
+      font-size: 44px;
       letter-spacing: -2.24px;
       @media #{$lg,$md,$xs} {
-        font-size: 45px;
+        font-size: 36px;
       }
     }
     & span {

@@ -48,12 +48,12 @@
     }
     &-content {
       & h4 {
-        font-size: 24px;
+        font-size: 20px;
         font-weight: 600;
         @include transition();
         color: var(--tp-text-1);
         @media #{$xs} {
-          font-size: 22px;
+          font-size: 18px;
         }
       }
     }
@@ -126,7 +126,7 @@
       }
     }
     &-title {
-      font-size: 24px;
+      font-size: 20px;
       font-weight: 600;
     }
     &-content {

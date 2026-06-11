@@ -10,7 +10,7 @@
   }
   &-section {
     &-title {
-      font-size: 42px;
+      font-size: 36px;
       font-weight: 600;
       letter-spacing: -0.84px;
     }
@@ -206,7 +206,7 @@
 
 .#{$theme-prefix}-property-details {
   &-title {
-    font-size: 36px;
+    font-size: 30px;
     font-weight: 600;
     margin-bottom: 15px;
     letter-spacing: -0.72px;
@@ -252,7 +252,7 @@
       }
     }
     &-price {
-      font-size: 42px;
+      font-size: 36px;
       font-weight: 600;
       letter-spacing: -0.84px;
       color: var(--tp-theme-primary);
@@ -332,12 +332,12 @@
       position: absolute;
       top: 40px;
       left: 30px;
-      font-size: 36px;
+      font-size: 30px;
       font-weight: 600;
       letter-spacing: -0.72px;
       color: rgba(255, 255, 255, 0.9);
       @media #{$md,$xs} {
-        font-size: 22px;
+        font-size: 20px;
       }
     }
     &-shape {
@@ -685,8 +685,8 @@
   border: 1px solid rgba(255, 255, 255, 0.25);
   background: transparent;
   color: #fff;
-  font-size: 26px;
-  line-height: 42px;
+  font-size: 22px;
+  line-height: 38px;
   cursor: pointer;
   display: inline-flex;
   align-items: center;
@@ -703,7 +703,7 @@
   border: none;
   background: transparent;
   color: #fff;
-  font-size: 44px;
+  font-size: 36px;
   line-height: 44px;
   cursor: pointer;
   opacity: 0.9;

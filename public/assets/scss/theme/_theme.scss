@@ -105,7 +105,7 @@
 	typography css start
 ---------------------------------*/
 body {
-  font-size: 16px;
+  font-size: 15px;
   line-height: 1.6;
   font-weight: 400;
   color: var(--tp-text-body);
@@ -131,56 +131,56 @@ h6 {
 }
 
 h1 {
-  font-size: 48px;
+  font-size: 42px;
   @media #{$lg} {
-    font-size: 42px;
+    font-size: 38px;
   }
   @media #{$md} {
-    font-size: 36px;
+    font-size: 32px;
   }
   @media #{$xs} {
-    font-size: 32px;
+    font-size: 28px;
   }
 }
 
 h2 {
-  font-size: 36px;
+  font-size: 32px;
   @media #{$md} {
-    font-size: 30px;
+    font-size: 28px;
   }
   @media #{$xs} {
-    font-size: 26px;
+    font-size: 24px;
   }
 }
 
 h3 {
-  font-size: 30px;
+  font-size: 26px;
   @media #{$md} {
-    font-size: 26px;
-  }
-  @media #{$xs} {
     font-size: 22px;
   }
-}
-
-h4 {
-  font-size: 24px;
   @media #{$xs} {
     font-size: 20px;
   }
 }
 
-h5 {
-  font-size: 20px;
+h4 {
+  font-size: 22px;
   @media #{$xs} {
     font-size: 18px;
   }
 }
 
-h6 {
+h5 {
   font-size: 18px;
   @media #{$xs} {
     font-size: 16px;
+  }
+}
+
+h6 {
+  font-size: 16px;
+  @media #{$xs} {
+    font-size: 14px;
   }
 }
 
@@ -191,9 +191,9 @@ ul {
 
 p {
   font-family: var(--tp-ff-p);
-  font-size: 16px;
+  font-size: 15px;
   font-weight: 400;
-  line-height: 28px;
+  line-height: 26px;
   margin-bottom: 0px;
   color: var(--tp-text-body);
 }
@@ -261,7 +261,7 @@ textarea {
   height: 50px;
   width: 100%;
   line-height: 50px;
-  font-size: 14px;
+  font-size: 13px;
   font-weight: 400;
   padding-left: 15px;
   padding-right: 26px;
@@ -320,11 +320,11 @@ input[type="color"] {
 
 *::-moz-placeholder {
   color: var(--tp-common-black);
-  font-size: 14px;
+  font-size: 13px;
   opacity: 1;
 }
 *::placeholder {
   color: var(--tp-common-black);
-  font-size: 14px;
+  font-size: 13px;
   opacity: 1;
 }

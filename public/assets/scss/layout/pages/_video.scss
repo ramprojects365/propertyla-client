@@ -66,13 +66,13 @@
     }
   }
   &-title {
-    font-size: 60px;
+    font-size: 48px;
     font-weight: 600;
     line-height: 1.2;
     letter-spacing: -1.2px;
     color: var(--tp-common-white);
     @media #{$lg,$md,$xs} {
-      font-size: 40px;
+      font-size: 32px;
     }
     & br {
       @media #{$xs} {
@@ -134,7 +134,7 @@
       rgba(255, 255, 255, 0) 100%
     );
     & p {
-      font-size: 24px;
+      font-size: 20px;
       font-weight: 500;
       letter-spacing: -0.48px;
       color: var(--tp-common-white);

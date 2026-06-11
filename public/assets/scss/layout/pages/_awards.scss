@@ -69,7 +69,7 @@
     }
   }
   &-title {
-    font-size: 30px;
+    font-size: 26px;
     font-weight: 600;
     color: var(--tp-theme-primary);
     &-wrap {
@@ -145,14 +145,14 @@
   }
   &-wrap {
     & div {
-      font-size: 80px;
+      font-size: 64px;
       font-weight: 600;
       line-height: 1;
       display: inline-block;
       letter-spacing: -1.6px;
       color: var(--tp-theme-primary);
       @media #{$xs} {
-        font-size: 55px;
+        font-size: 44px;
       }
       & span {
         position: relative;
