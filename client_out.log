@@ -1,0 +1,17 @@
+
+> mfe-propertyla@0.1.0 dev
+> next dev
+
+   ▲ Next.js 15.5.15
+   - Local:        http://localhost:3000
+   - Network:      http://10.183.84.164:3000
+   - Environments: .env.local
+
+ ✓ Starting...
+ ✓ Ready in 31.1s
+ ○ Compiling / ...
+ ✓ Compiled / in 14s (1284 modules)
+ ✓ Compiled in 2.1s (512 modules)
+ ○ Compiling / ...
+ ✓ Compiled / in 1370ms (772 modules)
+ GET / 200 in 3390ms
