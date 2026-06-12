@@ -49,6 +49,7 @@ type PropertyFitMatchResponse = {
       username?: string;
       email?: string;
       fullName?: string;
+      phoneNumber?: string;
     };
   } | null;
 };
@@ -197,6 +198,7 @@ export default function PropertyFitResults() {
             "loginUserDisplayName",
             user.fullName || user.username || user.email || "",
           );
+          window.dispatchEvent(new Event("propertyla-auth-changed"));
         }
         setStatusMessage(
           mapped.length

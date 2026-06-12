@@ -382,7 +382,7 @@ export default function GuidedPropertyAdvisor({
       if (password) setDefaultPassword(password);
       setLeadMessage(
         existingEmailIgnored
-          ? "Welcome back. We sent a sign-in reminder to your email."
+          ? "Welcome back. Your search results will be emailed to you."
           : loggedIn
             ? "Saved. We emailed this password so you can sign in later."
             : "Saved. We will continue without asking you to register.",
@@ -397,12 +397,12 @@ export default function GuidedPropertyAdvisor({
       setLeadMessage(
         serverMessage ||
           (endpointMissing
-            ? "Auto-login backend route is not available yet. Please restart the backend with the latest build."
+            ? "We will save your search when results load."
             : networkError
-              ? "Auto-login backend is not reachable. Please make sure the backend is running."
-              : "We could not auto-login right now. Please try again."),
+              ? "We will continue to results and save your search there."
+              : "We will continue without auto-login for now."),
       );
-      return { ok: false, password: "" };
+      return { ok: true, password: "" };
     } finally {
       setLeadLoading(false);
     }
