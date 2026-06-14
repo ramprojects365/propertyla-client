@@ -5,12 +5,15 @@ import RecentPosts from "@/components/Blog/RecentPosts";
 export const metadata: Metadata = {
   metadataBase: new URL("https://propertyla.com.my"),
   title: "Top Townships in Kajang, Cheras, and Puchong | PropertyLa Malaysia",
-  description: "Explore the best townships in Kajang, Cheras, and Puchong. Discover family-friendly developments with excellent amenities, connectivity, and investment potential.",
-  keywords: "Kajang townships 2026, Cheras property Malaysia, Puchong developments, Selangor townships, family-friendly communities Malaysia, property investment Selangor, buy property Kajang, Cheras condo, Puchong landed property, Kajang Cheras Puchong real estate",
+  description:
+    "Explore the best townships in Kajang, Cheras, and Puchong. Discover family-friendly developments with excellent amenities, connectivity, and investment potential.",
+  keywords:
+    "Kajang townships 2026, Cheras property Malaysia, Puchong developments, Selangor townships, family-friendly communities Malaysia, property investment Selangor, buy property Kajang, Cheras condo, Puchong landed property, Kajang Cheras Puchong real estate",
   openGraph: {
     title: "Top Townships in Kajang, Cheras, and Puchong",
-    description: "Explore the best townships in Kajang, Cheras, and Puchong with excellent amenities and investment potential.",
-    images: ["/assets/img/blog/blog-thumb-3.png"],
+    description:
+      "Explore the best townships in Kajang, Cheras, and Puchong with excellent amenities and investment potential.",
+    images: ["/assets/img/blog/Stamp-Duty-in-Malaysia-Property.png"],
     type: "article",
   },
 };
@@ -30,11 +33,17 @@ export default function TopTownshipsKCP() {
                     </h3>
 
                     <p className="mb-30">
-                      Kajang, Cheras, and Puchong are three rapidly developing areas in Selangor that have become popular among homebuyers and investors. These areas offer a mix of affordability, good connectivity, and comprehensive amenities, making them ideal for families and first-time buyers.
+                      Kajang, Cheras, and Puchong are three rapidly developing
+                      areas in Selangor that have become popular among
+                      homebuyers and investors. These areas offer a mix of
+                      affordability, good connectivity, and comprehensive
+                      amenities, making them ideal for families and first-time
+                      buyers.
                     </p>
 
                     <p className="mb-30">
-                      Here are the top townships in these areas that offer excellent living standards and investment potential.
+                      Here are the top townships in these areas that offer
+                      excellent living standards and investment potential.
                     </p>
 
                     <h3 className="tp-blog-details-subtitle mb-20">
@@ -86,7 +95,9 @@ export default function TopTownshipsKCP() {
                         💡 Kajang Advantage:
                       </h5>
                       <p style={{ color: "#155724", margin: 0 }}>
-                        Kajang is known for its educational institutions and affordable property prices. It's ideal for families with school-going children.
+                        Kajang is known for its educational institutions and
+                        affordable property prices. It's ideal for families with
+                        school-going children.
                       </p>
                     </div>
 
@@ -150,9 +161,7 @@ export default function TopTownshipsKCP() {
                       6. Bandar Puteri Puchong
                     </h4>
 
-                    <p className="mb-20">
-                      Premium township by IOI Properties.
-                    </p>
+                    <p className="mb-20">Premium township by IOI Properties.</p>
 
                     <ul className="tp-blog-details-list mb-30">
                       <li>Well-planned infrastructure</li>
@@ -175,7 +184,9 @@ export default function TopTownshipsKCP() {
                         ⚠️ Puchong Growth:
                       </h5>
                       <p style={{ color: "#856404", margin: 0 }}>
-                        Puchong has seen significant development with the MRT Putrajaya Line. Properties near MRT stations are experiencing strong appreciation.
+                        Puchong has seen significant development with the MRT
+                        Putrajaya Line. Properties near MRT stations are
+                        experiencing strong appreciation.
                       </p>
                     </div>
 
@@ -199,9 +210,7 @@ export default function TopTownshipsKCP() {
                       8. Puchong Jaya
                     </h4>
 
-                    <p className="mb-20">
-                      Commercial and residential hub.
-                    </p>
+                    <p className="mb-20">Commercial and residential hub.</p>
 
                     <ul className="tp-blog-details-list mb-30">
                       <li>Strong commercial presence</li>
@@ -215,9 +224,7 @@ export default function TopTownshipsKCP() {
                       9. Bandar Kinrara
                     </h4>
 
-                    <p className="mb-20">
-                      Premium township by IJM Land.
-                    </p>
+                    <p className="mb-20">Premium township by IJM Land.</p>
 
                     <ul className="tp-blog-details-list mb-30">
                       <li>Well-planned development</li>
@@ -262,16 +269,24 @@ export default function TopTownshipsKCP() {
                   <div className="tp-blog-widget-category">
                     <ul>
                       <li>
-                        <Link href="#">Property <span>(12)</span></Link>
+                        <Link href="#">
+                          Property <span>(12)</span>
+                        </Link>
                       </li>
                       <li>
-                        <Link href="#">Investment <span>(8)</span></Link>
+                        <Link href="#">
+                          Investment <span>(8)</span>
+                        </Link>
                       </li>
                       <li>
-                        <Link href="#">Market Analysis <span>(6)</span></Link>
+                        <Link href="#">
+                          Market Analysis <span>(6)</span>
+                        </Link>
                       </li>
                       <li>
-                        <Link href="#">Tips & Guides <span>(15)</span></Link>
+                        <Link href="#">
+                          Tips & Guides <span>(15)</span>
+                        </Link>
                       </li>
                     </ul>
                   </div>

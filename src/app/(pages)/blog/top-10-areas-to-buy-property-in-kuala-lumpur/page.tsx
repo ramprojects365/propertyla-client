@@ -5,12 +5,15 @@ import RecentPosts from "@/components/Blog/RecentPosts";
 export const metadata: Metadata = {
   metadataBase: new URL("https://propertyla.com.my"),
   title: "Top 10 Areas to Buy Property in Kuala Lumpur | PropertyLa Malaysia",
-  description: "Explore the best neighborhoods to invest in Kuala Lumpur property. From KLCC to Mont Kiara, discover prime locations with strong appreciation potential and excellent amenities.",
-  keywords: "Kuala Lumpur property 2026, best areas KL Malaysia, KL real estate investment, Mont Kiara condos Malaysia, Bangsar property Kuala Lumpur, Damansara Heights property, KLCC apartments for sale, Bukit Bintang property, buy property Kuala Lumpur, Kuala Lumpur residential areas",
+  description:
+    "Explore the best neighborhoods to invest in Kuala Lumpur property. From KLCC to Mont Kiara, discover prime locations with strong appreciation potential and excellent amenities.",
+  keywords:
+    "Kuala Lumpur property 2026, best areas KL Malaysia, KL real estate investment, Mont Kiara condos Malaysia, Bangsar property Kuala Lumpur, Damansara Heights property, KLCC apartments for sale, Bukit Bintang property, buy property Kuala Lumpur, Kuala Lumpur residential areas",
   openGraph: {
     title: "Top 10 Areas to Buy Property in Kuala Lumpur",
-    description: "Explore the best neighborhoods to invest in Kuala Lumpur property with strong appreciation potential.",
-    images: ["/assets/img/blog/blog-thumb-3.png"],
+    description:
+      "Explore the best neighborhoods to invest in Kuala Lumpur property with strong appreciation potential.",
+    images: ["/assets/img/blog/Stamp-Duty-in-Malaysia-Property.png"],
     type: "article",
   },
 };
@@ -30,11 +33,16 @@ export default function TopAreasKL() {
                     </h3>
 
                     <p className="mb-30">
-                      Kuala Lumpur, Malaysia's vibrant capital, offers diverse property options ranging from affordable apartments to luxury penthouses. Whether you're an investor or homebuyer, choosing the right location is crucial for long-term returns and lifestyle satisfaction.
+                      Kuala Lumpur, Malaysia's vibrant capital, offers diverse
+                      property options ranging from affordable apartments to
+                      luxury penthouses. Whether you're an investor or
+                      homebuyer, choosing the right location is crucial for
+                      long-term returns and lifestyle satisfaction.
                     </p>
 
                     <p className="mb-30">
-                      Here are the top 10 areas in Kuala Lumpur that offer excellent investment potential and quality of life.
+                      Here are the top 10 areas in Kuala Lumpur that offer
+                      excellent investment potential and quality of life.
                     </p>
 
                     <h3 className="tp-blog-details-subtitle mb-20">
@@ -42,14 +50,17 @@ export default function TopAreasKL() {
                     </h3>
 
                     <p className="mb-20">
-                      The heart of Kuala Lumpur, KLCC is the most prestigious address in the city.
+                      The heart of Kuala Lumpur, KLCC is the most prestigious
+                      address in the city.
                     </p>
 
                     <ul className="tp-blog-details-list mb-30">
                       <li>Iconic landmarks: Petronas Twin Towers, KLCC Park</li>
                       <li>World-class shopping: Suria KLCC, Pavilion</li>
                       <li>Excellent connectivity: LRT, MRT, bus hubs</li>
-                      <li>High-end residential towers with premium amenities</li>
+                      <li>
+                        High-end residential towers with premium amenities
+                      </li>
                       <li>Strong rental demand from expatriates</li>
                     </ul>
 
@@ -58,12 +69,18 @@ export default function TopAreasKL() {
                     </h3>
 
                     <p className="mb-20">
-                      A popular expatriate enclave known for its international schools and cosmopolitan lifestyle.
+                      A popular expatriate enclave known for its international
+                      schools and cosmopolitan lifestyle.
                     </p>
 
                     <ul className="tp-blog-details-list mb-30">
-                      <li>International schools: Garden International, Mont Kiara International</li>
-                      <li>Upscale shopping: Solaris Mont Kiara, 1 Mont Kiara</li>
+                      <li>
+                        International schools: Garden International, Mont Kiara
+                        International
+                      </li>
+                      <li>
+                        Upscale shopping: Solaris Mont Kiara, 1 Mont Kiara
+                      </li>
                       <li>Modern condominiums with excellent facilities</li>
                       <li>Strong expatriate community</li>
                       <li>High rental yields</li>
@@ -74,7 +91,8 @@ export default function TopAreasKL() {
                     </h3>
 
                     <p className="mb-20">
-                      A trendy neighborhood with a mix of old charm and modern development.
+                      A trendy neighborhood with a mix of old charm and modern
+                      development.
                     </p>
 
                     <ul className="tp-blog-details-list mb-30">
@@ -90,7 +108,8 @@ export default function TopAreasKL() {
                     </h3>
 
                     <p className="mb-20">
-                      An exclusive residential area known for its luxury bungalows and condominiums.
+                      An exclusive residential area known for its luxury
+                      bungalows and condominiums.
                     </p>
 
                     <ul className="tp-blog-details-list mb-30">
@@ -110,7 +129,9 @@ export default function TopAreasKL() {
                     </p>
 
                     <ul className="tp-blog-details-list mb-30">
-                      <li>Prime shopping: Lot 10, Fahrenheit 88, Starhill Gallery</li>
+                      <li>
+                        Prime shopping: Lot 10, Fahrenheit 88, Starhill Gallery
+                      </li>
                       <li>Vibrant nightlife and entertainment</li>
                       <li>Excellent MRT connectivity</li>
                       <li>High tourist footfall</li>
@@ -122,7 +143,8 @@ export default function TopAreasKL() {
                     </h3>
 
                     <p className="mb-20">
-                      A mature residential area with affordable property options.
+                      A mature residential area with affordable property
+                      options.
                     </p>
 
                     <ul className="tp-blog-details-list mb-30">
@@ -138,7 +160,8 @@ export default function TopAreasKL() {
                     </h3>
 
                     <p className="mb-20">
-                      An up-and-coming area with good connectivity and affordable prices.
+                      An up-and-coming area with good connectivity and
+                      affordable prices.
                     </p>
 
                     <ul className="tp-blog-details-list mb-30">
@@ -186,7 +209,8 @@ export default function TopAreasKL() {
                     </h3>
 
                     <p className="mb-20">
-                      A well-established area with a mix of residential and commercial properties.
+                      A well-established area with a mix of residential and
+                      commercial properties.
                     </p>
 
                     <ul className="tp-blog-details-list mb-30">
@@ -211,7 +235,12 @@ export default function TopAreasKL() {
                         🏠 Investment Strategy
                       </h3>
                       <p style={{ margin: 0 }}>
-                        For investors, areas near MRT stations typically show better appreciation. For homebuyers, consider your lifestyle needs, commute to work, and proximity to amenities. KLCC and Mont Kiara offer luxury and prestige, while Cheras and Setapak provide affordability with good growth potential.
+                        For investors, areas near MRT stations typically show
+                        better appreciation. For homebuyers, consider your
+                        lifestyle needs, commute to work, and proximity to
+                        amenities. KLCC and Mont Kiara offer luxury and
+                        prestige, while Cheras and Setapak provide affordability
+                        with good growth potential.
                       </p>
                     </div>
 
@@ -220,11 +249,16 @@ export default function TopAreasKL() {
                     </h3>
 
                     <p className="mb-20">
-                      Kuala Lumpur offers diverse options for different budgets and preferences. Whether you're looking for luxury, affordability, or investment potential, there's an area that suits your needs.
+                      Kuala Lumpur offers diverse options for different budgets
+                      and preferences. Whether you're looking for luxury,
+                      affordability, or investment potential, there's an area
+                      that suits your needs.
                     </p>
 
                     <p className="mb-30">
-                      Always conduct thorough research, consider future infrastructure developments, and consult with property professionals before making any investment decisions.
+                      Always conduct thorough research, consider future
+                      infrastructure developments, and consult with property
+                      professionals before making any investment decisions.
                     </p>
                   </div>
 
@@ -265,16 +299,24 @@ export default function TopAreasKL() {
                   <div className="tp-blog-widget-category">
                     <ul>
                       <li>
-                        <Link href="#">Property <span>(12)</span></Link>
+                        <Link href="#">
+                          Property <span>(12)</span>
+                        </Link>
                       </li>
                       <li>
-                        <Link href="#">Investment <span>(8)</span></Link>
+                        <Link href="#">
+                          Investment <span>(8)</span>
+                        </Link>
                       </li>
                       <li>
-                        <Link href="#">Market Analysis <span>(6)</span></Link>
+                        <Link href="#">
+                          Market Analysis <span>(6)</span>
+                        </Link>
                       </li>
                       <li>
-                        <Link href="#">Tips & Guides <span>(15)</span></Link>
+                        <Link href="#">
+                          Tips & Guides <span>(15)</span>
+                        </Link>
                       </li>
                     </ul>
                   </div>

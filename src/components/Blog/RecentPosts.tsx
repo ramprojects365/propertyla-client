@@ -1,15 +1,16 @@
 import Image from "next/image";
 import Link from "next/link";
-import { blogPosts } from "@/data/blogPosts";
+import { blogData } from "@/data/blogData";
 
 interface RecentPostsProps {
   currentSlug: string;
 }
 
-const DEFAULT_BLOG_IMAGE = "/assets/img/blog/blog-thumb-1.png";
+const DEFAULT_BLOG_IMAGE =
+  "/assets/img/blog/costly-mistakes-malaysians-make-when-buying-property.png";
 
 export default function RecentPosts({ currentSlug }: RecentPostsProps) {
-  const otherPosts = blogPosts.filter((post) => post.slug !== currentSlug);
+  const otherPosts = blogData.filter((post) => post.slug !== currentSlug);
 
   return (
     <div className="tp-blog-widget mb-40">
@@ -19,7 +20,7 @@ export default function RecentPosts({ currentSlug }: RecentPostsProps) {
           <div key={post.id} className="tp-blog-widget-recent-post-item mb-20">
             <div className="tp-blog-widget-recent-post-thumb">
               <Image
-                src={post.image || DEFAULT_BLOG_IMAGE}
+                src={post.image}
                 alt={post.title}
                 width={80}
                 height={60}
@@ -27,7 +28,7 @@ export default function RecentPosts({ currentSlug }: RecentPostsProps) {
             </div>
             <div className="tp-blog-widget-recent-post-content">
               <h6>
-                <Link href={post.slug}>{post.title}</Link>
+                <Link href={`/blog/${post.slug}`}>{post.title}</Link>
               </h6>
               <span>{post.readTime}</span>
             </div>

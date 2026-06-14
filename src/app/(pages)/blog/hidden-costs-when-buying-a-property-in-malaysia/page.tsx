@@ -5,12 +5,15 @@ import RecentPosts from "@/components/Blog/RecentPosts";
 export const metadata: Metadata = {
   metadataBase: new URL("https://propertyla.com.my"),
   title: "Hidden Costs When Buying a Property in Malaysia | PropertyLa",
-  description: "Discover the hidden costs of buying property in Malaysia beyond the purchase price. Learn about stamp duty, legal fees, renovation costs, and other expenses to budget for.",
-  keywords: "hidden costs property Malaysia 2026, property buying costs Malaysia, stamp duty Malaysia fees, legal fees property Malaysia, renovation costs Malaysia, property purchase expenses Malaysia, additional costs buying house Malaysia, property transaction costs Malaysia, SPA legal fees Malaysia, property maintenance costs Malaysia",
+  description:
+    "Discover the hidden costs of buying property in Malaysia beyond the purchase price. Learn about stamp duty, legal fees, renovation costs, and other expenses to budget for.",
+  keywords:
+    "hidden costs property Malaysia 2026, property buying costs Malaysia, stamp duty Malaysia fees, legal fees property Malaysia, renovation costs Malaysia, property purchase expenses Malaysia, additional costs buying house Malaysia, property transaction costs Malaysia, SPA legal fees Malaysia, property maintenance costs Malaysia",
   openGraph: {
     title: "Hidden Costs When Buying a Property in Malaysia",
-    description: "Discover the hidden costs of buying property in Malaysia beyond the purchase price.",
-    images: ["/assets/img/blog/blog-thumb-3.png"],
+    description:
+      "Discover the hidden costs of buying property in Malaysia beyond the purchase price.",
+    images: ["/assets/img/blog/Stamp-Duty-in-Malaysia-Property.png"],
     type: "article",
   },
 };
@@ -30,11 +33,16 @@ export default function HiddenCostsProperty() {
                     </h3>
 
                     <p className="mb-30">
-                      When buying a property in Malaysia, the purchase price is just the beginning. Many first-time buyers are surprised by the additional costs that can add up to 10-15% of the property value. Understanding these hidden costs is crucial for proper financial planning.
+                      When buying a property in Malaysia, the purchase price is
+                      just the beginning. Many first-time buyers are surprised
+                      by the additional costs that can add up to 10-15% of the
+                      property value. Understanding these hidden costs is
+                      crucial for proper financial planning.
                     </p>
 
                     <p className="mb-30">
-                      In this guide, we break down all the hidden costs you need to budget for when buying property in Malaysia.
+                      In this guide, we break down all the hidden costs you need
+                      to budget for when buying property in Malaysia.
                     </p>
 
                     <h3 className="tp-blog-details-subtitle mb-20">
@@ -42,7 +50,8 @@ export default function HiddenCostsProperty() {
                     </h3>
 
                     <p className="mb-20">
-                      Stamp duty is a tax levied on property transfer documents. The rates are:
+                      Stamp duty is a tax levied on property transfer documents.
+                      The rates are:
                     </p>
 
                     <ul className="tp-blog-details-list mb-30">
@@ -65,7 +74,9 @@ export default function HiddenCostsProperty() {
                         💡 First-Time Buyer Exemption:
                       </h5>
                       <p style={{ color: "#155724", margin: 0 }}>
-                        First-time Malaysian homebuyers enjoy stamp duty exemption on the first RM300,000 for properties priced up to RM500,000.
+                        First-time Malaysian homebuyers enjoy stamp duty
+                        exemption on the first RM300,000 for properties priced
+                        up to RM500,000.
                       </p>
                     </div>
 
@@ -74,7 +85,8 @@ export default function HiddenCostsProperty() {
                     </h3>
 
                     <p className="mb-20">
-                      You'll need to pay legal fees for both the Sale & Purchase Agreement (SPA) and Loan Agreement.
+                      You'll need to pay legal fees for both the Sale & Purchase
+                      Agreement (SPA) and Loan Agreement.
                     </p>
 
                     <ul className="tp-blog-details-list mb-30">
@@ -90,7 +102,8 @@ export default function HiddenCostsProperty() {
                     </h3>
 
                     <p className="mb-20">
-                      Additional stamp duty is charged on the loan agreement document.
+                      Additional stamp duty is charged on the loan agreement
+                      document.
                     </p>
 
                     <ul className="tp-blog-details-list mb-30">
@@ -115,7 +128,8 @@ export default function HiddenCostsProperty() {
                     </h3>
 
                     <p className="mb-20">
-                      For new properties from developers, additional stamp duty applies to the SPA.
+                      For new properties from developers, additional stamp duty
+                      applies to the SPA.
                     </p>
 
                     <ul className="tp-blog-details-list mb-30">
@@ -150,7 +164,9 @@ export default function HiddenCostsProperty() {
                         ⚠️ Budget Tip:
                       </h5>
                       <p style={{ color: "#856404", margin: 0 }}>
-                        Always set aside 10-15% of the property price for renovation and furnishing. It's better to over-budget than under-budget.
+                        Always set aside 10-15% of the property price for
+                        renovation and furnishing. It's better to over-budget
+                        than under-budget.
                       </p>
                     </div>
 
@@ -177,8 +193,13 @@ export default function HiddenCostsProperty() {
                     </p>
 
                     <ul className="tp-blog-details-list mb-30">
-                      <li>MRTA (Mortgage Reducing Term Assurance): RM2,000-10,000 one-time</li>
-                      <li>MLTA (Mortgage Level Term Assurance): RM500-2,000/year</li>
+                      <li>
+                        MRTA (Mortgage Reducing Term Assurance): RM2,000-10,000
+                        one-time
+                      </li>
+                      <li>
+                        MLTA (Mortgage Level Term Assurance): RM500-2,000/year
+                      </li>
                       <li>Fire insurance: RM200-500/year</li>
                     </ul>
 
@@ -186,9 +207,7 @@ export default function HiddenCostsProperty() {
                       9. Property Taxes
                     </h3>
 
-                    <p className="mb-20">
-                      Annual property taxes in Malaysia.
-                    </p>
+                    <p className="mb-20">Annual property taxes in Malaysia.</p>
 
                     <ul className="tp-blog-details-list mb-30">
                       <li>Quit rent: RM1-3 per sq ft/year (varies by state)</li>
@@ -199,9 +218,7 @@ export default function HiddenCostsProperty() {
                       10. Utility Connection Fees
                     </h3>
 
-                    <p className="mb-20">
-                      Initial costs to connect utilities.
-                    </p>
+                    <p className="mb-20">Initial costs to connect utilities.</p>
 
                     <ul className="tp-blog-details-list mb-30">
                       <li>Electricity deposit: RM200-500</li>
@@ -213,9 +230,7 @@ export default function HiddenCostsProperty() {
                       11. Moving Costs
                     </h3>
 
-                    <p className="mb-20">
-                      Professional moving services.
-                    </p>
+                    <p className="mb-20">Professional moving services.</p>
 
                     <ul className="tp-blog-details-list mb-30">
                       <li>Local move: RM1,000-3,000</li>
@@ -236,7 +251,10 @@ export default function HiddenCostsProperty() {
                         💰 Total Cost Example
                       </h3>
                       <p style={{ margin: 0 }}>
-                        For a RM500,000 property, expect additional costs of approximately RM50,000-75,000 (10-15%). This includes stamp duty (~RM9,000), legal fees (~RM4,500), renovation (~RM30,000), and other miscellaneous costs.
+                        For a RM500,000 property, expect additional costs of
+                        approximately RM50,000-75,000 (10-15%). This includes
+                        stamp duty (~RM9,000), legal fees (~RM4,500), renovation
+                        (~RM30,000), and other miscellaneous costs.
                       </p>
                     </div>
 
@@ -257,11 +275,15 @@ export default function HiddenCostsProperty() {
                     </h3>
 
                     <p className="mb-20">
-                      Being aware of hidden costs helps you budget accurately and avoid financial stress. Always factor in these additional expenses when calculating your affordability.
+                      Being aware of hidden costs helps you budget accurately
+                      and avoid financial stress. Always factor in these
+                      additional expenses when calculating your affordability.
                     </p>
 
                     <p className="mb-30">
-                      Work with a reputable property agent and lawyer who can provide accurate estimates of all costs involved in your property purchase.
+                      Work with a reputable property agent and lawyer who can
+                      provide accurate estimates of all costs involved in your
+                      property purchase.
                     </p>
                   </div>
 
@@ -302,16 +324,24 @@ export default function HiddenCostsProperty() {
                   <div className="tp-blog-widget-category">
                     <ul>
                       <li>
-                        <Link href="#">Property <span>(12)</span></Link>
+                        <Link href="#">
+                          Property <span>(12)</span>
+                        </Link>
                       </li>
                       <li>
-                        <Link href="#">Investment <span>(8)</span></Link>
+                        <Link href="#">
+                          Investment <span>(8)</span>
+                        </Link>
                       </li>
                       <li>
-                        <Link href="#">Market Analysis <span>(6)</span></Link>
+                        <Link href="#">
+                          Market Analysis <span>(6)</span>
+                        </Link>
                       </li>
                       <li>
-                        <Link href="#">Tips & Guides <span>(15)</span></Link>
+                        <Link href="#">
+                          Tips & Guides <span>(15)</span>
+                        </Link>
                       </li>
                     </ul>
                   </div>

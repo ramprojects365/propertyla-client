@@ -15,7 +15,7 @@ export const metadata: Metadata = {
     title: "Foreign Investors Still Interested in Malaysian Property (2026)",
     description:
       "Why international buyers continue investing in Malaysia property market despite global uncertainty.",
-    images: ["/assets/img/blog/blog-thumb-2.png"],
+    images: ["/assets/img/blog/best-places-to-buy-property-in-Selangor.png"],
     type: "article",
   },
 };

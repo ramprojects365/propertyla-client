@@ -4,13 +4,17 @@ import RecentPosts from "@/components/Blog/RecentPosts";
 
 export const metadata: Metadata = {
   metadataBase: new URL("https://propertyla.com.my"),
-  title: "Understanding SPA (Sale and Purchase Agreement) in Malaysia | PropertyLa",
-  description: "Learn about the Sale and Purchase Agreement (SPA) when buying property in Malaysia. Understand key clauses, legal obligations, and buyer protections.",
-  keywords: "SPA Malaysia 2026, Sale and Purchase Agreement Malaysia, property legal documents Malaysia, buying property legal process Malaysia, property agreement Malaysia, SPA lawyer Malaysia, property lawyer Malaysia, legal fees SPA Malaysia, property purchase agreement Malaysia, Malaysia property legal guide",
+  title:
+    "Understanding SPA (Sale and Purchase Agreement) in Malaysia | PropertyLa",
+  description:
+    "Learn about the Sale and Purchase Agreement (SPA) when buying property in Malaysia. Understand key clauses, legal obligations, and buyer protections.",
+  keywords:
+    "SPA Malaysia 2026, Sale and Purchase Agreement Malaysia, property legal documents Malaysia, buying property legal process Malaysia, property agreement Malaysia, SPA lawyer Malaysia, property lawyer Malaysia, legal fees SPA Malaysia, property purchase agreement Malaysia, Malaysia property legal guide",
   openGraph: {
     title: "Understanding SPA (Sale and Purchase Agreement) in Malaysia",
-    description: "Learn about the Sale and Purchase Agreement (SPA) when buying property in Malaysia.",
-    images: ["/assets/img/blog/blog-thumb-3.png"],
+    description:
+      "Learn about the Sale and Purchase Agreement (SPA) when buying property in Malaysia.",
+    images: ["/assets/img/blog/Stamp-Duty-in-Malaysia-Property.png"],
     type: "article",
   },
 };
@@ -26,15 +30,21 @@ export default function UnderstandingSPA() {
                 <div className="tp-blog-details-content">
                   <div className="tp-blog-details-text">
                     <h3 className="tp-blog-details-title mb-30">
-                      Understanding SPA (Sale and Purchase Agreement) in Malaysia
+                      Understanding SPA (Sale and Purchase Agreement) in
+                      Malaysia
                     </h3>
 
                     <p className="mb-30">
-                      The Sale and Purchase Agreement (SPA) is the most important legal document in any property transaction in Malaysia. It outlines the terms and conditions of the sale, protecting both buyer and seller. Understanding this document is crucial before signing.
+                      The Sale and Purchase Agreement (SPA) is the most
+                      important legal document in any property transaction in
+                      Malaysia. It outlines the terms and conditions of the
+                      sale, protecting both buyer and seller. Understanding this
+                      document is crucial before signing.
                     </p>
 
                     <p className="mb-30">
-                      In this guide, we break down the key components of an SPA and what you need to know before signing.
+                      In this guide, we break down the key components of an SPA
+                      and what you need to know before signing.
                     </p>
 
                     <h3 className="tp-blog-details-subtitle mb-20">
@@ -42,7 +52,8 @@ export default function UnderstandingSPA() {
                     </h3>
 
                     <p className="mb-20">
-                      The SPA is a legally binding contract between the buyer and seller that details:
+                      The SPA is a legally binding contract between the buyer
+                      and seller that details:
                     </p>
 
                     <ul className="tp-blog-details-list mb-30">
@@ -67,7 +78,9 @@ export default function UnderstandingSPA() {
                         ⚖️ Legal Requirement:
                       </h5>
                       <p style={{ color: "#155724", margin: 0 }}>
-                        The SPA must be signed within 14 days of paying the booking fee. Always have your lawyer review the document before signing.
+                        The SPA must be signed within 14 days of paying the
+                        booking fee. Always have your lawyer review the document
+                        before signing.
                       </p>
                     </div>
 
@@ -76,16 +89,35 @@ export default function UnderstandingSPA() {
                     </h3>
 
                     <p className="mb-20">
-                      Understanding these essential clauses helps protect your interests:
+                      Understanding these essential clauses helps protect your
+                      interests:
                     </p>
 
                     <ul className="tp-blog-details-list mb-30">
-                      <li><strong>Property Description:</strong> Address, lot number, title details</li>
-                      <li><strong>Purchase Price:</strong> Total amount and payment schedule</li>
-                      <li><strong>Completion Date:</strong> When the transaction must be completed</li>
-                      <li><strong>Deposit:</strong> Amount paid and conditions for refund</li>
-                      <li><strong>Vacant Possession:</strong> When you get the keys</li>
-                      <li><strong>Defects Liability Period:</strong> Warranty period for defects</li>
+                      <li>
+                        <strong>Property Description:</strong> Address, lot
+                        number, title details
+                      </li>
+                      <li>
+                        <strong>Purchase Price:</strong> Total amount and
+                        payment schedule
+                      </li>
+                      <li>
+                        <strong>Completion Date:</strong> When the transaction
+                        must be completed
+                      </li>
+                      <li>
+                        <strong>Deposit:</strong> Amount paid and conditions for
+                        refund
+                      </li>
+                      <li>
+                        <strong>Vacant Possession:</strong> When you get the
+                        keys
+                      </li>
+                      <li>
+                        <strong>Defects Liability Period:</strong> Warranty
+                        period for defects
+                      </li>
                     </ul>
 
                     <h3 className="tp-blog-details-subtitle mb-20">
@@ -97,10 +129,20 @@ export default function UnderstandingSPA() {
                     </p>
 
                     <ul className="tp-blog-details-list mb-30">
-                      <li><strong>Booking Fee:</strong> 2-3% (paid upfront)</li>
-                      <li><strong>Down Payment:</strong> 10% total (minus booking fee)</li>
-                      <li><strong>Progress Payments:</strong> For under-construction properties</li>
-                      <li><strong>Final Payment:</strong> Upon completion</li>
+                      <li>
+                        <strong>Booking Fee:</strong> 2-3% (paid upfront)
+                      </li>
+                      <li>
+                        <strong>Down Payment:</strong> 10% total (minus booking
+                        fee)
+                      </li>
+                      <li>
+                        <strong>Progress Payments:</strong> For
+                        under-construction properties
+                      </li>
+                      <li>
+                        <strong>Final Payment:</strong> Upon completion
+                      </li>
                     </ul>
 
                     <h3 className="tp-blog-details-subtitle mb-20">
@@ -132,7 +174,9 @@ export default function UnderstandingSPA() {
                         ⚠️ Important Check:
                       </h5>
                       <p style={{ color: "#856404", margin: 0 }}>
-                        Ensure the seller has cleared all outstanding maintenance fees, quit rent, and assessment taxes before completion. These should be specified in the SPA.
+                        Ensure the seller has cleared all outstanding
+                        maintenance fees, quit rent, and assessment taxes before
+                        completion. These should be specified in the SPA.
                       </p>
                     </div>
 
@@ -145,7 +189,9 @@ export default function UnderstandingSPA() {
                     </p>
 
                     <ul className="tp-blog-details-list mb-30">
-                      <li>Progress payment schedule based on construction stages</li>
+                      <li>
+                        Progress payment schedule based on construction stages
+                      </li>
                       <li>Defects liability period (usually 18-24 months)</li>
                       <li>Late delivery compensation</li>
                       <li>Size variation allowance (usually ±10%)</li>
@@ -161,10 +207,21 @@ export default function UnderstandingSPA() {
                     </p>
 
                     <ul className="tp-blog-details-list mb-30">
-                      <li><strong>Buyer Default:</strong> Deposit may be forfeited</li>
-                      <li><strong>Seller Default:</strong> Must return deposit with interest</li>
-                      <li><strong>Specific Performance:</strong> Court order to complete sale</li>
-                      <li><strong>Termination Rights:</strong> Conditions for canceling the agreement</li>
+                      <li>
+                        <strong>Buyer Default:</strong> Deposit may be forfeited
+                      </li>
+                      <li>
+                        <strong>Seller Default:</strong> Must return deposit
+                        with interest
+                      </li>
+                      <li>
+                        <strong>Specific Performance:</strong> Court order to
+                        complete sale
+                      </li>
+                      <li>
+                        <strong>Termination Rights:</strong> Conditions for
+                        canceling the agreement
+                      </li>
                     </ul>
 
                     <h3 className="tp-blog-details-subtitle mb-20">
@@ -197,7 +254,9 @@ export default function UnderstandingSPA() {
                         🏠 Lawyer's Role
                       </h3>
                       <p style={{ margin: 0 }}>
-                        Your lawyer will review the SPA, explain all clauses, negotiate unfair terms, and ensure your interests are protected. Never sign an SPA without legal review.
+                        Your lawyer will review the SPA, explain all clauses,
+                        negotiate unfair terms, and ensure your interests are
+                        protected. Never sign an SPA without legal review.
                       </p>
                     </div>
 
@@ -222,11 +281,16 @@ export default function UnderstandingSPA() {
                     </h3>
 
                     <p className="mb-20">
-                      The SPA is a critical document that protects your rights as a property buyer. Take the time to understand every clause, ask questions, and ensure you're comfortable with all terms before signing.
+                      The SPA is a critical document that protects your rights
+                      as a property buyer. Take the time to understand every
+                      clause, ask questions, and ensure you're comfortable with
+                      all terms before signing.
                     </p>
 
                     <p className="mb-30">
-                      Remember, once signed, the SPA is legally binding. Make sure all verbal promises from the seller or developer are written into the agreement.
+                      Remember, once signed, the SPA is legally binding. Make
+                      sure all verbal promises from the seller or developer are
+                      written into the agreement.
                     </p>
                   </div>
 
@@ -267,16 +331,24 @@ export default function UnderstandingSPA() {
                   <div className="tp-blog-widget-category">
                     <ul>
                       <li>
-                        <Link href="#">Property <span>(12)</span></Link>
+                        <Link href="#">
+                          Property <span>(12)</span>
+                        </Link>
                       </li>
                       <li>
-                        <Link href="#">Investment <span>(8)</span></Link>
+                        <Link href="#">
+                          Investment <span>(8)</span>
+                        </Link>
                       </li>
                       <li>
-                        <Link href="#">Market Analysis <span>(6)</span></Link>
+                        <Link href="#">
+                          Market Analysis <span>(6)</span>
+                        </Link>
                       </li>
                       <li>
-                        <Link href="#">Tips & Guides <span>(15)</span></Link>
+                        <Link href="#">
+                          Tips & Guides <span>(15)</span>
+                        </Link>
                       </li>
                     </ul>
                   </div>

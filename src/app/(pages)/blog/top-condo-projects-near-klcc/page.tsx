@@ -5,12 +5,15 @@ import RecentPosts from "@/components/Blog/RecentPosts";
 export const metadata: Metadata = {
   metadataBase: new URL("https://propertyla.com.my"),
   title: "Top Condo Projects Near KLCC | PropertyLa Malaysia",
-  description: "Discover the best condominium projects near KLCC Kuala Lumpur. From luxury residences to family-friendly options, find the perfect condo with excellent amenities and connectivity.",
-  keywords: "KLCC condos 2026, condominiums near KLCC, Kuala Lumpur luxury condos, KLCC residential projects, apartments near Petronas Towers, KLCC property investment, buy condo KLCC, luxury apartments Kuala Lumpur, KLCC high-rise, KLCC serviced apartments",
+  description:
+    "Discover the best condominium projects near KLCC Kuala Lumpur. From luxury residences to family-friendly options, find the perfect condo with excellent amenities and connectivity.",
+  keywords:
+    "KLCC condos 2026, condominiums near KLCC, Kuala Lumpur luxury condos, KLCC residential projects, apartments near Petronas Towers, KLCC property investment, buy condo KLCC, luxury apartments Kuala Lumpur, KLCC high-rise, KLCC serviced apartments",
   openGraph: {
     title: "Top Condo Projects Near KLCC",
-    description: "Discover the best condominium projects near KLCC Kuala Lumpur with excellent amenities and connectivity.",
-    images: ["/assets/img/blog/blog-thumb-3.png"],
+    description:
+      "Discover the best condominium projects near KLCC Kuala Lumpur with excellent amenities and connectivity.",
+    images: ["/assets/img/blog/Stamp-Duty-in-Malaysia-Property.png"],
     type: "article",
   },
 };
@@ -30,11 +33,17 @@ export default function TopCondosKLCC() {
                     </h3>
 
                     <p className="mb-30">
-                      Living near KLCC (Kuala Lumpur City Centre) offers unparalleled access to Malaysia's premier business, shopping, and entertainment district. The area boasts some of the most prestigious condominium projects in the country, offering luxury living with world-class amenities.
+                      Living near KLCC (Kuala Lumpur City Centre) offers
+                      unparalleled access to Malaysia's premier business,
+                      shopping, and entertainment district. The area boasts some
+                      of the most prestigious condominium projects in the
+                      country, offering luxury living with world-class
+                      amenities.
                     </p>
 
                     <p className="mb-30">
-                      Here are the top condo projects near KLCC that offer exceptional value, lifestyle, and investment potential.
+                      Here are the top condo projects near KLCC that offer
+                      exceptional value, lifestyle, and investment potential.
                     </p>
 
                     <h3 className="tp-blog-details-subtitle mb-20">
@@ -42,7 +51,8 @@ export default function TopCondosKLCC() {
                     </h3>
 
                     <p className="mb-20">
-                      Ultra-luxury residences with world-class service and amenities.
+                      Ultra-luxury residences with world-class service and
+                      amenities.
                     </p>
 
                     <ul className="tp-blog-details-list mb-30">
@@ -98,7 +108,9 @@ export default function TopCondosKLCC() {
                         💡 Investment Tip:
                       </h5>
                       <p style={{ color: "#155724", margin: 0 }}>
-                        Properties with direct access to KLCC Park or Suria KLCC typically command premium prices and maintain strong rental demand from expatriates.
+                        Properties with direct access to KLCC Park or Suria KLCC
+                        typically command premium prices and maintain strong
+                        rental demand from expatriates.
                       </p>
                     </div>
 
@@ -154,9 +166,7 @@ export default function TopCondosKLCC() {
                       7. 1 Stonor
                     </h3>
 
-                    <p className="mb-20">
-                      Exclusive low-density development.
-                    </p>
+                    <p className="mb-20">Exclusive low-density development.</p>
 
                     <ul className="tp-blog-details-list mb-30">
                       <li>Low density for privacy</li>
@@ -179,7 +189,9 @@ export default function TopCondosKLCC() {
                         ⚠️ Price Range:
                       </h5>
                       <p style={{ color: "#856404", margin: 0 }}>
-                        Condos near KLCC typically range from RM1,500-3,000 per sq ft. Ultra-luxury branded residences can exceed RM4,000 per sq ft.
+                        Condos near KLCC typically range from RM1,500-3,000 per
+                        sq ft. Ultra-luxury branded residences can exceed
+                        RM4,000 per sq ft.
                       </p>
                     </div>
 
@@ -192,11 +204,25 @@ export default function TopCondosKLCC() {
                     </p>
 
                     <ul className="tp-blog-details-list mb-30">
-                      <li><strong>Connectivity:</strong> Access to LRT, MRT, and major highways</li>
-                      <li><strong>Amenities:</strong> Pool, gym, security, parking</li>
-                      <li><strong>Views:</strong> KLCC Park, city skyline, or Petronas Towers</li>
-                      <li><strong>Maintenance Fees:</strong> Can be high for luxury developments</li>
-                      <li><strong>Rental Yield:</strong> Typically 3-5% for prime properties</li>
+                      <li>
+                        <strong>Connectivity:</strong> Access to LRT, MRT, and
+                        major highways
+                      </li>
+                      <li>
+                        <strong>Amenities:</strong> Pool, gym, security, parking
+                      </li>
+                      <li>
+                        <strong>Views:</strong> KLCC Park, city skyline, or
+                        Petronas Towers
+                      </li>
+                      <li>
+                        <strong>Maintenance Fees:</strong> Can be high for
+                        luxury developments
+                      </li>
+                      <li>
+                        <strong>Rental Yield:</strong> Typically 3-5% for prime
+                        properties
+                      </li>
                     </ul>
 
                     <h3 className="tp-blog-details-subtitle mb-20">
@@ -229,7 +255,10 @@ export default function TopCondosKLCC() {
                         🏠 Buyer's Advice
                       </h3>
                       <p style={{ margin: 0 }}>
-                        For investors, focus on properties with direct access to KLCC Park or shopping malls. For own stay, consider your lifestyle needs and budget - premium locations come with premium prices.
+                        For investors, focus on properties with direct access to
+                        KLCC Park or shopping malls. For own stay, consider your
+                        lifestyle needs and budget - premium locations come with
+                        premium prices.
                       </p>
                     </div>
 
@@ -238,11 +267,17 @@ export default function TopCondosKLCC() {
                     </h3>
 
                     <p className="mb-20">
-                      KLCC offers some of Malaysia's most prestigious residential addresses. Whether you're looking for ultra-luxury branded residences or premium condos with excellent amenities, there's an option to suit different budgets and preferences.
+                      KLCC offers some of Malaysia's most prestigious
+                      residential addresses. Whether you're looking for
+                      ultra-luxury branded residences or premium condos with
+                      excellent amenities, there's an option to suit different
+                      budgets and preferences.
                     </p>
 
                     <p className="mb-30">
-                      Always work with a reputable agent who specializes in the KLCC area to get the best deals and understand the unique characteristics of each development.
+                      Always work with a reputable agent who specializes in the
+                      KLCC area to get the best deals and understand the unique
+                      characteristics of each development.
                     </p>
                   </div>
 
@@ -283,16 +318,24 @@ export default function TopCondosKLCC() {
                   <div className="tp-blog-widget-category">
                     <ul>
                       <li>
-                        <Link href="#">Property <span>(12)</span></Link>
+                        <Link href="#">
+                          Property <span>(12)</span>
+                        </Link>
                       </li>
                       <li>
-                        <Link href="#">Investment <span>(8)</span></Link>
+                        <Link href="#">
+                          Investment <span>(8)</span>
+                        </Link>
                       </li>
                       <li>
-                        <Link href="#">Market Analysis <span>(6)</span></Link>
+                        <Link href="#">
+                          Market Analysis <span>(6)</span>
+                        </Link>
                       </li>
                       <li>
-                        <Link href="#">Tips & Guides <span>(15)</span></Link>
+                        <Link href="#">
+                          Tips & Guides <span>(15)</span>
+                        </Link>
                       </li>
                     </ul>
                   </div>

@@ -5,12 +5,15 @@ import RecentPosts from "@/components/Blog/RecentPosts";
 export const metadata: Metadata = {
   metadataBase: new URL("https://propertyla.com.my"),
   title: "How to Sell Your House Faster in Malaysia | PropertyLa",
-  description: "Expert tips to sell your property quickly in Malaysia. Learn about staging, pricing strategies, marketing, and legal processes to accelerate your home sale.",
-  keywords: "sell house fast Malaysia 2026, selling property Malaysia tips, home selling tips Malaysia, property marketing Malaysia, real estate agent Malaysia, house staging Malaysia, quick house sale Malaysia, property listing Malaysia, sell property quickly Malaysia, Malaysia real estate selling guide",
+  description:
+    "Expert tips to sell your property quickly in Malaysia. Learn about staging, pricing strategies, marketing, and legal processes to accelerate your home sale.",
+  keywords:
+    "sell house fast Malaysia 2026, selling property Malaysia tips, home selling tips Malaysia, property marketing Malaysia, real estate agent Malaysia, house staging Malaysia, quick house sale Malaysia, property listing Malaysia, sell property quickly Malaysia, Malaysia real estate selling guide",
   openGraph: {
     title: "How to Sell Your House Faster in Malaysia",
-    description: "Expert tips to sell your property quickly in Malaysia. Learn about staging, pricing strategies, and marketing.",
-    images: ["/assets/img/blog/blog-thumb-3.png"],
+    description:
+      "Expert tips to sell your property quickly in Malaysia. Learn about staging, pricing strategies, and marketing.",
+    images: ["/assets/img/blog/Stamp-Duty-in-Malaysia-Property.png"],
     type: "article",
   },
 };
@@ -30,11 +33,15 @@ export default function SellHouseFaster() {
                     </h3>
 
                     <p className="mb-30">
-                      Selling a property in Malaysia can take anywhere from a few months to over a year, depending on market conditions and how well you prepare. If you need to sell quickly, strategic planning and execution are essential.
+                      Selling a property in Malaysia can take anywhere from a
+                      few months to over a year, depending on market conditions
+                      and how well you prepare. If you need to sell quickly,
+                      strategic planning and execution are essential.
                     </p>
 
                     <p className="mb-30">
-                      In this guide, we share proven strategies to help you sell your house faster and at a better price.
+                      In this guide, we share proven strategies to help you sell
+                      your house faster and at a better price.
                     </p>
 
                     <h3 className="tp-blog-details-subtitle mb-20">
@@ -42,15 +49,24 @@ export default function SellHouseFaster() {
                     </h3>
 
                     <p className="mb-20">
-                      Pricing is the most critical factor in how quickly your property sells.
+                      Pricing is the most critical factor in how quickly your
+                      property sells.
                     </p>
 
                     <ul className="tp-blog-details-list mb-30">
-                      <li>Research recent sales in your area (within 3-6 months)</li>
+                      <li>
+                        Research recent sales in your area (within 3-6 months)
+                      </li>
                       <li>Get professional valuations from 2-3 agents</li>
-                      <li>Price slightly below market value to attract more buyers</li>
-                      <li>Avoid overpricing - it leads to longer market time</li>
-                      <li>Be prepared to adjust price if no interest in 2-3 weeks</li>
+                      <li>
+                        Price slightly below market value to attract more buyers
+                      </li>
+                      <li>
+                        Avoid overpricing - it leads to longer market time
+                      </li>
+                      <li>
+                        Be prepared to adjust price if no interest in 2-3 weeks
+                      </li>
                     </ul>
 
                     <div
@@ -66,7 +82,9 @@ export default function SellHouseFaster() {
                         💡 Pricing Strategy:
                       </h5>
                       <p style={{ color: "#155724", margin: 0 }}>
-                        Properties priced 5-10% below market value typically sell faster and sometimes even generate multiple offers, driving the price up.
+                        Properties priced 5-10% below market value typically
+                        sell faster and sometimes even generate multiple offers,
+                        driving the price up.
                       </p>
                     </div>
 
@@ -75,7 +93,8 @@ export default function SellHouseFaster() {
                     </h3>
 
                     <p className="mb-20">
-                      First impressions matter. Make your property attractive from the outside.
+                      First impressions matter. Make your property attractive
+                      from the outside.
                     </p>
 
                     <ul className="tp-blog-details-list mb-30">
@@ -91,7 +110,8 @@ export default function SellHouseFaster() {
                     </h3>
 
                     <p className="mb-20">
-                      Professional staging can help buyers visualize themselves living in the space.
+                      Professional staging can help buyers visualize themselves
+                      living in the space.
                     </p>
 
                     <ul className="tp-blog-details-list mb-30">
@@ -107,7 +127,8 @@ export default function SellHouseFaster() {
                     </h3>
 
                     <p className="mb-20">
-                      Most buyers start their search online. Quality photos are essential.
+                      Most buyers start their search online. Quality photos are
+                      essential.
                     </p>
 
                     <ul className="tp-blog-details-list mb-30">
@@ -127,7 +148,9 @@ export default function SellHouseFaster() {
                     </p>
 
                     <ul className="tp-blog-details-list mb-30">
-                      <li>List on major property portals (PropertyGuru, iProperty)</li>
+                      <li>
+                        List on major property portals (PropertyGuru, iProperty)
+                      </li>
                       <li>Social media marketing (Facebook, Instagram)</li>
                       <li>Open houses and private viewings</li>
                       <li>Distribute flyers in the neighborhood</li>
@@ -147,7 +170,9 @@ export default function SellHouseFaster() {
                         ⚠️ Marketing Tip:
                       </h5>
                       <p style={{ color: "#856404", margin: 0 }}>
-                        Weekend open houses typically attract more buyers. Schedule them during peak viewing times (10am-12pm or 2pm-4pm).
+                        Weekend open houses typically attract more buyers.
+                        Schedule them during peak viewing times (10am-12pm or
+                        2pm-4pm).
                       </p>
                     </div>
 
@@ -156,14 +181,17 @@ export default function SellHouseFaster() {
                     </h3>
 
                     <p className="mb-20">
-                      A good agent can significantly speed up the selling process.
+                      A good agent can significantly speed up the selling
+                      process.
                     </p>
 
                     <ul className="tp-blog-details-list mb-30">
                       <li>Choose an agent with local market knowledge</li>
                       <li>Check their track record and client reviews</li>
                       <li>Ensure they have a strong marketing plan</li>
-                      <li>Verify they're registered with the Board of Valuers</li>
+                      <li>
+                        Verify they're registered with the Board of Valuers
+                      </li>
                       <li>Communicate regularly and be responsive</li>
                     </ul>
 
@@ -188,7 +216,8 @@ export default function SellHouseFaster() {
                     </h3>
 
                     <p className="mb-20">
-                      Accommodate buyer schedules to maximize viewing opportunities.
+                      Accommodate buyer schedules to maximize viewing
+                      opportunities.
                     </p>
 
                     <ul className="tp-blog-details-list mb-30">
@@ -228,7 +257,11 @@ export default function SellHouseFaster() {
                         🏠 Seller's Timeline
                       </h3>
                       <p style={{ margin: 0 }}>
-                        In Malaysia's current market, well-priced properties in good locations typically sell within 2-3 months. Properties in high-demand areas can sell within weeks, while overpriced properties may take 6-12 months or longer.
+                        In Malaysia's current market, well-priced properties in
+                        good locations typically sell within 2-3 months.
+                        Properties in high-demand areas can sell within weeks,
+                        while overpriced properties may take 6-12 months or
+                        longer.
                       </p>
                     </div>
 
@@ -250,11 +283,16 @@ export default function SellHouseFaster() {
                     </h3>
 
                     <p className="mb-20">
-                      Selling your house faster requires a combination of right pricing, effective marketing, and proper preparation. By following these strategies, you can significantly reduce your time on market.
+                      Selling your house faster requires a combination of right
+                      pricing, effective marketing, and proper preparation. By
+                      following these strategies, you can significantly reduce
+                      your time on market.
                     </p>
 
                     <p className="mb-30">
-                      Remember, the goal is not just to sell quickly, but to sell at the best possible price. Balance speed with value for optimal results.
+                      Remember, the goal is not just to sell quickly, but to
+                      sell at the best possible price. Balance speed with value
+                      for optimal results.
                     </p>
                   </div>
 
@@ -295,16 +333,24 @@ export default function SellHouseFaster() {
                   <div className="tp-blog-widget-category">
                     <ul>
                       <li>
-                        <Link href="#">Property <span>(12)</span></Link>
+                        <Link href="#">
+                          Property <span>(12)</span>
+                        </Link>
                       </li>
                       <li>
-                        <Link href="#">Investment <span>(8)</span></Link>
+                        <Link href="#">
+                          Investment <span>(8)</span>
+                        </Link>
                       </li>
                       <li>
-                        <Link href="#">Market Analysis <span>(6)</span></Link>
+                        <Link href="#">
+                          Market Analysis <span>(6)</span>
+                        </Link>
                       </li>
                       <li>
-                        <Link href="#">Tips & Guides <span>(15)</span></Link>
+                        <Link href="#">
+                          Tips & Guides <span>(15)</span>
+                        </Link>
                       </li>
                     </ul>
                   </div>

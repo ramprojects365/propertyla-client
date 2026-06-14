@@ -15,7 +15,9 @@ export const metadata: Metadata = {
     title: "Costly Mistakes Malaysians Make When Buying Property",
     description:
       "Learn about the most common and costly mistakes Malaysians make when buying property. Expert tips to avoid these pitfalls.",
-    images: ["/assets/img/blog/blog-thumb-1.png"],
+    images: [
+      "/assets/img/blog/costly-mistakes-malaysians-make-when-buying-property.png",
+    ],
     type: "article",
   },
 };
