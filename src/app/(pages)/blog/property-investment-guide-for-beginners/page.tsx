@@ -5,12 +5,15 @@ import RecentPosts from "@/components/Blog/RecentPosts";
 export const metadata: Metadata = {
   metadataBase: new URL("https://propertyla.com.my"),
   title: "Property Investment Guide for Beginners in Malaysia | PropertyLa",
-  description: "Complete guide to property investment for beginners in Malaysia. Learn about investment strategies, financing, risk management, and how to build your property portfolio.",
-  keywords: "property investment Malaysia 2026, real estate investment for beginners Malaysia, Malaysia property guide, property portfolio Malaysia, rental yield Malaysia, property investment strategy Malaysia, buy to let Malaysia, property investment tips Malaysia, real estate Malaysia beginner, Malaysia property market analysis",
+  description:
+    "Complete guide to property investment for beginners in Malaysia. Learn about investment strategies, financing, risk management, and how to build your property portfolio.",
+  keywords:
+    "property investment Malaysia 2026, real estate investment for beginners Malaysia, Malaysia property guide, property portfolio Malaysia, rental yield Malaysia, property investment strategy Malaysia, buy to let Malaysia, property investment tips Malaysia, real estate Malaysia beginner, Malaysia property market analysis",
   openGraph: {
     title: "Property Investment Guide for Beginners in Malaysia",
-    description: "Complete guide to property investment for beginners in Malaysia. Learn about investment strategies and financing.",
-    images: ["/assets/img/blog/blog-thumb-3.png"],
+    description:
+      "Complete guide to property investment for beginners in Malaysia. Learn about investment strategies and financing.",
+    images: ["/assets/img/blog/Stamp-Duty-in-Malaysia-Property.png"],
     type: "article",
   },
 };
@@ -30,11 +33,16 @@ export default function PropertyInvestmentGuide() {
                     </h3>
 
                     <p className="mb-30">
-                      Property investment is one of the most popular wealth-building strategies in Malaysia. With proper knowledge and planning, real estate can provide steady rental income and long-term capital appreciation. However, it requires careful consideration and strategic planning.
+                      Property investment is one of the most popular
+                      wealth-building strategies in Malaysia. With proper
+                      knowledge and planning, real estate can provide steady
+                      rental income and long-term capital appreciation. However,
+                      it requires careful consideration and strategic planning.
                     </p>
 
                     <p className="mb-30">
-                      This comprehensive guide covers everything beginners need to know about property investment in Malaysia.
+                      This comprehensive guide covers everything beginners need
+                      to know about property investment in Malaysia.
                     </p>
 
                     <h3 className="tp-blog-details-subtitle mb-20">
@@ -42,16 +50,35 @@ export default function PropertyInvestmentGuide() {
                     </h3>
 
                     <p className="mb-20">
-                      Property investment offers several advantages over other investment vehicles:
+                      Property investment offers several advantages over other
+                      investment vehicles:
                     </p>
 
                     <ul className="tp-blog-details-list mb-30">
-                      <li><strong>Tangible Asset:</strong> You own a physical property</li>
-                      <li><strong>Leverage:</strong> Use bank financing to control larger assets</li>
-                      <li><strong>Rental Income:</strong> Regular cash flow from tenants</li>
-                      <li><strong>Capital Appreciation:</strong> Property values typically increase over time</li>
-                      <li><strong>Inflation Hedge:</strong> Property values often outpace inflation</li>
-                      <li><strong>Tax Benefits:</strong> Deductible expenses and allowances</li>
+                      <li>
+                        <strong>Tangible Asset:</strong> You own a physical
+                        property
+                      </li>
+                      <li>
+                        <strong>Leverage:</strong> Use bank financing to control
+                        larger assets
+                      </li>
+                      <li>
+                        <strong>Rental Income:</strong> Regular cash flow from
+                        tenants
+                      </li>
+                      <li>
+                        <strong>Capital Appreciation:</strong> Property values
+                        typically increase over time
+                      </li>
+                      <li>
+                        <strong>Inflation Hedge:</strong> Property values often
+                        outpace inflation
+                      </li>
+                      <li>
+                        <strong>Tax Benefits:</strong> Deductible expenses and
+                        allowances
+                      </li>
                     </ul>
 
                     <h3 className="tp-blog-details-subtitle mb-20">
@@ -59,15 +86,31 @@ export default function PropertyInvestmentGuide() {
                     </h3>
 
                     <p className="mb-20">
-                      Understanding different investment strategies helps you choose the right approach:
+                      Understanding different investment strategies helps you
+                      choose the right approach:
                     </p>
 
                     <ul className="tp-blog-details-list mb-30">
-                      <li><strong>Rental Properties:</strong> Buy to rent out for monthly income</li>
-                      <li><strong>Flip Properties:</strong> Buy low, renovate, sell for profit</li>
-                      <li><strong>Development:</strong> Build new properties for sale or rent</li>
-                      <li><strong>REITs:</strong> Invest in property trusts without direct ownership</li>
-                      <li><strong>Commercial:</strong> Office, retail, or industrial properties</li>
+                      <li>
+                        <strong>Rental Properties:</strong> Buy to rent out for
+                        monthly income
+                      </li>
+                      <li>
+                        <strong>Flip Properties:</strong> Buy low, renovate,
+                        sell for profit
+                      </li>
+                      <li>
+                        <strong>Development:</strong> Build new properties for
+                        sale or rent
+                      </li>
+                      <li>
+                        <strong>REITs:</strong> Invest in property trusts
+                        without direct ownership
+                      </li>
+                      <li>
+                        <strong>Commercial:</strong> Office, retail, or
+                        industrial properties
+                      </li>
                     </ul>
 
                     <div
@@ -83,7 +126,9 @@ export default function PropertyInvestmentGuide() {
                         💡 Beginner Recommendation:
                       </h5>
                       <p style={{ color: "#155724", margin: 0 }}>
-                        Start with residential rental properties. They're easier to manage, have lower entry costs, and offer steady demand from tenants.
+                        Start with residential rental properties. They're easier
+                        to manage, have lower entry costs, and offer steady
+                        demand from tenants.
                       </p>
                     </div>
 
@@ -112,8 +157,14 @@ export default function PropertyInvestmentGuide() {
                     </p>
 
                     <ul className="tp-blog-details-list mb-30">
-                      <li><strong>Gross Yield:</strong> (Annual Rent ÷ Property Price) × 100</li>
-                      <li><strong>Net Yield:</strong> (Annual Rent - Expenses) ÷ Property Price × 100</li>
+                      <li>
+                        <strong>Gross Yield:</strong> (Annual Rent ÷ Property
+                        Price) × 100
+                      </li>
+                      <li>
+                        <strong>Net Yield:</strong> (Annual Rent - Expenses) ÷
+                        Property Price × 100
+                      </li>
                       <li>Good yield in Malaysia: 4-6% for residential</li>
                       <li>Commercial properties: 5-8% yield</li>
                     </ul>
@@ -131,7 +182,10 @@ export default function PropertyInvestmentGuide() {
                         ⚠️ Important Note:
                       </h5>
                       <p style={{ color: "#856404", margin: 0 }}>
-                        Don't focus solely on yield. Consider capital appreciation potential, location quality, and property condition. A lower yield in a prime location may offer better long-term returns.
+                        Don't focus solely on yield. Consider capital
+                        appreciation potential, location quality, and property
+                        condition. A lower yield in a prime location may offer
+                        better long-term returns.
                       </p>
                     </div>
 
@@ -140,7 +194,8 @@ export default function PropertyInvestmentGuide() {
                     </h3>
 
                     <p className="mb-20">
-                      Location is the most critical factor in property investment:
+                      Location is the most critical factor in property
+                      investment:
                     </p>
 
                     <ul className="tp-blog-details-list mb-30">
@@ -161,11 +216,25 @@ export default function PropertyInvestmentGuide() {
                     </p>
 
                     <ul className="tp-blog-details-list mb-30">
-                      <li><strong>Conventional Loan:</strong> Standard bank financing</li>
-                      <li><strong>Islamic Financing:</strong> Syariah-compliant options</li>
-                      <li><strong>Margin of Financing:</strong> Typically 70-90%</li>
-                      <li><strong>Interest Rates:</strong> Compare BLR vs fixed rates</li>
-                      <li><strong>Lock-in Period:</strong> Consider early settlement penalties</li>
+                      <li>
+                        <strong>Conventional Loan:</strong> Standard bank
+                        financing
+                      </li>
+                      <li>
+                        <strong>Islamic Financing:</strong> Syariah-compliant
+                        options
+                      </li>
+                      <li>
+                        <strong>Margin of Financing:</strong> Typically 70-90%
+                      </li>
+                      <li>
+                        <strong>Interest Rates:</strong> Compare BLR vs fixed
+                        rates
+                      </li>
+                      <li>
+                        <strong>Lock-in Period:</strong> Consider early
+                        settlement penalties
+                      </li>
                     </ul>
 
                     <h3 className="tp-blog-details-subtitle mb-20">
@@ -211,7 +280,10 @@ export default function PropertyInvestmentGuide() {
                         🏠 Investment Rule of Thumb
                       </h3>
                       <p style={{ margin: 0 }}>
-                        Never invest more than you can afford to lose. Start with one property, learn the process, and gradually expand your portfolio. Quality is more important than quantity.
+                        Never invest more than you can afford to lose. Start
+                        with one property, learn the process, and gradually
+                        expand your portfolio. Quality is more important than
+                        quantity.
                       </p>
                     </div>
 
@@ -236,11 +308,16 @@ export default function PropertyInvestmentGuide() {
                     </h3>
 
                     <p className="mb-20">
-                      Property investment can be a powerful wealth-building tool when approached with knowledge and discipline. Start small, learn continuously, and make decisions based on thorough research rather than emotions.
+                      Property investment can be a powerful wealth-building tool
+                      when approached with knowledge and discipline. Start
+                      small, learn continuously, and make decisions based on
+                      thorough research rather than emotions.
                     </p>
 
                     <p className="mb-30">
-                      Remember that property investment is a long-term game. Patience and persistence are key to building a successful portfolio.
+                      Remember that property investment is a long-term game.
+                      Patience and persistence are key to building a successful
+                      portfolio.
                     </p>
                   </div>
 
@@ -281,16 +358,24 @@ export default function PropertyInvestmentGuide() {
                   <div className="tp-blog-widget-category">
                     <ul>
                       <li>
-                        <Link href="#">Property <span>(12)</span></Link>
+                        <Link href="#">
+                          Property <span>(12)</span>
+                        </Link>
                       </li>
                       <li>
-                        <Link href="#">Investment <span>(8)</span></Link>
+                        <Link href="#">
+                          Investment <span>(8)</span>
+                        </Link>
                       </li>
                       <li>
-                        <Link href="#">Market Analysis <span>(6)</span></Link>
+                        <Link href="#">
+                          Market Analysis <span>(6)</span>
+                        </Link>
                       </li>
                       <li>
-                        <Link href="#">Tips & Guides <span>(15)</span></Link>
+                        <Link href="#">
+                          Tips & Guides <span>(15)</span>
+                        </Link>
                       </li>
                     </ul>
                   </div>

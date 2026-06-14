@@ -5,12 +5,15 @@ import RecentPosts from "@/components/Blog/RecentPosts";
 export const metadata: Metadata = {
   metadataBase: new URL("https://propertyla.com.my"),
   title: "How to Increase Your Property Value Before Selling | PropertyLa",
-  description: "Learn proven strategies to increase your property value before selling in Malaysia. Discover renovations, staging tips, and improvements that offer the best ROI.",
-  keywords: "increase property value Malaysia 2026, home renovation ROI Malaysia, property upgrades Malaysia, selling house tips Malaysia, home staging Malaysia, property value appreciation Malaysia, renovation before selling Malaysia, home improvement ROI Malaysia, property valuation Malaysia, maximize property sale price Malaysia",
+  description:
+    "Learn proven strategies to increase your property value before selling in Malaysia. Discover renovations, staging tips, and improvements that offer the best ROI.",
+  keywords:
+    "increase property value Malaysia 2026, home renovation ROI Malaysia, property upgrades Malaysia, selling house tips Malaysia, home staging Malaysia, property value appreciation Malaysia, renovation before selling Malaysia, home improvement ROI Malaysia, property valuation Malaysia, maximize property sale price Malaysia",
   openGraph: {
     title: "How to Increase Your Property Value Before Selling",
-    description: "Learn proven strategies to increase your property value before selling in Malaysia.",
-    images: ["/assets/img/blog/blog-thumb-3.png"],
+    description:
+      "Learn proven strategies to increase your property value before selling in Malaysia.",
+    images: ["/assets/img/blog/Stamp-Duty-in-Malaysia-Property.png"],
     type: "article",
   },
 };
@@ -30,11 +33,16 @@ export default function IncreasePropertyValue() {
                     </h3>
 
                     <p className="mb-30">
-                      Selling your property is a significant financial decision. Making strategic improvements before listing can significantly increase your selling price and reduce time on market. However, not all renovations offer good returns on investment.
+                      Selling your property is a significant financial decision.
+                      Making strategic improvements before listing can
+                      significantly increase your selling price and reduce time
+                      on market. However, not all renovations offer good returns
+                      on investment.
                     </p>
 
                     <p className="mb-30">
-                      In this guide, we share the most effective ways to increase your property value in Malaysia.
+                      In this guide, we share the most effective ways to
+                      increase your property value in Malaysia.
                     </p>
 
                     <h3 className="tp-blog-details-subtitle mb-20">
@@ -66,7 +74,8 @@ export default function IncreasePropertyValue() {
                         💰 ROI: 70-80%
                       </h5>
                       <p style={{ color: "#155724", margin: 0 }}>
-                        Kitchen renovations typically offer the highest return on investment among all home improvements.
+                        Kitchen renovations typically offer the highest return
+                        on investment among all home improvements.
                       </p>
                     </div>
 
@@ -91,7 +100,8 @@ export default function IncreasePropertyValue() {
                     </h3>
 
                     <p className="mb-20">
-                      A fresh coat of paint is one of the most cost-effective improvements.
+                      A fresh coat of paint is one of the most cost-effective
+                      improvements.
                     </p>
 
                     <ul className="tp-blog-details-list mb-30">
@@ -107,7 +117,8 @@ export default function IncreasePropertyValue() {
                     </h3>
 
                     <p className="mb-20">
-                      Old or damaged flooring can significantly reduce perceived value.
+                      Old or damaged flooring can significantly reduce perceived
+                      value.
                     </p>
 
                     <ul className="tp-blog-details-list mb-30">
@@ -147,7 +158,9 @@ export default function IncreasePropertyValue() {
                         ⚠️ Quick Win:
                       </h5>
                       <p style={{ color: "#856404", margin: 0 }}>
-                        Simply cleaning the exterior, trimming hedges, and adding potted plants can make a significant difference at minimal cost.
+                        Simply cleaning the exterior, trimming hedges, and
+                        adding potted plants can make a significant difference
+                        at minimal cost.
                       </p>
                     </div>
 
@@ -156,7 +169,8 @@ export default function IncreasePropertyValue() {
                     </h3>
 
                     <p className="mb-20">
-                      Modern buyers value energy efficiency for long-term savings.
+                      Modern buyers value energy efficiency for long-term
+                      savings.
                     </p>
 
                     <ul className="tp-blog-details-list mb-30">
@@ -229,7 +243,10 @@ export default function IncreasePropertyValue() {
                         🏠 Budget Allocation
                       </h3>
                       <p style={{ margin: 0 }}>
-                        Allocate your renovation budget strategically: 40% kitchen and bathrooms, 20% flooring and paint, 20% curb appeal, and 20% other improvements. Focus on changes that offer the highest ROI.
+                        Allocate your renovation budget strategically: 40%
+                        kitchen and bathrooms, 20% flooring and paint, 20% curb
+                        appeal, and 20% other improvements. Focus on changes
+                        that offer the highest ROI.
                       </p>
                     </div>
 
@@ -254,11 +271,16 @@ export default function IncreasePropertyValue() {
                     </h3>
 
                     <p className="mb-20">
-                      Strategic improvements can significantly increase your property's value and selling price. Focus on renovations that offer the best ROI and appeal to the broadest range of buyers.
+                      Strategic improvements can significantly increase your
+                      property's value and selling price. Focus on renovations
+                      that offer the best ROI and appeal to the broadest range
+                      of buyers.
                     </p>
 
                     <p className="mb-30">
-                      Always consult with a real estate agent before undertaking major renovations to ensure your investments align with market expectations in your area.
+                      Always consult with a real estate agent before undertaking
+                      major renovations to ensure your investments align with
+                      market expectations in your area.
                     </p>
                   </div>
 
@@ -299,16 +321,24 @@ export default function IncreasePropertyValue() {
                   <div className="tp-blog-widget-category">
                     <ul>
                       <li>
-                        <Link href="#">Property <span>(12)</span></Link>
+                        <Link href="#">
+                          Property <span>(12)</span>
+                        </Link>
                       </li>
                       <li>
-                        <Link href="#">Investment <span>(8)</span></Link>
+                        <Link href="#">
+                          Investment <span>(8)</span>
+                        </Link>
                       </li>
                       <li>
-                        <Link href="#">Market Analysis <span>(6)</span></Link>
+                        <Link href="#">
+                          Market Analysis <span>(6)</span>
+                        </Link>
                       </li>
                       <li>
-                        <Link href="#">Tips & Guides <span>(15)</span></Link>
+                        <Link href="#">
+                          Tips & Guides <span>(15)</span>
+                        </Link>
                       </li>
                     </ul>
                   </div>

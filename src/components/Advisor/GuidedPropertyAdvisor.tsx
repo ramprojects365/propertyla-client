@@ -617,7 +617,7 @@ export default function GuidedPropertyAdvisor({
                   </small>
                 )}
               </label>
-              <p>We use this to help you find better matches.</p>
+              <p>This will help you find better matches.</p>
               {defaultPassword && (
                 <p className="guided-advisor__password-note">
                   Your sign-in password: <strong>{defaultPassword}</strong>

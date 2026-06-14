@@ -5,12 +5,15 @@ import RecentPosts from "@/components/Blog/RecentPosts";
 export const metadata: Metadata = {
   metadataBase: new URL("https://propertyla.com.my"),
   title: "Best New Property Launches in Malaysia (2026) | PropertyLa",
-  description: "Discover the best new property launches in Malaysia for 2026. Explore upcoming developments, new condos, and township projects with attractive early bird prices.",
-  keywords: "new property launches Malaysia 2026, upcoming condos Malaysia, new township projects Malaysia, property launches Kuala Lumpur, new developments Selangor, early bird property Malaysia, new condo launches Malaysia, Malaysia property development 2026, pre-launch property Malaysia, new residential projects Malaysia",
+  description:
+    "Discover the best new property launches in Malaysia for 2026. Explore upcoming developments, new condos, and township projects with attractive early bird prices.",
+  keywords:
+    "new property launches Malaysia 2026, upcoming condos Malaysia, new township projects Malaysia, property launches Kuala Lumpur, new developments Selangor, early bird property Malaysia, new condo launches Malaysia, Malaysia property development 2026, pre-launch property Malaysia, new residential projects Malaysia",
   openGraph: {
     title: "Best New Property Launches in Malaysia (2026)",
-    description: "Discover the best new property launches in Malaysia for 2026 with attractive early bird prices.",
-    images: ["/assets/img/blog/blog-thumb-3.png"],
+    description:
+      "Discover the best new property launches in Malaysia for 2026 with attractive early bird prices.",
+    images: ["/assets/img/blog/Stamp-Duty-in-Malaysia-Property.png"],
     type: "article",
   },
 };
@@ -30,11 +33,16 @@ export default function NewPropertyLaunches() {
                     </h3>
 
                     <p className="mb-30">
-                      2026 promises to be an exciting year for Malaysia's property market with numerous new launches across Klang Valley and beyond. These developments offer modern designs, smart home features, and attractive early bird pricing for savvy investors and homebuyers.
+                      2026 promises to be an exciting year for Malaysia's
+                      property market with numerous new launches across Klang
+                      Valley and beyond. These developments offer modern
+                      designs, smart home features, and attractive early bird
+                      pricing for savvy investors and homebuyers.
                     </p>
 
                     <p className="mb-30">
-                      Here are the most anticipated new property launches in Malaysia for 2026.
+                      Here are the most anticipated new property launches in
+                      Malaysia for 2026.
                     </p>
 
                     <h3 className="tp-blog-details-subtitle mb-20">
@@ -86,7 +94,9 @@ export default function NewPropertyLaunches() {
                         💡 Early Bird Advantage:
                       </h5>
                       <p style={{ color: "#155724", margin: 0 }}>
-                        Early bird buyers typically enjoy 5-10% discounts and better unit selection. Register your interest early to secure the best deals.
+                        Early bird buyers typically enjoy 5-10% discounts and
+                        better unit selection. Register your interest early to
+                        secure the best deals.
                       </p>
                     </div>
 
@@ -175,7 +185,9 @@ export default function NewPropertyLaunches() {
                         ⚠️ Investment Consideration:
                       </h5>
                       <p style={{ color: "#856404", margin: 0 }}>
-                        Properties near upcoming MRT/LRT stations typically show better appreciation. Research the infrastructure timeline before investing.
+                        Properties near upcoming MRT/LRT stations typically show
+                        better appreciation. Research the infrastructure
+                        timeline before investing.
                       </p>
                     </div>
 
@@ -188,9 +200,18 @@ export default function NewPropertyLaunches() {
                     </p>
 
                     <ul className="tp-blog-details-list mb-30">
-                      <li><strong>Smart Home:</strong> IoT integration, app control</li>
-                      <li><strong>Sustainability:</strong> Green building certifications</li>
-                      <li><strong>Security:</strong> Advanced access control systems</li>
+                      <li>
+                        <strong>Smart Home:</strong> IoT integration, app
+                        control
+                      </li>
+                      <li>
+                        <strong>Sustainability:</strong> Green building
+                        certifications
+                      </li>
+                      <li>
+                        <strong>Security:</strong> Advanced access control
+                        systems
+                      </li>
                     </ul>
                   </div>
 
@@ -231,16 +252,24 @@ export default function NewPropertyLaunches() {
                   <div className="tp-blog-widget-category">
                     <ul>
                       <li>
-                        <Link href="#">Property <span>(12)</span></Link>
+                        <Link href="#">
+                          Property <span>(12)</span>
+                        </Link>
                       </li>
                       <li>
-                        <Link href="#">Investment <span>(8)</span></Link>
+                        <Link href="#">
+                          Investment <span>(8)</span>
+                        </Link>
                       </li>
                       <li>
-                        <Link href="#">Market Analysis <span>(6)</span></Link>
+                        <Link href="#">
+                          Market Analysis <span>(6)</span>
+                        </Link>
                       </li>
                       <li>
-                        <Link href="#">Tips & Guides <span>(15)</span></Link>
+                        <Link href="#">
+                          Tips & Guides <span>(15)</span>
+                        </Link>
                       </li>
                     </ul>
                   </div>

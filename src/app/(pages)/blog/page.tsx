@@ -1,4 +1,4 @@
-import { blogPosts } from "@/data/blogPosts";
+import { blogData } from "@/data/blogData";
 import Image from "next/image";
 import Link from "next/link";
 import { Metadata } from "next";
@@ -38,9 +38,9 @@ export default function BlogPage() {
         </div>
 
         <div className="blog-listing-page__grid">
-          {blogPosts.map((post) => (
+          {blogData.map((post) => (
             <article className="blog-listing-card" key={post.id}>
-              <Link className="blog-listing-card__image" href={post.slug}>
+              <Link className="blog-listing-card__image" href={`/blog/${post.slug}`}>
                 <Image
                   src={post.image}
                   alt={post.title}
@@ -51,13 +51,13 @@ export default function BlogPage() {
               </Link>
               <div className="blog-listing-card__body">
                 <div className="blog-listing-card__meta">
-                  <span>Property La</span>
+                  <span>{post.category}</span>
                   <span>{post.readTime}</span>
                 </div>
                 <h2>
-                  <Link href={post.slug}>{post.title}</Link>
+                  <Link href={`/blog/${post.slug}`}>{post.title}</Link>
                 </h2>
-                <Link className="blog-listing-card__link" href={post.slug}>
+                <Link className="blog-listing-card__link" href={`/blog/${post.slug}`}>
                   Read article
                 </Link>
               </div>

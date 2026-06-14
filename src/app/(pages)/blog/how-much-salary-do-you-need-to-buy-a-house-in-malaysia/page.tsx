@@ -5,12 +5,15 @@ import RecentPosts from "@/components/Blog/RecentPosts";
 export const metadata: Metadata = {
   metadataBase: new URL("https://propertyla.com.my"),
   title: "How Much Salary Do You Need to Buy a House in Malaysia? | PropertyLa",
-  description: "Calculate the minimum salary required to buy a house in Malaysia. Learn about income requirements, loan eligibility, and affordability factors for different property types and locations.",
-  keywords: "salary to buy house Malaysia 2026, minimum income buy property Malaysia, home loan eligibility Malaysia, affordable housing Malaysia, property affordability calculator Malaysia, how much income for house Malaysia, Malaysia home loan calculator, DSR Malaysia, debt service ratio Malaysia, monthly income for property Malaysia",
+  description:
+    "Calculate the minimum salary required to buy a house in Malaysia. Learn about income requirements, loan eligibility, and affordability factors for different property types and locations.",
+  keywords:
+    "salary to buy house Malaysia 2026, minimum income buy property Malaysia, home loan eligibility Malaysia, affordable housing Malaysia, property affordability calculator Malaysia, how much income for house Malaysia, Malaysia home loan calculator, DSR Malaysia, debt service ratio Malaysia, monthly income for property Malaysia",
   openGraph: {
     title: "How Much Salary Do You Need to Buy a House in Malaysia?",
-    description: "Calculate the minimum salary required to buy a house in Malaysia. Learn about income requirements and loan eligibility.",
-    images: ["/assets/img/blog/blog-thumb-3.png"],
+    description:
+      "Calculate the minimum salary required to buy a house in Malaysia. Learn about income requirements and loan eligibility.",
+    images: ["/assets/img/blog/Stamp-Duty-in-Malaysia-Property.png"],
     type: "article",
   },
 };
@@ -30,11 +33,17 @@ export default function SalaryForHouse() {
                     </h3>
 
                     <p className="mb-30">
-                      One of the most common questions among aspiring homeowners in Malaysia is: "How much salary do I need to buy a house?" The answer depends on several factors including property price, location, loan tenure, and your financial commitments.
+                      One of the most common questions among aspiring homeowners
+                      in Malaysia is: "How much salary do I need to buy a
+                      house?" The answer depends on several factors including
+                      property price, location, loan tenure, and your financial
+                      commitments.
                     </p>
 
                     <p className="mb-30">
-                      In this guide, we break down the salary requirements for different property types and provide practical tips to help you determine if you're ready to buy.
+                      In this guide, we break down the salary requirements for
+                      different property types and provide practical tips to
+                      help you determine if you're ready to buy.
                     </p>
 
                     <h3 className="tp-blog-details-subtitle mb-20">
@@ -42,7 +51,10 @@ export default function SalaryForHouse() {
                     </h3>
 
                     <p className="mb-20">
-                      Financial experts recommend that your monthly housing loan installment should not exceed 30% of your gross monthly income. This ensures you have enough for other expenses and emergencies.
+                      Financial experts recommend that your monthly housing loan
+                      installment should not exceed 30% of your gross monthly
+                      income. This ensures you have enough for other expenses
+                      and emergencies.
                     </p>
 
                     <div
@@ -58,7 +70,9 @@ export default function SalaryForHouse() {
                         💡 Quick Calculation:
                       </h5>
                       <p style={{ color: "#155724", margin: 0 }}>
-                        If your monthly loan installment is RM2,000, you should ideally earn at least RM6,667 per month (RM2,000 ÷ 0.30).
+                        If your monthly loan installment is RM2,000, you should
+                        ideally earn at least RM6,667 per month (RM2,000 ÷
+                        0.30).
                       </p>
                     </div>
 
@@ -67,16 +81,36 @@ export default function SalaryForHouse() {
                     </h3>
 
                     <p className="mb-20">
-                      Here's a rough estimate of the minimum salary needed for different property price ranges (assuming 90% loan, 35-year tenure, and current interest rates):
+                      Here's a rough estimate of the minimum salary needed for
+                      different property price ranges (assuming 90% loan,
+                      35-year tenure, and current interest rates):
                     </p>
 
                     <ul className="tp-blog-details-list mb-30">
-                      <li><strong>RM300,000 property:</strong> Minimum RM3,500-4,000/month</li>
-                      <li><strong>RM400,000 property:</strong> Minimum RM4,500-5,000/month</li>
-                      <li><strong>RM500,000 property:</strong> Minimum RM5,500-6,000/month</li>
-                      <li><strong>RM600,000 property:</strong> Minimum RM6,500-7,500/month</li>
-                      <li><strong>RM800,000 property:</strong> Minimum RM8,500-10,000/month</li>
-                      <li><strong>RM1,000,000 property:</strong> Minimum RM10,500-12,000/month</li>
+                      <li>
+                        <strong>RM300,000 property:</strong> Minimum
+                        RM3,500-4,000/month
+                      </li>
+                      <li>
+                        <strong>RM400,000 property:</strong> Minimum
+                        RM4,500-5,000/month
+                      </li>
+                      <li>
+                        <strong>RM500,000 property:</strong> Minimum
+                        RM5,500-6,000/month
+                      </li>
+                      <li>
+                        <strong>RM600,000 property:</strong> Minimum
+                        RM6,500-7,500/month
+                      </li>
+                      <li>
+                        <strong>RM800,000 property:</strong> Minimum
+                        RM8,500-10,000/month
+                      </li>
+                      <li>
+                        <strong>RM1,000,000 property:</strong> Minimum
+                        RM10,500-12,000/month
+                      </li>
                     </ul>
 
                     <h3 className="tp-blog-details-subtitle mb-20">
@@ -84,16 +118,35 @@ export default function SalaryForHouse() {
                     </h3>
 
                     <p className="mb-20">
-                      Banks consider several factors when determining your loan eligibility:
+                      Banks consider several factors when determining your loan
+                      eligibility:
                     </p>
 
                     <ul className="tp-blog-details-list mb-30">
-                      <li><strong>Net Income:</strong> After EPF and tax deductions</li>
-                      <li><strong>Debt Service Ratio (DSR):</strong> Total debt payments ÷ net income (should be ≤ 60-70%)</li>
-                      <li><strong>Credit Score:</strong> Clean credit history improves approval chances</li>
-                      <li><strong>Employment Stability:</strong> Permanent employment is preferred</li>
-                      <li><strong>Age:</strong> Younger buyers get longer loan tenures</li>
-                      <li><strong>Existing Commitments:</strong> Car loans, personal loans, credit cards</li>
+                      <li>
+                        <strong>Net Income:</strong> After EPF and tax
+                        deductions
+                      </li>
+                      <li>
+                        <strong>Debt Service Ratio (DSR):</strong> Total debt
+                        payments ÷ net income (should be ≤ 60-70%)
+                      </li>
+                      <li>
+                        <strong>Credit Score:</strong> Clean credit history
+                        improves approval chances
+                      </li>
+                      <li>
+                        <strong>Employment Stability:</strong> Permanent
+                        employment is preferred
+                      </li>
+                      <li>
+                        <strong>Age:</strong> Younger buyers get longer loan
+                        tenures
+                      </li>
+                      <li>
+                        <strong>Existing Commitments:</strong> Car loans,
+                        personal loans, credit cards
+                      </li>
                     </ul>
 
                     <h3 className="tp-blog-details-subtitle mb-20">
@@ -101,17 +154,33 @@ export default function SalaryForHouse() {
                     </h3>
 
                     <p className="mb-20">
-                      Property prices vary significantly by location, affecting salary requirements:
+                      Property prices vary significantly by location, affecting
+                      salary requirements:
                     </p>
 
                     <ul className="tp-blog-details-list mb-30">
-                      <li><strong>Kuala Lumpur City Center:</strong> RM8,000-15,000/month</li>
-                      <li><strong>Petaling Jaya:</strong> RM6,000-10,000/month</li>
-                      <li><strong>Subang Jaya:</strong> RM5,500-9,000/month</li>
-                      <li><strong>Shah Alam:</strong> RM4,500-7,500/month</li>
-                      <li><strong>Puchong:</strong> RM4,000-6,500/month</li>
-                      <li><strong>Klang:</strong> RM3,500-5,500/month</li>
-                      <li><strong>Seremban:</strong> RM3,000-4,500/month</li>
+                      <li>
+                        <strong>Kuala Lumpur City Center:</strong>{" "}
+                        RM8,000-15,000/month
+                      </li>
+                      <li>
+                        <strong>Petaling Jaya:</strong> RM6,000-10,000/month
+                      </li>
+                      <li>
+                        <strong>Subang Jaya:</strong> RM5,500-9,000/month
+                      </li>
+                      <li>
+                        <strong>Shah Alam:</strong> RM4,500-7,500/month
+                      </li>
+                      <li>
+                        <strong>Puchong:</strong> RM4,000-6,500/month
+                      </li>
+                      <li>
+                        <strong>Klang:</strong> RM3,500-5,500/month
+                      </li>
+                      <li>
+                        <strong>Seremban:</strong> RM3,000-4,500/month
+                      </li>
                     </ul>
 
                     <div
@@ -127,7 +196,9 @@ export default function SalaryForHouse() {
                         ⚠️ Important Note:
                       </h5>
                       <p style={{ color: "#856404", margin: 0 }}>
-                        These are rough estimates. Actual loan approval depends on individual circumstances. Always get pre-approval from banks before committing to a purchase.
+                        These are rough estimates. Actual loan approval depends
+                        on individual circumstances. Always get pre-approval
+                        from banks before committing to a purchase.
                       </p>
                     </div>
 
@@ -136,7 +207,8 @@ export default function SalaryForHouse() {
                     </h3>
 
                     <p className="mb-20">
-                      If your salary is below the required amount, consider these strategies:
+                      If your salary is below the required amount, consider
+                      these strategies:
                     </p>
 
                     <ul className="tp-blog-details-list mb-30">
@@ -153,14 +225,26 @@ export default function SalaryForHouse() {
                     </h3>
 
                     <p className="mb-20">
-                      Malaysia offers schemes to help first-time buyers with lower income:
+                      Malaysia offers schemes to help first-time buyers with
+                      lower income:
                     </p>
 
                     <ul className="tp-blog-details-list mb-30">
-                      <li><strong>MyFirstHome:</strong> For income ≤ RM5,000, property price ≤ RM500,000</li>
-                      <li><strong>PR1MA:</strong> Affordable housing for citizens</li>
-                      <li><strong>Rumah Wilayah Persekutuan:</strong> KL affordable homes</li>
-                      <li><strong>Stamp Duty Exemption:</strong> First RM300,000 exempted</li>
+                      <li>
+                        <strong>MyFirstHome:</strong> For income ≤ RM5,000,
+                        property price ≤ RM500,000
+                      </li>
+                      <li>
+                        <strong>PR1MA:</strong> Affordable housing for citizens
+                      </li>
+                      <li>
+                        <strong>Rumah Wilayah Persekutuan:</strong> KL
+                        affordable homes
+                      </li>
+                      <li>
+                        <strong>Stamp Duty Exemption:</strong> First RM300,000
+                        exempted
+                      </li>
                     </ul>
 
                     <div
@@ -177,7 +261,10 @@ export default function SalaryForHouse() {
                         🏠 Financial Reality Check
                       </h3>
                       <p style={{ margin: 0 }}>
-                        Don't stretch yourself too thin. It's better to buy a smaller, more affordable home than to struggle with monthly payments. Remember, homeownership comes with additional costs like maintenance, insurance, and taxes.
+                        Don't stretch yourself too thin. It's better to buy a
+                        smaller, more affordable home than to struggle with
+                        monthly payments. Remember, homeownership comes with
+                        additional costs like maintenance, insurance, and taxes.
                       </p>
                     </div>
 
@@ -186,11 +273,15 @@ export default function SalaryForHouse() {
                     </h3>
 
                     <p className="mb-20">
-                      While there's no one-size-fits-all answer, understanding the relationship between salary and property price is crucial for making informed decisions.
+                      While there's no one-size-fits-all answer, understanding
+                      the relationship between salary and property price is
+                      crucial for making informed decisions.
                     </p>
 
                     <p className="mb-30">
-                      Use online calculators, consult with banks, and consider your long-term financial goals before committing to a property purchase.
+                      Use online calculators, consult with banks, and consider
+                      your long-term financial goals before committing to a
+                      property purchase.
                     </p>
                   </div>
 
@@ -231,16 +322,24 @@ export default function SalaryForHouse() {
                   <div className="tp-blog-widget-category">
                     <ul>
                       <li>
-                        <Link href="#">Property <span>(12)</span></Link>
+                        <Link href="#">
+                          Property <span>(12)</span>
+                        </Link>
                       </li>
                       <li>
-                        <Link href="#">Investment <span>(8)</span></Link>
+                        <Link href="#">
+                          Investment <span>(8)</span>
+                        </Link>
                       </li>
                       <li>
-                        <Link href="#">Market Analysis <span>(6)</span></Link>
+                        <Link href="#">
+                          Market Analysis <span>(6)</span>
+                        </Link>
                       </li>
                       <li>
-                        <Link href="#">Tips & Guides <span>(15)</span></Link>
+                        <Link href="#">
+                          Tips & Guides <span>(15)</span>
+                        </Link>
                       </li>
                     </ul>
                   </div>
